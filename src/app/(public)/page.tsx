@@ -3,7 +3,7 @@ import { GroupCard } from "@/components/group-card";
 
 export default function Home() {
   return (
-    <div className="container mx-auto py-12">
+    <div className="max-w-7xl px-4 mx-auto py-12">
       {/* Groups  */}
       <section>
         <h2 className="text-2xl font-semibold mb-4">Groups in Hyderabad</h2>
