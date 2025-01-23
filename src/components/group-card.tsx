@@ -20,7 +20,7 @@ export function GroupCard() {
           }
           width={300}
           height={200}
-          className="aspect-video"
+          className="aspect-video object-cover"
           alt=""
           objectFit="contain"
         />
