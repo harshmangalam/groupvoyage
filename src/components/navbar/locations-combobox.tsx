@@ -32,7 +32,7 @@ const cities = [
   { value: "dubai", label: "Dubai" },
 ];
 
-export function CityCombobox() {
+export function LocationsCombobox() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
