@@ -1,33 +1,47 @@
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Image from "next/image";
 import Link from "next/link";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Users, MapPin } from "lucide-react";
 
-export function GroupCard() {
+interface TravelGroupCardProps {
+  name: string;
+  posterUrl: string;
+  membersCount: number;
+  location: string;
+  slug: string;
+}
+
+export function GroupCard({
+  name,
+  posterUrl,
+  membersCount,
+  location,
+  slug,
+}: TravelGroupCardProps) {
   return (
-    <Link
-      href={`/groups`}
-      className="hover:shadow-lg focus:shadow-lg transition-shadow"
-    >
-      <Card>
-        <Image
-          src={
-            "https://secure.meetupstatic.com/photos/event/b/d/9/a/clean_518628538.webp"
-          }
-          width={300}
-          height={200}
-          className="aspect-video object-cover"
-          alt=""
-          objectFit="contain"
+    <Link href={`/${slug}`} className="block w-full">
+      <Card className="w-full h-64 overflow-hidden relative group">
+        <div
+          className="absolute inset-0 bg-cover bg-no-repeat bg-center transition-transform duration-300 group-hover:scale-105"
+          style={{
+            backgroundImage: `url(${posterUrl})`,
+          }}
         />
-        <CardHeader className="p-2">
-          <CardTitle className="text-lg">escape and explore</CardTitle>
-          <CardDescription>Hyderabad, India</CardDescription>
-        </CardHeader>
+        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80" />
+        <CardContent className="relative h-full flex flex-col justify-end p-4 text-white">
+          <CardTitle className="text-base font-semibold mb-2 line-clamp-1">
+            {name}
+          </CardTitle>
+          <div className="flex items-center gap-4 text-sm">
+            <div className="flex items-center">
+              <Users className="w-4 h-4 mr-1" />
+              <span>{membersCount}</span>
+            </div>
+            <div className="flex items-center">
+              <MapPin className="w-4 h-4 mr-1" />
+              <span>{location}</span>
+            </div>
+          </div>
+        </CardContent>
       </Card>
     </Link>
   );
