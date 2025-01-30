@@ -37,13 +37,14 @@ const socialPlatforms = [
 
 interface SharePopoverProps {
   groupName: string;
-  groupUrl: string;
+  slug: string;
 }
 
-export function SharePopover({ groupName, groupUrl }: SharePopoverProps) {
+export function SharePopover({ groupName, slug }: SharePopoverProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
 
+  const groupUrl = `${window.location.origin}/${slug}`;
   const handleShare = (platform: string) => {
     setSelectedPlatform(platform);
     setIsOpen(true);

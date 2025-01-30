@@ -68,6 +68,9 @@ importers:
       uuid:
         specifier: ^11.0.5
         version: 11.0.5
+      uuidv7:
+        specifier: ^1.0.2
+        version: 1.0.2
       zod:
         specifier: ^3.24.1
         version: 3.24.1
@@ -2809,6 +2812,10 @@ packages:
 
   uuid@11.0.5:
     resolution: {integrity: sha512-508e6IcKLrhxKdBbcA2b4KQZlLVp2+J5UwQ6F7Drckkc5N9ZJwFa4TgWtsww9UG8fGHbm6gbV19TdM5pQ4GaIA==}
+    hasBin: true
+
+  uuidv7@1.0.2:
+    resolution: {integrity: sha512-8JQkH4ooXnm1JCIhqTMbtmdnYEn6oKukBxHn1Ic9878jMkL7daTI7anTExfY18VRCX7tcdn5quzvCb6EWrR8PA==}
     hasBin: true
 
   web-streams-polyfill@3.3.3:
@@ -5649,6 +5656,8 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   uuid@11.0.5: {}
+
+  uuidv7@1.0.2: {}
 
   web-streams-polyfill@3.3.3: {}
 

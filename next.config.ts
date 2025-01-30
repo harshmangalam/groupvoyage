@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "secure.meetupstatic.com",
       },
+      {
+        hostname: "secure-content.meetupstatic.com",
+      },
     ],
   },
 };

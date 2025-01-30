@@ -1,22 +1,9 @@
 import Link from "next/link";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { Users, MapPin } from "lucide-react";
+import { GetGroupsType } from "@/services/groups";
+import { GroupLocation } from "./group-location";
 
-interface TravelGroupCardProps {
-  name: string;
-  posterUrl: string;
-  membersCount: number;
-  location: string;
-  slug: string;
-}
-
-export function GroupCard({
-  name,
-  posterUrl,
-  membersCount,
-  location,
-  slug,
-}: TravelGroupCardProps) {
+export function GroupCard({ location, name, posterUrl, slug }: GetGroupsType) {
   return (
     <Link href={`/${slug}`} className="block w-full">
       <Card className="w-full h-64 overflow-hidden relative group">
@@ -32,14 +19,7 @@ export function GroupCard({
             {name}
           </CardTitle>
           <div className="flex items-center gap-4 text-sm">
-            <div className="flex items-center">
-              <Users className="w-4 h-4 mr-1" />
-              <span>{membersCount}</span>
-            </div>
-            <div className="flex items-center">
-              <MapPin className="w-4 h-4 mr-1" />
-              <span>{location}</span>
-            </div>
+            <GroupLocation {...location} />
           </div>
         </CardContent>
       </Card>
