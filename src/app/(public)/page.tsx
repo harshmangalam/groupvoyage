@@ -4,14 +4,14 @@ import { getGroups } from "@/services/groups";
 
 export default async function Home() {
   const groups = await getGroups({
-    locationId: "0194b593-6fb9-7000-aae3-fb156fd30464",
+    locationId: "0194b5aa-6227-7000-b1ce-8ad011c0317b",
   });
   return (
     <div className="max-w-7xl px-4 mx-auto py-6 md:py-12">
       {/* Groups  */}
       <section>
         <h2 className="text-xl md:text-2xl font-semibold mb-4">
-          Groups in Hyderabad
+          Meetup Groups in Hyderabad
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {groups.map((group) => (
