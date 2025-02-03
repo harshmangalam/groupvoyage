@@ -1,12 +1,13 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { uuidv7 } from "uuidv7";
+import { randomUUIDv7 } from "bun";
 import { locationsTable } from "./locations";
 import { relations, sql } from "drizzle-orm";
+import { eventsTable } from "./events";
 
 export const groupsTable = sqliteTable("groups", {
   id: text("id")
     .primaryKey()
-    .$defaultFn(() => uuidv7()),
+    .$defaultFn(() => randomUUIDv7()),
   name: text("name").notNull().unique(),
   slug: text("slug").notNull().unique(),
   details: text("details"),
@@ -15,7 +16,10 @@ export const groupsTable = sqliteTable("groups", {
     .notNull(),
   posterUrl: text("poster_url"),
   organizer: text("organizer"),
+  socialLinks: text("social_links", { mode: "json" }),
+  contacts: text("contacts", { mode: "json" }),
   meta: text("meta", { mode: "json" }),
+  source: text("source"),
   createdAt: text("created_at")
     .default(sql`(CURRENT_TIMESTAMP)`)
     .notNull(),
@@ -24,11 +28,12 @@ export const groupsTable = sqliteTable("groups", {
   ),
 });
 
-export const groupsRelations = relations(groupsTable, ({ one }) => ({
+export const groupsRelations = relations(groupsTable, ({ one, many }) => ({
   location: one(locationsTable, {
     fields: [groupsTable.locationId],
     references: [locationsTable.id],
   }),
+  events: many(eventsTable),
 }));
 
 export type InsertGroup = typeof groupsTable.$inferInsert;
