@@ -44,6 +44,13 @@ export function LocationsCombobox({
     });
     setOpen(false);
   }
+
+  React.useEffect(() => {
+    if (!city) {
+      handleSelect(locations[0].slug);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [city]);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
