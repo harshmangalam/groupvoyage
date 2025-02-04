@@ -1,10 +1,15 @@
 import { EventCard } from "@/components/event-card";
 import { GroupCard } from "@/components/group-card";
+import { SearchParams } from "@/lib/types";
 import { getGroups } from "@/services/groups";
 
-export default async function Home() {
+type HomeProps = {
+  searchParams: SearchParams;
+};
+export default async function Page({ searchParams }: HomeProps) {
+  const locationSlug = (await searchParams).city?.toString() || "";
   const groups = await getGroups({
-    locationId: "0194b5aa-6227-7000-b1ce-8ad011c0317b",
+    locationSlug,
   });
   return (
     <div className="max-w-7xl px-4 mx-auto py-6 md:py-12">

@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "secure-content.meetupstatic.com",
       },
+      {
+        hostname: "www.tourmyindia.com",
+      },
     ],
   },
 };

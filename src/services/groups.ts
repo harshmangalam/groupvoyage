@@ -1,24 +1,37 @@
 "use server";
 
 import { db } from "@/db/connection";
-import { groupsTable } from "@/db/schema";
+import { eventsTable, groupsTable, locationsTable } from "@/db/schema";
 import { eq, SQL, sql } from "drizzle-orm";
 
 type GetGroupsFilters = {
-  locationId: string;
+  locationId?: string;
+  locationSlug?: string;
   limit?: number;
   offset?: number;
 };
 
 export async function getGroups({
   locationId,
+  locationSlug,
   limit = 50,
   offset = 0,
 }: GetGroupsFilters) {
   const prepared = db.query.groupsTable
     .findMany({
-      where: (groups, { eq }) => {
-        return eq(groups.locationId, sql.placeholder("locationId"));
+      where: (groups, { eq, inArray }) => {
+        if (locationId) {
+          return eq(groups.locationId, sql.placeholder("locationId"));
+        }
+        if (locationSlug) {
+          return inArray(
+            groups.locationId,
+            db
+              .select({ id: locationsTable.id })
+              .from(locationsTable)
+              .where(eq(locationsTable.slug, sql.placeholder("locationSlug")))
+          );
+        }
       },
       limit: sql.placeholder("limit"),
       offset: sql.placeholder("offset"),
@@ -28,6 +41,7 @@ export async function getGroups({
         meta: true,
         posterUrl: true,
         name: true,
+        locationId: true,
       },
       with: {
         location: {
@@ -39,11 +53,19 @@ export async function getGroups({
           },
         },
       },
+      orderBy: (groups, { desc }) =>
+        desc(
+          db
+            .select({ count: sql<number>`COUNT(*)` })
+            .from(eventsTable)
+            .where(eq(eventsTable.groupId, groups.id))
+        ),
     })
     .prepare();
 
   const groups = await prepared.execute({
-    locationId,
+    locationId: locationId || null,
+    locationSlug: locationSlug || null,
     limit,
     offset,
   });
