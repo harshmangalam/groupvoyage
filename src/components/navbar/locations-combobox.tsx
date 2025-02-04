@@ -19,7 +19,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { SelectLocation } from "@/db/schema";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export function LocationsCombobox({
   locations,
@@ -28,29 +28,20 @@ export function LocationsCombobox({
 }) {
   const [open, setOpen] = React.useState(false);
 
-  const pathname = usePathname();
   const router = useRouter();
   const [isPending, startTransition] = React.useTransition();
-  const searchParams = useSearchParams();
-  const city = searchParams.get("city")?.toString() || "";
+  const params = useParams();
+  const city = params.locationSlug;
 
   function handleSelect(currentValue: string) {
     if (currentValue === city) return;
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set("city", currentValue);
 
     startTransition(() => {
-      router.push(pathname + "?" + newSearchParams);
+      router.push(`/${currentValue}`);
     });
     setOpen(false);
   }
 
-  React.useEffect(() => {
-    if (!city) {
-      handleSelect(locations[0].slug);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [city]);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>

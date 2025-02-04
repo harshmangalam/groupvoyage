@@ -1,14 +1,9 @@
-import { LocationsCombobox } from "./locations-combobox";
 import { Logo } from "../logo";
-import { db } from "@/db/connection";
+import { Suspense } from "react";
+import { Cities } from "./cities";
+import { Skeleton } from "../ui/skeleton";
 
-export async function Navbar() {
-  const locations = await db.query.locationsTable.findMany({
-    columns: {
-      name: true,
-      slug: true,
-    },
-  });
+export function Navbar() {
   return (
     <nav className="border-b sticky top-0 bg-background z-10">
       <div className="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
@@ -16,7 +11,12 @@ export async function Navbar() {
           <Logo />
         </div>
 
-        <LocationsCombobox locations={locations} />
+        <Suspense
+          key={"locations-dropdown"}
+          fallback={<Skeleton className="h-10 w-[200] rounded-md" />}
+        >
+          <Cities />
+        </Suspense>
       </div>
     </nav>
   );

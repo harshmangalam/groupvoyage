@@ -14,7 +14,6 @@ import { Separator } from "@/components/ui/separator";
 import { getGroupDetails } from "@/services/groups";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { GroupMetaType } from "@/lib/types";
 
 export default async function GroupDetailsLayout({
