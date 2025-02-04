@@ -1,13 +1,13 @@
 import { relations } from "drizzle-orm";
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { randomUUIDv7 } from "bun";
+import { uuidv7 } from "uuidv7";
 import { groupsTable } from "./groups";
 import { eventsTable } from "./events";
 
 export const locationsTable = sqliteTable("locations", {
   id: text("id")
     .primaryKey()
-    .$defaultFn(() => randomUUIDv7()),
+    .$defaultFn(() => uuidv7()),
   name: text("name").notNull(),
   slug: text("slug").notNull().unique(),
   country: text("country"),

@@ -1,5 +1,5 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { randomUUIDv7 } from "bun";
+import { uuidv7 } from "uuidv7";
 import { locationsTable } from "./locations";
 import { relations, sql } from "drizzle-orm";
 import { eventsTable } from "./events";
@@ -7,7 +7,7 @@ import { eventsTable } from "./events";
 export const groupsTable = sqliteTable("groups", {
   id: text("id")
     .primaryKey()
-    .$defaultFn(() => randomUUIDv7()),
+    .$defaultFn(() => uuidv7()),
   name: text("name").notNull().unique(),
   slug: text("slug").notNull().unique(),
   details: text("details"),
