@@ -8,7 +8,7 @@ export function Logo() {
       <Image
         width={96}
         height={96}
-        src={"/logo.png"}
+        src={"/logo.webp"}
         className="rounded-full w-8 h-8"
         alt={SITE_NAME}
       />
