@@ -36,6 +36,18 @@ export async function getEvents({
               .where(eq(locationsTable.slug, sql.placeholder("locationSlug")))
           );
         }
+        if (locationId) {
+          return eq(events.groupId, sql.placeholder("groupId"));
+        }
+        if (groupSlug) {
+          return inArray(
+            events.groupId,
+            db
+              .select({ id: groupsTable.id })
+              .from(groupsTable)
+              .where(eq(groupsTable.slug, sql.placeholder("groupSlug")))
+          );
+        }
       },
       limit: sql.placeholder("limit"),
       offset: sql.placeholder("offset"),
