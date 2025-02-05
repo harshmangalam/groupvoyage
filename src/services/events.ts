@@ -7,8 +7,8 @@ import { eq, SQL, sql } from "drizzle-orm";
 type GetEventsFilters = {
   locationId?: string;
   locationSlug?: string;
-  groupId: string;
-  groupSlug: string;
+  groupId?: string;
+  groupSlug?: string;
   limit?: number;
   offset?: number;
 };
@@ -42,10 +42,8 @@ export async function getEvents({
       columns: {
         id: true,
         slug: true,
-        meta: true,
         posterUrls: true,
         title: true,
-        locationId: true,
         durations: true,
         price: true,
       },
@@ -53,7 +51,12 @@ export async function getEvents({
         group: {
           columns: {
             slug: true,
-            id: true,
+            name: true,
+          },
+        },
+        location: {
+          columns: {
+            slug: true,
             name: true,
           },
         },
@@ -110,4 +113,4 @@ export async function getEventDetails({
   return event;
 }
 
-export type GetGroupsType = Awaited<ReturnType<typeof getEvents>>[number];
+export type GetEventsType = Awaited<ReturnType<typeof getEvents>>[number];

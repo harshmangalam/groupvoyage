@@ -1,5 +1,6 @@
 import { EventCard } from "@/components/event-card";
 import { GroupCard } from "@/components/group-card";
+import { getEvents } from "@/services/events";
 import { getGroups } from "@/services/groups";
 import Link from "next/link";
 
@@ -11,6 +12,8 @@ export default async function LocationPage({ params }: LocationPageProps) {
   const groups = await getGroups({
     locationSlug,
   });
+
+  const events = await getEvents({ locationSlug });
   return (
     <div className="max-w-7xl px-4 mx-auto py-6 md:py-12">
       {/* Groups  */}
@@ -32,19 +35,8 @@ export default async function LocationPage({ params }: LocationPageProps) {
       <section className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">Trips from Hyderabad</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {[...new Array(10)].map((_, i) => (
-            <EventCard
-              key={i}
-              posterUrl="https://secure.meetupstatic.com/photos/event/c/f/0/5/600_523852997.webp?w=750"
-              eventName="Bhongir Fort: 300 feet Rappelling & Trekking"
-              price={99.99}
-              date={new Date("2023-07-15")}
-              time="7:00 PM"
-              numberOfDays={3}
-              location="Central Park, New York"
-              groupName="escape and explore"
-              dayName="Sunday"
-            />
+          {events.map((event) => (
+            <EventCard key={event.id} {...event} />
           ))}
         </div>
       </section>
