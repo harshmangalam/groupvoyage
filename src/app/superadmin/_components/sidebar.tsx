@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 
 const sidebarItems = [
   { icon: Home, label: "Dashboard", href: "/" },
+  { icon: Globe, label: "Locations", href: "/locations" },
   { icon: Users, label: "Groups", href: "/groups" },
   { icon: Calendar, label: "Events", href: "/events" },
-  { icon: Globe, label: "Locations", href: "/locations" },
 ];
 
 export function Sidebar() {
