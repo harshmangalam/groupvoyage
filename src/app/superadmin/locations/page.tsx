@@ -37,7 +37,7 @@ export default async function Locations() {
           <TableBody>
             {locations.map((location) => (
               <TableRow key={location.id}>
-                <TableCell>{location.name}</TableCell>
+                <TableCell>{location.city}</TableCell>
                 <TableCell>{location.country}</TableCell>
                 <TableCell>{location.slug}</TableCell>
                 <TableCell>

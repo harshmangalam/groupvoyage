@@ -8,7 +8,7 @@ export const locationsTable = sqliteTable("locations", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => uuidv7()),
-  name: text("name").notNull(),
+  city: text("city").notNull(),
   slug: text("slug").notNull().unique(),
   country: text("country"),
 });
