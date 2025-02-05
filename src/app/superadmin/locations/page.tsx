@@ -15,11 +15,11 @@ export default async function Locations() {
   const locations = await getLocations();
 
   return (
-    <Card className="w-full max-w-4xl mx-auto mt-8">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
           Locations
-          <Link href="/locations/new">
+          <Link href="/superadmin/locations/new">
             <Button>Add New Location</Button>
           </Link>
         </CardTitle>

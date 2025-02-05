@@ -33,7 +33,11 @@ export function Sidebar() {
         </div>
         <nav className="space-y-2 px-4 py-4">
           {sidebarItems.map((item) => (
-            <Link key={item.href} href={item.href} onClick={toggleSidebar}>
+            <Link
+              key={item.href}
+              href={`/superadmin/${item.href}`}
+              onClick={toggleSidebar}
+            >
               <Button variant="ghost" className="w-full justify-start">
                 <item.icon className="mr-2 h-4 w-4" />
                 {item.label}
