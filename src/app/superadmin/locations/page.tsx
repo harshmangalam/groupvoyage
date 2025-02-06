@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getLocations, deleteLocation } from "@/app/actions/locations";
+import { getLocations, deleteLocation } from "@/actions/locations";
 import { Button } from "@/components/ui/button";
 import {
   Table,

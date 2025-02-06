@@ -24,7 +24,7 @@ import { useParams, useRouter } from "next/navigation";
 export function LocationsCombobox({
   locations,
 }: {
-  locations: Pick<SelectLocation, "slug" | "name">[];
+  locations: Pick<SelectLocation, "slug" | "city">[];
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -54,7 +54,7 @@ export function LocationsCombobox({
           disabled={isPending}
         >
           {city
-            ? locations.find((l) => l.slug === city)?.name
+            ? locations.find((l) => l.slug === city)?.city
             : "Search cities"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -77,7 +77,7 @@ export function LocationsCombobox({
                       city === l.slug ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {l.name}
+                  {l.city}
                 </CommandItem>
               ))}
             </CommandGroup>

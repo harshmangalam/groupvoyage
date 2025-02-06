@@ -1,5 +1,7 @@
 "use server";
 
+import { db } from "@/db/connection";
+import { locationsTable } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -19,8 +21,18 @@ export async function createLocation(formData: FormData) {
   redirect("/superadmin/locations");
 }
 
-export async function getLocations() {
-  return locations;
+export async function getLocations(
+  fields: (keyof typeof locationsTable._.columns)[]
+) {
+  const defaultFields: Record<string, true> = { city: true, slug: true };
+  const selectedFields = fields.reduce((acc, field) => {
+    acc[field] = true;
+    return acc;
+  }, defaultFields);
+
+  return await db.query.locationsTable.findMany({
+    columns: selectedFields,
+  });
 }
 
 export async function deleteLocation(id: string) {
