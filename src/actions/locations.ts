@@ -1,37 +1,37 @@
 "use server";
 
 import { db } from "@/db/connection";
-import { SelectLocation } from "@/db/schema";
+import { locationsTable, SelectLocation } from "@/db/schema";
+import { createLocationSlug } from "@/lib/utils";
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
-// This is a mock database. In a real application, you'd use a proper database.
-let locations: { id: string; city: string; country: string; slug: string }[] =
-  [];
 
 export async function createLocation(formData: FormData) {
   const city = formData.get("city") as string;
   const country = formData.get("country") as string;
-  const slug = country + city;
+  const slug = createLocationSlug(country, city);
 
-  const newLocation = { id: Date.now().toString(), slug, country, city };
-  locations.push(newLocation);
+  const newLocation = { slug, country, city };
+  await db.insert(locationsTable).values(newLocation);
 
   revalidatePath("/superadmin/locations");
   redirect("/superadmin/locations");
 }
 
-export async function getLocations<T extends (keyof SelectLocation)[]>({
+export async function getLocations<
+  T extends (keyof SelectLocation)[] = (keyof SelectLocation)[]
+>({
   fields,
 }: {
-  fields?: T;
-}): Promise<Pick<SelectLocation, T[number]>[]> {
+  fields?: T; // fields is optional
+} = {}): Promise<Pick<SelectLocation, T[number]>[]> {
+  // Default empty object if no arguments are passed
   // Use default fields only if no fields are provided
-  const selectedFieldsArray: (keyof SelectLocation)[] = fields?.length
-    ? fields
-    : ["city", "country"];
+  const selectedFieldsArray: (keyof SelectLocation)[] | undefined =
+    fields && fields.length > 0 ? fields : undefined; // Default if fields are not provided
 
-  const selectedFields = selectedFieldsArray.reduce((acc, field) => {
+  const selectedFields = selectedFieldsArray?.reduce((acc, field) => {
     acc[field] = true;
     return acc;
   }, {} as Record<keyof SelectLocation, true>);
@@ -41,8 +41,31 @@ export async function getLocations<T extends (keyof SelectLocation)[]>({
   });
 }
 
-export async function deleteLocation(id: string) {
-  locations = locations.filter((location) => location.id !== id);
+export async function editLocation(formData: FormData) {
+  const locationId = formData.get("locationId") as string;
+  const city = formData.get("city") as string;
+  const country = formData.get("country") as string;
+  const slug = createLocationSlug(country, city);
+  const newLocation = { slug, country, city };
+  await db
+    .update(locationsTable)
+    .set(newLocation)
+    .where(eq(locationsTable.id, locationId));
+  revalidatePath("/superadmin/locations");
+  redirect("/superadmin/locations");
+}
+
+export async function deleteLocation(formData: FormData) {
+  const locationId = formData.get("locationId") as string;
+
+  await db.delete(locationsTable).where(eq(locationsTable.id, locationId));
   revalidatePath("/locations");
-  return { success: true };
+}
+
+export async function getLocation(locationId: string) {
+  return db.query.locationsTable.findFirst({
+    where(fields, { eq }) {
+      return eq(fields.id, locationId);
+    },
+  });
 }

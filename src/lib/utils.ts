@@ -5,14 +5,13 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getRandomGradient(): string {
-  const gradients = [
-    "bg-gradient-to-br from-purple-500 to-pink-500",
-    "bg-gradient-to-br from-blue-500 to-teal-500",
-    "bg-gradient-to-br from-green-500 to-emerald-500",
-    "bg-gradient-to-br from-yellow-400 to-orange-500",
-    "bg-gradient-to-br from-red-500 to-rose-500",
-  ];
+export function createLocationSlug(country: string, city: string): string {
+  // Get the country code (2-letter code)
+  const countrySlug = country.slice(0, 2).toLowerCase();
 
-  return gradients[Math.floor(Math.random() * gradients.length)];
+  // Convert the city name to lowercase and replace spaces with hyphens
+  const citySlug = city.toLowerCase().replace(/\s+/g, "-");
+
+  // Combine the country and city slugs
+  return `${countrySlug}-${citySlug}`;
 }

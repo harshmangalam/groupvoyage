@@ -10,7 +10,7 @@ export const locationsTable = sqliteTable("locations", {
     .$defaultFn(() => uuidv7()),
   city: text("city").notNull(),
   slug: text("slug").notNull().unique(),
-  country: text("country"),
+  country: text("country").notNull(),
 });
 
 export const locationsRelations = relations(locationsTable, ({ many }) => ({
