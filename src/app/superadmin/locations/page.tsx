@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { CreateLocationDialog } from "./create-location-dialog";
 
 export default async function Locations() {
   const locations = await getLocations();
@@ -19,9 +20,7 @@ export default async function Locations() {
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
           Locations
-          <Link href="/superadmin/locations/new">
-            <Button>Add New Location</Button>
-          </Link>
+          <CreateLocationDialog />
         </CardTitle>
       </CardHeader>
       <CardContent>
