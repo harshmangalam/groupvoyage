@@ -1,6 +1,6 @@
 import { Logo } from "../logo";
 import { Suspense } from "react";
-import { Cities } from "./cities";
+import { Locations } from "./locations";
 import { Skeleton } from "../ui/skeleton";
 
 export function Navbar() {
@@ -15,7 +15,7 @@ export function Navbar() {
           key={"locations-dropdown"}
           fallback={<Skeleton className="h-10 w-[200] rounded-md" />}
         >
-          <Cities />
+          <Locations />
         </Suspense>
       </div>
     </nav>
