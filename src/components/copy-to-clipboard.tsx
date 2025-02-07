@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Copy, Check } from "lucide-react";
 import { useClipboard } from "@/hooks/use-clipboard";
@@ -16,10 +18,9 @@ export function CopyToClipboard({ text }: CopyToClipboardProps) {
         <Button
           onClick={() => copyToClipboard(text)}
           variant="outline"
-          className="flex items-center gap-2"
+          size={"icon"}
         >
           {copied ? <Check size={16} /> : <Copy size={16} />}
-          {copied ? "Copied!" : "Copy"}
         </Button>
       </TooltipTrigger>
       <TooltipContent>
