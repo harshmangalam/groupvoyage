@@ -11,8 +11,9 @@ export async function createLocation(formData: FormData) {
   const city = formData.get("city") as string;
   const country = formData.get("country") as string;
   const slug = createLocationSlug(country, city);
+  const active = formData.get("active") as string;
 
-  const newLocation = { slug, country, city };
+  const newLocation = { slug, country, city, active: active === "on" };
   await db.insert(locationsTable).values(newLocation);
 
   revalidatePath("/superadmin/locations");
