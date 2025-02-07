@@ -12,6 +12,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { CreateLocationDialog } from "./create-location-dialog";
 import { EditLocationDialog } from "./edit-location-dialog";
 import { CopyToClipboard } from "@/components/copy-to-clipboard";
+import { DeleteLocation } from "./delete-location";
 
 export default async function Locations() {
   const locations = await getLocations();
@@ -44,6 +45,7 @@ export default async function Locations() {
                   <div className="flex space-x-2">
                     <EditLocationDialog location={location} />
                     <CopyToClipboard text={location.id} />
+                    <DeleteLocation location={location} />
                   </div>
                 </TableCell>
               </TableRow>

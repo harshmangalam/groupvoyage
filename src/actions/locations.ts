@@ -57,6 +57,7 @@ export async function editLocation(formData: FormData) {
 
 export async function deleteLocation(formData: FormData) {
   const locationId = formData.get("locationId") as string;
+  if (!locationId) return;
 
   await db.delete(locationsTable).where(eq(locationsTable.id, locationId));
   revalidatePath("/locations");
