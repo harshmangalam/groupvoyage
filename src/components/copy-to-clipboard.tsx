@@ -1,0 +1,30 @@
+import { Button } from "@/components/ui/button";
+import { Copy, Check } from "lucide-react";
+import { useClipboard } from "@/hooks/use-clipboard";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+
+interface CopyToClipboardProps {
+  text: string;
+}
+
+export function CopyToClipboard({ text }: CopyToClipboardProps) {
+  const { copied, copyToClipboard } = useClipboard();
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          onClick={() => copyToClipboard(text)}
+          variant="outline"
+          className="flex items-center gap-2"
+        >
+          {copied ? <Check size={16} /> : <Copy size={16} />}
+          {copied ? "Copied!" : "Copy"}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Copy</p>
+      </TooltipContent>
+    </Tooltip>
+  );
+}

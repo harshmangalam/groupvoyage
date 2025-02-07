@@ -19,7 +19,7 @@ export function LocationForm({ action, location }: LocationFormProps) {
         <input type="hidden" name="locationId" value={location?.id} />
       </div>
       <div className="flex flex-col gap-3">
-        <Label htmlFor="city">Name</Label>
+        <Label htmlFor="city">City</Label>
         <Input defaultValue={location?.city} name="city" required />
       </div>
       <div className="flex flex-col gap-3">
