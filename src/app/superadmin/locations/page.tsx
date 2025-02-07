@@ -42,12 +42,13 @@ export default async function Locations() {
               <TableRow key={location.id}>
                 <TableCell>{location.city}</TableCell>
                 <TableCell>{location.country}</TableCell>
+
+                <TableCell>{location.slug}</TableCell>
                 <TableCell>
                   <Badge variant={location.active ? "default" : "destructive"}>
                     {location.active ? "Active" : "Inactive"}
                   </Badge>
                 </TableCell>
-                <TableCell>{location.slug}</TableCell>
                 <TableCell>
                   <div className="flex space-x-2">
                     <EditLocationDialog location={location} />

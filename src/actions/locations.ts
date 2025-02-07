@@ -45,8 +45,10 @@ export async function editLocation(formData: FormData) {
   const locationId = formData.get("locationId") as string;
   const city = formData.get("city") as string;
   const country = formData.get("country") as string;
+  const active = formData.get("active") as string;
+
   const slug = createLocationSlug(country, city);
-  const newLocation = { slug, country, city };
+  const newLocation = { slug, country, city, active: active === "on" };
   await db
     .update(locationsTable)
     .set(newLocation)
