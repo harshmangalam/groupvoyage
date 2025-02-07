@@ -13,6 +13,7 @@ import { CreateLocationDialog } from "./create-location-dialog";
 import { EditLocationDialog } from "./edit-location-dialog";
 import { CopyToClipboard } from "@/components/copy-to-clipboard";
 import { DeleteLocation } from "./delete-location";
+import { Badge } from "@/components/ui/badge";
 
 export default async function Locations() {
   const locations = await getLocations();
@@ -32,6 +33,7 @@ export default async function Locations() {
               <TableHead>City</TableHead>
               <TableHead>Country</TableHead>
               <TableHead>Slug</TableHead>
+              <TableHead>Active</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -40,6 +42,11 @@ export default async function Locations() {
               <TableRow key={location.id}>
                 <TableCell>{location.city}</TableCell>
                 <TableCell>{location.country}</TableCell>
+                <TableCell>
+                  <Badge variant={location.active ? "default" : "destructive"}>
+                    {location.active ? "Active" : "Inactive"}
+                  </Badge>
+                </TableCell>
                 <TableCell>{location.slug}</TableCell>
                 <TableCell>
                   <div className="flex space-x-2">
