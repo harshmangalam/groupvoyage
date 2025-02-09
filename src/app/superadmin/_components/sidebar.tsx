@@ -7,10 +7,10 @@ import { useSidebar } from "../providers/sidebar-provider";
 import { cn } from "@/lib/utils";
 
 const sidebarItems = [
-  { icon: Home, label: "Dashboard", href: "/" },
-  { icon: Globe, label: "Locations", href: "/locations" },
-  { icon: Users, label: "Groups", href: "/groups" },
-  { icon: Calendar, label: "Events", href: "/events" },
+  { icon: Home, label: "Dashboard", href: "" },
+  { icon: Globe, label: "Locations", href: "locations" },
+  { icon: Users, label: "Groups", href: "groups" },
+  { icon: Calendar, label: "Events", href: "events" },
 ];
 
 export function Sidebar() {

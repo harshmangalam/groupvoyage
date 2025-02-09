@@ -20,7 +20,7 @@ export const groupsTable = sqliteTable("groups", {
   contacts: text("contacts", { mode: "json" }),
   meta: text("meta", { mode: "json" }),
   source: text("source"),
-  createdAt: text("created_at")
+  createdAt: integer("created_at", { mode: "timestamp" })
     .default(sql`(CURRENT_TIMESTAMP)`)
     .notNull(),
   updateAt: integer("updated_at", { mode: "timestamp" }).$onUpdate(
