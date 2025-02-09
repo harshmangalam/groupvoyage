@@ -21,12 +21,13 @@ export const eventsTable = sqliteTable("events", {
     .notNull(),
   posterUrls: text("poster_urls", { mode: "json" }),
   meta: text("meta", { mode: "json" }),
+  itinerary: text("itinerary", { mode: "json" }),
+  includes: text("includes", { mode: "json" }),
   createdAt: text("created_at")
     .default(sql`(CURRENT_TIMESTAMP)`)
     .notNull(),
   isArchived: integer("is_archived", { mode: "boolean" }).default(false),
 });
-
 export const eventsRelations = relations(eventsTable, ({ one }) => ({
   location: one(locationsTable, {
     fields: [eventsTable.locationId],
