@@ -27,13 +27,12 @@ export default function ImagePreviewInput({
   };
 
   return (
-    <div className="space-y-4 w-full max-w-sm">
+    <div className="space-y-4 w-full">
       <Input
         type="text"
         id={props.id || "imageUrl"}
         value={imageUrl}
         onChange={handleInputChange}
-        placeholder="Enter image URL"
         {...props}
       />
 

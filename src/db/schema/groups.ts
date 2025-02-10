@@ -20,6 +20,7 @@ export const groupsTable = sqliteTable("groups", {
   contacts: text("contacts", { mode: "json" }),
   meta: text("meta", { mode: "json" }),
   source: text("source"),
+  active: integer("active", { mode: "boolean" }).default(true),
   createdAt: integer("created_at", { mode: "timestamp" })
     .default(sql`(CURRENT_TIMESTAMP)`)
     .notNull(),

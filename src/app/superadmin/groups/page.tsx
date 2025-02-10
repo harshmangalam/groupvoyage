@@ -12,6 +12,7 @@ import { db } from "@/db/connection";
 import { sql } from "drizzle-orm";
 import { eventsTable } from "@/db/schema";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CreateDialog } from "./create-dialog";
 
 export default async function Locations() {
   const groups = await db.query.groupsTable.findMany({
@@ -37,7 +38,7 @@ export default async function Locations() {
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
           Groups
-          {/* <CreateLocationDialog /> */}
+          <CreateDialog />
         </CardTitle>
       </CardHeader>
       <CardContent>

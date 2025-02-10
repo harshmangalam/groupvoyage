@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import Form from "next/form";
 import ImagePreviewInput from "@/components/image-preview-input";
+import { Textarea } from "@/components/ui/textarea";
 
 type GroupFormProps = {
   action: NonNullable<
@@ -14,22 +15,19 @@ type GroupFormProps = {
   group?: SelectGroup;
 };
 export function GroupForm({ action, group }: GroupFormProps) {
-  console.log(location);
   return (
     <Form action={action} className="space-y-4">
       <div className="flex flex-col gap-3">
-        <Label htmlFor="city">Name</Label>
-        <Input defaultValue={group?.name} name="name" required />
+        <Label htmlFor="name">Name</Label>
+        <Input id="name" defaultValue={group?.name} name="name" required />
       </div>
-      <div className="flex flex-col gap-3">
-        <Label htmlFor="country">Details</Label>
-        <Input defaultValue={group?.details ?? ""} name="details" required />
-      </div>
+
       <div className="flex flex-col gap-3">
         <Label htmlFor="posterUrl">Poster URL</Label>
         <ImagePreviewInput
-          defaultValue={group?.posterUrl ?? ""}
+          value={group?.posterUrl ?? ""}
           name="posterUrl"
+          id="posterUrl"
           required
         />
       </div>
@@ -40,15 +38,35 @@ export function GroupForm({ action, group }: GroupFormProps) {
           defaultValue={group?.organizer ?? ""}
           name="organizer"
           required
+          id="organizer"
         />
       </div>
       <div className="flex flex-col gap-3">
         <Label htmlFor="source">Source</Label>
-        <Input defaultValue={group?.organizer ?? ""} name="source" required />
+        <Input
+          defaultValue={group?.organizer ?? ""}
+          id="source"
+          name="source"
+          required
+        />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <Label htmlFor="details">Details</Label>
+        <Textarea
+          defaultValue={group?.details ?? ""}
+          id="details"
+          name="details"
+          required
+        />
       </div>
 
       <div className="flex items-center space-x-2">
-        <Checkbox name="active" defaultChecked={location?.active} id="active" />
+        <Checkbox
+          name="active"
+          defaultChecked={group?.active ?? true}
+          id="active"
+        />
         <label
           htmlFor="active"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -58,7 +76,7 @@ export function GroupForm({ action, group }: GroupFormProps) {
       </div>
 
       <Button type="submit" className="w-full">
-        {location ? "Edit Location" : " Create Location"}
+        {group ? "Edit" : " Create"}
       </Button>
     </Form>
   );
