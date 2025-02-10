@@ -15,9 +15,8 @@ export const groupsTable = sqliteTable("groups", {
     .references(() => locationsTable.id, { onDelete: "cascade" })
     .notNull(),
   posterUrl: text("poster_url"),
-  organizer: text("organizer"),
-  socialLinks: text("social_links", { mode: "json" }),
-  contacts: text("contacts", { mode: "json" }),
+  instagram: text("instagram"),
+  phone: text("phone"),
   meta: text("meta", { mode: "json" }),
   source: text("source"),
   active: integer("active", { mode: "boolean" }).default(true),

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type ChangeEvent, type InputHTMLAttributes } from "react";
-import Image from "next/image";
 import { Input } from "@/components/ui/input";
 
 interface ImagePreviewInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -17,9 +16,6 @@ export default function ImagePreviewInput({
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setImageUrl(e.target.value);
     setError(null);
-    if (props.onChange) {
-      props.onChange(e);
-    }
   };
 
   const handleImageError = () => {
@@ -31,21 +27,18 @@ export default function ImagePreviewInput({
       <Input
         type="text"
         id={props.id || "imageUrl"}
-        value={imageUrl}
         onChange={handleInputChange}
         {...props}
+        value={imageUrl}
       />
 
       {imageUrl && !error && (
-        <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800">
-          <Image
-            src={imageUrl || "/placeholder.svg"}
-            alt="Preview"
-            fill
-            className="object-cover"
-            onError={handleImageError}
-          />
-        </div>
+        <img
+          src={imageUrl || "/placeholder.svg"}
+          alt="Preview"
+          className="object-cover w-40 h-40 rounded-lg"
+          onError={handleImageError}
+        />
       )}
       {error && <p className="text-sm text-destructive">{error}</p>}
     </div>

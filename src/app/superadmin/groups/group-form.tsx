@@ -33,20 +33,30 @@ export function GroupForm({ action, group }: GroupFormProps) {
       </div>
 
       <div className="flex flex-col gap-3">
-        <Label htmlFor="organizer">Organiser</Label>
+        <Label htmlFor="source">Source</Label>
         <Input
-          defaultValue={group?.organizer ?? ""}
-          name="organizer"
+          defaultValue={group?.source ?? ""}
+          name="source"
           required
-          id="organizer"
+          id="source"
+        />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <Label htmlFor="phone">Phone</Label>
+        <Input
+          defaultValue={group?.phone ?? ""}
+          id="phone"
+          name="phone"
+          required
         />
       </div>
       <div className="flex flex-col gap-3">
-        <Label htmlFor="source">Source</Label>
+        <Label htmlFor="instagram">Instagram</Label>
         <Input
-          defaultValue={group?.organizer ?? ""}
-          id="source"
-          name="source"
+          defaultValue={group?.instagram ?? ""}
+          id="instagram"
+          name="instagram"
           required
         />
       </div>

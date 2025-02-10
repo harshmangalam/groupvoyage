@@ -19,10 +19,11 @@ export function CreateDialog() {
           <PlusIcon />
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Add new group</DialogTitle>
         </DialogHeader>
+
         <GroupForm action={createGroup} />
       </DialogContent>
     </Dialog>

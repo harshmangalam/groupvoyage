@@ -14,6 +14,7 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-explicit-any": "off", // Disables the rule completely
+      "@next/next/no-img-element": "off",
     },
   },
 ];

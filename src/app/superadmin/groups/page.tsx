@@ -47,9 +47,10 @@ export default async function Locations() {
             <TableRow>
               <TableHead>Name</TableHead>
               <TableHead>Location</TableHead>
-              <TableHead>Orgainser</TableHead>
               <TableHead>Source</TableHead>
               <TableHead>Events</TableHead>
+              <TableHead>Phone</TableHead>
+              <TableHead>Instagram</TableHead>
               <TableHead>Created At</TableHead>
               <TableHead>Updated At</TableHead>
             </TableRow>
@@ -68,11 +69,13 @@ export default async function Locations() {
                 </TableCell>
 
                 <TableCell>{data.location.city}</TableCell>
-                <TableCell>{data.organizer}</TableCell>
                 <TableCell>{data.source}</TableCell>
                 <TableCell>
                   <Badge>{data.eventsCount}</Badge>
                 </TableCell>
+                <TableCell>{data.phone}</TableCell>
+                <TableCell>{data.instagram}</TableCell>
+
                 <TableCell>{data.createdAt.toLocaleString()}</TableCell>
                 <TableCell>{data.updateAt?.toLocaleString()}</TableCell>
 
