@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { db } from "@/db/connection";
 import { sql } from "drizzle-orm";
 import { eventsTable } from "@/db/schema";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default async function Locations() {
   const groups = await db.query.groupsTable.findMany({
@@ -44,11 +45,8 @@ export default async function Locations() {
           <TableHeader>
             <TableRow>
               <TableHead>Name</TableHead>
-              <TableHead>Slug</TableHead>
               <TableHead>Location</TableHead>
               <TableHead>Orgainser</TableHead>
-              <TableHead>Social Links</TableHead>
-              <TableHead>Contacts</TableHead>
               <TableHead>Source</TableHead>
               <TableHead>Events</TableHead>
               <TableHead>Created At</TableHead>
@@ -58,13 +56,18 @@ export default async function Locations() {
           <TableBody>
             {groups.map((data) => (
               <TableRow key={data.id}>
-                <TableCell>{data.name}</TableCell>
-                <TableCell>{data.slug}</TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-2">
+                    <Avatar>
+                      <AvatarFallback>{data.name.slice(0, 2)}</AvatarFallback>
+                      <AvatarImage src={data.posterUrl ?? ""} />
+                    </Avatar>
+                    <p>{data.name}</p>
+                  </div>
+                </TableCell>
 
                 <TableCell>{data.location.city}</TableCell>
                 <TableCell>{data.organizer}</TableCell>
-                <TableCell>{JSON.stringify(data.socialLinks as any)}</TableCell>
-                <TableCell>{JSON.stringify(data.contacts as any)}</TableCell>
                 <TableCell>{data.source}</TableCell>
                 <TableCell>
                   <Badge>{data.eventsCount}</Badge>
