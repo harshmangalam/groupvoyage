@@ -17,3 +17,18 @@ export async function createGroup(formData: FormData) {
   revalidatePath("/superadmin/groups");
   redirect("/superadmin/groups");
 }
+
+export async function getGroupsOption() {
+  const groups = await db.query.groupsTable.findMany({
+    columns: {
+      id: true,
+      name: true,
+      slug: true,
+    },
+    where(fields, operators) {
+      return operators.eq(fields.active, true);
+    },
+  });
+
+  return groups;
+}
