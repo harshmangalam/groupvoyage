@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Form from "next/form";
 import ImagePreviewInput from "@/components/image-preview-input";
 import { Textarea } from "@/components/ui/textarea";
+import { LocationsDropdown } from "@/components/locations-dropdown";
 
 type GroupFormProps = {
   action: NonNullable<
@@ -69,6 +70,10 @@ export function GroupForm({ action, group }: GroupFormProps) {
           name="details"
           required
         />
+      </div>
+      <div className="flex flex-col gap-3">
+        <Label htmlFor="locationId">Location</Label>
+        <LocationsDropdown name="locationId" id="locationId" />
       </div>
 
       <div className="flex items-center space-x-2">

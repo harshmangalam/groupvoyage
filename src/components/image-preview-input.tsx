@@ -36,7 +36,7 @@ export default function ImagePreviewInput({
         <img
           src={imageUrl || "/placeholder.svg"}
           alt="Preview"
-          className="object-cover w-40 h-40 rounded-lg"
+          className="object-cover w-auto h-32 rounded-lg border shadow"
           onError={handleImageError}
         />
       )}

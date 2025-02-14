@@ -9,7 +9,10 @@ export async function createGroup(formData: FormData) {
     formData.entries()
   ) as unknown as InsertGroup;
 
-  await db.insert(groupsTable).values(formObject).onConflictDoNothing();
+  await db
+    .insert(groupsTable)
+    .values({ ...formObject })
+    .onConflictDoNothing();
 
   revalidatePath("/superadmin/groups");
   redirect("/superadmin/groups");

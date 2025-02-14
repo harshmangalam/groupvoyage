@@ -51,6 +51,7 @@ export default async function Locations() {
               <TableHead>Events</TableHead>
               <TableHead>Phone</TableHead>
               <TableHead>Instagram</TableHead>
+              <TableHead>Active</TableHead>
               <TableHead>Created At</TableHead>
               <TableHead>Updated At</TableHead>
             </TableRow>
@@ -75,6 +76,11 @@ export default async function Locations() {
                 </TableCell>
                 <TableCell>{data.phone}</TableCell>
                 <TableCell>{data.instagram}</TableCell>
+                <TableCell>
+                  <Badge variant={data.active ? "default" : "destructive"}>
+                    {data.active ? "Active" : "Inactive"}
+                  </Badge>
+                </TableCell>
 
                 <TableCell>{data.createdAt.toLocaleString()}</TableCell>
                 <TableCell>{data.updateAt?.toLocaleString()}</TableCell>
