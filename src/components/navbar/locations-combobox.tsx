@@ -24,17 +24,17 @@ import { useParams, useRouter } from "next/navigation";
 export function LocationsCombobox({
   locations,
 }: {
-  locations: Pick<SelectLocation, "slug" | "city">[];
+  locations: Pick<SelectLocation, "id" | "slug" | "city">[];
 }) {
   const [open, setOpen] = React.useState(false);
 
   const router = useRouter();
   const [isPending, startTransition] = React.useTransition();
   const params = useParams();
-  const city = params.locationSlug;
+  const locationSlug = params.locationSlug;
 
   function handleSelect(currentValue: string) {
-    if (currentValue === city) return;
+    if (currentValue === locationSlug) return;
 
     startTransition(() => {
       router.push(`/${currentValue}`);
@@ -53,8 +53,8 @@ export function LocationsCombobox({
           aria-disabled={isPending}
           disabled={isPending}
         >
-          {city
-            ? locations.find((l) => l.slug === city)?.city
+          {locationSlug
+            ? locations.find((l) => l.slug === locationSlug)?.city
             : "Search cities"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -66,15 +66,11 @@ export function LocationsCombobox({
             <CommandEmpty>No city found.</CommandEmpty>
             <CommandGroup>
               {locations.map((l) => (
-                <CommandItem
-                  value={l.slug}
-                  key={l.slug}
-                  onSelect={handleSelect}
-                >
+                <CommandItem value={l.slug} key={l.id} onSelect={handleSelect}>
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      city === l.slug ? "opacity-100" : "opacity-0"
+                      locationSlug === l.slug ? "opacity-100" : "opacity-0"
                     )}
                   />
                   {l.city}
