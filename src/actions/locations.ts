@@ -5,7 +5,6 @@ import { locationsTable, SelectLocation } from "@/db/schema";
 import { createLocationSlug } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export async function createLocation(formData: FormData) {
   const city = formData.get("city") as string;
@@ -17,7 +16,6 @@ export async function createLocation(formData: FormData) {
   await db.insert(locationsTable).values(newLocation);
 
   revalidatePath("/superadmin/locations");
-  redirect("/superadmin/locations");
 }
 
 export async function getLocations<
@@ -55,7 +53,6 @@ export async function editLocation(formData: FormData) {
     .set(newLocation)
     .where(eq(locationsTable.id, locationId));
   revalidatePath("/superadmin/locations");
-  redirect("/superadmin/locations");
 }
 
 export async function deleteLocation(formData: FormData) {

@@ -11,11 +11,16 @@ type LocationFormProps = {
     string | ((formData: FormData) => void | Promise<void>) | undefined
   >;
   location?: SelectLocation;
+  onSubmit?: () => void;
 };
-export function LocationForm({ action, location }: LocationFormProps) {
+export function LocationForm({
+  action,
+  location,
+  onSubmit,
+}: LocationFormProps) {
   console.log(location);
   return (
-    <Form action={action} className="space-y-4">
+    <Form onSubmit={onSubmit} action={action} className="space-y-4">
       <div>
         <input type="hidden" name="locationId" value={location?.id} />
       </div>

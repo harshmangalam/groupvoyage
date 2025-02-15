@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,10 +12,12 @@ import {
 import { PlusIcon } from "lucide-react";
 import { LocationForm } from "./location-form";
 import { createLocation } from "@/actions/locations";
+import { useState } from "react";
 
 export function CreateLocationDialog() {
+  const [open, setOpen] = useState(false);
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
           Add Location
@@ -28,7 +32,7 @@ export function CreateLocationDialog() {
           </DialogDescription>
         </DialogHeader>
 
-        <LocationForm action={createLocation} />
+        <LocationForm action={createLocation} onSubmit={() => setOpen(false)} />
       </DialogContent>
     </Dialog>
   );

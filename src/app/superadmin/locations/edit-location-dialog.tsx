@@ -18,10 +18,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useState } from "react";
 
 export function EditLocationDialog({ location }: { location: SelectLocation }) {
+  const [open, setOpen] = useState(false);
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
@@ -42,7 +44,11 @@ export function EditLocationDialog({ location }: { location: SelectLocation }) {
           </DialogDescription>
         </DialogHeader>
 
-        <LocationForm action={editLocation} location={location} />
+        <LocationForm
+          action={editLocation}
+          location={location}
+          onSubmit={() => setOpen(false)}
+        />
       </DialogContent>
     </Dialog>
   );
