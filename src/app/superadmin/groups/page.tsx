@@ -33,6 +33,8 @@ export default async function Locations() {
     },
   });
 
+  console.log(groups);
+
   return (
     <Card className="w-full">
       <CardHeader>

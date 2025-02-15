@@ -22,6 +22,10 @@ export function GroupForm({ action, group }: GroupFormProps) {
         <Label htmlFor="name">Name</Label>
         <Input id="name" defaultValue={group?.name} name="name" required />
       </div>
+      <div className="flex flex-col gap-3">
+        <Label htmlFor="slug">Slug</Label>
+        <Input id="slug" defaultValue={group?.name} name="slug" required />
+      </div>
 
       <div className="flex flex-col gap-3">
         <Label htmlFor="posterUrl">Poster URL</Label>

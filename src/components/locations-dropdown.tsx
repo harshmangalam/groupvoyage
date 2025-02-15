@@ -39,6 +39,8 @@ export function LocationsDropdown({
   if (isLoading) return <Skeleton className="w-full h-16" />;
   if (error)
     return <p className="text-muted-foreground">Something went wrong</p>;
+
+  console.log(selectedLocation);
   return (
     <div className="relative w-full">
       <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -76,9 +78,9 @@ export function LocationsDropdown({
       </DropdownMenu>
       <select
         name={name}
-        defaultValue={defaultValue}
         className="sr-only w-full"
         {...props}
+        value={selectedLocation}
       >
         <option value="">Select a location</option>
         {data?.map((location) => (
