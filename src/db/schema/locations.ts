@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { uuidv7 } from "uuidv7";
 import { groupsTable } from "./groups";
@@ -12,8 +12,8 @@ export const locationsTable = sqliteTable("locations", {
   slug: text("slug").notNull().unique(),
   country: text("country").notNull(),
   active: integer("active", { mode: "boolean" }).notNull().default(true),
-  createdAt: text("created_at")
-    .default(sql`(CURRENT_TIMESTAMP)`)
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .$defaultFn(() => new Date())
     .notNull(),
   updateAt: integer("updated_at", { mode: "timestamp" }).$onUpdate(
     () => new Date()

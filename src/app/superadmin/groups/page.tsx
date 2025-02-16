@@ -11,8 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { db } from "@/db/connection";
 import { sql } from "drizzle-orm";
 import { eventsTable } from "@/db/schema";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CreateDialog } from "./create-dialog";
+import Image from "next/image";
 
 export default async function Locations() {
   const groups = await db.query.groupsTable.findMany({
@@ -61,17 +61,22 @@ export default async function Locations() {
           <TableBody>
             {groups.map((data) => (
               <TableRow key={data.id}>
-                <TableCell>
+                <TableCell className="min-w-48">
                   <div className="flex items-center gap-2">
-                    <Avatar>
-                      <AvatarFallback>{data.name.slice(0, 2)}</AvatarFallback>
-                      <AvatarImage src={data.posterUrl ?? ""} />
-                    </Avatar>
+                    {data.posterUrl && (
+                      <Image
+                        src={data.posterUrl}
+                        width={100}
+                        height={100}
+                        className="aspect-video w-auto h-12"
+                        alt={data.name}
+                      />
+                    )}
                     <p>{data.name}</p>
                   </div>
                 </TableCell>
 
-                <TableCell>{data.location.city}</TableCell>
+                <TableCell className="min-w-32">{data.location.city}</TableCell>
                 <TableCell>{data.source}</TableCell>
                 <TableCell>
                   <Badge>{data.eventsCount}</Badge>
@@ -84,8 +89,12 @@ export default async function Locations() {
                   </Badge>
                 </TableCell>
 
-                <TableCell>{data.createdAt.toLocaleString()}</TableCell>
-                <TableCell>{data.updateAt?.toLocaleString()}</TableCell>
+                <TableCell className="min-w-44">
+                  {data.createdAt.toLocaleString()}
+                </TableCell>
+                <TableCell className="min-w-48">
+                  {data.updateAt?.toLocaleString()}
+                </TableCell>
 
                 <TableCell>
                   <div className="flex space-x-2">

@@ -1,7 +1,7 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { uuidv7 } from "uuidv7";
 import { locationsTable } from "./locations";
-import { relations, sql } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import { groupsTable } from "./groups";
 
 export const eventsTable = sqliteTable("events", {
@@ -23,9 +23,12 @@ export const eventsTable = sqliteTable("events", {
   meta: text("meta", { mode: "json" }),
   itinerary: text("itinerary", { mode: "json" }),
   includes: text("includes", { mode: "json" }),
-  createdAt: text("created_at")
-    .default(sql`(CURRENT_TIMESTAMP)`)
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .$defaultFn(() => new Date())
     .notNull(),
+  updateAt: integer("updated_at", { mode: "timestamp" }).$onUpdate(
+    () => new Date()
+  ),
   isArchived: integer("is_archived", { mode: "boolean" }).default(false),
 });
 export const eventsRelations = relations(eventsTable, ({ one }) => ({
