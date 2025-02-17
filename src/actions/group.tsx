@@ -6,8 +6,6 @@ import { redirect } from "next/navigation";
 
 export async function createGroup(formData: FormData) {
   const formObject = Object.fromEntries(formData.entries()) as unknown as any;
-
-  console.log(formObject);
   const isActive = formObject.active === "on";
   await db
     .insert(groupsTable)

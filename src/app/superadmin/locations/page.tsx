@@ -1,5 +1,3 @@
-import { getLocations } from "@/actions/locations";
-
 import {
   Table,
   TableBody,
@@ -14,9 +12,10 @@ import { EditLocationDialog } from "./edit-location-dialog";
 import { CopyToClipboard } from "@/components/copy-to-clipboard";
 import { DeleteLocation } from "./delete-location";
 import { Badge } from "@/components/ui/badge";
+import { db } from "@/db/connection";
 
 export default async function Locations() {
-  const locations = await getLocations();
+  const locations = await db.query.locationsTable.findMany();
 
   return (
     <Card className="w-full">
@@ -33,6 +32,8 @@ export default async function Locations() {
               <TableHead>City</TableHead>
               <TableHead>Country</TableHead>
               <TableHead>Slug</TableHead>
+              <TableHead>Groups</TableHead>
+              <TableHead>Events</TableHead>
               <TableHead>Active</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -40,10 +41,16 @@ export default async function Locations() {
           <TableBody>
             {locations.map((location) => (
               <TableRow key={location.id}>
-                <TableCell>{location.city}</TableCell>
+                <TableCell>{location.city} </TableCell>
                 <TableCell>{location.country}</TableCell>
 
                 <TableCell>{location.slug}</TableCell>
+                <TableCell>
+                  <Badge>{0}</Badge>
+                </TableCell>
+                <TableCell>
+                  <Badge>{0}</Badge>
+                </TableCell>
                 <TableCell>
                   <Badge variant={location.active ? "default" : "destructive"}>
                     {location.active ? "Active" : "Inactive"}

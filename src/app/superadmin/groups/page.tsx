@@ -33,8 +33,6 @@ export default async function Locations() {
     },
   });
 
-  console.log(groups);
-
   return (
     <Card className="w-full">
       <CardHeader>
@@ -90,10 +88,10 @@ export default async function Locations() {
                 </TableCell>
 
                 <TableCell className="min-w-44">
-                  {data.createdAt.toLocaleString()}
+                  {data.createdAt.toDateString()}
                 </TableCell>
                 <TableCell className="min-w-48">
-                  {data.updateAt?.toLocaleString()}
+                  {data.updateAt?.toDateString()}
                 </TableCell>
 
                 <TableCell>
