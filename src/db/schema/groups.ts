@@ -1,22 +1,18 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { uuidv7 } from "uuidv7";
-import { locationsTable } from "./locations";
 import { relations } from "drizzle-orm";
 import { eventsTable } from "./events";
+import { groupsToLocationsTable } from "./groups-to-locations";
 
 export const groupsTable = sqliteTable("groups", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => uuidv7()),
+  id: integer("id").primaryKey(),
   name: text("name").notNull().unique(),
   slug: text("slug").notNull().unique(),
   details: text("details"),
-  locationId: text("location_id")
-    .references(() => locationsTable.id, { onDelete: "cascade" })
-    .notNull(),
   posterUrl: text("poster_url"),
   instagram: text("instagram"),
   phone: text("phone"),
+  email: text("email"),
+  address: text("address"),
   meta: text("meta", { mode: "json" }),
   source: text("source"),
   active: integer("active", { mode: "boolean" }).default(true),
@@ -28,12 +24,9 @@ export const groupsTable = sqliteTable("groups", {
   ),
 });
 
-export const groupsRelations = relations(groupsTable, ({ one, many }) => ({
-  location: one(locationsTable, {
-    fields: [groupsTable.locationId],
-    references: [locationsTable.id],
-  }),
-  events: many(eventsTable),
+export const groupsRelations = relations(groupsTable, ({ many }) => ({
+  groupsToLocations: many(groupsToLocationsTable),
+  groupsToEvents: many(eventsTable),
 }));
 
 export type InsertGroup = typeof groupsTable.$inferInsert;

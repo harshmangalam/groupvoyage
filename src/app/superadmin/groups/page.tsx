@@ -16,13 +16,6 @@ import Image from "next/image";
 
 export default async function Locations() {
   const groups = await db.query.groupsTable.findMany({
-    with: {
-      location: {
-        columns: {
-          city: true,
-        },
-      },
-    },
     extras(fields) {
       return {
         eventsCount: sql<number>`(
@@ -74,7 +67,9 @@ export default async function Locations() {
                   </div>
                 </TableCell>
 
-                <TableCell className="min-w-32">{data.location.city}</TableCell>
+                <TableCell className="min-w-32">
+                  {data?.location?.city}
+                </TableCell>
                 <TableCell>{data.source}</TableCell>
                 <TableCell>
                   <Badge>{data.eventsCount}</Badge>

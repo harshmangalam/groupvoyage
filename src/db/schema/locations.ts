@@ -1,13 +1,10 @@
 import { relations } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { uuidv7 } from "uuidv7";
-import { groupsTable } from "./groups";
 import { eventsTable } from "./events";
+import { groupsToLocationsTable } from "./groups-to-locations";
 
 export const locationsTable = sqliteTable("locations", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => uuidv7()),
+  id: integer("id").primaryKey(),
   city: text("city").notNull(),
   slug: text("slug").notNull().unique(),
   country: text("country").notNull(),
@@ -21,7 +18,7 @@ export const locationsTable = sqliteTable("locations", {
 });
 
 export const locationsRelations = relations(locationsTable, ({ many }) => ({
-  groups: many(groupsTable),
+  groupsToLocations: many(groupsToLocationsTable),
   events: many(eventsTable),
 }));
 
