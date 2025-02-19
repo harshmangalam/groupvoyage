@@ -12,10 +12,24 @@ import { EditLocationDialog } from "./edit-location-dialog";
 import { CopyToClipboard } from "@/components/copy-to-clipboard";
 import { DeleteLocation } from "./delete-location";
 import { Badge } from "@/components/ui/badge";
-import { db } from "@/db/connection";
+import { prisma } from "@/lib/db";
 
 export default async function Locations() {
-  const locations = await db.query.locationsTable.findMany();
+  const locations = await prisma.location.findMany({
+    select: {
+      active: true,
+      city: true,
+      country: true,
+      id: true,
+      slug: true,
+      _count: {
+        select: {
+          events: true,
+          groups: true,
+        },
+      },
+    },
+  });
 
   return (
     <Card className="w-full">
@@ -46,10 +60,10 @@ export default async function Locations() {
 
                 <TableCell>{location.slug}</TableCell>
                 <TableCell>
-                  <Badge>{0}</Badge>
+                  <Badge>{location._count.groups}</Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge>{0}</Badge>
+                  <Badge>{location._count.events}</Badge>
                 </TableCell>
                 <TableCell>
                   <Badge variant={location.active ? "default" : "destructive"}>
