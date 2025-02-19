@@ -1,16 +1,7 @@
+import { getLocationsOption } from "@/actions/locations";
 import { LocationsCombobox } from "./locations-combobox";
-import { db } from "@/db/connection";
 
 export async function Locations() {
-  const locations = await db.query.locationsTable.findMany({
-    where(fields, operators) {
-      return operators.eq(fields.active, true);
-    },
-    columns: {
-      city: true,
-      slug: true,
-      id: true,
-    },
-  });
+  const locations = await getLocationsOption();
   return <LocationsCombobox locations={locations} />;
 }

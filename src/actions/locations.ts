@@ -1,9 +1,7 @@
 "use server";
 
-import { db } from "@/db/connection";
-import { locationsTable, SelectLocation } from "@/db/schema";
+import { prisma } from "@/lib/db";
 import { createLocationSlug } from "@/lib/utils";
-import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 export async function createLocation(formData: FormData) {
@@ -13,31 +11,11 @@ export async function createLocation(formData: FormData) {
   const active = formData.get("active") as string;
 
   const newLocation = { slug, country, city, active: active === "on" };
-  await db.insert(locationsTable).values(newLocation);
+  await prisma.location.create({
+    data: newLocation,
+  });
 
   revalidatePath("/superadmin/locations");
-}
-
-export async function getLocations<
-  T extends (keyof SelectLocation)[] = (keyof SelectLocation)[]
->({
-  fields,
-}: {
-  fields?: T; // fields is optional
-} = {}): Promise<Pick<SelectLocation, T[number]>[]> {
-  // Default empty object if no arguments are passed
-  // Use default fields only if no fields are provided
-  const selectedFieldsArray: (keyof SelectLocation)[] | undefined =
-    fields && fields.length > 0 ? fields : undefined; // Default if fields are not provided
-
-  const selectedFields = selectedFieldsArray?.reduce((acc, field) => {
-    acc[field] = true;
-    return acc;
-  }, {} as Record<keyof SelectLocation, true>);
-
-  return await db.query.locationsTable.findMany({
-    columns: selectedFields,
-  });
 }
 
 export async function editLocation(formData: FormData) {
@@ -48,25 +26,25 @@ export async function editLocation(formData: FormData) {
 
   const slug = createLocationSlug(country, city);
   const newLocation = { slug, country, city, active: active === "on" };
-  await db
-    .update(locationsTable)
-    .set(newLocation)
-    .where(eq(locationsTable.id, locationId));
+  await prisma.location.update({
+    where: {
+      id: locationId,
+    },
+    data: newLocation,
+  });
   revalidatePath("/superadmin/locations");
 }
 
 export async function deleteLocation(formData: FormData) {
   const locationId = formData.get("locationId") as string;
   if (!locationId) return;
-
-  await db.delete(locationsTable).where(eq(locationsTable.id, locationId));
+  await prisma.location.delete({ where: { id: locationId } });
   revalidatePath("/locations");
 }
 
-export async function getLocation(locationId: string) {
-  return db.query.locationsTable.findFirst({
-    where(fields, { eq }) {
-      return eq(fields.id, locationId);
-    },
+export async function getLocationsOption() {
+  return prisma.location.findMany({
+    where: { active: true },
+    select: { id: true, slug: true, city: true },
   });
 }

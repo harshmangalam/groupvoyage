@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import useSWR from "swr";
-import { getLocations } from "@/actions/locations";
 import { Skeleton } from "./ui/skeleton";
+import { getLocationsOption } from "@/actions/locations";
 
 interface LocationsDropdownProps
   extends React.InputHTMLAttributes<HTMLSelectElement> {}
@@ -24,7 +24,7 @@ export function LocationsDropdown({
   ...props
 }: LocationsDropdownProps) {
   const { data, error, isLoading } = useSWR("locations-option", () =>
-    getLocations({ fields: ["city", "id"] })
+    getLocationsOption()
   );
   const [selectedLocation, setSelectedLocation] = React.useState<
     string | undefined
