@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SelectLocation } from "@/db/schema";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import Form from "next/form";
@@ -10,7 +9,7 @@ type LocationFormProps = {
   action: NonNullable<
     string | ((formData: FormData) => void | Promise<void>) | undefined
   >;
-  location?: SelectLocation;
+  location?: any;
   onSubmit?: () => void;
 };
 export function LocationForm({

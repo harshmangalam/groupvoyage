@@ -16,12 +16,7 @@ import { prisma } from "@/lib/db";
 
 export default async function Locations() {
   const locations = await prisma.location.findMany({
-    select: {
-      active: true,
-      city: true,
-      country: true,
-      id: true,
-      slug: true,
+    include: {
       _count: {
         select: {
           events: true,

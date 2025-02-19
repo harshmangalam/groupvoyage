@@ -15,3 +15,11 @@ export function createLocationSlug(country: string, city: string): string {
   // Combine the country and city slugs
   return `${countrySlug}-${citySlug}`;
 }
+
+export function getInstagramHandler(url: string) {
+  return new URL(url).pathname.split("/")[1];
+}
+
+export function getWebsiteOrigin(url: string) {
+  return new URL(url).host;
+}
