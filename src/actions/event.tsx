@@ -42,3 +42,28 @@ export async function getEventList({
     },
   });
 }
+
+export function getEventDetails({ eventSlug }: { eventSlug?: string }) {
+  return prisma.event.findUnique({
+    where: {
+      slug: eventSlug,
+    },
+    include: {
+      location: {
+        select: {
+          city: true,
+          slug: true,
+        },
+      },
+      group: {
+        select: {
+          id: true,
+          slug: true,
+          name: true,
+          instagram: true,
+          phone: true,
+        },
+      },
+    },
+  });
+}
