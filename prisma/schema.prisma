@@ -34,7 +34,6 @@ model Group {
   instagram String?
   phone     String?
   email     String?
-  address   String?
   meta      Json?
   source    String
   events    Event[]
@@ -56,7 +55,6 @@ model Event {
   groupId    String
   posterUrls String[]
   meta       Json?
-  itinerary  Json?
   includes   String[]
   excludes   String[]
   source     String
