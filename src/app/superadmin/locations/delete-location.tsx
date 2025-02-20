@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteLocation } from "@/actions/locations";
+import { deleteLocation } from "@/actions/location";
 import {
   AlertDialog,
   AlertDialogAction,

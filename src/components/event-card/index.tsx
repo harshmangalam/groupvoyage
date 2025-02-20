@@ -19,8 +19,10 @@ export function EventCard({ event }: EventCardProps) {
           <Image
             src={firstPosterUrl || "/placeholder.svg"}
             alt={`${title} poster`}
-            layout="fill"
             objectFit="cover"
+            width={200}
+            height={200}
+            className="w-full h-full aspect-square"
           />
         </div>
         <CardContent className="p-4">

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { T_GroupCard } from "@/lib/types";
 import { BusIcon, MapPinIcon } from "lucide-react";
+import { T_GroupCard } from "@/lib/types";
 
 type GroupCard = {
   group: T_GroupCard;

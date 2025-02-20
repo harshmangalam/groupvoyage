@@ -34,3 +34,37 @@ export async function getGroupsOption() {
 
   return groups;
 }
+
+export async function getGroupList({
+  locationSlug,
+}: {
+  locationSlug?: string;
+}) {
+  return prisma.group.findMany({
+    where: {
+      locations: {
+        some: {
+          slug: locationSlug,
+        },
+      },
+    },
+    select: {
+      id: true,
+      slug: true,
+      name: true,
+      posterUrl: true,
+      locations: {
+        select: {
+          id: true,
+          city: true,
+          slug: true,
+        },
+      },
+      _count: {
+        select: {
+          events: true,
+        },
+      },
+    },
+  });
+}

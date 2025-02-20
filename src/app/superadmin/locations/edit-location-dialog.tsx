@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { PencilIcon } from "lucide-react";
 import { LocationForm } from "./location-form";
-import { editLocation } from "@/actions/locations";
+import { editLocation } from "@/actions/location";
 import { SelectLocation } from "@/db/schema";
 import {
   Tooltip,

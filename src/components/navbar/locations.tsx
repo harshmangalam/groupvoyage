@@ -1,4 +1,4 @@
-import { getLocationsOption } from "@/actions/locations";
+import { getLocationsOption } from "@/actions/location";
 import { LocationsCombobox } from "./locations-combobox";
 
 export async function Locations() {

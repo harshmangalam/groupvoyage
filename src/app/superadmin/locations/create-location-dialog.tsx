@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { PlusIcon } from "lucide-react";
 import { LocationForm } from "./location-form";
-import { createLocation } from "@/actions/locations";
+import { createLocation } from "@/actions/location";
 import { useState } from "react";
 
 export function CreateLocationDialog() {

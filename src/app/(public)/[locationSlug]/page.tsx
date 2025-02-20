@@ -1,6 +1,8 @@
+import { getEventList } from "@/actions/event";
+import { getGroupList } from "@/actions/group";
 import { EventCard } from "@/components/event-card";
 import { GroupCard } from "@/components/group-card";
-import { prisma } from "@/lib/db";
+
 import Link from "next/link";
 
 type LocationPageProps = {
@@ -8,47 +10,8 @@ type LocationPageProps = {
 };
 export default async function LocationPage({ params }: LocationPageProps) {
   const locationSlug = (await params).locationSlug.toString();
-  const groups = await prisma.group.findMany({
-    where: {
-      locations: {
-        some: {
-          slug: locationSlug,
-        },
-      },
-    },
-    select: {
-      id: true,
-      slug: true,
-      name: true,
-      posterUrl: true,
-      locations: {
-        select: {
-          id: true,
-          city: true,
-          slug: true,
-        },
-      },
-      _count: {
-        select: {
-          events: true,
-        },
-      },
-    },
-  });
-
-  const events = await prisma.event.findMany({
-    where: {
-      location: {
-        slug: locationSlug,
-      },
-    },
-    include: {
-      location: true,
-      group: true,
-    },
-  });
-
-  // const events = await getEvents({ locationSlug });
+  const groups = await getGroupList({ locationSlug });
+  const events = await getEventList({ locationSlug });
   return (
     <div className="max-w-7xl px-4 mx-auto py-6 md:py-12">
       {/* Groups  */}
