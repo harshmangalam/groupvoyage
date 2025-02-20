@@ -4,4 +4,5 @@ export const hostnames = [
   "www.tourmyindia.com",
   "tripbae.com",
   "backpackersandadventurers.com",
+  "sp-ao.shortpixel.ai",
 ];

@@ -1,11 +1,18 @@
 import Link from "next/link";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { GetGroupsType } from "@/services/groups";
-import { GroupLocation } from "./group-location";
+import { T_GroupCard } from "@/lib/types";
+import { BusIcon, MapPinIcon } from "lucide-react";
 
-export function GroupCard({ location, name, posterUrl, slug }: GetGroupsType) {
+type GroupCard = {
+  group: T_GroupCard;
+  currentLocationSlug: string;
+};
+export function GroupCard({ group, currentLocationSlug }: GroupCard) {
+  const { _count, locations, name, posterUrl, slug } = group;
+  const location = locations.find((l) => l.slug === currentLocationSlug);
+
   return (
-    <Link href={`/${location.slug}/${slug}`} className="block w-full">
+    <Link href={`/${location?.slug}/${slug}`} className="block w-full">
       <Card className="w-full h-64 overflow-hidden relative group">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-center transition-transform duration-300 group-hover:scale-105"
@@ -18,8 +25,15 @@ export function GroupCard({ location, name, posterUrl, slug }: GetGroupsType) {
           <CardTitle className="text-base font-semibold mb-2 line-clamp-1">
             {name}
           </CardTitle>
-          <div className="flex items-center gap-4 text-sm">
-            <GroupLocation {...location} />
+          <div className="flex flex-col gap-1 text-sm">
+            <div className="flex items-center">
+              <MapPinIcon className="w-4 h-4 mr-1" />
+              <div>{location?.city}</div>
+            </div>
+            <div className="flex items-center">
+              <BusIcon className="w-4 h-4 mr-1" />
+              <div>{_count?.events} Trips</div>
+            </div>
           </div>
         </CardContent>
       </Card>

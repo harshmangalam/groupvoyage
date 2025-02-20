@@ -1,7 +1,6 @@
 import { EventCard } from "@/components/event-card";
 import { GroupCard } from "@/components/group-card";
-import { getEvents } from "@/services/events";
-import { getGroups } from "@/services/groups";
+import { prisma } from "@/lib/db";
 import Link from "next/link";
 
 type LocationPageProps = {
@@ -9,11 +8,47 @@ type LocationPageProps = {
 };
 export default async function LocationPage({ params }: LocationPageProps) {
   const locationSlug = (await params).locationSlug.toString();
-  const groups = await getGroups({
-    locationSlug,
+  const groups = await prisma.group.findMany({
+    where: {
+      locations: {
+        some: {
+          slug: locationSlug,
+        },
+      },
+    },
+    select: {
+      id: true,
+      slug: true,
+      name: true,
+      posterUrl: true,
+      locations: {
+        select: {
+          id: true,
+          city: true,
+          slug: true,
+        },
+      },
+      _count: {
+        select: {
+          events: true,
+        },
+      },
+    },
   });
 
-  const events = await getEvents({ locationSlug });
+  const events = await prisma.event.findMany({
+    where: {
+      location: {
+        slug: locationSlug,
+      },
+    },
+    include: {
+      location: true,
+      group: true,
+    },
+  });
+
+  // const events = await getEvents({ locationSlug });
   return (
     <div className="max-w-7xl px-4 mx-auto py-6 md:py-12">
       {/* Groups  */}
@@ -26,7 +61,11 @@ export default async function LocationPage({ params }: LocationPageProps) {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {groups.map((group) => (
-            <GroupCard key={group.id} {...group} />
+            <GroupCard
+              key={group.id}
+              group={group}
+              currentLocationSlug={locationSlug}
+            />
           ))}
         </div>
       </section>
@@ -36,7 +75,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
         <h2 className="text-2xl font-semibold mb-4">Trips from Hyderabad</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {events.map((event) => (
-            <EventCard key={event.id} {...event} />
+            <EventCard key={event.id} event={event} />
           ))}
         </div>
       </section>
