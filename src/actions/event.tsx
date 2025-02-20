@@ -2,15 +2,22 @@ import { prisma } from "@/lib/db";
 
 export async function getEventList({
   locationSlug,
+  groupSlug,
 }: {
   locationSlug?: string;
+  groupSlug?: string;
 }) {
+  const filter: Record<string, any> = {};
+  if (groupSlug) {
+    filter.group = { slug: groupSlug };
+  }
+  if (locationSlug) {
+    filter.location = { slug: locationSlug };
+  }
   return prisma.event.findMany({
     where: {
-      location: {
-        slug: locationSlug,
-      },
       isArchived: false,
+      ...filter,
     },
     select: {
       posterUrls: true,

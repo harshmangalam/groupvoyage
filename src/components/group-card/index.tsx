@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { BusIcon, MapPinIcon } from "lucide-react";
+import { CalendarCheckIcon, MapPinIcon } from "lucide-react";
 import { T_GroupCard } from "@/lib/types";
 
 type GroupCard = {
@@ -31,8 +31,8 @@ export function GroupCard({ group, currentLocationSlug }: GroupCard) {
               <div>{location?.city}</div>
             </div>
             <div className="flex items-center">
-              <BusIcon className="w-4 h-4 mr-1" />
-              <div>{_count?.events} Trips</div>
+              <CalendarCheckIcon className="w-4 h-4 mr-1" />
+              <div>{_count?.events} Active Trips</div>
             </div>
           </div>
         </CardContent>

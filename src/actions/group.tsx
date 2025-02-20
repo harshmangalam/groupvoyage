@@ -68,3 +68,25 @@ export async function getGroupList({
     },
   });
 }
+
+export async function getGroupDetails({ slug }: { slug: string }) {
+  return prisma.group.findUnique({
+    where: {
+      slug,
+    },
+    include: {
+      _count: {
+        select: {
+          events: true,
+        },
+      },
+      locations: {
+        select: {
+          city: true,
+          slug: true,
+          id: true,
+        },
+      },
+    },
+  });
+}

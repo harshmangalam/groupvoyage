@@ -5,4 +5,5 @@ export const hostnames = [
   "tripbae.com",
   "backpackersandadventurers.com",
   "sp-ao.shortpixel.ai",
+  "muddietrails.com",
 ];

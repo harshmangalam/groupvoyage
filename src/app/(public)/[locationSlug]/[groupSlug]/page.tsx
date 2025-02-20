@@ -1,5 +1,5 @@
 import { EventCard } from "@/components/event-card";
-import { getEvents } from "@/services/events";
+import { getEventList } from "@/actions/event";
 
 export default async function GroupHomePage({
   params,
@@ -7,7 +7,7 @@ export default async function GroupHomePage({
   params: Promise<{ groupSlug: string }>;
 }) {
   const { groupSlug } = await params;
-  const events = await getEvents({
+  const events = await getEventList({
     groupSlug,
   });
   return (
@@ -15,7 +15,7 @@ export default async function GroupHomePage({
       <h3 className="text-xl font-semibold mb-4">Events</h3>
       <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {events.length ? (
-          events.map((event) => <EventCard key={event.id} {...event} />)
+          events.map((event) => <EventCard key={event.id} event={event} />)
         ) : (
           <p className="opacity-50 text-sm">No Events</p>
         )}

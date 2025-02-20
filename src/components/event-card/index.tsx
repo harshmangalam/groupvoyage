@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MapPin, Clock, Users, IndianRupee } from "lucide-react";
+import { MapPin, Clock, User, IndianRupee } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { T_EventCard } from "@/lib/types";
@@ -41,7 +41,7 @@ export function EventCard({ event }: EventCardProps) {
             <div className="text-sm text-gray-600 ">{location.city}</div>
           </div>
           <div className="flex items-center mb-2">
-            <Users className="w-5 h-5 mr-2 text-gray-600 flex-shrink-0" />
+            <User className="w-5 h-5 mr-2 text-gray-600 flex-shrink-0" />
             <div className="text-sm text-gray-600 ">{group.name}</div>
           </div>
         </CardContent>
