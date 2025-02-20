@@ -48,3 +48,10 @@ export async function getLocationsOption() {
     select: { id: true, slug: true, city: true },
   });
 }
+
+export async function getLocation({ locationSlug }: { locationSlug: string }) {
+  return prisma.location.findUnique({
+    where: { slug: locationSlug },
+    select: { id: true, slug: true, city: true },
+  });
+}
