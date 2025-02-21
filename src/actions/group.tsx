@@ -52,7 +52,7 @@ export async function getGroupList({
       id: true,
       slug: true,
       name: true,
-      posterUrl: true,
+      posterUrls: true,
       locations: {
         select: {
           id: true,

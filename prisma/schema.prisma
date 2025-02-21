@@ -26,18 +26,20 @@ model Location {
 }
 
 model Group {
-  id        String     @id @default(uuid())
-  name      String     @unique
-  slug      String     @unique
-  details   String
-  posterUrl String
-  instagram String?
-  phone     String?
-  email     String?
-  meta      Json?
-  source    String
-  events    Event[]
-  locations Location[]
+  id         String     @id @default(uuid())
+  name       String     @unique
+  slug       String     @unique
+  tagLine    String?
+  details    String
+  posterUrls String[]
+  logo       String?
+  instagram  String?
+  phone      String?
+  email      String?
+  meta       Json?
+  source     String
+  events     Event[]
+  locations  Location[]
 
   active    Boolean  @default(true)
   createdAt DateTime @default(now())

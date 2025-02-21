@@ -67,3 +67,33 @@ export function getEventDetails({ eventSlug }: { eventSlug?: string }) {
     },
   });
 }
+
+export async function getFeaturedEventList() {
+  return prisma.event.findMany({
+    where: {
+      isArchived: false,
+    },
+    select: {
+      posterUrls: true,
+      durations: true,
+      id: true,
+      title: true,
+      price: true,
+      slug: true,
+      location: {
+        select: {
+          slug: true,
+          city: true,
+        },
+      },
+      group: {
+        select: {
+          name: true,
+          slug: true,
+        },
+      },
+      meta: true,
+    },
+    take: 10,
+  });
+}

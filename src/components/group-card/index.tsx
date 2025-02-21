@@ -8,7 +8,7 @@ type GroupCard = {
   currentLocationSlug: string;
 };
 export function GroupCard({ group, currentLocationSlug }: GroupCard) {
-  const { _count, locations, name, posterUrl, slug } = group;
+  const { _count, locations, name, posterUrls, slug } = group;
   const location = locations.find((l) => l.slug === currentLocationSlug);
 
   return (
@@ -17,7 +17,7 @@ export function GroupCard({ group, currentLocationSlug }: GroupCard) {
         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-center transition-transform duration-300 group-hover:scale-105"
           style={{
-            backgroundImage: `url(${posterUrl})`,
+            backgroundImage: `url(${posterUrls[0]})`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80" />

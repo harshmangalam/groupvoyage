@@ -66,19 +66,23 @@ export default async function TripDetailsPage({
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-4" />
-          <CarouselNext className="right-4" />
+          {event.posterUrls.length > 1 && (
+            <>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </>
+          )}
         </Carousel>
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent pt-24 pb-6 px-6 md:px-8">
           <div className="flex items-start justify-between gap-4 flex-wrap text-primary-foreground">
-            <div>
+            <div className="max-w-3xl flex flex-col gap-4">
               <h1
                 title={event.title}
-                className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight mb-2 line-clamp-1"
+                className="text-2xl md:text-3xl lg:text-4xl  font-bold tracking-tight mb-2 line-clamp-2"
               >
                 {event.title}
               </h1>
-              <div className="flex flex-wrap gap-3 text-sm md:text-base">
+              <div className="flex flex-wrap gap-4 text-sm md:text-base">
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
                   <span>{event.durations}</span>
@@ -136,12 +140,13 @@ export default async function TripDetailsPage({
               <TabsContent value="overview" className="space-y-8">
                 <div>
                   <h2 className="text-2xl font-semibold mb-4">Trip Details</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {event.details}
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{ __html: event?.details || "" }}
+                    className="text-muted-foreground leading-relaxed"
+                  ></p>
                 </div>
 
-                {highlights.length ? (
+                {highlights?.length ? (
                   <Card>
                     <CardContent className="pt-6">
                       <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
@@ -351,11 +356,11 @@ export default async function TripDetailsPage({
                     </div>
                   )}
                 </div>
-                <Link href={event.source} className="block">
-                  <Button className="w-full" size="lg">
+                <Button asChild className="w-full" size="lg">
+                  <a target="_blank" href={event.source} className="block">
                     Book Now
-                  </Button>
-                </Link>
+                  </a>
+                </Button>
               </CardContent>
             </Card>
 

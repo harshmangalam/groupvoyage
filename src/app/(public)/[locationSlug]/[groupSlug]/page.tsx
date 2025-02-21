@@ -2,7 +2,7 @@ import { EventCard } from "@/components/event-card";
 import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge, CalendarCheckIcon, MapPin, User } from "lucide-react";
+import { CalendarCheckIcon, MapPin, User } from "lucide-react";
 import { GroupMetaType } from "@/lib/types";
 import Image from "next/image";
 import { SharePopover } from "@/components/share-popover";
@@ -11,6 +11,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
 import { getGroupDetails } from "@/actions/group";
 import { notFound } from "next/navigation";
+import { Badge } from "@/components/ui/badge";
 
 export default async function GroupHomePage({
   params,
@@ -31,7 +32,7 @@ export default async function GroupHomePage({
           <div className="w-full h-full">
             <div className="relative w-full h-80">
               <Image
-                src={group.posterUrl || ""}
+                src={group.posterUrls[0] || ""}
                 alt={`${group.name} poster`}
                 className="object-cover aspect-video md:rounded-md w-full h-full overflow-hidden"
                 width={600}
@@ -119,7 +120,9 @@ export default async function GroupHomePage({
       </section>
 
       <section className="max-w-7xl px-4 mx-auto mt-12">
-        <h3 className="text-xl font-semibold mb-4">Events</h3>
+        <h3 className="text-xl font-semibold mb-4">
+          Pack, Go, Explore – {group.name} Trips
+        </h3>
         <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {events.length ? (
             events.map((event) => <EventCard key={event.id} event={event} />)

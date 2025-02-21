@@ -1,4 +1,4 @@
-import { getEventList } from "@/actions/event";
+import { getEventList, getFeaturedEventList } from "@/actions/event";
 import { getGroupList } from "@/actions/group";
 export type GroupMetaType = {
   membersCount: number;
@@ -12,3 +12,7 @@ export type SearchParams = Promise<{
 export type T_GroupCard = Awaited<ReturnType<typeof getGroupList>>[number];
 
 export type T_EventCard = Awaited<ReturnType<typeof getEventList>>[number];
+
+export type T_FeaturedEvent = Awaited<
+  ReturnType<typeof getFeaturedEventList>
+>[number];
