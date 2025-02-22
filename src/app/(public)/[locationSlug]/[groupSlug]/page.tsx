@@ -4,7 +4,6 @@ import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { CalendarCheckIcon, MapPin, User } from "lucide-react";
 import { GroupMetaType } from "@/lib/types";
-import Image from "next/image";
 import { SharePopover } from "@/components/share-popover";
 import Link from "next/link";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { getGroupDetails } from "@/actions/group";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import { PostersCarousel } from "./posters-carousel";
 
 export default async function GroupHomePage({
   params,
@@ -27,20 +27,14 @@ export default async function GroupHomePage({
   });
   return (
     <div>
-      <Card className="w-full border-none max-w-7xl py-5 md:px-4 mx-auto shadow-none">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 h-full">
+      <Card className="w-full border-none max-w-7xl py-5 lg:px-4 mx-auto shadow-none">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 h-full">
           <div className="w-full h-full">
-            <div className="relative w-full h-80">
-              <Image
-                src={group.posterUrls[0] || ""}
-                alt={`${group.name} poster`}
-                className="object-cover aspect-video md:rounded-md w-full h-full overflow-hidden"
-                width={600}
-                height={600}
-              />
+            <div className="relative md:w-full h-auto">
+              <PostersCarousel posterUrls={group.posterUrls} />
             </div>
           </div>
-          <div className="flex-1 w-full flex-col h-full px-4 md:px-0  flex justify-between">
+          <div className="flex-1 w-full flex-col h-full px-4 lg:px-0  flex justify-between">
             <CardContent className="flex-1 p-0">
               <div className="flex justify-between items-start mb-4">
                 <h1 className="text-2xl font-bold">{group.name}</h1>

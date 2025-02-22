@@ -29,12 +29,12 @@ export function EventCard({ event }: EventCardProps) {
           <h3 className="text-lg font-semibold mb-2 line-clamp-2">{title}</h3>
           <p className="text-lg font-semibold text-green-600 mb-2 flex items-center">
             <IndianRupee className="w-4 h-4" />
-            {price || "Price N/A"}
+            {price || "N/A"}
           </p>
 
           <div className="flex items-center mb-2">
             <Clock className="w-5 h-5 mr-2 text-gray-600 flex-shrink-0" />
-            <p className="text-sm text-gray-600">{durations}</p>
+            <p className="text-sm text-gray-600">{durations || "N/A"}</p>
           </div>
           <div className="flex items-center mb-2">
             <MapPin className="w-5 h-5 mr-2 text-gray-600 flex-shrink-0" />

@@ -8,7 +8,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Clock,
   MapPin,
@@ -83,10 +82,12 @@ export default async function TripDetailsPage({
                 {event.title}
               </h1>
               <div className="flex flex-wrap gap-4 text-sm md:text-base">
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  <span>{event.durations}</span>
-                </div>
+                {event.durations && (
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    <span>{event.durations}</span>
+                  </div>
+                )}
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4" />
                   <Link href={`/${event.location.slug}`}>
@@ -101,234 +102,80 @@ export default async function TripDetailsPage({
                 )}
               </div>
             </div>
-            {/* <div className="flex items-center gap-2">
-              <div className="flex items-center">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.floor(rating.average)
-                        ? "fill-primary text-primary"
-                        : "fill-muted text-muted-foreground"
-                    }`}
-                  />
-                ))}
-              </div>
-              <div className="text-sm">
-                <span className="font-semibold">{rating.average}</span>
-                <span className="text-muted-foreground">
-                  {" "}
-                  ({rating.count} reviews)
-                </span>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
 
       <main className="max-w-7xl  mx-auto px-4 py-8 md:py-12">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="md:col-span-2 space-y-8">
-            <Tabs defaultValue="overview" className="space-y-4">
-              <TabsList className="grid grid-cols-4 w-full">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="itinerary">Itinerary</TabsTrigger>
-                <TabsTrigger value="location">Location</TabsTrigger>
-                <TabsTrigger value="reviews">Reviews</TabsTrigger>
-              </TabsList>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="md:col-span-2 space-y-6">
+            {event?.details && (
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Trip Details</h2>
+                <p
+                  dangerouslySetInnerHTML={{ __html: event?.details || "" }}
+                  className="text-muted-foreground leading-relaxed"
+                ></p>
+              </div>
+            )}
 
-              <TabsContent value="overview" className="space-y-8">
-                <div>
-                  <h2 className="text-2xl font-semibold mb-4">Trip Details</h2>
-                  <p
-                    dangerouslySetInnerHTML={{ __html: event?.details || "" }}
-                    className="text-muted-foreground leading-relaxed"
-                  ></p>
-                </div>
-
-                {highlights?.length ? (
-                  <Card>
-                    <CardContent className="pt-6">
-                      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-blue-500" />
-                        Trip Highlights
-                      </h3>
-                      <ul className="space-y-2">
-                        {highlights.map((item: any, index: number) => (
-                          <li key={index} className="flex items-start gap-2 ">
-                            <Sparkles className="h-4 w-4 mt-1 flex-none  text-blue-500" />
-                            <span className="flex-1">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ) : null}
-                <div className="grid sm:grid-cols-2 gap-6">
-                  {event.includes.length ? (
-                    <Card>
-                      <CardContent className="pt-6">
-                        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500" />
-                          What&apos;s Included
-                        </h3>
-                        <ul className="space-y-2">
-                          {event.includes.map((item, index) => (
-                            <li key={index} className="flex items-start gap-2">
-                              <Check className="h-4 w-4 mt-1 flex-none text-green-500" />
-                              <span className="flex-1">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  ) : null}
-
-                  {event.excludes.length ? (
-                    <Card>
-                      <CardContent className="pt-6">
-                        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                          <XIcon className="h-5 w-5 text-red-500" />
-                          What&apos;s Not Included
-                        </h3>
-                        <ul className="space-y-2">
-                          {event.excludes.map((item, index) => (
-                            <li key={index} className="flex items-start gap-2 ">
-                              <XIcon className="h-4 w-4 mt-1 flex-none  text-red-500" />
-                              <span className="flex-1">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  ) : null}
-                </div>
-              </TabsContent>
-
-              {/* <TabsContent value="itinerary" className="space-y-6">
-                <h2 className="text-2xl font-semibold">Trip Itinerary</h2>
-                <div className="space-y-6">
-                  {itinerary.map((day, index) => (
-                    <Card key={index}>
-                      <CardContent className="pt-6">
-                        <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                            <span className="text-lg font-semibold text-primary">
-                              D{day.day}
-                            </span>
-                          </div>
-                          <div className="space-y-2">
-                            <h3 className="text-lg font-semibold">
-                              {day.title}
-                            </h3>
-                            <p className="text-muted-foreground">
-                              {day.description}
-                            </p>
-                            <ul className="grid gap-2 mt-4">
-                              {day.activities.map((activity, actIndex) => (
-                                <li
-                                  key={actIndex}
-                                  className="flex items-center gap-2"
-                                >
-                                  <Check className="h-4 w-4 text-green-500" />
-                                  <span>{activity}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent> */}
-
-              {/* <TabsContent value="location" className="space-y-6">
-                <h2 className="text-2xl font-semibold">Location</h2>
+            {highlights?.length ? (
+              <Card>
+                <CardContent className="pt-6">
+                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                    <Sparkles className="h-5 w-5 text-blue-500" />
+                    Trip Highlights
+                  </h3>
+                  <ul className="space-y-2">
+                    {highlights.map((item: any, index: number) => (
+                      <li key={index} className="flex items-start gap-2 ">
+                        <Sparkles className="h-4 w-4 mt-1 flex-none  text-blue-500" />
+                        <span className="flex-1">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ) : null}
+            <div className="grid sm:grid-cols-2 gap-6">
+              {event.includes.length ? (
                 <Card>
                   <CardContent className="pt-6">
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-2">
-                        <Navigation className="h-5 w-5 text-primary shrink-0 mt-1" />
-                        <div>
-                          <h3 className="font-medium">Meeting Point</h3>
-                          <p className="text-muted-foreground">{location}</p>
-                        </div>
-                      </div>
-                      <div className="aspect-video relative rounded-lg overflow-hidden border">
-                        <iframe
-                          width="100%"
-                          height="100%"
-                          style={{ border: 0 }}
-                          loading="lazy"
-                          src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${coordinates.lat},${coordinates.lng}`}
-                        />
-                      </div>
-                    </div>
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <Check className="h-5 w-5 text-green-500" />
+                      What&apos;s Included
+                    </h3>
+                    <ul className="space-y-2">
+                      {event.includes.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <Check className="h-4 w-4 mt-1 flex-none text-green-500" />
+                          <span className="flex-1">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
                 </Card>
-              </TabsContent> */}
+              ) : null}
 
-              {/* <TabsContent value="reviews" className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-semibold">Reviews</h2>
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-5 h-5 ${
-                            i < Math.floor(rating.average)
-                              ? "fill-primary text-primary"
-                              : "fill-muted text-muted-foreground"
-                          }`}
-                        />
+              {event.excludes.length ? (
+                <Card>
+                  <CardContent className="pt-6">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <XIcon className="h-5 w-5 text-red-500" />
+                      What&apos;s Not Included
+                    </h3>
+                    <ul className="space-y-2">
+                      {event.excludes.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2 ">
+                          <XIcon className="h-4 w-4 mt-1 flex-none  text-red-500" />
+                          <span className="flex-1">{item}</span>
+                        </li>
                       ))}
-                    </div>
-                    <div className="text-sm">
-                      <span className="font-semibold">{rating.average}</span>
-                      <span className="text-muted-foreground">
-                        {" "}
-                        ({rating.count} reviews)
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  {reviews.map((review) => (
-                    <Card key={review.id}>
-                      <CardContent className="pt-6">
-                        <div className="space-y-4">
-                          <div className="flex items-start justify-between gap-4">
-                            <div>
-                              <h3 className="font-semibold">{review.name}</h3>
-                              <div className="text-sm text-muted-foreground">
-                                {new Date(review.date).toLocaleDateString()}
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className={`w-4 h-4 ${
-                                    i < review.rating
-                                      ? "fill-primary text-primary"
-                                      : "fill-muted text-muted-foreground"
-                                  }`}
-                                />
-                              ))}
-                            </div>
-                          </div>
-                          <p className="text-muted-foreground">
-                            {review.comment}
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent> */}
-            </Tabs>
+                    </ul>
+                  </CardContent>
+                </Card>
+              ) : null}
+            </div>
           </div>
 
           <div className="space-y-6">
