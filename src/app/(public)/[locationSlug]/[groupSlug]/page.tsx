@@ -4,7 +4,6 @@ import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { CalendarCheckIcon, MapPin, User } from "lucide-react";
 import { GroupMetaType } from "@/lib/types";
-import { SharePopover } from "@/components/share-popover";
 import Link from "next/link";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
@@ -38,7 +37,6 @@ export default async function GroupHomePage({
             <CardContent className="flex-1 p-0">
               <div className="flex justify-between items-start mb-4">
                 <h1 className="text-2xl font-bold">{group.name}</h1>
-                <SharePopover groupName={group.name} slug={group.slug} />
               </div>
 
               <div className="flex flex-col gap-2 mb-4">

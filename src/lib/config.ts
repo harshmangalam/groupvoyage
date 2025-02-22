@@ -7,4 +7,5 @@ export const hostnames = [
   "sp-ao.shortpixel.ai",
   "muddietrails.com",
   "tsprodimages.s3.ap-south-1.amazonaws.com",
+  "i.pinimg.com",
 ];

@@ -55,3 +55,22 @@ export async function getLocation({ locationSlug }: { locationSlug: string }) {
     select: { id: true, slug: true, city: true },
   });
 }
+
+export async function getLocations() {
+  return prisma.location.findMany({
+    take: 5,
+    where: { active: true },
+    select: {
+      slug: true,
+      city: true,
+      posterUrl: true,
+      id: true,
+      _count: {
+        select: {
+          events: true,
+          groups: true,
+        },
+      },
+    },
+  });
+}

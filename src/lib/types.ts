@@ -1,5 +1,7 @@
 import { getEventList, getFeaturedEventList } from "@/actions/event";
 import { getGroupList } from "@/actions/group";
+import { getLocations } from "@/actions/location";
+
 export type GroupMetaType = {
   membersCount: number;
   source: string;
@@ -15,4 +17,8 @@ export type T_EventCard = Awaited<ReturnType<typeof getEventList>>[number];
 
 export type T_FeaturedEvent = Awaited<
   ReturnType<typeof getFeaturedEventList>
+>[number];
+
+export type T_LocationWithCount = Awaited<
+  ReturnType<typeof getLocations>
 >[number];

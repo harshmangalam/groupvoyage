@@ -28,11 +28,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {groups.length ? (
             groups.map((group) => (
-              <GroupCard
-                key={group.id}
-                group={group}
-                currentLocationSlug={locationSlug}
-              />
+              <GroupCard location={location} key={group.id} group={group} />
             ))
           ) : (
             <p>No groups</p>

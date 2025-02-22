@@ -1,0 +1,35 @@
+import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import { T_GroupCard } from "@/lib/types";
+import Image from "next/image";
+
+export function GroupCard({
+  group,
+  location,
+}: {
+  group: T_GroupCard;
+  location: { slug: string; city: string };
+}) {
+  const { _count, posterUrls, name, slug } = group;
+  return (
+    <Link href={`/${location.slug}/${slug}`}>
+      <Card className="hover:shadow-lg transition-all cursor-pointer">
+        <CardContent className="p-0">
+          <Image
+            src={posterUrls[0] || ""}
+            alt={name}
+            width={200}
+            height={300}
+            className="w-full h-60 md:h-48 object-cover rounded-t-lg aspect-square"
+          />
+          <div className="p-4">
+            <h3 className="text-lg font-semibold line-clamp-1">{name}</h3>
+            <p className="text-gray-500 text-sm">
+              {location.city} · {_count.events} Trips
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+}
