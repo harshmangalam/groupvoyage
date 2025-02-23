@@ -13,8 +13,8 @@ export function EventCard({ event }: EventCardProps) {
   const firstPosterUrl = posterUrls[0];
 
   return (
-    <Link href={`/${location.slug}/${group.slug}/${slug}`}>
-      <Card className="w-full shadow-none mx-auto overflow-hidden hover:shadow-md duration-300">
+    <Link href={`/${location.slug}/${group.slug}/${slug}`} className="h-full">
+      <Card className="w-full shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full">
         <div className="relative h-48 sm:h-64">
           <Image
             src={firstPosterUrl || "/placeholder.svg"}
@@ -22,7 +22,7 @@ export function EventCard({ event }: EventCardProps) {
             objectFit="cover"
             width={200}
             height={200}
-            className="w-full h-full aspect-square"
+            className="w-full h-full aspect-auto object-cover"
           />
         </div>
         <CardContent className="p-4">
