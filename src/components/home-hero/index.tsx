@@ -4,7 +4,7 @@ import { Stats } from "./stats";
 
 export function HomeHero() {
   return (
-    <div className="relative overflow-hidden h-[90vh] z-[1]">
+    <div className="relative overflow-hidden py-12 lg:py-0 lg:h-[90vh] z-[1]">
       {/* Top and Bottom Gradients */}
 
       <div className="mx-auto h-full max-w-7xl items-center gap-12 px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-3">
