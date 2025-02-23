@@ -203,7 +203,12 @@ export default async function TripDetailsPage({
                     </div>
                   )}
                 </div>
-                <Button asChild className="w-full" size="lg">
+                <Button
+                  asChild
+                  className="w-full"
+                  size="lg"
+                  variant={"destructive"}
+                >
                   <a target="_blank" href={event.source} className="block">
                     Book Now
                   </a>
