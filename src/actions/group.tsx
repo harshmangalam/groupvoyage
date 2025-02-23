@@ -90,3 +90,7 @@ export async function getGroupDetails({ slug }: { slug: string }) {
     },
   });
 }
+
+export async function getAllGroupsCount() {
+  return prisma.group.count();
+}

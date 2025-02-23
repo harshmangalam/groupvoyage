@@ -97,3 +97,7 @@ export async function getFeaturedEventList() {
     take: 10,
   });
 }
+
+export async function getAllEventsCount() {
+  return prisma.event.count();
+}

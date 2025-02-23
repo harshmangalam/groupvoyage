@@ -9,8 +9,15 @@ export async function createLocation(formData: FormData) {
   const country = formData.get("country") as string;
   const slug = createLocationSlug(country, city);
   const active = formData.get("active") as string;
+  const posterUrl = formData.get("posterUrl") as string;
 
-  const newLocation = { slug, country, city, active: active === "on" };
+  const newLocation = {
+    slug,
+    country,
+    city,
+    active: active === "on",
+    posterUrl,
+  };
   await prisma.location.create({
     data: newLocation,
   });
@@ -73,4 +80,8 @@ export async function getLocations() {
       },
     },
   });
+}
+
+export async function getAllLocationsCount() {
+  return prisma.location.count();
 }

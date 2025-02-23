@@ -19,7 +19,7 @@ model Location {
   slug      String   @unique
   country   String
   active    Boolean  @default(true)
-  posterUrl String?
+  posterUrl String
   events    Event[]
   groups    Group[]
   createdAt DateTime @default(now())
