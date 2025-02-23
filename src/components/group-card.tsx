@@ -13,14 +13,14 @@ export function GroupCard({
   const { _count, posterUrls, name, slug } = group;
   return (
     <Link href={`/${location.slug}/${slug}`}>
-      <Card className="hover:shadow-lg transition-all cursor-pointer">
+      <Card className="hover:shadow-md transition-all cursor-pointer group overflow-hidden">
         <CardContent className="p-0">
           <Image
             src={posterUrls[0] || ""}
             alt={name}
             width={200}
             height={300}
-            className="w-full h-60 md:h-48 object-cover rounded-t-lg aspect-square"
+            className="w-full h-60 md:h-48 object-cover rounded-t-lg aspect-square group-hover:scale-105 transition duration-300"
           />
           <div className="p-4">
             <h3 className="text-lg font-semibold line-clamp-1">{name}</h3>

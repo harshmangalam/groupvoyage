@@ -32,20 +32,22 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="max-w-7xl w-full mx-auto px-4 flex flex-col gap-6 md:gap-10 py-8 md:py-16">
-        <div className="flex flex-col gap-2 items-center">
-          <h2 className="text-3xl font-bold tracking-tight text-center">
-            Featured travel <span className="text-destructive">groups</span>{" "}
-            across cities
-          </h2>
-          <p className="leading-6 font-normal text-muted-foreground text-center">
-            Explore top travel groups from different cities and find the perfect
-            weekend trips for you!
-          </p>
-        </div>
+      <div className="bg-muted">
+        <section className="max-w-7xl w-full mx-auto px-4 flex flex-col gap-6 md:gap-10 py-8 md:py-16">
+          <div className="flex flex-col gap-2 items-center">
+            <h2 className="text-3xl font-bold tracking-tight text-center">
+              Featured travel <span className="text-destructive">groups</span>{" "}
+              across cities
+            </h2>
+            <p className="leading-6 font-normal text-muted-foreground text-center">
+              Explore top travel groups from different cities and find the
+              perfect weekend trips for you!
+            </p>
+          </div>
 
-        <FeaturedGroupsCarousel />
-      </section>
+          <FeaturedGroupsCarousel />
+        </section>
+      </div>
 
       <section className="max-w-7xl w-full mx-auto px-4 flex flex-col gap-6 md:gap-10 py-8 md:py-16">
         <div className="flex flex-col gap-2 items-center">
