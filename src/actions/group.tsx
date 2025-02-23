@@ -94,3 +94,37 @@ export async function getGroupDetails({ slug }: { slug: string }) {
 export async function getAllGroupsCount() {
   return prisma.group.count();
 }
+
+export async function getFeaturedGroupList({
+  locationSlug,
+}: {
+  locationSlug?: string;
+}) {
+  return prisma.group.findMany({
+    where: {
+      locations: {
+        some: {
+          slug: locationSlug,
+        },
+      },
+    },
+    select: {
+      id: true,
+      slug: true,
+      name: true,
+      posterUrls: true,
+      locations: {
+        select: {
+          id: true,
+          city: true,
+          slug: true,
+        },
+      },
+      _count: {
+        select: {
+          events: true,
+        },
+      },
+    },
+  });
+}
