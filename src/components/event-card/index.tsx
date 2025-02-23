@@ -27,7 +27,7 @@ export function EventCard({ event }: EventCardProps) {
         </div>
         <CardContent className="p-4">
           <h3 className="text-lg font-semibold mb-2 line-clamp-2">{title}</h3>
-          <p className="text-lg font-semibold text-green-600 mb-2 flex items-center">
+          <p className="text-lg font-semibold text-destructive mb-2 flex items-center">
             <IndianRupee className="w-4 h-4" />
             {price || "N/A"}
           </p>

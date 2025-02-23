@@ -106,15 +106,24 @@ export default async function GroupHomePage({
       </Card>
       <Separator />
 
-      <section className="max-w-7xl mx-auto mt-12 px-4">
-        <h3 className="text-xl font-semibold mb-4">About Us</h3>
+      <section className="max-w-7xl mx-auto mt-12 px-4 flex flex-col gap-4">
+        <h3 className="text-3xl font-bold tracking-tight text-destructive">
+          About us
+        </h3>
         <p>{group.details}</p>
       </section>
 
-      <section className="max-w-7xl px-4 mx-auto mt-12">
-        <h3 className="text-xl font-semibold mb-4">
-          Pack, Go, Explore – {group.name} Trips
-        </h3>
+      <section className="max-w-7xl mx-auto py-8 md:py-16 flex flex-col gap-6 md:gap-10">
+        <div className="flex flex-col gap-2 items-center">
+          <h2 className="text-3xl font-bold tracking-tight text-center">
+            Upcoming Trips by{" "}
+            <span className="text-destructive">{group.name}</span>
+          </h2>
+          <p className="leading-6 font-normal text-muted-foreground text-center">
+            Check out the latest trips organized by {group.name} and find the
+            perfect weekend adventure for you!
+          </p>
+        </div>
         <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {events.length ? (
             events.map((event) => <EventCard key={event.id} event={event} />)
