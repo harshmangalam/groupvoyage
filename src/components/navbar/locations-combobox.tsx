@@ -18,13 +18,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { SelectLocation } from "@/db/schema";
 import { useParams, useRouter } from "next/navigation";
+import { T_LocationOption } from "@/lib/types";
 
 export function LocationsCombobox({
   locations,
 }: {
-  locations: Pick<SelectLocation, "id" | "slug" | "city">[];
+  locations: T_LocationOption[];
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -55,7 +55,7 @@ export function LocationsCombobox({
         >
           {locationSlug
             ? locations.find((l) => l.slug === locationSlug)?.city
-            : "Search cities"}
+            : "Select city"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
