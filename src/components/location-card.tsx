@@ -26,7 +26,7 @@ export function LocationCard({
           <div className="flex flex-col gap-1 text-sm">
             <div className="flex items-center">
               <UserIcon className="w-4 h-4 mr-1" />
-              <div>{_count?.events} Groups</div>
+              <div>{_count?.groups} Groups</div>
             </div>
             <div className="flex items-center">
               <CalendarCheckIcon className="w-4 h-4 mr-1" />

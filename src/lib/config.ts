@@ -8,4 +8,5 @@ export const hostnames = [
   "muddietrails.com",
   "tsprodimages.s3.ap-south-1.amazonaws.com",
   "i.pinimg.com",
+  "static.wixstatic.com",
 ];

@@ -1,4 +1,3 @@
-import { ModeToggle } from "../../ui/mode-toggle";
 import {
   Footer,
   FooterColumn,
@@ -50,9 +49,6 @@ export default function FooterSection() {
         <FooterBottom>
           <div>
             © {new Date().getFullYear()} {SITE_NAME}. All rights reserved
-          </div>
-          <div className="flex items-center gap-4">
-            <ModeToggle />
           </div>
         </FooterBottom>
       </Footer>

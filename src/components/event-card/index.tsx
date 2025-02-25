@@ -17,12 +17,13 @@ export function EventCard({ event }: EventCardProps) {
     <Card className="w-full shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full">
       <div className="relative h-48 sm:h-64">
         <Image
-          src={firstPosterUrl || "/placeholder.svg"}
+          src={firstPosterUrl || ""}
           alt={`${title} poster`}
           objectFit="cover"
-          width={200}
-          height={200}
+          width={400}
+          height={400}
           className="w-full h-full aspect-auto object-cover"
+          loading="lazy"
         />
       </div>
       <CardContent className="p-4">
