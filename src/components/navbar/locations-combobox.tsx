@@ -37,7 +37,7 @@ export function LocationsCombobox({
     if (currentValue === locationSlug) return;
 
     startTransition(() => {
-      router.push(`/${currentValue}`);
+      router.push(`/locations/${currentValue}`);
     });
     setOpen(false);
   }

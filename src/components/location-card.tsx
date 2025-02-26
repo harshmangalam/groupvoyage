@@ -10,7 +10,7 @@ export function LocationCard({
   _count,
 }: T_LocationWithCount) {
   return (
-    <Link href={`/${slug}`} className="block w-full">
+    <Link href={`/locations/${slug}`} className="block w-full">
       <Card className="w-full h-64 overflow-hidden relative group">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat bg-center transition-transform duration-300 group-hover:scale-105"
