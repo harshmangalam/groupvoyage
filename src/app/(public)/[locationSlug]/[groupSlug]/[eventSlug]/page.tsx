@@ -112,10 +112,10 @@ export default async function TripDetailsPage({
             {event?.details && (
               <div>
                 <h2 className="text-2xl font-semibold mb-4">Trip Details</h2>
-                <p
-                  dangerouslySetInnerHTML={{ __html: event?.details || "" }}
-                  className="text-muted-foreground leading-relaxed"
-                ></p>
+                <div
+                  dangerouslySetInnerHTML={{ __html: event.details }}
+                  className="prose leading-relaxed"
+                />
               </div>
             )}
 

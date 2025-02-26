@@ -26,6 +26,7 @@ export async function getEventList({
       title: true,
       price: true,
       slug: true,
+      meta: true,
 
       location: {
         select: {
