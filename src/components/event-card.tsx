@@ -20,7 +20,7 @@ export function EventCard({ event }: EventCardProps) {
       : 0;
 
   return (
-    <Link href={`/${location.slug}/${group.slug}/${slug}`} className="block">
+    <Link href={`/events/${slug}`} className="block">
       <Card className="w-full shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full">
         {firstPosterUrl && (
           <div className="relative h-48 sm:h-64">
