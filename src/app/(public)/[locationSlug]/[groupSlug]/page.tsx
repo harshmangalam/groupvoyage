@@ -88,7 +88,12 @@ export default async function GroupHomePage({
                 <TooltipProvider>
                   <div className="flex space-x-2">
                     <SocialIconBtn url={group.instagram} slug="instagram" />
-                    <SocialIconBtn url={`mailto:${group.email}`} slug="email" />
+                    {group.email && (
+                      <SocialIconBtn
+                        url={`mailto:${group.email}`}
+                        slug="email"
+                      />
+                    )}
                     <SocialIconBtn url={`tel:${group.phone}`} slug="tel" />
                     <SocialIconBtn
                       url={

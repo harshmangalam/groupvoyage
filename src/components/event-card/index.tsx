@@ -15,17 +15,19 @@ export function EventCard({ event }: EventCardProps) {
 
   return (
     <Card className="w-full shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full">
-      <div className="relative h-48 sm:h-64">
-        <Image
-          src={firstPosterUrl || ""}
-          alt={`${title} poster`}
-          objectFit="cover"
-          width={400}
-          height={400}
-          className="w-full h-full aspect-auto object-cover"
-          loading="lazy"
-        />
-      </div>
+      {firstPosterUrl && (
+        <div className="relative h-48 sm:h-64">
+          <Image
+            src={firstPosterUrl || ""}
+            alt={`${title} poster`}
+            objectFit="cover"
+            width={400}
+            height={400}
+            className="w-full h-full aspect-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
       <CardContent className="p-4">
         <h3 className="text-lg font-semibold mb-2 line-clamp-2">{title}</h3>
         <p className="text-lg font-semibold text-destructive mb-2 flex items-center">
