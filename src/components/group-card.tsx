@@ -12,7 +12,7 @@ export function GroupCard({
 }) {
   const { _count, posterUrls, name, slug } = group;
   return (
-    <Link href={`/${location.slug}/${slug}`}>
+    <Link href={`/groups/${slug}`}>
       <Card className="hover:shadow-md transition-all cursor-pointer group overflow-hidden">
         <CardContent className="p-0">
           <Image
