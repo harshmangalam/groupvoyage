@@ -9,10 +9,54 @@ import { SITE_NAME } from "@/lib/constatnts";
 import { Logo } from "@/components/logo";
 
 export default function FooterSection() {
+  const quickLinks = [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Contact Us",
+      href: "/contact-us",
+    },
+  ];
+  const locations = [
+    {
+      label: "Trips from Bangalore",
+      href: "/in-bangalore",
+    },
+    {
+      label: "Trips from Hyderabad",
+      href: "/in-hyderabad",
+    },
+  ];
+
+  const connectionLinks = [
+    {
+      label: "Instagram",
+      href: "https://instagram.com/groupvoyageofficial",
+    },
+  ];
+
+  const customerSupports = [
+    {
+      label: "Email",
+      href: "mailto:groupvoyageofficial@gmail.com",
+    },
+    {
+      label: "Phone",
+      href: "tel:8797604475",
+    },
+    {
+      label: "Whatsapp",
+      href: "https://api.whatsapp.com/send?phone=8797604475",
+    },
+  ];
+
   return (
-    <footer className="w-full bg-background px-4">
-      <Footer className="w-full bg-background px-4 max-w-7xl mx-auto">
+    <footer className="w-full bg-muted px-4">
+      <Footer className="w-full bg-muted px-4 max-w-7xl mx-auto">
         <FooterContent>
+          {/* Logo Section */}
           <FooterColumn className="col-span-2 sm:col-span-3 md:col-span-1">
             <div className="flex items-center gap-2">
               <h3 className="text-xl font-bold">
@@ -20,32 +64,66 @@ export default function FooterSection() {
               </h3>
             </div>
           </FooterColumn>
+
+          {/* Quick Links Section */}
           <FooterColumn>
-            <h3 className="text-md pt-1 font-semibold">Locations</h3>
-            <Link
-              href={`/in-bangalore`}
-              className="text-sm text-muted-foreground"
-            >
-              Bangalore
-            </Link>
-            <Link
-              href={`/in-hyderabad`}
-              className="text-sm text-muted-foreground"
-            >
-              Hyderabad
-            </Link>
+            <h3 className="text-md pt-1 font-semibold">Quick Links</h3>
+            {quickLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:underline"
+              >
+                {link.label}
+              </Link>
+            ))}
           </FooterColumn>
 
+          {/* Locations Section */}
           <FooterColumn>
-            <h3 className="text-md pt-1 font-semibold">Social Media</h3>
-            <a href="" className="text-sm text-muted-foreground">
-              Instagram
-            </a>
-            <a href="" className="text-sm text-muted-foreground">
-              Github
-            </a>
+            <h3 className="text-md pt-1 font-semibold">Trips by Location</h3>
+            {locations.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:underline"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </FooterColumn>
+
+          {/* Customer Support */}
+          <FooterColumn>
+            <h3 className="text-md pt-1 font-semibold">Customer Support</h3>
+            {customerSupports.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                className="text-sm text-muted-foreground hover:underline"
+              >
+                {link.label}
+              </a>
+            ))}
+          </FooterColumn>
+          {/* Social Media Section */}
+          <FooterColumn>
+            <h3 className="text-md pt-1 font-semibold">Follow Us</h3>
+            {connectionLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                className="text-sm text-muted-foreground hover:underline"
+              >
+                {link.label}
+              </a>
+            ))}
           </FooterColumn>
         </FooterContent>
+
+        {/* Footer Bottom with Copyright */}
         <FooterBottom>
           <div>
             © {new Date().getFullYear()} {SITE_NAME}. All rights reserved
