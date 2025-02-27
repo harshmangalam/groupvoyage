@@ -45,7 +45,7 @@ export default async function HomePage() {
           <TrendingGroupsCarousel />
         </PageSection>
         <PageSection
-          href="/events"
+          href="/trips"
           label={
             <span>
               Trending <span className="text-destructive">trips</span>

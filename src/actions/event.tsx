@@ -3,9 +3,13 @@ import { prisma } from "@/lib/db";
 export async function getEventList({
   locationSlug,
   groupSlug,
+  take,
+  skip,
 }: {
   locationSlug?: string;
   groupSlug?: string;
+  take?: number;
+  skip?: number;
 }) {
   const filter: Record<string, any> = {};
   if (groupSlug) {
@@ -41,6 +45,8 @@ export async function getEventList({
         },
       },
     },
+    take,
+    skip,
   });
 }
 

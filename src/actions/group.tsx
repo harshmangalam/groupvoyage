@@ -37,8 +37,12 @@ export async function getGroupsOption() {
 
 export async function getGroupList({
   locationSlug,
+  take,
+  skip,
 }: {
   locationSlug?: string;
+  take?: number;
+  skip?: number;
 }) {
   return prisma.group.findMany({
     where: {
@@ -66,6 +70,8 @@ export async function getGroupList({
         },
       },
     },
+    take,
+    skip,
   });
 }
 

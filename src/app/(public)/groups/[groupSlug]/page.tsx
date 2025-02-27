@@ -1,4 +1,4 @@
-import { EventCard } from "@/components/trip-card";
+import { TripCard } from "@/components/trip-card";
 import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -11,6 +11,7 @@ import { getGroupDetails } from "@/actions/group";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { PostersCarousel } from "./posters-carousel";
+import { PageSection } from "@/components/page-section";
 
 export default async function GroupHomePage({
   params,
@@ -23,6 +24,7 @@ export default async function GroupHomePage({
 
   const events = await getEventList({
     groupSlug,
+    take: 8,
   });
   return (
     <div>
@@ -111,32 +113,31 @@ export default async function GroupHomePage({
       </Card>
       <Separator />
 
-      <section className="max-w-7xl mx-auto mt-12 px-4 flex flex-col gap-4">
-        <h3 className="text-3xl font-bold tracking-tight text-destructive">
-          About us
-        </h3>
-        <p>{group.details}</p>
-      </section>
+      <div className="max-w-7xl mx-auto">
+        <PageSection label={"About us"}>
+          <p>{group.details}</p>
+        </PageSection>
 
-      <section className="max-w-7xl mx-auto py-8 md:py-16 flex flex-col gap-6 md:gap-10">
-        <div className="flex flex-col gap-2 items-center">
-          <h2 className="text-3xl font-bold tracking-tight text-center">
-            Upcoming Trips by{" "}
-            <span className="text-destructive">{group.name}</span>
-          </h2>
-          <p className="leading-6 font-normal text-muted-foreground text-center">
-            Check out the latest trips organized by {group.name} and find the
-            perfect weekend adventure for you!
-          </p>
-        </div>
-        <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {events.length ? (
-            events.map((event) => <EventCard key={event.id} event={event} />)
-          ) : (
-            <p className="opacity-50 text-sm">No Events</p>
-          )}
-        </div>
-      </section>
+        <PageSection
+          label={
+            <span>
+              Trending Trips by{" "}
+              <span className="text-destructive">{group.name}</span>
+            </span>
+          }
+          description={`Check out the latest trips organized by ${group.name} and find the
+            perfect weekend adventure for you!`}
+          href="/trips"
+        >
+          <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {events.length ? (
+              events.map((event) => <TripCard key={event.id} event={event} />)
+            ) : (
+              <p className="opacity-50 text-sm">No Events</p>
+            )}
+          </div>
+        </PageSection>
+      </div>
     </div>
   );
 }
