@@ -1,4 +1,4 @@
-import { EventCard } from "@/components/event-card";
+import { EventCard } from "@/components/trip-card";
 import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";

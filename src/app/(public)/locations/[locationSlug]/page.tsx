@@ -1,7 +1,7 @@
 import { getEventList } from "@/actions/event";
 import { getGroupList } from "@/actions/group";
 import { getLocation } from "@/actions/location";
-import { EventCard } from "@/components/event-card";
+import { EventCard } from "@/components/trip-card";
 import { GroupCard } from "@/components/group-card";
 
 import { notFound } from "next/navigation";

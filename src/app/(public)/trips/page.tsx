@@ -1,5 +1,5 @@
 import { getEventList } from "@/actions/event";
-import { EventCard } from "@/components/event-card";
+import { EventCard } from "@/components/trip-card";
 
 export default async function GroupsPage() {
   const events = await getEventList({});

@@ -4,11 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { T_EventCard } from "@/lib/types";
 
-type EventCardProps = {
+type TripCardProps = {
   event: T_EventCard;
 };
 
-export function EventCard({ event }: EventCardProps) {
+export function TripCard({ event }: TripCardProps) {
   const { posterUrls, slug, group, location, title, durations, price, meta } =
     event;
   const firstPosterUrl = posterUrls[0];
@@ -20,7 +20,7 @@ export function EventCard({ event }: EventCardProps) {
       : 0;
 
   return (
-    <Link href={`/events/${slug}`} className="block">
+    <Link href={`/trips/${slug}`} className="block">
       <Card className="w-full shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full">
         {firstPosterUrl && (
           <div className="relative h-48 sm:h-64">

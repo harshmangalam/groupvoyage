@@ -1,6 +1,6 @@
 import { getEventList } from "@/actions/event";
 import { getLocation } from "@/actions/location";
-import { EventCard } from "@/components/event-card";
+import { EventCard } from "@/components/trip-card";
 import { notFound } from "next/navigation";
 
 type LocationEventsPageProps = {

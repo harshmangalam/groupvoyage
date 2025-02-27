@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { getFeaturedEventList } from "@/actions/event";
-import { EventCard } from "./event-card";
+import { EventCard } from "./trip-card";
 
 export async function FeaturedEventsCarousel() {
   const events = await getFeaturedEventList();
