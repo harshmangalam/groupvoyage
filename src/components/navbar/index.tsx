@@ -1,7 +1,4 @@
 import { Logo } from "../logo";
-import { Suspense } from "react";
-import { Locations } from "./locations";
-import { Skeleton } from "../ui/skeleton";
 
 export function Navbar() {
   return (
@@ -10,13 +7,6 @@ export function Navbar() {
         <div className="flex items-center">
           <Logo />
         </div>
-
-        <Suspense
-          key={"locations-dropdown"}
-          fallback={<Skeleton className="h-10 w-[200] rounded-md" />}
-        >
-          <Locations />
-        </Suspense>
       </div>
     </nav>
   );
