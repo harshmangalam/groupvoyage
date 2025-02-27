@@ -1,5 +1,5 @@
 import { getEventList } from "@/actions/event";
-import { EventCard } from "@/components/trip-card";
+import { TripCard } from "@/components/trip-card";
 
 export default async function GroupsPage() {
   const events = await getEventList({});
@@ -15,7 +15,7 @@ export default async function GroupsPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {events.length ? (
-          events.map((event) => <EventCard key={event.id} event={event} />)
+          events.map((event) => <TripCard key={event.id} event={event} />)
         ) : (
           <p>No Trips</p>
         )}

@@ -1,6 +1,6 @@
 import { getEventList } from "@/actions/event";
 import { getLocation } from "@/actions/location";
-import { EventCard } from "@/components/trip-card";
+import { TripCard } from "@/components/trip-card";
 import { notFound } from "next/navigation";
 
 type LocationEventsPageProps = {
@@ -25,7 +25,7 @@ export default async function LocationEventssPage({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {events.length ? (
-            events.map((event) => <EventCard key={event.id} event={event} />)
+            events.map((event) => <TripCard key={event.id} event={event} />)
           ) : (
             <p>No Trips</p>
           )}
