@@ -1,5 +1,5 @@
 import { getLocations } from "@/actions/location";
-import { FeaturedEventsCarousel } from "@/components/featured-events-carousel";
+import { TrendingEventsCarousel } from "@/components/trending-events-carousel";
 import { FeaturedGroupsCarousel } from "@/components/featured-groups-carousel";
 import { HomeHero } from "@/components/home-hero";
 import { LocationCard } from "@/components/location-card";
@@ -56,7 +56,7 @@ export default async function HomePage() {
           }
         >
           <Suspense key={"featured-events"}>
-            <FeaturedEventsCarousel />
+            <TrendingEventsCarousel />
           </Suspense>
         </PageSection>
       </div>

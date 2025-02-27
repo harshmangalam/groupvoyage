@@ -69,7 +69,7 @@ export function getEventDetails({ eventSlug }: { eventSlug?: string }) {
   });
 }
 
-export async function getFeaturedEventList() {
+export async function getTrendingEventList() {
   return prisma.event.findMany({
     where: {
       isArchived: false,
