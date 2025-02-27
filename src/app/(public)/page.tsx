@@ -1,6 +1,6 @@
 import { getLocations } from "@/actions/location";
 import { TrendingEventsCarousel } from "@/components/trending-events-carousel";
-import { FeaturedGroupsCarousel } from "@/components/featured-groups-carousel";
+import { TrendingGroupsCarousel } from "@/components/featured-groups-carousel";
 import { HomeHero } from "@/components/home-hero";
 import { LocationCard } from "@/components/location-card";
 import { PageSection } from "@/components/page-section";
@@ -42,7 +42,7 @@ export default async function HomePage() {
             "Join the most popular travel communities and explore with like-minded adventurers."
           }
         >
-          <FeaturedGroupsCarousel />
+          <TrendingGroupsCarousel />
         </PageSection>
         <PageSection
           href="/events"

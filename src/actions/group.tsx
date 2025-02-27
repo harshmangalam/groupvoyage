@@ -95,7 +95,7 @@ export async function getAllGroupsCount() {
   return prisma.group.count();
 }
 
-export async function getFeaturedGroupList({
+export async function getTrendingGroupList({
   locationSlug,
 }: {
   locationSlug?: string;
