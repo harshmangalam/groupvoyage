@@ -72,6 +72,11 @@ export async function getGroupList({
     },
     take,
     skip,
+    orderBy: {
+      events: {
+        _count: "desc",
+      },
+    },
   });
 }
 
@@ -130,6 +135,11 @@ export async function getTrendingGroupList({
         select: {
           events: true,
         },
+      },
+    },
+    orderBy: {
+      events: {
+        _count: "desc",
       },
     },
   });
