@@ -1,4 +1,4 @@
-import { getEventList, getFeaturedEventList } from "@/actions/event";
+import { getEventList, getTrendingEventList } from "@/actions/event";
 import { getGroupList } from "@/actions/group";
 import { getLocations, getLocationsOption } from "@/actions/location";
 
@@ -16,7 +16,7 @@ export type T_GroupCard = Awaited<ReturnType<typeof getGroupList>>[number];
 export type T_EventCard = Awaited<ReturnType<typeof getEventList>>[number];
 
 export type T_FeaturedEvent = Awaited<
-  ReturnType<typeof getFeaturedEventList>
+  ReturnType<typeof getTrendingEventList>
 >[number];
 
 export type T_LocationWithCount = Awaited<

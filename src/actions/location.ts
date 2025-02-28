@@ -63,10 +63,23 @@ export async function getLocation({ locationSlug }: { locationSlug: string }) {
   });
 }
 
-export async function getLocations() {
+export async function getLocations({
+  search,
+  includeInactive,
+}: {
+  search?: string;
+  includeInactive?: boolean;
+}) {
+  const filter: Record<string, any> = {};
+  if (search) {
+    filter.city = { search };
+  }
+  if (!includeInactive) {
+    filter.active = true;
+  }
   return prisma.location.findMany({
     take: 5,
-    where: { active: true },
+    where: { ...filter },
     select: {
       slug: true,
       city: true,

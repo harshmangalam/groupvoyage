@@ -1,4 +1,7 @@
 import { prisma } from "@/lib/db"; // Adjust the path as needed
+import { getEventList } from "./event";
+import { getGroupList } from "./group";
+import { getLocations } from "./location";
 
 export async function getRandomPosters() {
   const groupPosters = await prisma.group.findMany({
@@ -32,5 +35,14 @@ export async function getPublicStats() {
     eventsCount,
     groupsCount,
     locationsCount,
+  };
+}
+
+export async function getSearchResults(search?: string) {
+  if (!search) return {};
+  return {
+    events: await getEventList({ search }),
+    groups: await getGroupList({ search }),
+    locations: await getLocations({ search }),
   };
 }

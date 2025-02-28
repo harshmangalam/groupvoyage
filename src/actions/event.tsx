@@ -5,11 +5,15 @@ export async function getEventList({
   groupSlug,
   take,
   skip,
+  search,
+  includeArchieve = false,
 }: {
   locationSlug?: string;
   groupSlug?: string;
   take?: number;
   skip?: number;
+  search?: string;
+  includeArchieve?: boolean;
 }) {
   const filter: Record<string, any> = {};
   if (groupSlug) {
@@ -18,9 +22,17 @@ export async function getEventList({
   if (locationSlug) {
     filter.location = { slug: locationSlug };
   }
+  if (!includeArchieve) {
+    filter.isArchived = false;
+  }
+  if (search) {
+    filter.title = { search };
+    filter.details = { search };
+    filter.durations = { search };
+  }
+
   return prisma.event.findMany({
     where: {
-      isArchived: false,
       ...filter,
     },
     select: {

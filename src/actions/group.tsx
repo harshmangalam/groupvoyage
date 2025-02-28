@@ -39,18 +39,29 @@ export async function getGroupList({
   locationSlug,
   take,
   skip,
+  search,
 }: {
   locationSlug?: string;
   take?: number;
   skip?: number;
+  search?: string;
 }) {
+  const filter: Record<string, any> = {};
+  if (search) {
+    filter.name = { search };
+    filter.details = { search };
+  }
+
+  if (locationSlug) {
+    filter.locations = {
+      some: {
+        slug: locationSlug,
+      },
+    };
+  }
   return prisma.group.findMany({
     where: {
-      locations: {
-        some: {
-          slug: locationSlug,
-        },
-      },
+      ...filter,
     },
     select: {
       id: true,

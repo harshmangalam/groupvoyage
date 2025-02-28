@@ -7,7 +7,7 @@ import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 
 export default async function HomePage() {
-  const locations = await getLocations();
+  const locations = await getLocations({});
 
   return (
     <div>
