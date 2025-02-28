@@ -120,10 +120,9 @@ export default async function TripDetailsPage({
             )}
 
             {highlights?.length ? (
-              <Card>
-                <CardContent className="pt-6">
+              <Card className="border-none shadow-none">
+                <CardContent className="p-0">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                    <Sparkles className="h-5 w-5 text-blue-500" />
                     Trip Highlights
                   </h3>
                   <ul className="space-y-2">
@@ -137,12 +136,11 @@ export default async function TripDetailsPage({
                 </CardContent>
               </Card>
             ) : null}
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               {event.includes.length ? (
-                <Card>
-                  <CardContent className="pt-6">
+                <Card className="shadow-none border-none">
+                  <CardContent className="p-0">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                      <Check className="h-5 w-5 text-green-500" />
                       What&apos;s Included
                     </h3>
                     <ul className="space-y-2">
@@ -158,10 +156,9 @@ export default async function TripDetailsPage({
               ) : null}
 
               {event.excludes.length ? (
-                <Card>
-                  <CardContent className="pt-6">
+                <Card className="border-none shadow-none">
+                  <CardContent className="p-0">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                      <XIcon className="h-5 w-5 text-red-500" />
                       What&apos;s Not Included
                     </h3>
                     <ul className="space-y-2">
