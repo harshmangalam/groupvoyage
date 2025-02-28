@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/sections/navbar";
 import FooterSection from "@/components/sections/footer";
 
 export default function RootLayout({
@@ -7,9 +7,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="flex flex-col justify-between min-h-screen h-full">
       <Navbar />
-      <main>{children}</main>
+      <main className="flex-1">{children}</main>
       <FooterSection />
     </div>
   );

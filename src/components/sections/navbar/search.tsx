@@ -1,0 +1,51 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import Form from "next/form";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+
+export default function SearchComponent() {
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Add keyboard shortcut listener (press "/" to focus search)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Check if the key pressed is "/" and not in an input or textarea
+      if (
+        event.key === "/" &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA"
+      ) {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  return (
+    <Form
+      action="/search"
+      className="relative flex items-center w-full max-w-sm"
+    >
+      <div className="relative w-full">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          ref={searchInputRef}
+          type="search"
+          name="q"
+          placeholder="Where do you want to go?"
+          className="w-full pl-8"
+          aria-label="Search"
+        />
+      </div>
+    </Form>
+  );
+}
