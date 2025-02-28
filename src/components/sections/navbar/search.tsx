@@ -4,10 +4,12 @@ import { useEffect, useRef } from "react";
 import Form from "next/form";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 export default function SearchComponent() {
   const searchInputRef = useRef<HTMLInputElement>(null);
-
+  const searchParams = useSearchParams();
+  const search = searchParams.get("q")?.toString() ?? "";
   // Add keyboard shortcut listener (press "/" to focus search)
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -44,6 +46,7 @@ export default function SearchComponent() {
           placeholder="Where do you want to go?"
           className="w-full pl-8"
           aria-label="Search"
+          defaultValue={search}
         />
       </div>
     </Form>
