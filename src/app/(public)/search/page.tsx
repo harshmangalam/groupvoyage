@@ -2,6 +2,7 @@ import { getSearchResults } from "@/actions/common";
 import { GroupCard } from "@/components/group-card";
 import { LocationCard } from "@/components/location-card";
 import { PageSection } from "@/components/page-section";
+import PriceComparisonTable from "@/components/price-comparison-table";
 import { TripCard } from "@/components/trip-card";
 
 type LocationPageProps = {
@@ -54,6 +55,12 @@ export default async function SeacrhPage({ searchParams }: LocationPageProps) {
           )}
         </div>
       </PageSection>
+
+      {events?.length ? (
+        <PageSection label={<span>Price Comparisons</span>}>
+          <PriceComparisonTable trips={events} />
+        </PageSection>
+      ) : null}
     </div>
   );
 }
