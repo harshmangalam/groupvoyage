@@ -2,8 +2,8 @@ import { TripCard } from "@/components/trip-card";
 import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { CalendarCheckIcon, MapPin, User } from "lucide-react";
-import { GroupMetaType } from "@/lib/types";
+import { CalendarCheckIcon, ExternalLinkIcon, MapPin } from "lucide-react";
+
 import Link from "next/link";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
@@ -18,13 +18,12 @@ export default async function GroupHomePage({
 }: {
   params: Promise<{ groupSlug: string; locationSlug: string }>;
 }) {
-  const { groupSlug, locationSlug } = await params;
+  const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
   if (!group) return notFound();
 
   const events = await getEventList({
     groupSlug,
-    take: 8,
   });
   return (
     <div>
@@ -57,30 +56,21 @@ export default async function GroupHomePage({
                 </div>
 
                 <div className="w-fit flex items-center gap-2 font-medium text-sm">
-                  <User size={18} />
-                  Organize by{" "}
-                  <Link
-                    href={`/${locationSlug}/${group.slug}`}
-                    className="hover:underline font-semibold capitalize"
+                  <ExternalLinkIcon size={18} />
+                  <a
+                    target="_blank"
+                    href={group.source}
+                    className="hover:underline"
                   >
-                    {group.name}
-                  </Link>
+                    Website
+                  </a>
                 </div>
-                {(group.meta as GroupMetaType)?.source && (
-                  <div className="w-fit flex items-center gap-2 font-medium text-sm">
-                    <User size={18} />
-                    Platform{" "}
-                    <span className="font-semibold capitalize">
-                      {(group.meta as GroupMetaType).source}
-                    </span>
-                  </div>
-                )}
 
                 <div className="w-fit flex items-center gap-2 text-sm">
                   <CalendarCheckIcon size={18} />
-                  <span className="font-medium"> Active Trips</span>
+                  <span className="font-medium"> Available Trips</span>
 
-                  <Badge>{group._count.events} </Badge>
+                  <Badge variant={"destructive"}>{group._count.events} </Badge>
                 </div>
               </div>
             </CardContent>
@@ -121,13 +111,11 @@ export default async function GroupHomePage({
         <PageSection
           label={
             <span>
-              Trending Trips by{" "}
-              <span className="text-destructive">{group.name}</span>
+              Trips by <span className="text-destructive">{group.name}</span>
             </span>
           }
           description={`Check out the latest trips organized by ${group.name} and find the
             perfect weekend adventure for you!`}
-          href="/trips"
         >
           <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {events.length ? (
