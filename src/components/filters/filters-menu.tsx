@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { CheckIcon, DotIcon, ListFilterIcon, X } from "lucide-react";
+import { ListFilterIcon, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
@@ -54,7 +54,11 @@ export function FiltersMenu({
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
-        <Button className="w-40 flex justify-between" variant={"outline"}>
+        <Button
+          disabled={isPending}
+          className="w-40 flex justify-between"
+          variant={"outline"}
+        >
           {defaultValue
             ? options.find((o) => o.value === defaultValue)?.label ||
               `Filter ${label}`

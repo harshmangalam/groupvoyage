@@ -1,5 +1,5 @@
 import { getLocationsOption } from "@/actions/location";
-import { FiltersMenu } from "../filters-menu";
+import { FiltersMenu } from "./filters-menu";
 
 export async function LocationsFilter() {
   const locations = await getLocationsOption();
