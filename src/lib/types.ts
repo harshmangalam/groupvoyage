@@ -26,3 +26,8 @@ export type T_LocationWithCount = Awaited<
 export type T_LocationOption = Awaited<
   ReturnType<typeof getLocationsOption>
 >[number];
+
+export type DurationMap = {
+  label: string;
+  value: string;
+};

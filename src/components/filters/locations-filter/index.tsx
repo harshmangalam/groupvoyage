@@ -1,8 +1,7 @@
 import { getLocationsOption } from "@/actions/location";
-import { LocationsCombobox } from "./locations-combobox";
+import { SelecLocations } from "./select-locations";
 
 export async function LocationsFilter() {
   const locations = await getLocationsOption();
-  await new Promise((r) => setTimeout(r, 5000));
-  return <LocationsCombobox locations={locations} />;
+  return <SelecLocations locations={locations} />;
 }

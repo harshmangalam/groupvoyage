@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { DURATIONS } from "./constatnts";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -23,3 +24,8 @@ export function getInstagramHandler(url: string) {
 export function getWebsiteOrigin(url: string) {
   return new URL(url).host;
 }
+
+export const durationMapper = {
+  fromLabel: (label: string) => DURATIONS.find((d) => d.label === label),
+  fromUrlCode: (code: string) => DURATIONS.find((d) => d.value === code),
+};

@@ -1,4 +1,5 @@
 import { getEventList } from "@/actions/event";
+import { DurationsFilter } from "@/components/filters/durations-filter";
 import { LocationsFilter } from "@/components/filters/locations-filter";
 import { PageSection } from "@/components/page-section";
 import { TripCard } from "@/components/trip-card";
@@ -17,12 +18,19 @@ export default async function GroupsPage() {
           </span>
         }
         others={
-          <div>
+          <div className="flex items-center flex-wrap gap-2 flex-1 justify-end">
             <Suspense
               fallback={<Skeleton className="h-10 w-32 rounded-md" />}
               key={`locations-filter`}
             >
               <LocationsFilter />
+            </Suspense>
+
+            <Suspense
+              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+              key={`durations-filter`}
+            >
+              <DurationsFilter />
             </Suspense>
           </div>
         }

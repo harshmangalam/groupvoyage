@@ -6,21 +6,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { DURATIONS } from "@/lib/constatnts";
+import { T_LocationOption } from "@/lib/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
 
-export function SelectDurations() {
+export function SelecLocations({
+  locations,
+}: {
+  locations: T_LocationOption[];
+}) {
   const [isPending, startTransition] = React.useTransition();
+
+  const key = "locations";
   const searchParams = useSearchParams();
-  const defaultValue = searchParams.get("durations")?.toString() || "";
+  const defaultValue = searchParams.get(key)?.toString() || "";
   const router = useRouter();
   const pathname = usePathname();
 
   function handleSelect(currentValue: string) {
     if (currentValue === defaultValue) return;
     const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set("durations", currentValue);
+    newSearchParams.set(key, currentValue);
     startTransition(() => {
       router.push(pathname + "?" + newSearchParams);
     });
@@ -32,12 +38,12 @@ export function SelectDurations() {
       defaultValue={defaultValue}
     >
       <SelectTrigger className="w-40">
-        <SelectValue placeholder="Select durations" />
+        <SelectValue placeholder="Select locations" />
       </SelectTrigger>
       <SelectContent>
-        {DURATIONS.map((d) => (
-          <SelectItem key={d.value} value={d.value}>
-            {d.label}
+        {locations.map((location) => (
+          <SelectItem key={location.id} value={location.slug}>
+            {location.city}
           </SelectItem>
         ))}
       </SelectContent>
