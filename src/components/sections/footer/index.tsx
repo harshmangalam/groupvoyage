@@ -42,14 +42,6 @@ export default function FooterSection() {
       label: "Email",
       href: "mailto:groupvoyageofficial@gmail.com",
     },
-    {
-      label: "Phone",
-      href: "tel:8797604475",
-    },
-    {
-      label: "Whatsapp",
-      href: "https://api.whatsapp.com/send?phone=8797604475",
-    },
   ];
 
   return (

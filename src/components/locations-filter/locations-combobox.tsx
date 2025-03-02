@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { CheckIcon, ListFilterIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -18,8 +18,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useParams, useRouter } from "next/navigation";
+
 import { T_LocationOption } from "@/lib/types";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function LocationsCombobox({
   locations,
@@ -28,16 +29,18 @@ export function LocationsCombobox({
 }) {
   const [open, setOpen] = React.useState(false);
 
-  const router = useRouter();
   const [isPending, startTransition] = React.useTransition();
-  const params = useParams();
-  const locationSlug = params.locationSlug;
+  const searchParams = useSearchParams();
+  const defaultLocation = searchParams.get("location")?.toString() || "";
+  const router = useRouter();
+  const pathname = usePathname();
 
   function handleSelect(currentValue: string) {
-    if (currentValue === locationSlug) return;
-
+    if (currentValue === defaultLocation) return;
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set("location", currentValue);
     startTransition(() => {
-      router.push(`/locations/${currentValue}`);
+      router.push(pathname + "?" + newSearchParams);
     });
     setOpen(false);
   }
@@ -49,14 +52,14 @@ export function LocationsCombobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-full justify-between"
           aria-disabled={isPending}
           disabled={isPending}
         >
-          {locationSlug
-            ? locations.find((l) => l.slug === locationSlug)?.city
-            : "Select city"}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          {defaultLocation
+            ? locations.find((l) => l.slug === defaultLocation)?.city
+            : "Filter city"}
+          <ListFilterIcon className="ml-0 h-4 w-4 shrink-0" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
@@ -67,10 +70,10 @@ export function LocationsCombobox({
             <CommandGroup>
               {locations.map((l) => (
                 <CommandItem value={l.slug} key={l.id} onSelect={handleSelect}>
-                  <Check
+                  <CheckIcon
                     className={cn(
                       "mr-2 h-4 w-4",
-                      locationSlug === l.slug ? "opacity-100" : "opacity-0"
+                      defaultLocation === l.slug ? "opacity-100" : "opacity-0"
                     )}
                   />
                   {l.city}

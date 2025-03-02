@@ -7,10 +7,12 @@ export function PageSection({
   label,
   description,
   href,
+  others,
 }: React.PropsWithChildren & {
   label: any;
   description?: any;
   href?: string;
+  others?: React.ReactNode;
 }) {
   return (
     <section className="flex flex-col gap-4 md:gap-6 py-4 md:py-6">
@@ -30,6 +32,7 @@ export function PageSection({
             </Link>
           </Button>
         )}
+        {others}
       </div>
       {children}
     </section>
