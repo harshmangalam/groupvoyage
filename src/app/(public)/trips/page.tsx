@@ -6,10 +6,10 @@ import { TripCard } from "@/components/trip-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Suspense } from "react";
 
-type GroupsPageProps = {
+type TripsPageProps = {
   searchParams: Promise<{ locations: string; durations: string }>;
 };
-export default async function GroupsPage({ searchParams }: GroupsPageProps) {
+export default async function TripsPage({ searchParams }: TripsPageProps) {
   const locations = (await searchParams).locations ?? "";
   const durations = (await searchParams).durations ?? "";
 
