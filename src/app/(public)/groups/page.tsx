@@ -12,7 +12,7 @@ export default async function GroupsPage({ searchParams }: GroupsPageProps) {
   const locations = (await searchParams).locations ?? "";
   const groups = await getGroupList({ locationSlug: locations });
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto px-4">
       <PageSection
         label={
           <span>

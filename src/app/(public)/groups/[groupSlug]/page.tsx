@@ -103,7 +103,7 @@ export default async function GroupHomePage({
       </Card>
       <Separator />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4">
         <PageSection label={"About us"}>
           <p>{group.details}</p>
         </PageSection>
