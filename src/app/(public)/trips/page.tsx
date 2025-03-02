@@ -1,5 +1,5 @@
 import { getEventList } from "@/actions/event";
-import { LocationsFilter } from "@/components/locations-filter";
+import { LocationsFilter } from "@/components/filters/locations-filter";
 import { PageSection } from "@/components/page-section";
 import { TripCard } from "@/components/trip-card";
 import { Skeleton } from "@/components/ui/skeleton";
