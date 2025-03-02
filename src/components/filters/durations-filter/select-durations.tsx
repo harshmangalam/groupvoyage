@@ -6,11 +6,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { DURATIONS } from "@/lib/constatnts";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
 
-export function SelectDurations() {
+export function SelectDurations({
+  options,
+}: {
+  options: { label: string; value: string }[];
+}) {
   const [isPending, startTransition] = React.useTransition();
   const searchParams = useSearchParams();
   const defaultValue = searchParams.get("durations")?.toString() || "";
@@ -35,7 +38,7 @@ export function SelectDurations() {
         <SelectValue placeholder="Select durations" />
       </SelectTrigger>
       <SelectContent>
-        {DURATIONS.map((d) => (
+        {options.map((d) => (
           <SelectItem key={d.value} value={d.value}>
             {d.label}
           </SelectItem>

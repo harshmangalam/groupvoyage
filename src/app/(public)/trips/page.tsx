@@ -6,8 +6,17 @@ import { TripCard } from "@/components/trip-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Suspense } from "react";
 
-export default async function GroupsPage() {
-  const events = await getEventList({});
+type GroupsPageProps = {
+  searchParams: Promise<{ locations: string; durations: string }>;
+};
+export default async function GroupsPage({ searchParams }: GroupsPageProps) {
+  const locations = (await searchParams).locations ?? "";
+  const durations = (await searchParams).durations ?? "";
+
+  const events = await getEventList({
+    locationSlug: locations,
+    durations,
+  });
 
   return (
     <div className="max-w-7xl mx-auto px-4">

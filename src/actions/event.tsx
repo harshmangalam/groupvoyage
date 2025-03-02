@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import { durationMapper } from "@/lib/utils";
 
 export async function getEventList({
   locationSlug,
@@ -7,6 +8,7 @@ export async function getEventList({
   skip,
   search,
   includeArchieve = false,
+  durations,
 }: {
   locationSlug?: string;
   groupSlug?: string;
@@ -14,6 +16,7 @@ export async function getEventList({
   skip?: number;
   search?: string;
   includeArchieve?: boolean;
+  durations?: string;
 }) {
   const filter: Record<string, any> = {};
   if (groupSlug) {
@@ -29,6 +32,12 @@ export async function getEventList({
     filter.title = { search };
     filter.details = { search };
     filter.durations = { search };
+  }
+  if (durations) {
+    filter.durations = {
+      startsWith: durationMapper.fromUrlCode(durations)?.label,
+      mode: "insensitive",
+    };
   }
 
   return prisma.event.findMany({

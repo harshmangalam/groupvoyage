@@ -1,7 +1,10 @@
 import { getLocationsOption } from "@/actions/location";
-import { SelecLocations } from "./select-locations";
+import { FiltersMenu } from "../filters-menu";
 
 export async function LocationsFilter() {
   const locations = await getLocationsOption();
-  return <SelecLocations locations={locations} />;
+  const options = locations.map((l) => ({ label: l.city, value: l.slug }));
+  return (
+    <FiltersMenu label="Locations" options={options} paramKey="locations" />
+  );
 }
