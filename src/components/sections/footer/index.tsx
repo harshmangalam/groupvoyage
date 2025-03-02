@@ -14,10 +14,6 @@ export default function FooterSection() {
       label: "Home",
       href: "/",
     },
-    {
-      label: "Contact Us",
-      href: "/contact-us",
-    },
   ];
   const locations = [
     {

@@ -28,9 +28,9 @@ export async function getEventList({
     filter.isArchived = false;
   }
   if (search) {
-    filter.title = { search };
-    filter.details = { search };
-    filter.durations = { search };
+    filter.title = { search: search.replace(/[^a-zA-Z]/g, "") };
+    filter.details = { search: search.replace(/[^a-zA-Z]/g, "") };
+    filter.durations = { search: search.replace(/[^a-zA-Z]/g, "") };
   }
   if (durations) {
     filter.durations = {

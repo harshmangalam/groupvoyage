@@ -48,8 +48,8 @@ export async function getGroupList({
 }) {
   const filter: Record<string, any> = {};
   if (search) {
-    filter.name = { search };
-    filter.details = { search };
+    filter.name = { search: search.replace(/[^a-zA-Z]/g, "") };
+    filter.details = { search: search.replace(/[^a-zA-Z]/g, "") };
   }
 
   if (locationSlug) {

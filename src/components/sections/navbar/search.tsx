@@ -1,16 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Form from "next/form";
 import { Input } from "@/components/ui/input";
-import { ArrowRightIcon, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
 
 export default function SearchComponent() {
   const searchParams = useSearchParams();
-  const search = searchParams.get("q")?.toString() ?? "";
-  const [value, setValue] = useState("");
+  const search = searchParams.get("q")?.toString();
   const searchInputRef = useRef<HTMLInputElement>(null);
   // Add keyboard shortcut listener (press "/" to focus search)
   useEffect(() => {
@@ -34,12 +32,6 @@ export default function SearchComponent() {
     };
   }, []);
 
-  useEffect(() => {
-    if (search) {
-      setValue(search);
-    }
-  }, [search]);
-
   return (
     <Form
       action="/search"
@@ -53,20 +45,8 @@ export default function SearchComponent() {
           placeholder="Where do you want to go?"
           className="w-full pl-8 overflow-hidden"
           aria-label="Search"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          defaultValue={search}
         />
-        {value.trim().length ? (
-          <div className="absolute right-0 top-1/2 -translate-y-1/2">
-            <Button
-              size={"icon"}
-              className="rounded-l-none"
-              variant={"secondary"}
-            >
-              <ArrowRightIcon className="text-muted-foreground" />
-            </Button>
-          </div>
-        ) : null}
       </div>
     </Form>
   );

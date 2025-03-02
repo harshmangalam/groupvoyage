@@ -45,8 +45,9 @@ export default function PriceComparisonTable({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[200px]">Group Name</TableHead>
-          <TableHead className="w-[200px]">Durations</TableHead>
+          <TableHead>Group</TableHead>
+          <TableHead>Trip</TableHead>
+          <TableHead>Durations</TableHead>
           <TableHead className="flex items-center gap-2">
             Price (in Rupees)
             <Button
@@ -65,7 +66,7 @@ export default function PriceComparisonTable({
       <TableBody>
         {sortedTrips.map((trip) => (
           <TableRow key={trip.id}>
-            <TableCell className="font-medium w-72">
+            <TableCell className="min-w-52">
               <Link
                 className="hover:underline"
                 href={`/groups/${trip.group.slug}`}
@@ -73,8 +74,9 @@ export default function PriceComparisonTable({
                 {trip.group.name}
               </Link>
             </TableCell>
-            <TableCell className="w-60">{trip.durations}</TableCell>
-            <TableCell>Rs. {trip.price}</TableCell>
+            <TableCell className="min-w-80">{trip.title}</TableCell>
+            <TableCell className="min-w-52">{trip.durations}</TableCell>
+            <TableCell className="min-w-52">Rs. {trip.price}</TableCell>
             <TableCell>
               <Link
                 className="hover:underline"
@@ -84,7 +86,7 @@ export default function PriceComparisonTable({
               </Link>
             </TableCell>
 
-            <TableCell className="text-right">
+            <TableCell className="text-right min-w-40">
               <Button variant="ghost" size="sm" asChild>
                 <Link href={`/trips/${trip.slug}`}>
                   <span className="sr-only">View details for {trip.title}</span>
