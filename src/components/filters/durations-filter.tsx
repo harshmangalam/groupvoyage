@@ -1,8 +1,13 @@
 import { DURATIONS } from "@/lib/constatnts";
-import { FiltersMenu } from "./filters-menu";
+import { CustomDropdownMenu } from "../custom-dropdown-menu";
 
 export function DurationsFilter() {
   return (
-    <FiltersMenu options={DURATIONS} label="Durations" paramKey="durations" />
+    <CustomDropdownMenu
+      placeholder="Filter Durations"
+      options={DURATIONS}
+      label="Durations"
+      paramKey="durations"
+    />
   );
 }

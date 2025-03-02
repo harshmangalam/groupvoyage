@@ -11,16 +11,18 @@ import { Button } from "@/components/ui/button";
 import { ListFilterIcon, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-export function FiltersMenu({
+export function CustomDropdownMenu({
   options,
-  paramKey = "durations",
+  paramKey,
   label,
+  placeholder,
 }: {
   options: { label: string; value: string }[];
-  paramKey?: string;
+  paramKey: string;
   label: string;
+  placeholder: string;
 }) {
   const [open, setOpen] = React.useState(false);
   const [isPending, startTransition] = React.useTransition();
@@ -61,8 +63,8 @@ export function FiltersMenu({
         >
           {defaultValue
             ? options.find((o) => o.value === defaultValue)?.label ||
-              `Filter ${label}`
-            : `Filter ${label}`}
+              placeholder
+            : placeholder}
 
           <ListFilterIcon />
         </Button>
