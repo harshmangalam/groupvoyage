@@ -60,6 +60,7 @@ export function CustomDropdownMenu({
           disabled={isPending}
           className="w-40 flex justify-between"
           variant={"outline"}
+          size={"sm"}
         >
           {defaultValue
             ? options.find((o) => o.value === defaultValue)?.label ||

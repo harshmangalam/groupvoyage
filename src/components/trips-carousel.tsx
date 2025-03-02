@@ -22,7 +22,7 @@ export async function TripsCarousel({ events }: { events: T_EventCard[] }) {
         {events.map((event, index) => (
           <CarouselItem
             key={index}
-            className="basis-1/2 md:basis-1/3 lg:basis-1/4"
+            className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
           >
             <TripCard key={event.id} event={event} />
           </CarouselItem>

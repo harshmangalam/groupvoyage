@@ -46,8 +46,6 @@ export default function PriceComparisonTable({
       <TableHeader>
         <TableRow>
           <TableHead>Group</TableHead>
-          <TableHead>Trip</TableHead>
-          <TableHead>Durations</TableHead>
           <TableHead className="flex items-center gap-2">
             Price (in Rupees)
             <Button
@@ -59,7 +57,9 @@ export default function PriceComparisonTable({
               <ArrowUpDown className="h-4 w-4" />
             </Button>
           </TableHead>
-          <TableHead className="hidden md:table-cell">From City</TableHead>
+          <TableHead>From City</TableHead>
+          <TableHead>Trip</TableHead>
+          <TableHead>Durations</TableHead>
           <TableHead className="text-right">Trip Details</TableHead>
         </TableRow>
       </TableHeader>
@@ -74,8 +74,7 @@ export default function PriceComparisonTable({
                 {trip.group.name}
               </Link>
             </TableCell>
-            <TableCell className="min-w-80">{trip.title}</TableCell>
-            <TableCell className="min-w-52">{trip.durations}</TableCell>
+
             <TableCell className="min-w-52">Rs. {trip.price}</TableCell>
             <TableCell>
               <Link
@@ -85,6 +84,8 @@ export default function PriceComparisonTable({
                 {trip.location.city}
               </Link>
             </TableCell>
+            <TableCell className="min-w-80">{trip.title}</TableCell>
+            <TableCell className="min-w-52">{trip.durations}</TableCell>
 
             <TableCell className="text-right min-w-40">
               <Button variant="ghost" size="sm" asChild>

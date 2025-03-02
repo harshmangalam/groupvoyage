@@ -27,7 +27,7 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
           </span>
         }
         others={
-          <div className="flex items-center flex-wrap gap-2 flex-1 md:justify-end justify-center">
+          <div className="flex items-center flex-wrap gap-2  md:justify-end justify-start">
             <Suspense
               fallback={<Skeleton className="h-10 w-32 rounded-md" />}
               key={`locations-filter`}

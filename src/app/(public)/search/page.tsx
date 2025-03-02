@@ -11,7 +11,7 @@ export default async function SeacrhPage({ searchParams }: LocationPageProps) {
   const search = q?.trim();
   const { events } = await getSearchResults(search);
   return (
-    <div className="max-w-7xl mx-auto py-6 md:py-8">
+    <div className="max-w-7xl mx-auto py-6 md:py-8 px-4">
       <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
         Search Results for <span className="text-destructive">{search}</span>
       </h1>

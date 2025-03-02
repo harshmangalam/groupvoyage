@@ -1,6 +1,7 @@
 import { Posters } from "./posters";
 import { Suspense } from "react";
 import { Stats } from "./stats";
+import { SITE_NAME } from "@/lib/constatnts";
 
 export function HomeHero() {
   return (
@@ -17,7 +18,7 @@ export function HomeHero() {
               budget-friendly <span className="text-destructive"> trips</span>
             </h1>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              GroupVoyage connects you with like-minded travelers from your
+              {SITE_NAME} connects you with like-minded travelers from your
               city, making weekend getaways effortless and exciting. Explore a
               curated list of local and city-specific travel groups, compare
               trip prices, and find the perfect adventure that fits your budget.

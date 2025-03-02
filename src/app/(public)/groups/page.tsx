@@ -20,14 +20,12 @@ export default async function GroupsPage({ searchParams }: GroupsPageProps) {
           </span>
         }
         others={
-          <div className="flex items-center flex-wrap gap-2 flex-1 justify-end">
-            <Suspense
-              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-              key={`locations-filter`}
-            >
-              <LocationsFilter />
-            </Suspense>
-          </div>
+          <Suspense
+            fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+            key={`locations-filter`}
+          >
+            <LocationsFilter />
+          </Suspense>
         }
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

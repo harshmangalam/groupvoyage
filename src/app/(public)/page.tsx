@@ -25,7 +25,7 @@ export default async function HomePage() {
             "Discover the most popular cities buzzing with travel groups and events!"
           }
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {locations.map((location) => (
               <LocationCard key={location.id} {...location} />
             ))}

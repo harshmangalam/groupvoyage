@@ -22,7 +22,7 @@ export async function GroupsCarousel({ groups }: { groups: T_GroupCard[] }) {
         {groups.map((group) => (
           <CarouselItem
             key={group.id}
-            className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+            className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
           >
             <GroupCard location={group.locations[0]} group={group} />
           </CarouselItem>

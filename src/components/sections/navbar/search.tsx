@@ -38,12 +38,12 @@ export default function SearchComponent() {
       className="relative flex items-center w-full max-w-sm"
     >
       <div className="relative w-full">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
         <Input
           ref={searchInputRef}
           name="q"
           placeholder="Where do you want to go?"
-          className="w-full pl-8 overflow-hidden"
+          className="w-full pl-6 sm:pl-8 overflow-hidden text-sm sm:text-base"
           aria-label="Search"
           defaultValue={search}
         />
