@@ -1,0 +1,10 @@
+/* Change the progress bar color to red */
+#nprogress .bar {
+  background: hsl(var(--destructive)) !important;
+}
+
+/* Optional: Customize the spinner color */
+#nprogress .spinner-icon {
+  border-top-color: hsl(var(--destructive)) !important;
+  border-left-color: hsl(var(--destructive)) !important;
+}

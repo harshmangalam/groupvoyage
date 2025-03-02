@@ -23,9 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="light" style={{ colorScheme: "light" }}>
       <body className={`${poppins.variable} antialiased`}>
-        <main>
-          <TooltipProvider>{children}</TooltipProvider>
-        </main>
+        <TooltipProvider>{children}</TooltipProvider>
+
         <Toaster />
       </body>
     </html>
