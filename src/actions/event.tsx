@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/db";
-import { durationMapper } from "@/lib/utils";
 
 export async function getEventList({
   locationSlug,
@@ -35,7 +34,7 @@ export async function getEventList({
   }
   if (durations) {
     filter.durations = {
-      startsWith: durationMapper.fromUrlCode(durations)?.label,
+      startsWith: durations,
       mode: "insensitive",
     };
   }
