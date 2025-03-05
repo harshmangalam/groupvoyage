@@ -18,6 +18,7 @@ import { LocationsFilter } from "@/components/filters/locations-filter";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CustomPagination } from "@/components/custom-pagination";
 import { TRIPS_PER_PAGE } from "@/lib/constatnts";
+import { GroupMetaType } from "@/lib/types";
 
 export default async function GroupHomePage({
   params,
@@ -104,7 +105,7 @@ export default async function GroupHomePage({
                     <SocialIconBtn url={`tel:${group.phone}`} slug="tel" />
                     <SocialIconBtn
                       url={
-                        (group.meta as any)?.whatsappGroup ||
+                        (group.meta as GroupMetaType)?.whatsappGroup ||
                         `https://wa.me/${group.phone}`
                       }
                       slug="whatsapp"

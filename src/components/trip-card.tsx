@@ -2,7 +2,7 @@ import Image from "next/image";
 import { MapPin, Clock, User, IndianRupee } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import { T_EventCard } from "@/lib/types";
+import { EventMetaType, T_EventCard } from "@/lib/types";
 
 type TripCardProps = {
   event: T_EventCard;
@@ -12,7 +12,7 @@ export function TripCard({ event }: TripCardProps) {
   const { posterUrls, slug, group, location, title, durations, price, meta } =
     event;
   const firstPosterUrl = posterUrls[0];
-  const originalPrice = (meta as any)?.originalPrice;
+  const originalPrice = (meta as EventMetaType)?.originalPrice;
 
   const percentageSaved =
     originalPrice && price

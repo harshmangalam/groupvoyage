@@ -70,7 +70,7 @@ export async function getLocations({
   search?: string;
   includeInactive?: boolean;
 }) {
-  const filter: Record<string, any> = {};
+  const filter: Record<string, unknown> = {};
   if (search) {
     filter.city = { search: search.replace(/[^a-zA-Z]/g, "") };
   }

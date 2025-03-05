@@ -5,12 +5,11 @@ import { ArrowRightIcon } from "lucide-react";
 export function PageSection({
   children,
   label,
-  description,
   href,
   others,
 }: React.PropsWithChildren & {
-  label: any;
-  description?: any;
+  label: unknown;
+  description?: string;
   href?: string;
   others?: React.ReactNode;
 }) {
@@ -19,7 +18,7 @@ export function PageSection({
       <div className="flex flex-row items-center gap-4 justify-between flex-wrap">
         <div className="flex flex-col">
           <h2 className="text-xl md:text-2xl font-bold tracking-tight">
-            {label}
+            {label as React.ReactNode}
           </h2>
           {/* <p className="leading-6 font-normal text-muted-foreground">
             {description}

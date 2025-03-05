@@ -17,7 +17,7 @@ export async function getEventList({
   includeArchieve?: boolean;
   durations?: string;
 }) {
-  const filter: Record<string, any> = {};
+  const filter: Record<string, unknown> = {};
 
   if (groupSlug) {
     filter.group = { slug: groupSlug };

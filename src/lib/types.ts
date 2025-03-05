@@ -4,9 +4,14 @@ import { getLocations, getLocationsOption } from "@/actions/location";
 
 export type GroupMetaType = {
   membersCount: number;
-  source: string;
+  whatsappGroup: string;
 };
 
+export type EventMetaType = {
+  originalPrice: number;
+  groupSize: string;
+  highlights: string[];
+};
 export type SearchParams = Promise<{
   [key: string]: string | string[] | undefined;
 }>;

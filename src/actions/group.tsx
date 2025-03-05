@@ -46,7 +46,7 @@ export async function getGroupList({
   skip?: number;
   search?: string;
 }) {
-  const filter: Record<string, any> = {};
+  const filter: Record<string, unknown> = {};
   if (search) {
     filter.name = { search: search.replace(/[^a-zA-Z]/g, "") };
     filter.details = { search: search.replace(/[^a-zA-Z]/g, "") };

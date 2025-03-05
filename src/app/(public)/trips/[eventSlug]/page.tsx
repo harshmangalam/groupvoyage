@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { EventMetaType } from "@/lib/types";
 import {
   Clock,
   MapPin,
@@ -37,10 +38,10 @@ export default async function TripDetailsPage({
   const event = await getEventDetails({ eventSlug });
   if (!event) return notFound();
 
-  const originalPrice = (event.meta as any)?.originalPrice;
+  const originalPrice = (event.meta as EventMetaType)?.originalPrice;
   const price = event.price || 0;
-  const groupSize = (event.meta as any)?.groupSize;
-  const highlights = (event.meta as any)?.highlights;
+  const groupSize = (event.meta as EventMetaType)?.groupSize;
+  const highlights = (event.meta as EventMetaType)?.highlights;
   const discount =
     originalPrice && price
       ? Math.round(((originalPrice - price) / originalPrice) * 100)
@@ -126,7 +127,7 @@ export default async function TripDetailsPage({
                     Trip Highlights
                   </h3>
                   <ul className="space-y-2">
-                    {highlights.map((item: any, index: number) => (
+                    {highlights.map((item, index) => (
                       <li key={index} className="flex items-start gap-2 ">
                         <Sparkles className="h-4 w-4 mt-1 flex-none  text-blue-500" />
                         <span className="flex-1">{item}</span>
