@@ -4,7 +4,7 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-
+import { Analytics } from "@vercel/analytics/react";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"], // Choose the weights you need
@@ -30,6 +30,7 @@ export default function RootLayout({
           <TooltipProvider>{children}</TooltipProvider>
         </NuqsAdapter>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
