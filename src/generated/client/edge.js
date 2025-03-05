@@ -216,7 +216,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/harshmangalam/personal/projects/groupvoyage-community/groupvoyage/prisma/generated/client",
+      "value": "/Users/harshmangalam/personal/projects/groupvoyage-community/groupvoyage/src/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -239,14 +239,14 @@ const config = {
     "rootEnvPath": "../../../.env",
     "schemaEnvPath": "../../../.env"
   },
-  "relativePath": "../..",
+  "relativePath": "../../../prisma",
   "clientVersion": "6.4.1",
   "engineVersion": "a9055b89e58b4b5bfb59600785423b1db3d0e75d",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -255,8 +255,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"fullTextSearchPostgres\"]\n  output          = \"./generated/client\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel Location {\n  id        String   @id @default(uuid())\n  city      String\n  slug      String   @unique\n  country   String\n  active    Boolean  @default(true)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  posterUrl String?\n  events    Event[]\n  groups    Group[]  @relation(\"GroupToLocation\")\n}\n\nmodel Group {\n  id         String     @id @default(uuid())\n  name       String     @unique\n  slug       String     @unique\n  details    String\n  instagram  String?\n  phone      String?\n  email      String?\n  meta       Json?\n  source     String\n  active     Boolean    @default(true)\n  createdAt  DateTime   @default(now())\n  updatedAt  DateTime   @updatedAt\n  logo       String?\n  posterUrls String[]\n  tagLine    String?\n  events     Event[]\n  locations  Location[] @relation(\"GroupToLocation\")\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  title      String\n  slug       String   @unique\n  durations  String?\n  details    String?\n  price      Int?\n  locationId String\n  groupId    String\n  posterUrls String[]\n  meta       Json?\n  includes   String[]\n  excludes   String[]\n  source     String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  isArchived Boolean  @default(false)\n  group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)\n  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)\n}\n",
-  "inlineSchemaHash": "6a60fbbd3edebc2227f552b20dd1ddd345ddf3559b7ec6d6689a96110ab384b2",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"fullTextSearchPostgres\"]\n  output          = \"../src/generated/client\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel Location {\n  id        String   @id @default(uuid())\n  city      String\n  slug      String   @unique\n  country   String\n  active    Boolean  @default(true)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  posterUrl String?\n  events    Event[]\n  groups    Group[]  @relation(\"GroupToLocation\")\n}\n\nmodel Group {\n  id         String     @id @default(uuid())\n  name       String     @unique\n  slug       String     @unique\n  details    String\n  instagram  String?\n  phone      String?\n  email      String?\n  meta       Json?\n  source     String\n  active     Boolean    @default(true)\n  createdAt  DateTime   @default(now())\n  updatedAt  DateTime   @updatedAt\n  logo       String?\n  posterUrls String[]\n  tagLine    String?\n  events     Event[]\n  locations  Location[] @relation(\"GroupToLocation\")\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  title      String\n  slug       String   @unique\n  durations  String?\n  details    String?\n  price      Int?\n  locationId String\n  groupId    String\n  posterUrls String[]\n  meta       Json?\n  includes   String[]\n  excludes   String[]\n  source     String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  isArchived Boolean  @default(false)\n  group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)\n  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)\n}\n",
+  "inlineSchemaHash": "a3376bbe53928d8185a39a67d560d571f5c6697dcb5902fcdee4ad10613ea55c",
   "copyEngine": true
 }
 config.dirname = '/'
