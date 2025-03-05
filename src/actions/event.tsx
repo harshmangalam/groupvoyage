@@ -3,8 +3,8 @@ import { prisma } from "@/lib/db";
 export async function getEventList({
   locationSlug,
   groupSlug,
-  take,
-  skip,
+  take = 10,
+  skip = 0,
   search,
   includeArchieve = false,
   durations,
@@ -18,6 +18,7 @@ export async function getEventList({
   durations?: string;
 }) {
   const filter: Record<string, any> = {};
+
   if (groupSlug) {
     filter.group = { slug: groupSlug };
   }
@@ -28,9 +29,11 @@ export async function getEventList({
     filter.isArchived = false;
   }
   if (search) {
-    filter.title = { search: search.replace(/[^a-zA-Z]/g, "") };
-    filter.details = { search: search.replace(/[^a-zA-Z]/g, "") };
-    filter.durations = { search: search.replace(/[^a-zA-Z]/g, "") };
+    filter.OR = [
+      { title: { search: search.replace(/[^a-zA-Z]/g, "") } },
+      { details: { search: search.replace(/[^a-zA-Z]/g, "") } },
+      { durations: { search: search.replace(/[^a-zA-Z]/g, "") } },
+    ];
   }
   if (durations) {
     filter.durations = {
@@ -39,10 +42,12 @@ export async function getEventList({
     };
   }
 
-  return prisma.event.findMany({
-    where: {
-      ...filter,
-    },
+  // Get total count for pagination
+  const totalCount = await prisma.event.count({ where: filter });
+
+  // Fetch paginated results
+  const events = await prisma.event.findMany({
+    where: filter,
     select: {
       posterUrls: true,
       durations: true,
@@ -51,7 +56,6 @@ export async function getEventList({
       price: true,
       slug: true,
       meta: true,
-
       location: {
         select: {
           slug: true,
@@ -68,6 +72,21 @@ export async function getEventList({
     take,
     skip,
   });
+
+  // Calculate pagination metadata
+  const totalPages = Math.ceil(totalCount / take);
+  const currentPage = Math.floor(skip / take) + 1;
+
+  return {
+    events,
+    pagination: {
+      totalCount,
+      totalPages,
+      currentPage,
+      hasNextPage: skip + take < totalCount,
+      hasPreviousPage: skip > 0,
+    },
+  };
 }
 
 export function getEventDetails({ eventSlug }: { eventSlug?: string }) {

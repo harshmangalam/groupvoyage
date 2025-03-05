@@ -6,3 +6,5 @@ export const DURATIONS: DurationMap[] = [
   { label: "1 Day Trip", value: "1" },
   { label: "2 Days Trip", value: "2" },
 ];
+
+export const TRIPS_PER_PAGE = 8;

@@ -13,7 +13,8 @@ export type SearchParams = Promise<{
 
 export type T_GroupCard = Awaited<ReturnType<typeof getGroupList>>[number];
 
-export type T_EventCard = Awaited<ReturnType<typeof getEventList>>[number];
+export type T_Events = Awaited<ReturnType<typeof getEventList>>;
+export type T_EventCard = T_Events["events"][number];
 
 export type T_FeaturedEvent = Awaited<
   ReturnType<typeof getTrendingEventList>

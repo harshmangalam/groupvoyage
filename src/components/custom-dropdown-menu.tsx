@@ -33,6 +33,7 @@ export function CustomDropdownMenu({
 
   function handleSelect(currentValue: string) {
     const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete("page");
     if (currentValue === "none") {
       newSearchParams.delete(paramKey);
     } else {

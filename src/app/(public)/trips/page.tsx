@@ -1,21 +1,27 @@
 import { getEventList } from "@/actions/event";
+import { CustomPagination } from "@/components/custom-pagination";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { LocationsFilter } from "@/components/filters/locations-filter";
 import { PageSection } from "@/components/page-section";
 import { TripCard } from "@/components/trip-card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { TRIPS_PER_PAGE } from "@/lib/constatnts";
 import { Suspense } from "react";
 
 type TripsPageProps = {
-  searchParams: Promise<{ locations: string; durations: string }>;
+  searchParams: Promise<{ locations: string; durations: string; page: string }>;
 };
 export default async function TripsPage({ searchParams }: TripsPageProps) {
   const locations = (await searchParams).locations ?? "";
   const durations = (await searchParams).durations ?? "";
+  const pageStr = (await searchParams).page ?? "1";
+  const page = Number(pageStr);
 
   const events = await getEventList({
     locationSlug: locations,
     durations,
+    take: TRIPS_PER_PAGE,
+    skip: (page - 1) * TRIPS_PER_PAGE,
   });
 
   return (
@@ -45,11 +51,16 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
         }
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {events.length ? (
-            events.map((event) => <TripCard key={event.id} event={event} />)
+          {events.events.length ? (
+            events.events.map((event) => (
+              <TripCard key={event.id} event={event} />
+            ))
           ) : (
             <p>No Trips</p>
           )}
+        </div>
+        <div className="mt-6">
+          <CustomPagination {...events.pagination} />
         </div>
       </PageSection>
     </div>
