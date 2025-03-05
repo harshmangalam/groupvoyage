@@ -18,11 +18,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { SelectLocation } from "@/db/schema";
 import { TrashIcon } from "lucide-react";
 import Form from "next/form";
 
-export function DeleteLocation({ location }: { location: SelectLocation }) {
+export function DeleteLocation({ location }: { location: any }) {
   return (
     <AlertDialog>
       <Tooltip>

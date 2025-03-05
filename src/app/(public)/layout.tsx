@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/sections/navbar";
 import FooterSection from "@/components/sections/footer";
 import { NavigationEvents } from "@/components/navigation-progress";
-
 export default function RootLayout({
   children,
 }: Readonly<{

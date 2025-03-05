@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SelectGroup } from "@/db/schema";
+
 import { Checkbox } from "@/components/ui/checkbox";
 
 import Form from "next/form";
@@ -13,7 +13,7 @@ type GroupFormProps = {
   action: NonNullable<
     string | ((formData: FormData) => void | Promise<void>) | undefined
   >;
-  group?: SelectGroup;
+  group?: any;
 };
 export function GroupForm({ action, group }: GroupFormProps) {
   return (

@@ -59,9 +59,9 @@ export default async function Locations() {
               <TableRow key={group.id}>
                 <TableCell className="min-w-80">
                   <div className="flex items-center gap-2">
-                    {group.posterUrl && (
+                    {group.posterUrls && (
                       <Image
-                        src={group.posterUrl}
+                        src={group.posterUrls[0]}
                         width={200}
                         height={200}
                         className="aspect-video w-auto h-16"

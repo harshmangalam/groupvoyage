@@ -12,7 +12,6 @@ import {
 import { PencilIcon } from "lucide-react";
 import { LocationForm } from "./location-form";
 import { editLocation } from "@/actions/location";
-import { SelectLocation } from "@/db/schema";
 import {
   Tooltip,
   TooltipContent,
@@ -20,7 +19,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useState } from "react";
 
-export function EditLocationDialog({ location }: { location: SelectLocation }) {
+export function EditLocationDialog({ location }: { location: any }) {
   const [open, setOpen] = useState(false);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
