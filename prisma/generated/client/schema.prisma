@@ -1,0 +1,65 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearchPostgres"]
+  output          = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Location {
+  id        String   @id @default(uuid())
+  city      String
+  slug      String   @unique
+  country   String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posterUrl String?
+  events    Event[]
+  groups    Group[]  @relation("GroupToLocation")
+}
+
+model Group {
+  id         String     @id @default(uuid())
+  name       String     @unique
+  slug       String     @unique
+  details    String
+  instagram  String?
+  phone      String?
+  email      String?
+  meta       Json?
+  source     String
+  active     Boolean    @default(true)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  logo       String?
+  posterUrls String[]
+  tagLine    String?
+  events     Event[]
+  locations  Location[] @relation("GroupToLocation")
+}
+
+model Event {
+  id         String   @id @default(uuid())
+  title      String
+  slug       String   @unique
+  durations  String?
+  details    String?
+  price      Int?
+  locationId String
+  groupId    String
+  posterUrls String[]
+  meta       Json?
+  includes   String[]
+  excludes   String[]
+  source     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isArchived Boolean  @default(false)
+  group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+}
