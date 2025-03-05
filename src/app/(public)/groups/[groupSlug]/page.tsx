@@ -12,18 +12,33 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { PostersCarousel } from "./posters-carousel";
 import { PageSection } from "@/components/page-section";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { LocationsFilter } from "@/components/filters/locations-filter";
+import { DurationsFilter } from "@/components/filters/durations-filter";
+import { CustomPagination } from "@/components/custom-pagination";
+import { TRIPS_PER_PAGE } from "@/lib/constatnts";
 
 export default async function GroupHomePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ groupSlug: string; locationSlug: string }>;
+  searchParams: Promise<{ locations: string; durations: string; page: string }>;
 }) {
   const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
   if (!group) return notFound();
 
+  const { durations = "", locations = "" } = await searchParams;
+  const pageStr = (await searchParams).page ?? "1";
+  const page = Number(pageStr);
   const events = await getEventList({
     groupSlug,
+    durations,
+    locationSlug: locations,
+    take: TRIPS_PER_PAGE,
+    skip: (page - 1) * TRIPS_PER_PAGE,
   });
   return (
     <div>
@@ -116,13 +131,35 @@ export default async function GroupHomePage({
           }
           description={`Check out the latest trips organized by ${group.name} and find the
             perfect weekend adventure for you!`}
+          others={
+            <div className="flex items-center flex-wrap gap-2  md:justify-end justify-start">
+              <Suspense
+                fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+                key={`locations-filter`}
+              >
+                <LocationsFilter />
+              </Suspense>
+
+              <Suspense
+                fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+                key={`durations-filter`}
+              >
+                <DurationsFilter />
+              </Suspense>
+            </div>
+          }
         >
           <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {events.length ? (
-              events.map((event) => <TripCard key={event.id} event={event} />)
+            {events.events.length ? (
+              events.events.map((event) => (
+                <TripCard key={event.id} event={event} />
+              ))
             ) : (
               <p className="opacity-50 text-sm">No Events</p>
             )}
+          </div>
+          <div className="mt-6">
+            <CustomPagination {...events.pagination} />
           </div>
         </PageSection>
       </div>

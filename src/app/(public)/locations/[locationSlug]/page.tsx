@@ -44,7 +44,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
         description={`Browse and compare budget-friendly weekend trips organized by
             different travel groups in {location.city}`}
       >
-        <TripsCarousel events={events} />
+        <TripsCarousel events={events.events} />
       </PageSection>
     </div>
   );

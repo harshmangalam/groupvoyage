@@ -18,17 +18,19 @@ export default async function SeacrhPage({ searchParams }: LocationPageProps) {
 
       <PageSection label={<span>Trips</span>}>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {events?.length ? (
-            events.map((event) => <TripCard key={event.id} event={event} />)
+          {events?.events?.length ? (
+            events.events.map((event) => (
+              <TripCard key={event.id} event={event} />
+            ))
           ) : (
             <p>No matches found</p>
           )}
         </div>
       </PageSection>
 
-      {events?.length ? (
+      {events?.events?.length ? (
         <PageSection label={<span>Price Comparisons</span>}>
-          <PriceComparisonTable trips={events} />
+          <PriceComparisonTable trips={events.events} />
         </PageSection>
       ) : null}
     </div>
