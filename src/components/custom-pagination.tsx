@@ -51,7 +51,7 @@ export function CustomPagination(props: CustomPaginationProps) {
   const pageNumbers = getPageNumbers();
   return (
     <Pagination>
-      <PaginationContent>
+      <PaginationContent className="flex-wrap">
         {hasPreviousPage && (
           <PaginationItem>
             <PaginationPrevious
