@@ -6,11 +6,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Analytics } from "@vercel/analytics/react";
 import { SITE_NAME } from "@/lib/constatnts";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"], // Choose the weights you need
   variable: "--font-poppins", // CSS variable for use in styles
 });
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: {
