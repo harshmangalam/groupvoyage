@@ -22,8 +22,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.groupvoyage.in/"),
 };
 
-export const dynamic = "force-dynamic";
-
 export default function RootLayout({
   children,
 }: Readonly<{

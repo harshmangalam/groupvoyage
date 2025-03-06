@@ -1,7 +1,10 @@
+"use server";
+
 import { prisma } from "@/lib/db"; // Adjust the path as needed
 import { getEventList } from "./event";
+import { cache } from "react";
 
-export async function getRandomPosters() {
+export const getRandomPosters = cache(async () => {
   const groupPosters = await prisma.group.findMany({
     select: { posterUrls: true },
     take: 3,
@@ -22,23 +25,25 @@ export async function getRandomPosters() {
     ...posters.sort(() => Math.random() - 0.5).slice(0, 1),
   ].slice(0, 3);
   return randomPosters;
-}
+});
 
-export async function getPublicStats() {
-  const eventsCount = await prisma.event.count();
-  const groupsCount = await prisma.group.count();
-  const locationsCount = await prisma.location.count();
+export const getPublicStats = cache(async () => {
+  const [eventsCount, groupsCount, locationsCount] = await Promise.all([
+    prisma.event.count(),
+    prisma.group.count(),
+    prisma.location.count(),
+  ]);
 
   return {
     eventsCount,
     groupsCount,
     locationsCount,
   };
-}
+});
 
-export async function getSearchResults(search?: string) {
+export const getSearchResults = cache(async (search?: string) => {
   if (!search) return {};
   return {
     events: await getEventList({ search }),
   };
-}
+});
