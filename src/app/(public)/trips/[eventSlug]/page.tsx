@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { SITE_NAME } from "@/lib/constatnts";
 import { EventMetaType } from "@/lib/types";
 import {
   Clock,
@@ -24,6 +25,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siInstagram } from "simple-icons";
+
+export async function generateMetadata({ params }) {
+  const { eventSlug } = params;
+  const event = await getEventDetails({ eventSlug });
+  return {
+    title: event.title,
+    description: `Discover details about ${event.title} Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
+  };
+}
 
 export default async function TripDetailsPage({
   params,

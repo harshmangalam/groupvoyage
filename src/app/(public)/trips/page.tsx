@@ -6,8 +6,14 @@ import { PageSection } from "@/components/page-section";
 import { TripCard } from "@/components/trip-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TRIPS_PER_PAGE } from "@/lib/constatnts";
+import { Metadata } from "next";
 import { Suspense } from "react";
 
+export const metadata: Metadata = {
+  title: "Explore & Compare Trips",
+  description:
+    "Browse and compare trips from multiple travel groups. Filter by location and duration to find your perfect journey.",
+};
 type TripsPageProps = {
   searchParams: Promise<{ locations: string; durations: string; page: string }>;
 };
