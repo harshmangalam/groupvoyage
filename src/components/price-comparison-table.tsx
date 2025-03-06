@@ -16,8 +16,10 @@ import { useState } from "react";
 import { T_EventCard } from "@/lib/types";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -57,7 +59,7 @@ export default function PriceComparisonTable({
           Compare Prices
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-5xl w-full h-screen sm:h-[80vh]">
+      <DialogContent className="max-w-5xl w-full h-[80vh]">
         <DialogHeader>
           <DialogTitle>Compare Prices & Find the Best Travel Deals</DialogTitle>
           <DialogDescription>
@@ -125,6 +127,13 @@ export default function PriceComparisonTable({
             ))}
           </TableBody>
         </Table>
+        <DialogFooter className="sm:justify-end">
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Close
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
