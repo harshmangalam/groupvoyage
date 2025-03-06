@@ -3,7 +3,13 @@ import { LocationsFilter } from "@/components/filters/locations-filter";
 import { GroupCard } from "@/components/group-card";
 import { PageSection } from "@/components/page-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Metadata } from "next";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "Find & Compare Travel Groups",
+  description: `Discover and compare travel groups effortlessly. Filter by location and choose the best group trip for your journey.`,
+};
 
 type GroupsPageProps = {
   searchParams: Promise<{ locations: string; durations: string }>;
