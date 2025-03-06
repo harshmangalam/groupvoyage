@@ -78,8 +78,8 @@ export default async function TripDetailsPage({
           </CarouselContent>
           {event.posterUrls.length > 1 && (
             <>
-              <CarouselPrevious className="left-4" />
-              <CarouselNext className="right-4" />
+              <CarouselPrevious className="left-4 z-[8]" />
+              <CarouselNext className="right-4 z-[8]" />
             </>
           )}
         </Carousel>
