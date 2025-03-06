@@ -17,7 +17,7 @@ export function HomeHero() {
               compare <span className="text-destructive">prices</span>, and join
               budget-friendly <span className="text-destructive"> trips</span>
             </h1>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-lg text-muted-foreground">
               {SITE_NAME} connects you with like-minded travelers from your
               city, making weekend getaways effortless and exciting. Explore a
               curated list of local and city-specific travel groups, compare
