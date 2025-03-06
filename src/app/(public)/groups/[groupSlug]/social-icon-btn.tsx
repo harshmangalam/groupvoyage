@@ -43,11 +43,16 @@ export function SocialIconBtn({
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="rounded-full" size="icon" variant="outline" asChild>
+        <Button size="icon" variant="outline" asChild>
           <a href={url} target="_blank" rel="noopener noreferrer">
             {socialMedia.Icon ? socialMedia.Icon : null}
             {socialMedia.svg ? (
-              <span dangerouslySetInnerHTML={{ __html: socialMedia.svg }} />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-8 h-8 fill-current"
+                dangerouslySetInnerHTML={{ __html: socialMedia.svg }}
+              />
             ) : null}
           </a>
         </Button>

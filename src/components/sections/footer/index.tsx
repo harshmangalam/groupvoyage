@@ -41,8 +41,8 @@ export default function FooterSection() {
   ];
 
   return (
-    <footer className="w-full bg-muted px-4">
-      <Footer className="w-full bg-muted px-4 max-w-7xl mx-auto">
+    <footer className="w-full bg-background px-4 border-t">
+      <Footer className="w-full bg-background px-4 max-w-7xl mx-auto">
         <FooterContent>
           {/* Logo Section */}
           <FooterColumn className="col-span-2 sm:col-span-3 md:col-span-1">

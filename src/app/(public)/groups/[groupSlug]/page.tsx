@@ -102,25 +102,21 @@ export default async function GroupHomePage({
             <CardFooter className="p-0">
               <div>
                 <h3 className="text-lg font-semibold mb-2">Connect with us</h3>
-                <TooltipProvider>
-                  <div className="flex space-x-2">
-                    <SocialIconBtn url={group.instagram} slug="instagram" />
-                    {group.email && (
-                      <SocialIconBtn
-                        url={`mailto:${group.email}`}
-                        slug="email"
-                      />
-                    )}
-                    <SocialIconBtn url={`tel:${group.phone}`} slug="tel" />
-                    <SocialIconBtn
-                      url={
-                        (group.meta as GroupMetaType)?.whatsappGroup ||
-                        `https://wa.me/${group.phone}`
-                      }
-                      slug="whatsapp"
-                    />
-                  </div>
-                </TooltipProvider>
+
+                <div className="flex space-x-2">
+                  <SocialIconBtn url={group.instagram} slug="instagram" />
+                  {group.email && (
+                    <SocialIconBtn url={`mailto:${group.email}`} slug="email" />
+                  )}
+                  <SocialIconBtn url={`tel:${group.phone}`} slug="tel" />
+                  <SocialIconBtn
+                    url={
+                      (group.meta as GroupMetaType)?.whatsappGroup ||
+                      `https://wa.me/${group.phone}`
+                    }
+                    slug="whatsapp"
+                  />
+                </div>
               </div>
             </CardFooter>
           </div>
