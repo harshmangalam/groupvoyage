@@ -1,6 +1,7 @@
 "use server";
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { cache } from "react";
 
 export async function createGroup(formData: FormData) {
   const formObject = Object.fromEntries(formData.entries()) as unknown as any;
@@ -20,7 +21,7 @@ export async function createGroup(formData: FormData) {
   revalidatePath("/superadmin/groups");
 }
 
-export async function getGroupsOption() {
+export const getGroupsOption = cache(async () => {
   const groups = await prisma.group.findMany({
     where: {
       active: true,
@@ -33,65 +34,67 @@ export async function getGroupsOption() {
   });
 
   return groups;
-}
+});
 
-export async function getGroupList({
-  locationSlug,
-  take,
-  skip,
-  search,
-}: {
-  locationSlug?: string;
-  take?: number;
-  skip?: number;
-  search?: string;
-}) {
-  const filter: Record<string, unknown> = {};
-  if (search) {
-    filter.name = { search: search.replace(/[^a-zA-Z]/g, "") };
-    filter.details = { search: search.replace(/[^a-zA-Z]/g, "") };
-  }
-
-  if (locationSlug) {
-    filter.locations = {
-      some: {
-        slug: locationSlug,
-      },
-    };
-  }
-  return prisma.group.findMany({
-    where: {
-      ...filter,
-    },
-    select: {
-      id: true,
-      slug: true,
-      name: true,
-      posterUrls: true,
-      locations: {
-        select: {
-          id: true,
-          city: true,
-          slug: true,
-        },
-      },
-      _count: {
-        select: {
-          events: true,
-        },
-      },
-    },
+export const getGroupList = cache(
+  async ({
+    locationSlug,
     take,
     skip,
-    orderBy: {
-      events: {
-        _count: "desc",
-      },
-    },
-  });
-}
+    search,
+  }: {
+    locationSlug?: string;
+    take?: number;
+    skip?: number;
+    search?: string;
+  }) => {
+    const filter: Record<string, unknown> = {};
+    if (search) {
+      filter.name = { search: search.replace(/[^a-zA-Z]/g, "") };
+      filter.details = { search: search.replace(/[^a-zA-Z]/g, "") };
+    }
 
-export async function getGroupDetails({ slug }: { slug: string }) {
+    if (locationSlug) {
+      filter.locations = {
+        some: {
+          slug: locationSlug,
+        },
+      };
+    }
+    return prisma.group.findMany({
+      where: {
+        ...filter,
+      },
+      select: {
+        id: true,
+        slug: true,
+        name: true,
+        posterUrls: true,
+        locations: {
+          select: {
+            id: true,
+            city: true,
+            slug: true,
+          },
+        },
+        _count: {
+          select: {
+            events: true,
+          },
+        },
+      },
+      take,
+      skip,
+      orderBy: {
+        events: {
+          _count: "desc",
+        },
+      },
+    });
+  }
+);
+
+export const getGroupDetails = cache(async ({ slug }: { slug: string }) => {
   return prisma.group.findUnique({
     where: {
       slug,
@@ -111,47 +114,45 @@ export async function getGroupDetails({ slug }: { slug: string }) {
       },
     },
   });
-}
+});
 
-export async function getAllGroupsCount() {
+export const getAllGroupsCount = cache(() => {
   return prisma.group.count();
-}
+});
 
-export async function getTrendingGroupList({
-  locationSlug,
-}: {
-  locationSlug?: string;
-}) {
-  return prisma.group.findMany({
-    where: {
-      locations: {
-        some: {
-          slug: locationSlug,
+export const getTrendingGroupList = cache(
+  async ({ locationSlug }: { locationSlug?: string }) => {
+    return prisma.group.findMany({
+      where: {
+        locations: {
+          some: {
+            slug: locationSlug,
+          },
         },
       },
-    },
-    select: {
-      id: true,
-      slug: true,
-      name: true,
-      posterUrls: true,
-      locations: {
-        select: {
-          id: true,
-          city: true,
-          slug: true,
+      select: {
+        id: true,
+        slug: true,
+        name: true,
+        posterUrls: true,
+        locations: {
+          select: {
+            id: true,
+            city: true,
+            slug: true,
+          },
+        },
+        _count: {
+          select: {
+            events: true,
+          },
         },
       },
-      _count: {
-        select: {
-          events: true,
+      orderBy: {
+        events: {
+          _count: "desc",
         },
       },
-    },
-    orderBy: {
-      events: {
-        _count: "desc",
-      },
-    },
-  });
-}
+    });
+  }
+);
