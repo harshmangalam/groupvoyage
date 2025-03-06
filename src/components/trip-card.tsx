@@ -58,16 +58,18 @@ export function TripCard({ event }: TripCardProps) {
           </div>
 
           <div className="flex items-center mb-2">
-            <Clock className="w-5 h-5 mr-2 text-gray-600 flex-shrink-0" />
-            <p className="text-sm text-gray-600">{durations || "N/A"}</p>
+            <Clock className="w-5 h-5 mr-2 text-muted-foreground flex-shrink-0" />
+            <p className="text-sm text-muted-foreground">
+              {durations || "N/A"}
+            </p>
           </div>
           <div className="flex items-center mb-2">
-            <MapPin className="w-5 h-5 mr-2 text-gray-600 flex-shrink-0" />
-            <div className="text-sm text-gray-600">{location.city}</div>
+            <MapPin className="w-5 h-5 mr-2 text-muted-foreground flex-shrink-0" />
+            <div className="text-sm text-muted-foreground">{location.city}</div>
           </div>
           <div className="flex items-center mb-2">
-            <User className="w-5 h-5 mr-2 text-gray-600 flex-shrink-0" />
-            <div className="text-sm text-gray-600">{group.name}</div>
+            <User className="w-5 h-5 mr-2 text-muted-foreground flex-shrink-0" />
+            <div className="text-sm text-muted-foreground">{group.name}</div>
           </div>
         </CardContent>
       </Card>

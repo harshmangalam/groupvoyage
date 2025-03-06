@@ -24,7 +24,7 @@ export function GroupCard({
           />
           <div className="p-4">
             <h3 className="text-lg font-semibold line-clamp-1">{name}</h3>
-            <p className="text-gray-500 text-sm">
+            <p className="text-muted-foreground text-sm">
               {group.locations.length >= 2
                 ? "Multiple locations"
                 : location.city}{" "}
