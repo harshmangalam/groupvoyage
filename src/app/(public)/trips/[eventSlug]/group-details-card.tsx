@@ -16,9 +16,11 @@ export function GroupDetailsCard({ group }: Pick<T_Event_Details, "group">) {
 
           {group.instagram && (
             <div className="flex items-center gap-2">
-              <span
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-4 h-4 fill-current"
                 dangerouslySetInnerHTML={{ __html: siInstagram.svg }}
-                className="h-4 w-4"
               />
               <a
                 target="_blank"

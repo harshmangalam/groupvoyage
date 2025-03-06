@@ -57,7 +57,7 @@ export default async function TripDetailsPage({
           title={event.title}
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent pt-24 pb-6 px-6 md:px-8">
-          <div className="flex items-start justify-between gap-4 flex-wrap text-primary-foreground">
+          <div className="flex items-start justify-between gap-4 flex-wrap text-white">
             <div className="max-w-3xl flex flex-col gap-4">
               <h1
                 title={event.title}
