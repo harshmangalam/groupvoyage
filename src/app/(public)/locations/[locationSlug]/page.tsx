@@ -6,10 +6,20 @@ import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
 import { GroupsCarousel } from "@/components/groups-carousel";
 import { TripsCarousel } from "@/components/trips-carousel";
+import { SITE_NAME } from "@/lib/constatnts";
 
 type LocationPageProps = {
   params: Promise<{ locationSlug: string }>;
 };
+
+export async function generateMetadata({ params }) {
+  const location = await getLocation({ locationSlug: params.locationSlug });
+  return {
+    title: `Explore ${location.city} Top Groups & Trips`,
+    description: `Discover groups and trips in ${location.city}. Compare prices and join budget-friendly adventures with ${SITE_NAME}.`,
+  };
+}
+
 export default async function LocationPage({ params }: LocationPageProps) {
   const locationSlug = (await params).locationSlug.toString();
   const location = await getLocation({ locationSlug });
