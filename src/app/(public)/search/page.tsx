@@ -29,9 +29,11 @@ export default async function SeacrhPage({ searchParams }: LocationPageProps) {
       <PageSection
         label={<span>Trips</span>}
         others={
-          <div>
-            <PriceComparisonTable trips={events.events} />
-          </div>
+          events?.events.length ? (
+            <div>
+              <PriceComparisonTable trips={events.events} />
+            </div>
+          ) : null
         }
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

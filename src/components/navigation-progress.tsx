@@ -13,10 +13,10 @@ NProgress.configure({
   showSpinner: false,
   minimum: 0.1,
   easing: "ease",
-  speed: 300,
+  speed: 200,
 });
 
-export function NavigationEvents() {
+export function NavigationProgress() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
