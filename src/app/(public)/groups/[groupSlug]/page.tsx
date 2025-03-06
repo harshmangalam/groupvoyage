@@ -17,8 +17,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { LocationsFilter } from "@/components/filters/locations-filter";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CustomPagination } from "@/components/custom-pagination";
-import { TRIPS_PER_PAGE } from "@/lib/constatnts";
+import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constatnts";
 import { GroupMetaType } from "@/lib/types";
+
+export async function generateMetadata({ params }) {
+  const { groupSlug } = params;
+  const group = await getGroupDetails({ slug: groupSlug });
+  return {
+    title: `${group.tagLine} (${group._count.events} trips)`,
+    description: `Explore ${group.name} group details and their listed trips on ${SITE_NAME}. Compare and choose the best travel experience.`,
+  };
+}
 
 export default async function GroupHomePage({
   params,
