@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Analytics } from "@vercel/analytics/react";
 import { SITE_NAME } from "@/lib/constatnts";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -31,10 +32,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light" style={{ colorScheme: "light" }}>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} antialiased`}>
         <NuqsAdapter>
-          <TooltipProvider>{children}</TooltipProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <TooltipProvider>{children}</TooltipProvider>
+          </ThemeProvider>
         </NuqsAdapter>
         <Toaster />
         <Analytics />

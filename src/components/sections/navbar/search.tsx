@@ -33,10 +33,7 @@ export default function SearchComponent() {
   }, []);
 
   return (
-    <Form
-      action="/search"
-      className="relative flex items-center w-full max-w-sm"
-    >
+    <Form action="/search" className="relative block w-full">
       <div className="relative w-full">
         <Search className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
         <Input
