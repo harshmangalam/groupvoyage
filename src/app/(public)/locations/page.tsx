@@ -1,7 +1,14 @@
 import { getLocations } from "@/actions/location";
 import { LocationCard } from "@/components/location-card";
 import { PageSection } from "@/components/page-section";
+import { SITE_NAME } from "@/lib/constatnts";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Explore Cities",
+  description: `Find the best travel groups and compare prices from multiple departure cities for free on ${SITE_NAME}`,
+  metadataBase: new URL("https://www.groupvoyage.in/"),
+};
 export default async function LocationsPage() {
   const locations = await getLocations({});
   return (
