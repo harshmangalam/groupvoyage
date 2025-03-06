@@ -116,7 +116,7 @@ export const getGroupDetails = cache(async ({ slug }: { slug: string }) => {
   });
 });
 
-export const getAllGroupsCount = cache(() => {
+export const getAllGroupsCount = cache(async () => {
   return prisma.group.count();
 });
 

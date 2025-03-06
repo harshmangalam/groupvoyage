@@ -149,6 +149,6 @@ export const getTrendingEventList = cache(async () => {
     take: 10,
   });
 });
-export const getAllEventsCount = cache(() => {
+export const getAllEventsCount = cache(async () => {
   return prisma.event.count();
 });
