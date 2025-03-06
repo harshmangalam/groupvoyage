@@ -57,6 +57,14 @@ export default async function TripDetailsPage({
       ? Math.round(((originalPrice - price) / originalPrice) * 100)
       : null;
 
+  function getBookingUrl() {
+    const url = new URL(event.source);
+    url.searchParams.set("utm_source", SITE_NAME);
+    url.searchParams.set("utm_medium", "referral");
+    url.searchParams.set("utm_campaign", "booking");
+    return url.toString();
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <div className="relative">
@@ -217,7 +225,7 @@ export default async function TripDetailsPage({
                   size="lg"
                   variant={"destructive"}
                 >
-                  <a target="_blank" href={event.source} className="block">
+                  <a target="_blank" href={getBookingUrl()} className="block">
                     Book Now
                   </a>
                 </Button>
