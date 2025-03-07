@@ -1,54 +1,20 @@
 "use client";
-
-import NProgress from "nprogress";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-
-// Import the default NProgress CSS
-import "nprogress/nprogress.css";
-import "@/app/nprogress.css"; // Custom styles for red color
-
-// Configure NProgress
-NProgress.configure({
-  showSpinner: false,
-  minimum: 0.1,
-  easing: "ease",
-  speed: 200,
-});
-
+import NextTopLoader from "nextjs-toploader";
+import "@/app/nprogress.css";
 export function NavigationProgress() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    NProgress.done();
-  }, [pathname, searchParams]);
-
-  useEffect(() => {
-    const handleAnchorClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const anchor = target.closest("a");
-
-      if (
-        anchor &&
-        anchor.href &&
-        anchor.href.startsWith(window.location.origin) &&
-        !event.ctrlKey &&
-        !event.metaKey &&
-        !event.shiftKey &&
-        !event.altKey
-      ) {
-        NProgress.start();
-      }
-    };
-
-    document.addEventListener("click", handleAnchorClick);
-
-    return () => {
-      document.removeEventListener("click", handleAnchorClick);
-      NProgress.done();
-    };
-  }, []);
-
-  return null;
+  return (
+    <NextTopLoader
+      initialPosition={0.08}
+      crawlSpeed={200}
+      height={3}
+      crawl={true}
+      showSpinner={false}
+      easing="ease"
+      speed={200}
+      shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+      template='<div class="bar" role="bar"><div class="peg"></div></div>'
+      zIndex={1600}
+      showAtBottom={false}
+    />
+  );
 }

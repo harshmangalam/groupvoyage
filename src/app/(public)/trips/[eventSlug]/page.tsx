@@ -98,7 +98,7 @@ export default async function TripDetailsPage({
                 <h2 className="text-2xl font-semibold mb-4">Trip Details</h2>
                 <div
                   dangerouslySetInnerHTML={{ __html: event.details }}
-                  className="prose leading-relaxed"
+                  className="dark:[&_*]:!text-muted-foreground dark:[&_*]:!bg-transparent [&_*]:!text-secondary-foreground prose leading-relaxed trip-details-container"
                 />
               </div>
             )}
