@@ -1,6 +1,9 @@
 import { Logo } from "@/components/logo";
-import SearchComponent from "./search";
 import { ModeToggle } from "@/components/sections/navbar/mode-toggle";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { SearchIcon } from "lucide-react";
+import SearchInput from "@/components/search-input";
 
 export function Navbar() {
   return (
@@ -9,10 +12,14 @@ export function Navbar() {
         <div className="flex items-center">
           <Logo />
         </div>
-        <div className="max-w-sm w-full">
-          <SearchComponent />
-        </div>
+
         <div className="flex items-center gap-2">
+          <Button size="icon" asChild variant="outline">
+            <Link href={"/search"}>
+              <SearchIcon />
+            </Link>
+          </Button>
+
           <ModeToggle />
         </div>
       </div>

@@ -14,7 +14,7 @@ import { PostersCarousel } from "./posters-carousel";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { LocationsFilter } from "@/components/filters/locations-filter";
+import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CustomPagination } from "@/components/custom-pagination";
 import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constatnts";

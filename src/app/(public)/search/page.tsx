@@ -1,50 +1,75 @@
+import SearchInput from "@/components/search-input";
+import { LocationsFilter } from "@/components/filters/locations/locations-filter";
+import { DurationsFilter } from "@/components/filters/durations-filter";
+import { ViewMode } from "./view-mode";
 import { getSearchResults } from "@/actions/common";
-import { PageSection } from "@/components/page-section";
-import PriceComparisonTable from "@/components/price-comparison-table";
-import { TripCard } from "@/components/trip-card";
+import TableView from "./table-view";
+import { ListView } from "./list-view";
 import { SITE_NAME } from "@/lib/constatnts";
+import { PageSection } from "@/components/page-section";
+import { GroupCard } from "@/components/group-card";
 
 export async function generateMetadata({ searchParams }) {
-  const { q } = (await searchParams) || "Search trips";
+  const { q } = await searchParams;
 
   return {
-    title: `Search results for "${q}"`,
-    description: `Find the best travel groups and trips for "${q}". Compare options and plan your perfect journey with ${SITE_NAME}.`,
+    title: !q ? `Search` : `Search for ${q}`,
+    description: `Discover details about ${q} Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
   };
 }
 
-type LocationPageProps = {
-  searchParams: Promise<{ q: string }>;
-};
-export default async function SeacrhPage({ searchParams }: LocationPageProps) {
-  const { q } = await searchParams;
-  const search = q?.trim();
-  const { events } = await getSearchResults(search);
+export default async function SearchPage({ searchParams }) {
+  const { viewMode = "list", q, locations, durations } = await searchParams;
+  const { events, groups } = await getSearchResults({
+    search: q,
+    durations,
+    locationSlug: locations,
+  });
+
   return (
-    <div className="max-w-7xl mx-auto py-6 md:py-8 px-4">
-      <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-        Search Results for <span className="text-destructive">{search}</span>
-      </h1>
+    <div className="max-w-7xl w-full mx-auto px-4 py-8">
+      {/* Search Section */}
+      <div className="mb-8">
+        <div className="flex flex-col md:flex-row gap-4 justify-between">
+          <div className="flex-1 max-w-sm w-full">
+            <SearchInput />
+          </div>
+          <div className="flex items-center gap-2">
+            <LocationsFilter />
+            <DurationsFilter />
+          </div>
+        </div>
+      </div>
+
+      <section className="mb-8">
+        <PageSection label={`${groups?.length ?? 0} Groups found`}>
+          {groups?.length ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {groups.map((group) => (
+                <GroupCard key={group.id} group={group} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted-foreground">No groups found</p>
+          )}
+        </PageSection>
+      </section>
 
       <PageSection
-        label={<span>Trips</span>}
-        others={
-          events?.events.length ? (
-            <div>
-              <PriceComparisonTable trips={events.events} />
-            </div>
-          ) : null
-        }
+        label={`${events?.events?.length ?? 0} Trips found`}
+        others={<ViewMode />}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {events?.events?.length ? (
-            events.events.map((event) => (
-              <TripCard key={event.id} event={event} />
-            ))
-          ) : (
-            <p>No matches found</p>
-          )}
-        </div>
+        {events?.events?.length ? (
+          <div>
+            {viewMode === "list" ? (
+              <ListView trips={events.events} />
+            ) : viewMode === "table" ? (
+              <TableView trips={events.events} />
+            ) : null}
+          </div>
+        ) : (
+          <p className="text-muted-foreground">No trips found</p>
+        )}
       </PageSection>
     </div>
   );

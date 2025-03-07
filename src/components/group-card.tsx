@@ -8,7 +8,7 @@ export function GroupCard({
   location,
 }: {
   group: T_GroupCard;
-  location: { slug: string; city: string };
+  location?: { slug: string; city: string };
 }) {
   const { _count, posterUrls, name, slug } = group;
   return (
@@ -27,7 +27,7 @@ export function GroupCard({
             <p className="text-muted-foreground text-sm">
               {group.locations.length >= 2
                 ? "Multiple locations"
-                : location.city}{" "}
+                : group.locations[0].city}{" "}
               · {_count.events} Trips
             </p>
           </div>

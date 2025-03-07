@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/db"; // Adjust the path as needed
 import { getEventList } from "./event";
 import { cache } from "react";
+import { getGroupList } from "./group";
 
 export const getRandomPosters = cache(async () => {
   const groupPosters = await prisma.group.findMany({
@@ -41,9 +42,20 @@ export const getPublicStats = cache(async () => {
   };
 });
 
-export const getSearchResults = cache(async (search?: string) => {
-  if (!search) return {};
-  return {
-    events: await getEventList({ search }),
-  };
-});
+export const getSearchResults = cache(
+  async ({
+    search,
+    durations,
+    locationSlug,
+  }: {
+    search?: string;
+    durations?: string;
+    locationSlug?: string;
+  }) => {
+    if (!search) return {};
+    return {
+      events: await getEventList({ search, durations, locationSlug }),
+      groups: await getGroupList({ search, locationSlug }),
+    };
+  }
+);

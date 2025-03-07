@@ -2,8 +2,9 @@ import { Posters } from "./posters";
 import { Suspense } from "react";
 import { Stats } from "./stats";
 import { SITE_NAME } from "@/lib/constatnts";
+import { Skeleton } from "../ui/skeleton";
 
-export function HomeHero() {
+export async function HomeHero() {
   return (
     <div className="relative overflow-hidden py-12 lg:py-0 lg:h-[90vh] z-[1]">
       {/* Top and Bottom Gradients */}
@@ -26,7 +27,16 @@ export function HomeHero() {
           </div>
 
           <div className="mt-6 md:mt-14">
-            <Suspense key={"home-hero-stats"}>
+            <Suspense
+              key={"home-hero-stats"}
+              fallback={
+                <div className="grid grid-cols-3  gap-4">
+                  <Skeleton className="w-full h-24" />
+                  <Skeleton className="w-full h-24" />
+                  <Skeleton className="w-full h-24" />
+                </div>
+              }
+            >
               <Stats />
             </Suspense>
           </div>

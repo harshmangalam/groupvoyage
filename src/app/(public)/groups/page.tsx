@@ -1,5 +1,5 @@
 import { getGroupList } from "@/actions/group";
-import { LocationsFilter } from "@/components/filters/locations-filter";
+import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { GroupCard } from "@/components/group-card";
 import { PageSection } from "@/components/page-section";
 import { Skeleton } from "@/components/ui/skeleton";

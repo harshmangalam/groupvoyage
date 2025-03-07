@@ -42,3 +42,5 @@ export type DurationMap = {
   label: string;
   value: string;
 };
+
+export type T_DropdownOption = { label: string; value: string };

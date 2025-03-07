@@ -7,74 +7,63 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { ListFilterIcon, X } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Button, ButtonProps } from "@/components/ui/button";
+import { RefreshCwIcon, X } from "lucide-react";
 import * as React from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { T_DropdownOption } from "@/lib/types";
 
 export function CustomDropdownMenu({
   options,
-  paramKey,
   label,
   placeholder,
+  icon,
+  value,
+  onValueChange,
+  onClear,
+  loading,
+  buttonProps,
 }: {
-  options: { label: string; value: string }[];
-  paramKey: string;
+  options: T_DropdownOption[];
   label: string;
   placeholder: string;
+  icon?: React.ReactNode;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  onClear?: () => void;
+  loading?: boolean;
+  buttonProps?: ButtonProps;
 }) {
   const [open, setOpen] = React.useState(false);
-  const [isPending, startTransition] = React.useTransition();
-  const searchParams = useSearchParams();
-  const defaultValue = searchParams.get(paramKey)?.toString() || "";
-  const router = useRouter();
-  const pathname = usePathname();
 
   function handleSelect(currentValue: string) {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.delete("page");
-    if (currentValue === "none") {
-      newSearchParams.delete(paramKey);
-    } else {
-      newSearchParams.set(paramKey, currentValue);
-    }
-    startTransition(() => {
-      router.push(pathname + "?" + newSearchParams);
-    });
     setOpen(false);
+    onValueChange?.(currentValue);
   }
 
   function handleClear() {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.delete(paramKey);
-    startTransition(() => {
-      router.push(pathname + "?" + newSearchParams);
-    });
     setOpen(false);
+    onClear?.();
   }
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button
-          disabled={isPending}
-          className="w-40 flex justify-between"
+          className="w-auto flex justify-between"
           variant={"outline"}
-          size={"sm"}
+          {...buttonProps}
         >
-          {defaultValue
-            ? options.find((o) => o.value === defaultValue)?.label ||
-              placeholder
+          {loading ? <RefreshCwIcon className="animate-spin" /> : icon}
+          {value
+            ? options.find((o) => o.value === value)?.label || placeholder
             : placeholder}
-
-          <ListFilterIcon />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <div className="flex items-center justify-between px-2 py-2 gap-4">
           <span className="text-sm font-semibold"> {label}</span>
-          {defaultValue && (
+          {value && (
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -98,9 +87,7 @@ export function CustomDropdownMenu({
             <DropdownMenuItem
               key={d.value}
               onSelect={() => handleSelect(d.value)}
-              className={`${
-                d.value === defaultValue ? "bg-muted" : "bg-transparent"
-              }`}
+              className={`${d.value === value ? "bg-muted" : "bg-transparent"}`}
             >
               <label
                 htmlFor={`filter-${d.value}`}

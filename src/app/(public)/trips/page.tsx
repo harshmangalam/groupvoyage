@@ -1,7 +1,7 @@
 import { getEventList } from "@/actions/event";
 import { CustomPagination } from "@/components/custom-pagination";
 import { DurationsFilter } from "@/components/filters/durations-filter";
-import { LocationsFilter } from "@/components/filters/locations-filter";
+import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { PageSection } from "@/components/page-section";
 import { TripCard } from "@/components/trip-card";
 import { Skeleton } from "@/components/ui/skeleton";

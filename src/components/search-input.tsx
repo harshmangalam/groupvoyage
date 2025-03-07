@@ -1,14 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { LoaderIcon, Search } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { RefreshCwIcon, Search } from "lucide-react";
 import { useQueryState } from "nuqs";
 import { searchParams } from "@/lib/search-params";
 
-export default function SearchComponent() {
-  const router = useRouter();
+export default function SearchInput() {
   const [isLoading, startTransition] = React.useTransition();
   const [query, setQuery] = useQueryState(
     "q",
@@ -24,27 +22,32 @@ export default function SearchComponent() {
 
   async function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    const query = await setQuery(value);
-    startTransition(() => {
-      router.push(`/search` + "?" + query);
-    });
+    setQuery(value);
   }
+
+  useEffect(() => {
+    return () => {
+      setQuery("");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="relative w-full">
-      <div className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 ">
+      <div className="absolute left-3 top-1/2 -translate-y-1/2 ">
         {isLoading ? (
-          <LoaderIcon className="animate-spin w-3.5 h-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+          <RefreshCwIcon className="animate-spin h-4 w-4 text-muted-foreground" />
         ) : (
-          <Search className="w-3.5 h-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+          <Search className="h-4 w-4 text-muted-foreground" />
         )}
       </div>
       <Input
-        placeholder="Where do you want to go?"
-        className="w-full pl-6 sm:pl-8 overflow-hidden text-sm sm:text-base"
+        placeholder="Search for groups & trips"
+        className="w-full pl-10 overflow-hidden"
         aria-label="Search"
         value={query}
         onChange={handleSearchChange}
+        autoFocus
       />
     </div>
   );
