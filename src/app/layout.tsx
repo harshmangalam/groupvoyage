@@ -14,8 +14,6 @@ const poppins = Poppins({
   variable: "--font-poppins", // CSS variable for use in styles
 });
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: {
     template: `%s | ${SITE_NAME}`,
