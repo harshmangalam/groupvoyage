@@ -13,7 +13,8 @@ type LocationPageProps = {
 };
 
 export async function generateMetadata({ params }) {
-  const location = await getLocation({ locationSlug: params.locationSlug });
+  const { locationSlug } = await params;
+  const location = await getLocation({ locationSlug });
   return {
     title: `Explore ${location.city} Top Groups & Trips`,
     description: `Discover groups and trips in ${location.city}. Compare prices and join budget-friendly adventures with ${SITE_NAME}.`,

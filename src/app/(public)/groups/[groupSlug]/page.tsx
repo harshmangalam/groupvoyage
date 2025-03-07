@@ -21,7 +21,7 @@ import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constatnts";
 import { GroupMetaType } from "@/lib/types";
 
 export async function generateMetadata({ params }) {
-  const { groupSlug } = params;
+  const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
   return {
     title: `${group.tagLine} (${group._count.events} trips)`,

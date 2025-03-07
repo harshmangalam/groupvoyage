@@ -19,7 +19,7 @@ import { SectionList } from "./section-list";
 import { TripPostersCarousel } from "./trip-posters-carousel";
 
 export async function generateMetadata({ params }) {
-  const { eventSlug } = params;
+  const { eventSlug } = await params;
   const event = await getEventDetails({ eventSlug });
   return {
     title: event.title,
