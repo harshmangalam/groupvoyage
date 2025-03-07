@@ -5,14 +5,14 @@ import { Input } from "@/components/ui/input";
 import { LoaderIcon, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useQueryState } from "nuqs";
-import { searchParamsParsers } from "@/lib/search-params";
+import { searchParams } from "@/lib/search-params";
 
 export default function SearchComponent() {
   const router = useRouter();
   const [isLoading, startTransition] = React.useTransition();
   const [query, setQuery] = useQueryState(
     "q",
-    searchParamsParsers.q.withOptions({
+    searchParams.q.withOptions({
       history: "replace",
       shallow: false,
       scroll: true,

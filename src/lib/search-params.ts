@@ -2,8 +2,8 @@
 
 import { parseAsString, createSearchParamsCache } from "nuqs/server";
 
-export const searchParamsParsers = {
-  q: parseAsString.withDefault("").withOptions({
-    shallow: false,
-  }),
+export const searchParams = {
+  q: parseAsString.withDefault(""),
 };
+
+export const searchParamsCache = createSearchParamsCache(searchParams);
