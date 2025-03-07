@@ -23,9 +23,10 @@ import { GroupMetaType } from "@/lib/types";
 export async function generateMetadata({ params }) {
   const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
+  const description = `Explore ${group?.name} group details and their listed trips on ${SITE_NAME}. Compare and choose the best travel experience.`;
   return {
-    title: `${group.tagLine} (${group._count.events} trips)`,
-    description: `Explore ${group.name} group details and their listed trips on ${SITE_NAME}. Compare and choose the best travel experience.`,
+    title: `${group?.tagLine} (${group?._count?.events} trips)`,
+    description,
   };
 }
 

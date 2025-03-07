@@ -5,6 +5,7 @@ import {
 } from "@/actions/event";
 import { getGroupList } from "@/actions/group";
 import { getLocations, getLocationsOption } from "@/actions/location";
+import { Prisma } from "../../prisma/generated/client";
 
 export type GroupMetaType = {
   membersCount: number;
@@ -44,3 +45,4 @@ export type DurationMap = {
 };
 
 export type T_DropdownOption = { label: string; value: string };
+export type T_Group = Prisma.GroupGetPayload<{}>;

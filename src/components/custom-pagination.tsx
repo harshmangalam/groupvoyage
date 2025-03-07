@@ -21,7 +21,7 @@ export function CustomPagination(props: CustomPaginationProps) {
   const { currentPage, totalPages, hasNextPage, hasPreviousPage } = props;
   const searchParams = useSearchParams();
   const getPageNumbers = () => {
-    const pages = [];
+    const pages: any[] = [];
     const maxVisiblePages = 3;
 
     for (let i = 1; i <= totalPages; i++) {

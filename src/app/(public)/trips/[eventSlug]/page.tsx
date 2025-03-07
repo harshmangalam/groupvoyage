@@ -22,8 +22,8 @@ export async function generateMetadata({ params }) {
   const { eventSlug } = await params;
   const event = await getEventDetails({ eventSlug });
   return {
-    title: event.title,
-    description: `Discover details about ${event.title} Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
+    title: event?.title,
+    description: `Discover details about ${event?.title} Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
   };
 }
 
@@ -150,7 +150,7 @@ export default async function TripDetailsPage({
                 <BookNow source={event.source} />
               </CardContent>
             </Card>
-            <GroupDetailsCard group={event.group} />
+            <GroupDetailsCard {...event.group} />
           </div>
         </div>
       </div>
