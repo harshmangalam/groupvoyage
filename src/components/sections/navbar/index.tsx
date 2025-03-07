@@ -1,6 +1,6 @@
 import { Logo } from "@/components/logo";
 import SearchComponent from "./search";
-import { ModeToggle } from "@/components/mode-toggle";
+import { ModeToggle } from "@/components/sections/navbar/mode-toggle";
 
 export function Navbar() {
   return (

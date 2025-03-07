@@ -1,50 +1,51 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Form from "next/form";
+import React from "react";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { LoaderIcon, Search } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useQueryState } from "nuqs";
+import { searchParamsParsers } from "@/lib/search-params";
 
 export default function SearchComponent() {
-  const searchParams = useSearchParams();
-  const search = searchParams.get("q")?.toString();
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  // Add keyboard shortcut listener (press "/" to focus search)
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      // Check if the key pressed is "/" and not in an input or textarea
-      if (
-        event.key === "/" &&
-        document.activeElement?.tagName !== "INPUT" &&
-        document.activeElement?.tagName !== "TEXTAREA"
-      ) {
-        event.preventDefault();
-        searchInputRef.current?.focus();
-      }
-    };
+  const router = useRouter();
+  const [isLoading, startTransition] = React.useTransition();
+  const [query, setQuery] = useQueryState(
+    "q",
+    searchParamsParsers.q.withOptions({
+      history: "replace",
+      shallow: false,
+      scroll: true,
+      throttleMs: 1000,
+      startTransition,
+      clearOnDefault: true,
+    })
+  );
 
-    window.addEventListener("keydown", handleKeyDown);
-
-    // Clean up event listener on component unmount
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  async function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    const query = await setQuery(value);
+    startTransition(() => {
+      router.push(`/search` + "?" + query);
+    });
+  }
 
   return (
-    <Form action="/search" className="relative block w-full">
-      <div className="relative w-full">
-        <Search className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
-        <Input
-          ref={searchInputRef}
-          name="q"
-          placeholder="Where do you want to go?"
-          className="w-full pl-6 sm:pl-8 overflow-hidden text-sm sm:text-base"
-          aria-label="Search"
-          defaultValue={search}
-        />
+    <div className="relative w-full">
+      <div className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 ">
+        {isLoading ? (
+          <LoaderIcon className="animate-spin w-3.5 h-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+        ) : (
+          <Search className="w-3.5 h-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+        )}
       </div>
-    </Form>
+      <Input
+        placeholder="Where do you want to go?"
+        className="w-full pl-6 sm:pl-8 overflow-hidden text-sm sm:text-base"
+        aria-label="Search"
+        value={query}
+        onChange={handleSearchChange}
+      />
+    </div>
   );
 }

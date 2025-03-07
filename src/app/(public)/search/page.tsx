@@ -5,11 +5,11 @@ import { TripCard } from "@/components/trip-card";
 import { SITE_NAME } from "@/lib/constatnts";
 
 export async function generateMetadata({ searchParams }) {
-  const query = searchParams.q || "Search trips";
+  const { q } = (await searchParams) || "Search trips";
 
   return {
-    title: `Search results for "${query}"`,
-    description: `Find the best travel groups and trips for "${query}". Compare options and plan your perfect journey with ${SITE_NAME}.`,
+    title: `Search results for "${q}"`,
+    description: `Find the best travel groups and trips for "${q}". Compare options and plan your perfect journey with ${SITE_NAME}.`,
   };
 }
 
@@ -17,7 +17,7 @@ type LocationPageProps = {
   searchParams: Promise<{ q: string }>;
 };
 export default async function SeacrhPage({ searchParams }: LocationPageProps) {
-  const q = (await searchParams).q;
+  const { q } = await searchParams;
   const search = q?.trim();
   const { events } = await getSearchResults(search);
   return (
