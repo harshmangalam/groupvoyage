@@ -17,6 +17,7 @@ import { GroupDetailsCard } from "./group-details-card";
 import { BookNow } from "./book-now";
 import { SectionList } from "./section-list";
 import { TripPostersCarousel } from "./trip-posters-carousel";
+import { TripDetails } from "./trip-details";
 
 export async function generateMetadata({ params }) {
   const { eventSlug } = await params;
@@ -96,10 +97,7 @@ export default async function TripDetailsPage({
             {event?.details && (
               <div>
                 <h2 className="text-2xl font-semibold mb-4">Trip Details</h2>
-                <div
-                  dangerouslySetInnerHTML={{ __html: event.details }}
-                  className="leading-relaxed dark:[&_*]:!text-white dark:[&_*]:!bg-transparent [&_*]:!text-secondary-foreground "
-                />
+                <TripDetails details={event.details} />
               </div>
             )}
             <SectionList
