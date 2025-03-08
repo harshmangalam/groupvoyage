@@ -1,5 +1,4 @@
 import { getLocationsOption } from "@/actions/location";
-import { CustomDropdownMenu } from "../../custom-dropdown-menu";
 import { LocationsDropdown } from "./locations-dropdown";
 import { ButtonProps } from "@/components/ui/button";
 

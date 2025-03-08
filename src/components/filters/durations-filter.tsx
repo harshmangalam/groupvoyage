@@ -19,8 +19,7 @@ export function DurationsFilter({
     searchParams.locations.withOptions({
       history: "push",
       shallow: false,
-      scroll: true,
-      throttleMs: 1000,
+      scroll: false,
       startTransition,
       clearOnDefault: true,
     })
