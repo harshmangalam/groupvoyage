@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
   const group = await getGroupDetails({ slug: groupSlug });
   const description = `Explore ${group?.name} group details and their listed trips on ${SITE_NAME}. Compare and choose the best travel experience.`;
   return {
-    title: `${group?.tagLine} (${group?._count?.events} trips)`,
+    title: `${group?.name} (${group?._count?.events} trips)`,
     description,
   };
 }
