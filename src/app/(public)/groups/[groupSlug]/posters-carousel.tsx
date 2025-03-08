@@ -37,8 +37,8 @@ export function PostersCarousel({ posterUrls }: { posterUrls: string[] }) {
       </CarouselContent>
       {posterUrls.length > 1 ? (
         <>
-          <CarouselPrevious className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/75" />
-          <CarouselNext className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/75" />
+          <CarouselPrevious className="absolute left-3 top-1/2 -translate-y-1/2 " />
+          <CarouselNext className="absolute right-3 top-1/2 -translate-y-1/2 " />
         </>
       ) : null}
     </Carousel>
