@@ -36,9 +36,7 @@ export default async function SearchPage({ searchParams }) {
           </div>
           <div className="flex items-center gap-2">
             <LocationsFilter />
-            <DurationsFilter
-              buttonProps={{ disabled: !events?.events.length }}
-            />
+            <DurationsFilter />
           </div>
         </div>
       </div>
