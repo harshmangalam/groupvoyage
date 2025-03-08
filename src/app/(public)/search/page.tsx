@@ -29,31 +29,19 @@ export default async function SearchPage({ searchParams }) {
   return (
     <div className="max-w-7xl w-full mx-auto px-4 py-8">
       {/* Search Section */}
-      <div className="mb-8">
+      <div className="mb-4">
         <div className="flex flex-col md:flex-row gap-4 justify-between">
           <div className="flex-1 max-w-sm w-full">
             <SearchInput />
           </div>
           <div className="flex items-center gap-2">
             <LocationsFilter />
-            <DurationsFilter />
+            <DurationsFilter
+              buttonProps={{ disabled: !events?.events.length }}
+            />
           </div>
         </div>
       </div>
-
-      <section className="mb-8">
-        <PageSection label={`${groups?.length ?? 0} Groups found`}>
-          {groups?.length ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {groups.map((group) => (
-                <GroupCard key={group.id} group={group} />
-              ))}
-            </div>
-          ) : (
-            <p className="text-muted-foreground">No groups found</p>
-          )}
-        </PageSection>
-      </section>
 
       <PageSection
         label={`${events?.events?.length ?? 0} Trips found`}
@@ -71,6 +59,16 @@ export default async function SearchPage({ searchParams }) {
           <p className="text-muted-foreground">No trips found</p>
         )}
       </PageSection>
+
+      {groups?.length ? (
+        <PageSection label={`${groups?.length ?? 0} Groups found`}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {groups.map((group) => (
+              <GroupCard key={group.id} group={group} />
+            ))}
+          </div>
+        </PageSection>
+      ) : null}
     </div>
   );
 }

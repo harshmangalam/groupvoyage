@@ -6,7 +6,7 @@ export const getEventList = cache(
   async ({
     locationSlug,
     groupSlug,
-    take = 10,
+    take,
     skip = 0,
     search,
     includeArchieve = false,
@@ -48,7 +48,10 @@ export const getEventList = cache(
     // Get total count for pagination
     const totalCount = await prisma.event.count({ where: filter });
 
-    // Fetch paginated results
+    // Determine if pagination should be applied
+    const shouldPaginate = take !== undefined;
+
+    // Fetch results (apply take & skip only if shouldPaginate is true)
     const events = await prisma.event.findMany({
       where: filter,
       select: {
@@ -72,13 +75,12 @@ export const getEventList = cache(
           },
         },
       },
-      take,
-      skip,
+      ...(shouldPaginate ? { take, skip } : {}), // Apply only if pagination is needed
     });
 
     // Calculate pagination metadata
-    const totalPages = Math.ceil(totalCount / take);
-    const currentPage = Math.floor(skip / take) + 1;
+    const totalPages = shouldPaginate ? Math.ceil(totalCount / take!) : 1;
+    const currentPage = shouldPaginate ? Math.floor(skip / take!) + 1 : 1;
 
     return {
       events,
@@ -86,8 +88,8 @@ export const getEventList = cache(
         totalCount,
         totalPages,
         currentPage,
-        hasNextPage: skip + take < totalCount,
-        hasPreviousPage: skip > 0,
+        hasNextPage: shouldPaginate ? skip + take! < totalCount : false,
+        hasPreviousPage: shouldPaginate ? skip > 0 : false,
       },
     };
   }
