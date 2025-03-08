@@ -1,13 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { T_Group } from "@/lib/types";
 import { PhoneIcon, UserIcon } from "lucide-react";
+import Link from "next/link";
 import { siInstagram } from "simple-icons";
 
 export function GroupDetailsCard({
   instagram,
   name,
   phone,
-}: Pick<T_Group, "instagram" | "phone" | "name">) {
+  slug,
+}: Pick<T_Group, "instagram" | "phone" | "name" | "slug">) {
   return (
     <Card>
       <CardContent className="pt-6">
@@ -15,7 +17,9 @@ export function GroupDetailsCard({
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <UserIcon className="h-5 w-5" />
-            <span>{name}</span>
+            <Link className="hover:underline" href={`/groups/${slug}`}>
+              {name}
+            </Link>
           </div>
 
           {instagram && (
