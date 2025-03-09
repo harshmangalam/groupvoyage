@@ -25,7 +25,7 @@ export const getRandomPosters = cache(async () => {
     ...locationsPoster,
     ...posters.sort(() => Math.random() - 0.5).slice(0, 1),
   ].slice(0, 3);
-  return randomPosters;
+  return randomPosters as string[];
 });
 
 export const getPublicStats = cache(async () => {

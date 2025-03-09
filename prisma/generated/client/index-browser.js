@@ -111,9 +111,6 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
-  ReadUncommitted: 'ReadUncommitted',
-  ReadCommitted: 'ReadCommitted',
-  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -175,22 +172,9 @@ exports.Prisma.NullableJsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
-};
-
-exports.Prisma.LocationOrderByRelevanceFieldEnum = {
-  id: 'id',
-  city: 'city',
-  slug: 'slug',
-  country: 'country',
-  posterUrl: 'posterUrl'
 };
 
 exports.Prisma.JsonNullValueFilter = {
@@ -199,32 +183,9 @@ exports.Prisma.JsonNullValueFilter = {
   AnyNull: Prisma.AnyNull
 };
 
-exports.Prisma.GroupOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name',
-  slug: 'slug',
-  details: 'details',
-  instagram: 'instagram',
-  phone: 'phone',
-  email: 'email',
-  source: 'source',
-  logo: 'logo',
-  posterUrls: 'posterUrls',
-  tagLine: 'tagLine'
-};
-
-exports.Prisma.EventOrderByRelevanceFieldEnum = {
-  id: 'id',
-  title: 'title',
-  slug: 'slug',
-  durations: 'durations',
-  details: 'details',
-  locationId: 'locationId',
-  groupId: 'groupId',
-  posterUrls: 'posterUrls',
-  includes: 'includes',
-  excludes: 'excludes',
-  source: 'source'
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 

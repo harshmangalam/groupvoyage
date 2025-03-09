@@ -11,7 +11,7 @@ type TripCardProps = {
 export function TripCard({ event }: TripCardProps) {
   const { posterUrls, slug, group, location, title, durations, price, meta } =
     event;
-  const firstPosterUrl = posterUrls[0];
+  const firstPosterUrl = posterUrls?.[0];
   const originalPrice = (meta as EventMetaType)?.originalPrice;
 
   const percentageSaved =

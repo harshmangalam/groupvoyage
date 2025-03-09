@@ -57,7 +57,7 @@ export default async function GroupHomePage({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 h-full">
           <div className="w-full h-full">
             <div className="relative md:w-full h-auto">
-              <PostersCarousel posterUrls={group.posterUrls} />
+              <PostersCarousel posterUrls={group.posterUrls as string[]} />
             </div>
           </div>
           <div className="flex-1 w-full flex-col h-full px-4 lg:px-0  flex justify-between">

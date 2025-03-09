@@ -16,7 +16,7 @@ export function GroupCard({
       <Card className="hover:shadow-md transition-all cursor-pointer group overflow-hidden">
         <CardContent className="p-0">
           <Image
-            src={posterUrls[0] || ""}
+            src={posterUrls?.[0] || ""}
             alt={name}
             width={200}
             height={300}

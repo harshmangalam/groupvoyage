@@ -58,7 +58,7 @@ export default function FeaturedHeroEvents({
             {/* Background Image */}
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${event.posterUrls[0]})` }}
+              style={{ backgroundImage: `url(${event.posterUrls?.[0]})` }}
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
             </div>

@@ -1,13 +1,12 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearchPostgres"]
   output          = "./generated/client"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Location {
@@ -37,7 +36,7 @@ model Group {
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   logo       String?
-  posterUrls String[]
+  posterUrls Json?
   tagLine    String?
   events     Event[]
   locations  Location[] @relation("GroupToLocation")
@@ -52,10 +51,10 @@ model Event {
   price      Int?
   locationId String
   groupId    String
-  posterUrls String[]
+  posterUrls Json?
   meta       Json?
-  includes   String[]
-  excludes   String[]
+  includes   Json?
+  excludes   Json?
   source     String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt

@@ -54,7 +54,7 @@ export default async function TripDetailsPage({
     <div className="min-h-screen bg-background">
       <div className="relative">
         <TripPostersCarousel
-          posterUrls={event.posterUrls}
+          posterUrls={event.posterUrls as string[]}
           title={event.title}
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent pt-24 pb-6 px-6 md:px-8">
@@ -111,13 +111,13 @@ export default async function TripDetailsPage({
             <SectionList
               label={"What's Included"}
               Icon={<Check className="h-4 w-4 mt-1 flex-none text-green-500" />}
-              data={event.includes}
+              data={event.includes as string[]}
             />
 
             <SectionList
               label={`What's Not Included`}
               Icon={<XIcon className="h-4 w-4 mt-1 flex-none  text-red-500" />}
-              data={event.excludes}
+              data={event.excludes as string[]}
             />
           </div>
           <div className="space-y-6">
