@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_NAME } from "@/lib/constatnts";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
         </NuqsAdapter>
         <Toaster />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
