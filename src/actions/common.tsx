@@ -54,7 +54,7 @@ export const getSearchResults = cache(
   }) => {
     if (!search) return {};
     return {
-      events: await getEventList({ search, durations, locationSlug }),
+      events: await getEventList({ search, durations, locationSlug, take: 30 }),
       groups: await getGroupList({ search, locationSlug }),
     };
   }
