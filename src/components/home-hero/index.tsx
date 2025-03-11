@@ -16,7 +16,8 @@ export async function HomeHero() {
             <h1 className="tracking-tight text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white !leading-9 md:!leading-[48px] lg:!leading-[56px]">
               Find local <span className="text-destructive">groups</span>,
               compare <span className="text-destructive">prices</span>, and join
-              budget-friendly <span className="text-destructive"> trips</span>
+              budget-friendly weekend{" "}
+              <span className="text-destructive"> trips</span>
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
               {SITE_NAME} connects you with like-minded travelers from your
