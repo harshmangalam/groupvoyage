@@ -5,6 +5,11 @@ import { HomeHero } from "@/components/home-hero";
 import { LocationCard } from "@/components/location-card";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 
 export default async function HomePage() {
   const locations = await getLocations({});
