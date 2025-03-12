@@ -16,7 +16,7 @@ export const TripDetails = ({ details }: { details: string }) => {
     <div
       ref={contentRef}
       dangerouslySetInnerHTML={{ __html: details }}
-      className="prose leading-relaxed dark:[&_*]:!text-secondary-foreground dark:[&_*]:!bg-transparent [&_*]:!bg-transparent [&_*]:!text-secondary-foreground"
+      className="leading-relaxed dark:[&_*]:!text-secondary-foreground dark:[&_*]:!bg-transparent [&_*]:!bg-transparent [&_*]:!text-secondary-foreground"
     />
   );
 };
