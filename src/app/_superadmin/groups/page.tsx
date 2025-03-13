@@ -9,7 +9,7 @@ import {
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CreateDialog } from "./create-dialog";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { prisma } from "@/lib/db";
 import { ExternalLinkIcon } from "lucide-react";
 import { getInstagramHandler, getWebsiteOrigin } from "@/lib/utils";

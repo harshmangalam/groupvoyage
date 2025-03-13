@@ -1,5 +1,5 @@
 import { getRandomPosters } from "@/actions/common";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export async function Posters() {
   const posters = await getRandomPosters();

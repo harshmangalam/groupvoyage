@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { MapPin, Clock, User, IndianRupee } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";

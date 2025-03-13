@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { T_GroupCard } from "@/lib/types";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export function GroupCard({
   group,
