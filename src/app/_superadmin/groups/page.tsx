@@ -9,7 +9,7 @@ import {
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CreateDialog } from "./create-dialog";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ExternalLinkIcon } from "lucide-react";
 import { getInstagramHandler, getWebsiteOrigin } from "@/lib/utils";
@@ -66,7 +66,10 @@ export default async function Locations() {
                         height={200}
                         className="aspect-video w-auto h-16"
                         alt={group.name}
-                      />
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }} />
                     )}
                     <p>{group.name}</p>
                   </div>

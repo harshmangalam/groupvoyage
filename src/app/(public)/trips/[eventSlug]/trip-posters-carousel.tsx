@@ -5,7 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 export function TripPostersCarousel({
   posterUrls,
@@ -26,7 +26,10 @@ export function TripPostersCarousel({
                 fill
                 className="object-cover"
                 priority={index === 0}
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
             </div>
           </CarouselItem>
         ))}

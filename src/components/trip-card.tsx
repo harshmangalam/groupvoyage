@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { MapPin, Clock, User, IndianRupee } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
@@ -27,12 +27,15 @@ export function TripCard({ event }: TripCardProps) {
             <Image
               src={firstPosterUrl || ""}
               alt={`${title} poster`}
-              objectFit="cover"
               width={400}
               height={400}
               className="w-full h-full aspect-auto object-cover"
               loading="lazy"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                objectFit: "cover"
+              }} />
           </div>
         )}
         <CardContent className="p-4">

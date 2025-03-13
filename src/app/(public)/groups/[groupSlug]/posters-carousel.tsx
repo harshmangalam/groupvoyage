@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 
 export function PostersCarousel({ posterUrls }: { posterUrls: string[] }) {
@@ -31,7 +31,10 @@ export function PostersCarousel({ posterUrls }: { posterUrls: string[] }) {
               className="object-cover aspect-video md:rounded-md w-full h-full overflow-hidden"
               width={600}
               height={600}
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </CarouselItem>
         ))}
       </CarouselContent>

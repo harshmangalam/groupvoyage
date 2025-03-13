@@ -1,5 +1,5 @@
 import { getRandomPosters } from "@/actions/common";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 export async function Posters() {
   const posters = await getRandomPosters();
@@ -20,7 +20,10 @@ export async function Posters() {
                 : "rounded-2xl"
             } `}
             priority={index === 1}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </div>
       ))}
     </div>
