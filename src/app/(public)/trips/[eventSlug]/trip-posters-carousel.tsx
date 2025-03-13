@@ -28,8 +28,9 @@ export function TripPostersCarousel({
                 priority={index === 0}
                 style={{
                   maxWidth: "100%",
-                  height: "auto"
-                }} />
+                  height: "100%",
+                }}
+              />
             </div>
           </CarouselItem>
         ))}

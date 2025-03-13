@@ -119,36 +119,3 @@ export const getEventDetails = cache(
     });
   }
 );
-
-export const getTrendingEventList = cache(async () => {
-  return prisma.event.findMany({
-    where: {
-      isArchived: false,
-    },
-    select: {
-      posterUrls: true,
-      durations: true,
-      id: true,
-      title: true,
-      price: true,
-      slug: true,
-      location: {
-        select: {
-          slug: true,
-          city: true,
-        },
-      },
-      group: {
-        select: {
-          name: true,
-          slug: true,
-        },
-      },
-      meta: true,
-    },
-    take: 10,
-  });
-});
-export const getAllEventsCount = cache(async () => {
-  return prisma.event.count();
-});

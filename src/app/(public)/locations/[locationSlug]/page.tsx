@@ -25,7 +25,16 @@ export default async function LocationPage({ params }: LocationPageProps) {
   const locationSlug = (await params).locationSlug.toString();
   const location = await getLocation({ locationSlug });
   const groups = await getGroupList({ locationSlug, take: 10 });
-  const events = await getEventList({ locationSlug, take: 10 });
+  const oneDayEvents = await getEventList({
+    locationSlug,
+    take: 10,
+    durations: "1 day",
+  });
+  const twoDaysEvents = await getEventList({
+    locationSlug,
+    take: 10,
+    durations: "2 day",
+  });
 
   if (!location) return notFound();
   return (
@@ -45,17 +54,28 @@ export default async function LocationPage({ params }: LocationPageProps) {
       </PageSection>
 
       <PageSection
-        href={`/trips/?locations=${locationSlug}`}
+        href={`/trips/?locations=${locationSlug}&durations=1-day`}
         label={
           <span>
-            Trending Trips from{" "}
+            Trending 1 Day Trips from{" "}
             <span className="text-destructive">{location.city}</span>
           </span>
         }
         description={`Browse and compare budget-friendly weekend trips organized by
             different travel groups in {location.city}`}
       >
-        <TripsCarousel events={events.events} />
+        <TripsCarousel events={oneDayEvents.events} />
+      </PageSection>
+      <PageSection
+        href={`/trips/?locations=${locationSlug}&durations=2-days`}
+        label={
+          <span>
+            Trending 2 Days Trips from{" "}
+            <span className="text-destructive">{location.city}</span>
+          </span>
+        }
+      >
+        <TripsCarousel events={twoDaysEvents.events} />
       </PageSection>
     </div>
   );

@@ -33,9 +33,9 @@ export function TripCard({ event }: TripCardProps) {
               loading="lazy"
               style={{
                 maxWidth: "100%",
-                height: "auto",
-                objectFit: "cover"
-              }} />
+                objectFit: "cover",
+              }}
+            />
           </div>
         )}
         <CardContent className="p-4">

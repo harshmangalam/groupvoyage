@@ -10,12 +10,12 @@ import {
 } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
-import { T_FeaturedEvent } from "@/lib/types";
+import { T_EventCard } from "@/lib/types";
 
 export default function FeaturedHeroEvents({
   events,
 }: {
-  events: T_FeaturedEvent[];
+  events: T_EventCard[];
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);

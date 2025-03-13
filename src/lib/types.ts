@@ -1,8 +1,4 @@
-import {
-  getEventDetails,
-  getEventList,
-  getTrendingEventList,
-} from "@/actions/event";
+import { getEventDetails, getEventList } from "@/actions/event";
 import { getGroupList } from "@/actions/group";
 import { getLocations, getLocationsOption } from "@/actions/location";
 import { Prisma } from "../../prisma/generated/client";
@@ -26,10 +22,6 @@ export type T_GroupCard = Awaited<ReturnType<typeof getGroupList>>[number];
 export type T_Events = Awaited<ReturnType<typeof getEventList>>;
 export type T_Event_Details = Awaited<ReturnType<typeof getEventDetails>>;
 export type T_EventCard = T_Events["events"][number];
-
-export type T_FeaturedEvent = Awaited<
-  ReturnType<typeof getTrendingEventList>
->[number];
 
 export type T_LocationWithCount = Awaited<
   ReturnType<typeof getLocations>

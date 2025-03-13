@@ -7,11 +7,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { getTrendingEventList } from "@/actions/event";
+import { getEventList } from "@/actions/event";
 import { TripCard } from "./trip-card";
 
 export async function TrendingEventsCarousel() {
-  const events = await getTrendingEventList();
+  const events = await getEventList({ take: 10 });
   return (
     <Carousel
       opts={{
@@ -20,7 +20,7 @@ export async function TrendingEventsCarousel() {
       className="w-full"
     >
       <CarouselContent>
-        {events.map((event, index) => (
+        {events.events.map((event, index) => (
           <CarouselItem
             key={index}
             className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
@@ -29,7 +29,7 @@ export async function TrendingEventsCarousel() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      {events.length > 1 ? (
+      {events.events.length > 1 ? (
         <>
           <CarouselPrevious className="absolute -left-3" />
           <CarouselNext className="absolute -right-3" />
