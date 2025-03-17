@@ -32,7 +32,11 @@ export const getEventList = cache(
       filter.isArchived = false;
     }
     if (search) {
-      filter.OR = [{ title: { contains: search.replace(/[^a-zA-Z]/g, "") } }];
+      filter.OR = [
+        { title: { search: search.replace(/[^a-zA-Z]/g, "") } },
+        { details: { search: search.replace(/[^a-zA-Z]/g, "") } },
+        { durations: { search: search.replace(/[^a-zA-Z]/g, "") } },
+      ];
     }
 
     if (durations) {

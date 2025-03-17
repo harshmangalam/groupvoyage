@@ -50,8 +50,8 @@ export const getGroupList = cache(
   }) => {
     const filter: Record<string, unknown> = {};
     if (search) {
-      filter.name = { contains: search.replace(/[^a-zA-Z]/g, "") };
-      filter.details = { contains: search.replace(/[^a-zA-Z]/g, "") };
+      filter.name = { search: search.replace(/[^a-zA-Z]/g, "") };
+      filter.details = { search: search.replace(/[^a-zA-Z]/g, "") };
     }
 
     if (locationSlug) {

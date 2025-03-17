@@ -32,11 +32,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.4.1
+ * Prisma Client JS version: 6.5.0
  * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
  */
 Prisma.prismaVersion = {
-  client: "6.4.1",
+  client: "6.5.0",
   engine: "173f8d54f8d52e692c7e27e72a88314ec7aeff60"
 }
 
@@ -157,10 +157,42 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.LocationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  city: 'city',
+  slug: 'slug',
+  country: 'country',
+  posterUrl: 'posterUrl'
+};
+
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.GroupOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  details: 'details',
+  instagram: 'instagram',
+  phone: 'phone',
+  email: 'email',
+  source: 'source',
+  logo: 'logo',
+  tagLine: 'tagLine'
+};
+
+exports.Prisma.EventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  durations: 'durations',
+  details: 'details',
+  locationId: 'locationId',
+  groupId: 'groupId',
+  source: 'source'
 };
 
 
@@ -193,7 +225,9 @@ const config = {
         "native": true
       }
     ],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "fullTextSearchPostgres"
+    ],
     "sourceFilePath": "/Users/harshmangalam/personal/projects/groupvoyage-community/groupvoyage/prisma/schema.prisma",
     "isCustomOutput": true
   },
@@ -202,7 +236,7 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "6.4.1",
+  "clientVersion": "6.5.0",
   "engineVersion": "173f8d54f8d52e692c7e27e72a88314ec7aeff60",
   "datasourceNames": [
     "db"
@@ -217,8 +251,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Location {\n  id        String   @id @default(uuid())\n  city      String\n  slug      String   @unique\n  country   String\n  active    Boolean  @default(true)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  posterUrl String?\n  events    Event[]\n  groups    Group[]  @relation(\"GroupToLocation\")\n}\n\nmodel Group {\n  id         String     @id @default(uuid())\n  name       String     @unique\n  slug       String     @unique\n  details    String\n  instagram  String?\n  phone      String?\n  email      String?\n  meta       Json?\n  source     String\n  active     Boolean    @default(true)\n  createdAt  DateTime   @default(now())\n  updatedAt  DateTime   @updatedAt\n  logo       String?\n  posterUrls Json?\n  tagLine    String?\n  events     Event[]\n  locations  Location[] @relation(\"GroupToLocation\")\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  title      String\n  slug       String   @unique\n  durations  String?\n  details    String?\n  price      Int?\n  locationId String\n  groupId    String\n  posterUrls Json?\n  meta       Json?\n  includes   Json?\n  excludes   Json?\n  source     String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  isArchived Boolean  @default(false)\n  group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)\n  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)\n}\n",
-  "inlineSchemaHash": "81deebe957b2a67c0d4b8c9391726fa69d72dc1de920adfa9ab6721486024be9",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"./generated/client\"\n  previewFeatures = [\"fullTextSearchPostgres\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Location {\n  id        String   @id @default(uuid())\n  city      String\n  slug      String   @unique\n  country   String\n  active    Boolean  @default(true)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  posterUrl String?\n  events    Event[]\n  groups    Group[]  @relation(\"GroupToLocation\")\n}\n\nmodel Group {\n  id         String     @id @default(uuid())\n  name       String     @unique\n  slug       String     @unique\n  details    String\n  instagram  String?\n  phone      String?\n  email      String?\n  meta       Json?\n  source     String\n  active     Boolean    @default(true)\n  createdAt  DateTime   @default(now())\n  updatedAt  DateTime   @updatedAt\n  logo       String?\n  posterUrls Json?\n  tagLine    String?\n  events     Event[]\n  locations  Location[] @relation(\"GroupToLocation\")\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  title      String\n  slug       String   @unique\n  durations  String?\n  details    String?\n  price      Int?\n  locationId String\n  groupId    String\n  posterUrls Json?\n  meta       Json?\n  includes   Json?\n  excludes   Json?\n  source     String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  isArchived Boolean  @default(false)\n  group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)\n  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)\n}\n",
+  "inlineSchemaHash": "c7852dc13bb8c135f468936e395cf1766d2558576cf91e5824de3d6d36b85b47",
   "copyEngine": true
 }
 config.dirname = '/'

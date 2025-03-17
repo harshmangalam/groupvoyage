@@ -17,11 +17,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.4.1
+ * Prisma Client JS version: 6.5.0
  * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
  */
 Prisma.prismaVersion = {
-  client: "6.4.1",
+  client: "6.5.0",
   engine: "173f8d54f8d52e692c7e27e72a88314ec7aeff60"
 }
 
@@ -185,10 +185,42 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.LocationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  city: 'city',
+  slug: 'slug',
+  country: 'country',
+  posterUrl: 'posterUrl'
+};
+
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.GroupOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  details: 'details',
+  instagram: 'instagram',
+  phone: 'phone',
+  email: 'email',
+  source: 'source',
+  logo: 'logo',
+  tagLine: 'tagLine'
+};
+
+exports.Prisma.EventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  durations: 'durations',
+  details: 'details',
+  locationId: 'locationId',
+  groupId: 'groupId',
+  source: 'source'
 };
 
 
