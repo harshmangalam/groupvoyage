@@ -33,11 +33,11 @@ exports.$Enums = {}
 
 /**
  * Prisma Client JS version: 6.4.1
- * Query Engine version: a9055b89e58b4b5bfb59600785423b1db3d0e75d
+ * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
  */
 Prisma.prismaVersion = {
   client: "6.4.1",
-  engine: "a9055b89e58b4b5bfb59600785423b1db3d0e75d"
+  engine: "173f8d54f8d52e692c7e27e72a88314ec7aeff60"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -84,6 +84,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -145,6 +148,11 @@ exports.Prisma.NullableJsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -154,11 +162,6 @@ exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
-};
-
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
 };
 
 
@@ -191,9 +194,7 @@ const config = {
         "native": true
       }
     ],
-    "previewFeatures": [
-      "driverAdapters"
-    ],
+    "previewFeatures": [],
     "sourceFilePath": "/Users/harshmangalam/personal/projects/groupvoyage-community/groupvoyage/prisma/schema.prisma",
     "isCustomOutput": true
   },
@@ -203,22 +204,22 @@ const config = {
   },
   "relativePath": "../..",
   "clientVersion": "6.4.1",
-  "engineVersion": "a9055b89e58b4b5bfb59600785423b1db3d0e75d",
+  "engineVersion": "173f8d54f8d52e692c7e27e72a88314ec7aeff60",
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
+  "activeProvider": "postgresql",
   "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": null,
-        "value": "file:./dev.db"
+        "fromEnvVar": "DATABASE_URL",
+        "value": null
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"./generated/client\"\n  previewFeatures = [\"driverAdapters\"]\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = \"file:./dev.db\"\n}\n\nmodel Location {\n  id        String   @id @default(uuid())\n  city      String\n  slug      String   @unique\n  country   String\n  active    Boolean  @default(true)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  posterUrl String?\n  events    Event[]\n  groups    Group[]  @relation(\"GroupToLocation\")\n}\n\nmodel Group {\n  id         String     @id @default(uuid())\n  name       String     @unique\n  slug       String     @unique\n  details    String\n  instagram  String?\n  phone      String?\n  email      String?\n  meta       Json?\n  source     String\n  active     Boolean    @default(true)\n  createdAt  DateTime   @default(now())\n  updatedAt  DateTime   @updatedAt\n  logo       String?\n  posterUrls Json?\n  tagLine    String?\n  events     Event[]\n  locations  Location[] @relation(\"GroupToLocation\")\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  title      String\n  slug       String   @unique\n  durations  String?\n  details    String?\n  price      Int?\n  locationId String\n  groupId    String\n  posterUrls Json?\n  meta       Json?\n  includes   Json?\n  excludes   Json?\n  source     String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  isArchived Boolean  @default(false)\n  group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)\n  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)\n}\n",
-  "inlineSchemaHash": "260f63e0acc4b31975c96c7885f9922c37cae27271b06585ec82fc6c97e827c7",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Location {\n  id        String   @id @default(uuid())\n  city      String\n  slug      String   @unique\n  country   String\n  active    Boolean  @default(true)\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  posterUrl String?\n  events    Event[]\n  groups    Group[]  @relation(\"GroupToLocation\")\n}\n\nmodel Group {\n  id         String     @id @default(uuid())\n  name       String     @unique\n  slug       String     @unique\n  details    String\n  instagram  String?\n  phone      String?\n  email      String?\n  meta       Json?\n  source     String\n  active     Boolean    @default(true)\n  createdAt  DateTime   @default(now())\n  updatedAt  DateTime   @updatedAt\n  logo       String?\n  posterUrls Json?\n  tagLine    String?\n  events     Event[]\n  locations  Location[] @relation(\"GroupToLocation\")\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  title      String\n  slug       String   @unique\n  durations  String?\n  details    String?\n  price      Int?\n  locationId String\n  groupId    String\n  posterUrls Json?\n  meta       Json?\n  includes   Json?\n  excludes   Json?\n  source     String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  isArchived Boolean  @default(false)\n  group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)\n  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)\n}\n",
+  "inlineSchemaHash": "81deebe957b2a67c0d4b8c9391726fa69d72dc1de920adfa9ab6721486024be9",
   "copyEngine": true
 }
 

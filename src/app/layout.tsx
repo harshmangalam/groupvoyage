@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_NAME } from "@/lib/constatnts";
 import { ThemeProvider } from "@/components/theme-provider";
+import { NavigationProgress } from "@/components/navigation-progress";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -40,7 +41,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <TooltipProvider>{children}</TooltipProvider>
+            <TooltipProvider>
+              <NavigationProgress />
+              {children}
+            </TooltipProvider>
           </ThemeProvider>
         </NuqsAdapter>
         <Toaster />
