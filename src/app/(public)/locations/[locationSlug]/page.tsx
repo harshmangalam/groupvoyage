@@ -7,6 +7,8 @@ import { PageSection } from "@/components/page-section";
 import { GroupsCarousel } from "@/components/groups-carousel";
 import { TripsCarousel } from "@/components/trips-carousel";
 import { SITE_NAME } from "@/lib/constatnts";
+import { InstagramProfilesCarosel } from "@/components/instagram-profiles-carousel";
+import { getInstagramProfileList } from "@/actions/instagram-profile";
 
 type LocationPageProps = {
   params: Promise<{ locationSlug: string }>;
@@ -25,6 +27,10 @@ export default async function LocationPage({ params }: LocationPageProps) {
   const locationSlug = (await params).locationSlug.toString();
   const location = await getLocation({ locationSlug });
   const groups = await getGroupList({ locationSlug, take: 10 });
+  const instagramProfiles = await getInstagramProfileList({
+    locationSlug,
+    take: 10,
+  });
   const oneDayEvents = await getEventList({
     locationSlug,
     take: 10,
@@ -39,6 +45,16 @@ export default async function LocationPage({ params }: LocationPageProps) {
   if (!location) return notFound();
   return (
     <div className="max-w-7xl px-4 mx-auto">
+      <PageSection
+        label={
+          <span>
+            Instagram groups from{" "}
+            <span className="text-destructive">{location.city} </span>
+          </span>
+        }
+      >
+        <InstagramProfilesCarosel instagramProfiles={instagramProfiles} />
+      </PageSection>
       <PageSection
         href={`/groups?locations=${locationSlug}`}
         label={

@@ -38,6 +38,18 @@ export default async function HomePage() {
           </div>
         </PageSection>
         <PageSection
+          label={
+            <span>
+              Trending groups on{" "}
+              <span className="text-destructive">Instagram </span>
+            </span>
+          }
+        >
+          <Suspense key={"instagram-profiles"}>
+            <TrendingInstagramProfiles />
+          </Suspense>
+        </PageSection>
+        <PageSection
           href="/groups"
           label={
             <span>
@@ -50,19 +62,7 @@ export default async function HomePage() {
         >
           <TrendingGroupsCarousel />
         </PageSection>
-        <PageSection
-          href="/"
-          label={
-            <span>
-              Trending groups on{" "}
-              <span className="text-destructive">Instagram </span>
-            </span>
-          }
-        >
-          <Suspense key={"instagram-profiles"}>
-            <TrendingInstagramProfiles />
-          </Suspense>
-        </PageSection>
+
         <PageSection
           href="/trips"
           label={

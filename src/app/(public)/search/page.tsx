@@ -8,6 +8,7 @@ import { ListView } from "./list-view";
 import { SITE_NAME } from "@/lib/constatnts";
 import { PageSection } from "@/components/page-section";
 import { GroupCard } from "@/components/group-card";
+import { InstagramProfileCard } from "@/components/instagram-card";
 
 export async function generateMetadata({ searchParams }) {
   const { q } = await searchParams;
@@ -20,7 +21,7 @@ export async function generateMetadata({ searchParams }) {
 
 export default async function SearchPage({ searchParams }) {
   const { viewMode = "list", q, locations, durations } = await searchParams;
-  const { events, groups } = await getSearchResults({
+  const { events, groups, instagramProfiles } = await getSearchResults({
     search: q,
     durations,
     locationSlug: locations,
@@ -63,6 +64,18 @@ export default async function SearchPage({ searchParams }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {groups.map((group) => (
               <GroupCard key={group.id} group={group} />
+            ))}
+          </div>
+        </PageSection>
+      ) : null}
+      {instagramProfiles?.length ? (
+        <PageSection label={`${groups?.length ?? 0} Instagram groups found`}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-4">
+            {instagramProfiles.map((instagramProfile) => (
+              <InstagramProfileCard
+                key={instagramProfile.id}
+                {...instagramProfile}
+              />
             ))}
           </div>
         </PageSection>

@@ -35,6 +35,7 @@ export async function HomeHero() {
                   <Skeleton className="w-full h-24" />
                   <Skeleton className="w-full h-24" />
                   <Skeleton className="w-full h-24" />
+                  <Skeleton className="w-full h-24" />
                 </div>
               }
             >
