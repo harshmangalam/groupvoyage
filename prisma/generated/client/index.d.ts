@@ -4879,8 +4879,18 @@ export namespace Prisma {
 
   export type AggregateInstagramProfile = {
     _count: InstagramProfileCountAggregateOutputType | null
+    _avg: InstagramProfileAvgAggregateOutputType | null
+    _sum: InstagramProfileSumAggregateOutputType | null
     _min: InstagramProfileMinAggregateOutputType | null
     _max: InstagramProfileMaxAggregateOutputType | null
+  }
+
+  export type InstagramProfileAvgAggregateOutputType = {
+    followersCount: number | null
+  }
+
+  export type InstagramProfileSumAggregateOutputType = {
+    followersCount: number | null
   }
 
   export type InstagramProfileMinAggregateOutputType = {
@@ -4888,6 +4898,7 @@ export namespace Prisma {
     username: string | null
     name: string | null
     followers: string | null
+    followersCount: number | null
     following: string | null
     posts: string | null
     profilePic: string | null
@@ -4898,6 +4909,7 @@ export namespace Prisma {
     username: string | null
     name: string | null
     followers: string | null
+    followersCount: number | null
     following: string | null
     posts: string | null
     profilePic: string | null
@@ -4908,6 +4920,7 @@ export namespace Prisma {
     username: number
     name: number
     followers: number
+    followersCount: number
     following: number
     posts: number
     profilePic: number
@@ -4915,11 +4928,20 @@ export namespace Prisma {
   }
 
 
+  export type InstagramProfileAvgAggregateInputType = {
+    followersCount?: true
+  }
+
+  export type InstagramProfileSumAggregateInputType = {
+    followersCount?: true
+  }
+
   export type InstagramProfileMinAggregateInputType = {
     id?: true
     username?: true
     name?: true
     followers?: true
+    followersCount?: true
     following?: true
     posts?: true
     profilePic?: true
@@ -4930,6 +4952,7 @@ export namespace Prisma {
     username?: true
     name?: true
     followers?: true
+    followersCount?: true
     following?: true
     posts?: true
     profilePic?: true
@@ -4940,6 +4963,7 @@ export namespace Prisma {
     username?: true
     name?: true
     followers?: true
+    followersCount?: true
     following?: true
     posts?: true
     profilePic?: true
@@ -4984,6 +5008,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: InstagramProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InstagramProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: InstagramProfileMinAggregateInputType
@@ -5014,6 +5050,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: InstagramProfileCountAggregateInputType | true
+    _avg?: InstagramProfileAvgAggregateInputType
+    _sum?: InstagramProfileSumAggregateInputType
     _min?: InstagramProfileMinAggregateInputType
     _max?: InstagramProfileMaxAggregateInputType
   }
@@ -5023,10 +5061,13 @@ export namespace Prisma {
     username: string
     name: string | null
     followers: string | null
+    followersCount: number | null
     following: string | null
     posts: string | null
     profilePic: string | null
     _count: InstagramProfileCountAggregateOutputType | null
+    _avg: InstagramProfileAvgAggregateOutputType | null
+    _sum: InstagramProfileSumAggregateOutputType | null
     _min: InstagramProfileMinAggregateOutputType | null
     _max: InstagramProfileMaxAggregateOutputType | null
   }
@@ -5050,6 +5091,7 @@ export namespace Prisma {
     username?: boolean
     name?: boolean
     followers?: boolean
+    followersCount?: boolean
     following?: boolean
     posts?: boolean
     profilePic?: boolean
@@ -5062,6 +5104,7 @@ export namespace Prisma {
     username?: boolean
     name?: boolean
     followers?: boolean
+    followersCount?: boolean
     following?: boolean
     posts?: boolean
     profilePic?: boolean
@@ -5072,6 +5115,7 @@ export namespace Prisma {
     username?: boolean
     name?: boolean
     followers?: boolean
+    followersCount?: boolean
     following?: boolean
     posts?: boolean
     profilePic?: boolean
@@ -5082,12 +5126,13 @@ export namespace Prisma {
     username?: boolean
     name?: boolean
     followers?: boolean
+    followersCount?: boolean
     following?: boolean
     posts?: boolean
     profilePic?: boolean
   }
 
-  export type InstagramProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "followers" | "following" | "posts" | "profilePic", ExtArgs["result"]["instagramProfile"]>
+  export type InstagramProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "followers" | "followersCount" | "following" | "posts" | "profilePic", ExtArgs["result"]["instagramProfile"]>
   export type InstagramProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locations?: boolean | InstagramProfile$locationsArgs<ExtArgs>
     _count?: boolean | InstagramProfileCountOutputTypeDefaultArgs<ExtArgs>
@@ -5105,6 +5150,7 @@ export namespace Prisma {
       username: string
       name: string | null
       followers: string | null
+      followersCount: number | null
       following: string | null
       posts: string | null
       profilePic: string | null
@@ -5536,6 +5582,7 @@ export namespace Prisma {
     readonly username: FieldRef<"InstagramProfile", 'String'>
     readonly name: FieldRef<"InstagramProfile", 'String'>
     readonly followers: FieldRef<"InstagramProfile", 'String'>
+    readonly followersCount: FieldRef<"InstagramProfile", 'Int'>
     readonly following: FieldRef<"InstagramProfile", 'String'>
     readonly posts: FieldRef<"InstagramProfile", 'String'>
     readonly profilePic: FieldRef<"InstagramProfile", 'String'>
@@ -6045,6 +6092,7 @@ export namespace Prisma {
     username: 'username',
     name: 'name',
     followers: 'followers',
+    followersCount: 'followersCount',
     following: 'following',
     posts: 'posts',
     profilePic: 'profilePic'
@@ -6543,6 +6591,7 @@ export namespace Prisma {
     username?: StringFilter<"InstagramProfile"> | string
     name?: StringNullableFilter<"InstagramProfile"> | string | null
     followers?: StringNullableFilter<"InstagramProfile"> | string | null
+    followersCount?: IntNullableFilter<"InstagramProfile"> | number | null
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
@@ -6554,6 +6603,7 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrderInput | SortOrder
     followers?: SortOrderInput | SortOrder
+    followersCount?: SortOrderInput | SortOrder
     following?: SortOrderInput | SortOrder
     posts?: SortOrderInput | SortOrder
     profilePic?: SortOrderInput | SortOrder
@@ -6569,6 +6619,7 @@ export namespace Prisma {
     NOT?: InstagramProfileWhereInput | InstagramProfileWhereInput[]
     name?: StringNullableFilter<"InstagramProfile"> | string | null
     followers?: StringNullableFilter<"InstagramProfile"> | string | null
+    followersCount?: IntNullableFilter<"InstagramProfile"> | number | null
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
@@ -6580,12 +6631,15 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrderInput | SortOrder
     followers?: SortOrderInput | SortOrder
+    followersCount?: SortOrderInput | SortOrder
     following?: SortOrderInput | SortOrder
     posts?: SortOrderInput | SortOrder
     profilePic?: SortOrderInput | SortOrder
     _count?: InstagramProfileCountOrderByAggregateInput
+    _avg?: InstagramProfileAvgOrderByAggregateInput
     _max?: InstagramProfileMaxOrderByAggregateInput
     _min?: InstagramProfileMinOrderByAggregateInput
+    _sum?: InstagramProfileSumOrderByAggregateInput
   }
 
   export type InstagramProfileScalarWhereWithAggregatesInput = {
@@ -6596,6 +6650,7 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"InstagramProfile"> | string
     name?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
     followers?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
+    followersCount?: IntNullableWithAggregatesFilter<"InstagramProfile"> | number | null
     following?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
     posts?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
@@ -6960,6 +7015,7 @@ export namespace Prisma {
     username: string
     name?: string | null
     followers?: string | null
+    followersCount?: number | null
     following?: string | null
     posts?: string | null
     profilePic?: string | null
@@ -6971,6 +7027,7 @@ export namespace Prisma {
     username: string
     name?: string | null
     followers?: string | null
+    followersCount?: number | null
     following?: string | null
     posts?: string | null
     profilePic?: string | null
@@ -6982,6 +7039,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     followers?: NullableStringFieldUpdateOperationsInput | string | null
+    followersCount?: NullableIntFieldUpdateOperationsInput | number | null
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6993,6 +7051,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     followers?: NullableStringFieldUpdateOperationsInput | string | null
+    followersCount?: NullableIntFieldUpdateOperationsInput | number | null
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7004,6 +7063,7 @@ export namespace Prisma {
     username: string
     name?: string | null
     followers?: string | null
+    followersCount?: number | null
     following?: string | null
     posts?: string | null
     profilePic?: string | null
@@ -7014,6 +7074,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     followers?: NullableStringFieldUpdateOperationsInput | string | null
+    followersCount?: NullableIntFieldUpdateOperationsInput | number | null
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7024,6 +7085,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     followers?: NullableStringFieldUpdateOperationsInput | string | null
+    followersCount?: NullableIntFieldUpdateOperationsInput | number | null
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7437,9 +7499,14 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrder
     followers?: SortOrder
+    followersCount?: SortOrder
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
+  }
+
+  export type InstagramProfileAvgOrderByAggregateInput = {
+    followersCount?: SortOrder
   }
 
   export type InstagramProfileMaxOrderByAggregateInput = {
@@ -7447,6 +7514,7 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrder
     followers?: SortOrder
+    followersCount?: SortOrder
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
@@ -7457,9 +7525,14 @@ export namespace Prisma {
     username?: SortOrder
     name?: SortOrder
     followers?: SortOrder
+    followersCount?: SortOrder
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
+  }
+
+  export type InstagramProfileSumOrderByAggregateInput = {
+    followersCount?: SortOrder
   }
 
   export type EventCreateNestedManyWithoutLocationInput = {
@@ -8020,6 +8093,7 @@ export namespace Prisma {
     username: string
     name?: string | null
     followers?: string | null
+    followersCount?: number | null
     following?: string | null
     posts?: string | null
     profilePic?: string | null
@@ -8030,6 +8104,7 @@ export namespace Prisma {
     username: string
     name?: string | null
     followers?: string | null
+    followersCount?: number | null
     following?: string | null
     posts?: string | null
     profilePic?: string | null
@@ -8139,6 +8214,7 @@ export namespace Prisma {
     username?: StringFilter<"InstagramProfile"> | string
     name?: StringNullableFilter<"InstagramProfile"> | string | null
     followers?: StringNullableFilter<"InstagramProfile"> | string | null
+    followersCount?: IntNullableFilter<"InstagramProfile"> | number | null
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
@@ -8607,6 +8683,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     followers?: NullableStringFieldUpdateOperationsInput | string | null
+    followersCount?: NullableIntFieldUpdateOperationsInput | number | null
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8617,6 +8694,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     followers?: NullableStringFieldUpdateOperationsInput | string | null
+    followersCount?: NullableIntFieldUpdateOperationsInput | number | null
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8627,6 +8705,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     followers?: NullableStringFieldUpdateOperationsInput | string | null
+    followersCount?: NullableIntFieldUpdateOperationsInput | number | null
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null

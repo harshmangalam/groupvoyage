@@ -65,12 +65,13 @@ model Event {
 }
 
 model InstagramProfile {
-  id         String     @id @default(uuid())
-  username   String     @unique
-  name       String?
-  followers  String?
-  following  String?
-  posts      String?
-  profilePic String?
-  locations  Location[] @relation("InstagramProfileToLocation")
+  id             String     @id @default(uuid())
+  username       String     @unique
+  name           String?
+  followers      String?
+  followersCount Int?
+  following      String?
+  posts          String?
+  profilePic     String?
+  locations      Location[] @relation("InstagramProfileToLocation")
 }

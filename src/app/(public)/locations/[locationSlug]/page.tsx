@@ -46,6 +46,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
   return (
     <div className="max-w-7xl px-4 mx-auto">
       <PageSection
+        href={`/instagram-profiles?locations=${locationSlug}`}
         label={
           <span>
             Instagram groups from{" "}

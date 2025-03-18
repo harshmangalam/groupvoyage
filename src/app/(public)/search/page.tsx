@@ -58,24 +58,24 @@ export default async function SearchPage({ searchParams }) {
           <p className="text-muted-foreground">No trips found</p>
         )}
       </PageSection>
+      {instagramProfiles?.length ? (
+        <PageSection label={`${groups?.length ?? 0} Instagram groups found`}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {instagramProfiles.map((instagramProfile) => (
+              <InstagramProfileCard
+                key={instagramProfile.id}
+                {...instagramProfile}
+              />
+            ))}
+          </div>
+        </PageSection>
+      ) : null}
 
       {groups?.length ? (
         <PageSection label={`${groups?.length ?? 0} Groups found`}>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {groups.map((group) => (
               <GroupCard key={group.id} group={group} />
-            ))}
-          </div>
-        </PageSection>
-      ) : null}
-      {instagramProfiles?.length ? (
-        <PageSection label={`${groups?.length ?? 0} Instagram groups found`}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-4">
-            {instagramProfiles.map((instagramProfile) => (
-              <InstagramProfileCard
-                key={instagramProfile.id}
-                {...instagramProfile}
-              />
             ))}
           </div>
         </PageSection>

@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
     return new NextResponse(Buffer.from(buffer), {
       headers: {
         "Content-Type": response.headers.get("Content-Type") || "image/jpeg",
-        "Cache-Control": "public, max-age=3600", // Cache for 1 hour
+        "Cache-Control": "public, max-age=86400", // Cache for 1 day
       },
     });
   } catch (error) {

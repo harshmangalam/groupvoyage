@@ -170,6 +170,7 @@ exports.Prisma.InstagramProfileScalarFieldEnum = {
   username: 'username',
   name: 'name',
   followers: 'followers',
+  followersCount: 'followersCount',
   following: 'following',
   posts: 'posts',
   profilePic: 'profilePic'

@@ -31,7 +31,7 @@ export async function HomeHero() {
             <Suspense
               key={"home-hero-stats"}
               fallback={
-                <div className="grid grid-cols-3  gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4   gap-4">
                   <Skeleton className="w-full h-24" />
                   <Skeleton className="w-full h-24" />
                   <Skeleton className="w-full h-24" />

@@ -32,6 +32,9 @@ export const getInstagramProfileList = cache(
       },
       take,
       skip,
+      orderBy: {
+        followersCount: "desc",
+      },
     });
   }
 );

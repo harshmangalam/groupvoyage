@@ -19,16 +19,17 @@ export function InstagramProfileCard({
       href={`https://instagram.com/${username}?utm_source=${SITE_URL}&utm_medium=referral&utm_campaign=profile_click`}
       target="_blank"
       rel="noopener noreferrer"
-      className="block"
     >
-      <Card className="overflow-hidden h-full w-full transition-all hover:bg-muted">
+      <Card className="h-full w-full transition-all hover:bg-muted max-w-md overflow-hidden">
         <CardContent className="p-4 space-y-3">
           <div className="flex items-center gap-3">
             <Avatar className="h-16 w-16 border">
               {profilePic ? (
                 <AvatarImage
-                  src={`/api/proxy?url=${encodeURIComponent(profilePic)}`}
-                  alt={username}
+                  src={`/api/insta-profile-proxy?url=${encodeURIComponent(
+                    profilePic
+                  )}`}
+                  alt={name || username}
                 />
               ) : (
                 <AvatarFallback>
@@ -39,15 +40,18 @@ export function InstagramProfileCard({
             <div className="space-y-1">
               <div className="flex items-center gap-1">
                 <span className="font-medium">@{username}</span>
-                <ExternalLink className="h-3 w-3 text-muted-foreground" />
               </div>
-              {name && <p className="text-sm text-muted-foreground">{name}</p>}
+              {name && (
+                <p className="text-sm text-muted-foreground text-wrap">
+                  {name}
+                </p>
+              )}
             </div>
           </div>
 
           <div className="flex justify-between text-sm">
             <div className="flex items-center gap-1">
-              <Users className="h-3 w-3 text-muted-foreground" />
+              <Users className="h-4 w-4 text-muted-foreground" />
               <span>{followers}</span>
             </div>
             <div className="flex items-center gap-1">
@@ -55,7 +59,7 @@ export function InstagramProfileCard({
               <span className="text-muted-foreground">following</span>
             </div>
             <div className="flex items-center gap-1">
-              <Grid3X3 className="h-3 w-3 text-muted-foreground" />
+              <Grid3X3 className="h-4 w-4 text-muted-foreground" />
               <span>{posts}</span>
             </div>
           </div>
