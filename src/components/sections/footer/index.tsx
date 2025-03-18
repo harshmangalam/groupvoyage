@@ -29,7 +29,7 @@ export default function FooterSection() {
   const connectionLinks = [
     {
       label: "Instagram",
-      href: "https://instagram.com/harshmangalam_",
+      href: "https://www.instagram.com/groupvoyageofficial/",
     },
   ];
 
