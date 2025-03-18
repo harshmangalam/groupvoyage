@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Find Travel Groups",
+  title: "Explore Travel Groups",
   description: `Discover and compare travel groups effortlessly. Filter by location and choose the best group trip for your journey.`,
 };
 

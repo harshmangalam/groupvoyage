@@ -7,14 +7,16 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Find Travel Groups",
-  description: `Discover and compare travel groups effortlessly. Filter by location and choose the best group trip for your journey.`,
+  title: "Explore Instagram Groups",
+  description: `Discover instagram travel accounts for weekend trips. Filter by location and choose the best instagram group for your journey.`,
 };
 
-type GroupsPageProps = {
+type InstagramProfilePageProps = {
   searchParams: Promise<{ locations: string; durations: string }>;
 };
-export default async function GroupsPage({ searchParams }: GroupsPageProps) {
+export default async function InstagramProfilePage({
+  searchParams,
+}: InstagramProfilePageProps) {
   const locations = (await searchParams).locations ?? "";
   const instagramProfiles = await getInstagramProfileList({
     locationSlug: locations,
