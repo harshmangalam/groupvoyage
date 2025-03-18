@@ -1144,13 +1144,13 @@ export namespace Prisma {
   export type LocationCountOutputType = {
     events: number
     groups: number
-    InstagramProfile: number
+    instagramProfiles: number
   }
 
   export type LocationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | LocationCountOutputTypeCountEventsArgs
     groups?: boolean | LocationCountOutputTypeCountGroupsArgs
-    InstagramProfile?: boolean | LocationCountOutputTypeCountInstagramProfileArgs
+    instagramProfiles?: boolean | LocationCountOutputTypeCountInstagramProfilesArgs
   }
 
   // Custom InputTypes
@@ -1181,7 +1181,7 @@ export namespace Prisma {
   /**
    * LocationCountOutputType without action
    */
-  export type LocationCountOutputTypeCountInstagramProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocationCountOutputTypeCountInstagramProfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InstagramProfileWhereInput
   }
 
@@ -1231,11 +1231,11 @@ export namespace Prisma {
    */
 
   export type InstagramProfileCountOutputType = {
-    Location: number
+    locations: number
   }
 
   export type InstagramProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Location?: boolean | InstagramProfileCountOutputTypeCountLocationArgs
+    locations?: boolean | InstagramProfileCountOutputTypeCountLocationsArgs
   }
 
   // Custom InputTypes
@@ -1252,7 +1252,7 @@ export namespace Prisma {
   /**
    * InstagramProfileCountOutputType without action
    */
-  export type InstagramProfileCountOutputTypeCountLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InstagramProfileCountOutputTypeCountLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LocationWhereInput
   }
 
@@ -1451,7 +1451,7 @@ export namespace Prisma {
     posterUrl?: boolean
     events?: boolean | Location$eventsArgs<ExtArgs>
     groups?: boolean | Location$groupsArgs<ExtArgs>
-    InstagramProfile?: boolean | Location$InstagramProfileArgs<ExtArgs>
+    instagramProfiles?: boolean | Location$instagramProfilesArgs<ExtArgs>
     _count?: boolean | LocationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["location"]>
 
@@ -1492,7 +1492,7 @@ export namespace Prisma {
   export type LocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Location$eventsArgs<ExtArgs>
     groups?: boolean | Location$groupsArgs<ExtArgs>
-    InstagramProfile?: boolean | Location$InstagramProfileArgs<ExtArgs>
+    instagramProfiles?: boolean | Location$instagramProfilesArgs<ExtArgs>
     _count?: boolean | LocationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1503,7 +1503,7 @@ export namespace Prisma {
     objects: {
       events: Prisma.$EventPayload<ExtArgs>[]
       groups: Prisma.$GroupPayload<ExtArgs>[]
-      InstagramProfile: Prisma.$InstagramProfilePayload<ExtArgs>[]
+      instagramProfiles: Prisma.$InstagramProfilePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1910,7 +1910,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     events<T extends Location$eventsArgs<ExtArgs> = {}>(args?: Subset<T, Location$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     groups<T extends Location$groupsArgs<ExtArgs> = {}>(args?: Subset<T, Location$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    InstagramProfile<T extends Location$InstagramProfileArgs<ExtArgs> = {}>(args?: Subset<T, Location$InstagramProfileArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstagramProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    instagramProfiles<T extends Location$instagramProfilesArgs<ExtArgs> = {}>(args?: Subset<T, Location$instagramProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstagramProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2384,9 +2384,9 @@ export namespace Prisma {
   }
 
   /**
-   * Location.InstagramProfile
+   * Location.instagramProfiles
    */
-  export type Location$InstagramProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Location$instagramProfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the InstagramProfile
      */
@@ -2482,8 +2482,8 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     logo: number
-    tagLine: number
     posterUrls: number
+    tagLine: number
     _all: number
   }
 
@@ -2534,8 +2534,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     logo?: true
-    tagLine?: true
     posterUrls?: true
+    tagLine?: true
     _all?: true
   }
 
@@ -2625,8 +2625,8 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     logo: string | null
-    tagLine: string | null
     posterUrls: JsonValue | null
+    tagLine: string | null
     _count: GroupCountAggregateOutputType | null
     _min: GroupMinAggregateOutputType | null
     _max: GroupMaxAggregateOutputType | null
@@ -2660,8 +2660,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     logo?: boolean
-    tagLine?: boolean
     posterUrls?: boolean
+    tagLine?: boolean
     events?: boolean | Group$eventsArgs<ExtArgs>
     locations?: boolean | Group$locationsArgs<ExtArgs>
     _count?: boolean | GroupCountOutputTypeDefaultArgs<ExtArgs>
@@ -2681,8 +2681,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     logo?: boolean
-    tagLine?: boolean
     posterUrls?: boolean
+    tagLine?: boolean
   }, ExtArgs["result"]["group"]>
 
   export type GroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2699,8 +2699,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     logo?: boolean
-    tagLine?: boolean
     posterUrls?: boolean
+    tagLine?: boolean
   }, ExtArgs["result"]["group"]>
 
   export type GroupSelectScalar = {
@@ -2717,11 +2717,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     logo?: boolean
-    tagLine?: boolean
     posterUrls?: boolean
+    tagLine?: boolean
   }
 
-  export type GroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "details" | "instagram" | "phone" | "email" | "meta" | "source" | "active" | "createdAt" | "updatedAt" | "logo" | "tagLine" | "posterUrls", ExtArgs["result"]["group"]>
+  export type GroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "details" | "instagram" | "phone" | "email" | "meta" | "source" | "active" | "createdAt" | "updatedAt" | "logo" | "posterUrls" | "tagLine", ExtArgs["result"]["group"]>
   export type GroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Group$eventsArgs<ExtArgs>
     locations?: boolean | Group$locationsArgs<ExtArgs>
@@ -2750,8 +2750,8 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       logo: string | null
-      tagLine: string | null
       posterUrls: Prisma.JsonValue | null
+      tagLine: string | null
     }, ExtArgs["result"]["group"]>
     composites: {}
   }
@@ -3190,8 +3190,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Group", 'DateTime'>
     readonly updatedAt: FieldRef<"Group", 'DateTime'>
     readonly logo: FieldRef<"Group", 'String'>
-    readonly tagLine: FieldRef<"Group", 'String'>
     readonly posterUrls: FieldRef<"Group", 'Json'>
+    readonly tagLine: FieldRef<"Group", 'String'>
   }
     
 
@@ -3705,14 +3705,14 @@ export namespace Prisma {
     price: number
     locationId: number
     groupId: number
+    posterUrls: number
     meta: number
+    includes: number
+    excludes: number
     source: number
     createdAt: number
     updatedAt: number
     isArchived: number
-    posterUrls: number
-    includes: number
-    excludes: number
     _all: number
   }
 
@@ -3764,14 +3764,14 @@ export namespace Prisma {
     price?: true
     locationId?: true
     groupId?: true
+    posterUrls?: true
     meta?: true
+    includes?: true
+    excludes?: true
     source?: true
     createdAt?: true
     updatedAt?: true
     isArchived?: true
-    posterUrls?: true
-    includes?: true
-    excludes?: true
     _all?: true
   }
 
@@ -3870,14 +3870,14 @@ export namespace Prisma {
     price: number | null
     locationId: string
     groupId: string
+    posterUrls: JsonValue | null
     meta: JsonValue | null
+    includes: JsonValue | null
+    excludes: JsonValue | null
     source: string
     createdAt: Date
     updatedAt: Date
     isArchived: boolean
-    posterUrls: JsonValue | null
-    includes: JsonValue | null
-    excludes: JsonValue | null
     _count: EventCountAggregateOutputType | null
     _avg: EventAvgAggregateOutputType | null
     _sum: EventSumAggregateOutputType | null
@@ -3908,14 +3908,14 @@ export namespace Prisma {
     price?: boolean
     locationId?: boolean
     groupId?: boolean
+    posterUrls?: boolean
     meta?: boolean
+    includes?: boolean
+    excludes?: boolean
     source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isArchived?: boolean
-    posterUrls?: boolean
-    includes?: boolean
-    excludes?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
@@ -3929,14 +3929,14 @@ export namespace Prisma {
     price?: boolean
     locationId?: boolean
     groupId?: boolean
+    posterUrls?: boolean
     meta?: boolean
+    includes?: boolean
+    excludes?: boolean
     source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isArchived?: boolean
-    posterUrls?: boolean
-    includes?: boolean
-    excludes?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
@@ -3950,14 +3950,14 @@ export namespace Prisma {
     price?: boolean
     locationId?: boolean
     groupId?: boolean
+    posterUrls?: boolean
     meta?: boolean
+    includes?: boolean
+    excludes?: boolean
     source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isArchived?: boolean
-    posterUrls?: boolean
-    includes?: boolean
-    excludes?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
@@ -3971,17 +3971,17 @@ export namespace Prisma {
     price?: boolean
     locationId?: boolean
     groupId?: boolean
+    posterUrls?: boolean
     meta?: boolean
+    includes?: boolean
+    excludes?: boolean
     source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isArchived?: boolean
-    posterUrls?: boolean
-    includes?: boolean
-    excludes?: boolean
   }
 
-  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "durations" | "details" | "price" | "locationId" | "groupId" | "meta" | "source" | "createdAt" | "updatedAt" | "isArchived" | "posterUrls" | "includes" | "excludes", ExtArgs["result"]["event"]>
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "durations" | "details" | "price" | "locationId" | "groupId" | "posterUrls" | "meta" | "includes" | "excludes" | "source" | "createdAt" | "updatedAt" | "isArchived", ExtArgs["result"]["event"]>
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
@@ -4010,14 +4010,14 @@ export namespace Prisma {
       price: number | null
       locationId: string
       groupId: string
+      posterUrls: Prisma.JsonValue | null
       meta: Prisma.JsonValue | null
+      includes: Prisma.JsonValue | null
+      excludes: Prisma.JsonValue | null
       source: string
       createdAt: Date
       updatedAt: Date
       isArchived: boolean
-      posterUrls: Prisma.JsonValue | null
-      includes: Prisma.JsonValue | null
-      excludes: Prisma.JsonValue | null
     }, ExtArgs["result"]["event"]>
     composites: {}
   }
@@ -4451,14 +4451,14 @@ export namespace Prisma {
     readonly price: FieldRef<"Event", 'Int'>
     readonly locationId: FieldRef<"Event", 'String'>
     readonly groupId: FieldRef<"Event", 'String'>
+    readonly posterUrls: FieldRef<"Event", 'Json'>
     readonly meta: FieldRef<"Event", 'Json'>
+    readonly includes: FieldRef<"Event", 'Json'>
+    readonly excludes: FieldRef<"Event", 'Json'>
     readonly source: FieldRef<"Event", 'String'>
     readonly createdAt: FieldRef<"Event", 'DateTime'>
     readonly updatedAt: FieldRef<"Event", 'DateTime'>
     readonly isArchived: FieldRef<"Event", 'Boolean'>
-    readonly posterUrls: FieldRef<"Event", 'Json'>
-    readonly includes: FieldRef<"Event", 'Json'>
-    readonly excludes: FieldRef<"Event", 'Json'>
   }
     
 
@@ -5053,7 +5053,7 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
-    Location?: boolean | InstagramProfile$LocationArgs<ExtArgs>
+    locations?: boolean | InstagramProfile$locationsArgs<ExtArgs>
     _count?: boolean | InstagramProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instagramProfile"]>
 
@@ -5089,7 +5089,7 @@ export namespace Prisma {
 
   export type InstagramProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "followers" | "following" | "posts" | "profilePic", ExtArgs["result"]["instagramProfile"]>
   export type InstagramProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Location?: boolean | InstagramProfile$LocationArgs<ExtArgs>
+    locations?: boolean | InstagramProfile$locationsArgs<ExtArgs>
     _count?: boolean | InstagramProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type InstagramProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5098,7 +5098,7 @@ export namespace Prisma {
   export type $InstagramProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "InstagramProfile"
     objects: {
-      Location: Prisma.$LocationPayload<ExtArgs>[]
+      locations: Prisma.$LocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5502,7 +5502,7 @@ export namespace Prisma {
    */
   export interface Prisma__InstagramProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Location<T extends InstagramProfile$LocationArgs<ExtArgs> = {}>(args?: Subset<T, InstagramProfile$LocationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    locations<T extends InstagramProfile$locationsArgs<ExtArgs> = {}>(args?: Subset<T, InstagramProfile$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5927,9 +5927,9 @@ export namespace Prisma {
   }
 
   /**
-   * InstagramProfile.Location
+   * InstagramProfile.locations
    */
-  export type InstagramProfile$LocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InstagramProfile$locationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Location
      */
@@ -6011,8 +6011,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     logo: 'logo',
-    tagLine: 'tagLine',
-    posterUrls: 'posterUrls'
+    posterUrls: 'posterUrls',
+    tagLine: 'tagLine'
   };
 
   export type GroupScalarFieldEnum = (typeof GroupScalarFieldEnum)[keyof typeof GroupScalarFieldEnum]
@@ -6027,14 +6027,14 @@ export namespace Prisma {
     price: 'price',
     locationId: 'locationId',
     groupId: 'groupId',
+    posterUrls: 'posterUrls',
     meta: 'meta',
+    includes: 'includes',
+    excludes: 'excludes',
     source: 'source',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    isArchived: 'isArchived',
-    posterUrls: 'posterUrls',
-    includes: 'includes',
-    excludes: 'excludes'
+    isArchived: 'isArchived'
   };
 
   export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -6247,7 +6247,7 @@ export namespace Prisma {
     posterUrl?: StringNullableFilter<"Location"> | string | null
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
-    InstagramProfile?: InstagramProfileListRelationFilter
+    instagramProfiles?: InstagramProfileListRelationFilter
   }
 
   export type LocationOrderByWithRelationInput = {
@@ -6261,7 +6261,7 @@ export namespace Prisma {
     posterUrl?: SortOrderInput | SortOrder
     events?: EventOrderByRelationAggregateInput
     groups?: GroupOrderByRelationAggregateInput
-    InstagramProfile?: InstagramProfileOrderByRelationAggregateInput
+    instagramProfiles?: InstagramProfileOrderByRelationAggregateInput
     _relevance?: LocationOrderByRelevanceInput
   }
 
@@ -6279,7 +6279,7 @@ export namespace Prisma {
     posterUrl?: StringNullableFilter<"Location"> | string | null
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
-    InstagramProfile?: InstagramProfileListRelationFilter
+    instagramProfiles?: InstagramProfileListRelationFilter
   }, "id" | "slug">
 
   export type LocationOrderByWithAggregationInput = {
@@ -6327,8 +6327,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Group"> | Date | string
     updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
-    tagLine?: StringNullableFilter<"Group"> | string | null
     posterUrls?: JsonNullableFilter<"Group">
+    tagLine?: StringNullableFilter<"Group"> | string | null
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
   }
@@ -6347,8 +6347,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     logo?: SortOrderInput | SortOrder
-    tagLine?: SortOrderInput | SortOrder
     posterUrls?: SortOrderInput | SortOrder
+    tagLine?: SortOrderInput | SortOrder
     events?: EventOrderByRelationAggregateInput
     locations?: LocationOrderByRelationAggregateInput
     _relevance?: GroupOrderByRelevanceInput
@@ -6371,8 +6371,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Group"> | Date | string
     updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
-    tagLine?: StringNullableFilter<"Group"> | string | null
     posterUrls?: JsonNullableFilter<"Group">
+    tagLine?: StringNullableFilter<"Group"> | string | null
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
   }, "id" | "name" | "slug">
@@ -6391,8 +6391,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     logo?: SortOrderInput | SortOrder
-    tagLine?: SortOrderInput | SortOrder
     posterUrls?: SortOrderInput | SortOrder
+    tagLine?: SortOrderInput | SortOrder
     _count?: GroupCountOrderByAggregateInput
     _max?: GroupMaxOrderByAggregateInput
     _min?: GroupMinOrderByAggregateInput
@@ -6415,8 +6415,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
     logo?: StringNullableWithAggregatesFilter<"Group"> | string | null
-    tagLine?: StringNullableWithAggregatesFilter<"Group"> | string | null
     posterUrls?: JsonNullableWithAggregatesFilter<"Group">
+    tagLine?: StringNullableWithAggregatesFilter<"Group"> | string | null
   }
 
   export type EventWhereInput = {
@@ -6431,14 +6431,14 @@ export namespace Prisma {
     price?: IntNullableFilter<"Event"> | number | null
     locationId?: StringFilter<"Event"> | string
     groupId?: StringFilter<"Event"> | string
+    posterUrls?: JsonNullableFilter<"Event">
     meta?: JsonNullableFilter<"Event">
+    includes?: JsonNullableFilter<"Event">
+    excludes?: JsonNullableFilter<"Event">
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
     isArchived?: BoolFilter<"Event"> | boolean
-    posterUrls?: JsonNullableFilter<"Event">
-    includes?: JsonNullableFilter<"Event">
-    excludes?: JsonNullableFilter<"Event">
     group?: XOR<GroupScalarRelationFilter, GroupWhereInput>
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
   }
@@ -6452,14 +6452,14 @@ export namespace Prisma {
     price?: SortOrderInput | SortOrder
     locationId?: SortOrder
     groupId?: SortOrder
+    posterUrls?: SortOrderInput | SortOrder
     meta?: SortOrderInput | SortOrder
+    includes?: SortOrderInput | SortOrder
+    excludes?: SortOrderInput | SortOrder
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isArchived?: SortOrder
-    posterUrls?: SortOrderInput | SortOrder
-    includes?: SortOrderInput | SortOrder
-    excludes?: SortOrderInput | SortOrder
     group?: GroupOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
     _relevance?: EventOrderByRelevanceInput
@@ -6477,14 +6477,14 @@ export namespace Prisma {
     price?: IntNullableFilter<"Event"> | number | null
     locationId?: StringFilter<"Event"> | string
     groupId?: StringFilter<"Event"> | string
+    posterUrls?: JsonNullableFilter<"Event">
     meta?: JsonNullableFilter<"Event">
+    includes?: JsonNullableFilter<"Event">
+    excludes?: JsonNullableFilter<"Event">
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
     isArchived?: BoolFilter<"Event"> | boolean
-    posterUrls?: JsonNullableFilter<"Event">
-    includes?: JsonNullableFilter<"Event">
-    excludes?: JsonNullableFilter<"Event">
     group?: XOR<GroupScalarRelationFilter, GroupWhereInput>
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
   }, "id" | "slug">
@@ -6498,14 +6498,14 @@ export namespace Prisma {
     price?: SortOrderInput | SortOrder
     locationId?: SortOrder
     groupId?: SortOrder
+    posterUrls?: SortOrderInput | SortOrder
     meta?: SortOrderInput | SortOrder
+    includes?: SortOrderInput | SortOrder
+    excludes?: SortOrderInput | SortOrder
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isArchived?: SortOrder
-    posterUrls?: SortOrderInput | SortOrder
-    includes?: SortOrderInput | SortOrder
-    excludes?: SortOrderInput | SortOrder
     _count?: EventCountOrderByAggregateInput
     _avg?: EventAvgOrderByAggregateInput
     _max?: EventMaxOrderByAggregateInput
@@ -6525,14 +6525,14 @@ export namespace Prisma {
     price?: IntNullableWithAggregatesFilter<"Event"> | number | null
     locationId?: StringWithAggregatesFilter<"Event"> | string
     groupId?: StringWithAggregatesFilter<"Event"> | string
+    posterUrls?: JsonNullableWithAggregatesFilter<"Event">
     meta?: JsonNullableWithAggregatesFilter<"Event">
+    includes?: JsonNullableWithAggregatesFilter<"Event">
+    excludes?: JsonNullableWithAggregatesFilter<"Event">
     source?: StringWithAggregatesFilter<"Event"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     isArchived?: BoolWithAggregatesFilter<"Event"> | boolean
-    posterUrls?: JsonNullableWithAggregatesFilter<"Event">
-    includes?: JsonNullableWithAggregatesFilter<"Event">
-    excludes?: JsonNullableWithAggregatesFilter<"Event">
   }
 
   export type InstagramProfileWhereInput = {
@@ -6546,7 +6546,7 @@ export namespace Prisma {
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
-    Location?: LocationListRelationFilter
+    locations?: LocationListRelationFilter
   }
 
   export type InstagramProfileOrderByWithRelationInput = {
@@ -6557,7 +6557,7 @@ export namespace Prisma {
     following?: SortOrderInput | SortOrder
     posts?: SortOrderInput | SortOrder
     profilePic?: SortOrderInput | SortOrder
-    Location?: LocationOrderByRelationAggregateInput
+    locations?: LocationOrderByRelationAggregateInput
     _relevance?: InstagramProfileOrderByRelevanceInput
   }
 
@@ -6572,7 +6572,7 @@ export namespace Prisma {
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
-    Location?: LocationListRelationFilter
+    locations?: LocationListRelationFilter
   }, "id" | "username">
 
   export type InstagramProfileOrderByWithAggregationInput = {
@@ -6612,7 +6612,7 @@ export namespace Prisma {
     posterUrl?: string | null
     events?: EventCreateNestedManyWithoutLocationInput
     groups?: GroupCreateNestedManyWithoutLocationsInput
-    InstagramProfile?: InstagramProfileCreateNestedManyWithoutLocationInput
+    instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUncheckedCreateInput = {
@@ -6626,7 +6626,7 @@ export namespace Prisma {
     posterUrl?: string | null
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
-    InstagramProfile?: InstagramProfileUncheckedCreateNestedManyWithoutLocationInput
+    instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUpdateInput = {
@@ -6640,7 +6640,7 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutLocationNestedInput
     groups?: GroupUpdateManyWithoutLocationsNestedInput
-    InstagramProfile?: InstagramProfileUpdateManyWithoutLocationNestedInput
+    instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateInput = {
@@ -6654,7 +6654,7 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
-    InstagramProfile?: InstagramProfileUncheckedUpdateManyWithoutLocationNestedInput
+    instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationCreateManyInput = {
@@ -6704,8 +6704,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    tagLine?: string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
     events?: EventCreateNestedManyWithoutGroupInput
     locations?: LocationCreateNestedManyWithoutGroupsInput
   }
@@ -6724,8 +6724,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    tagLine?: string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
   }
@@ -6744,8 +6744,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutGroupNestedInput
     locations?: LocationUpdateManyWithoutGroupsNestedInput
   }
@@ -6764,8 +6764,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
   }
@@ -6784,8 +6784,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    tagLine?: string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
   }
 
   export type GroupUpdateManyMutationInput = {
@@ -6802,8 +6802,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GroupUncheckedUpdateManyInput = {
@@ -6820,8 +6820,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EventCreateInput = {
@@ -6831,14 +6831,14 @@ export namespace Prisma {
     durations?: string | null
     details?: string | null
     price?: number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
     group: GroupCreateNestedOneWithoutEventsInput
     location: LocationCreateNestedOneWithoutEventsInput
   }
@@ -6852,14 +6852,14 @@ export namespace Prisma {
     price?: number | null
     locationId: string
     groupId: string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventUpdateInput = {
@@ -6869,14 +6869,14 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
   }
@@ -6890,14 +6890,14 @@ export namespace Prisma {
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
     groupId?: StringFieldUpdateOperationsInput | string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventCreateManyInput = {
@@ -6909,14 +6909,14 @@ export namespace Prisma {
     price?: number | null
     locationId: string
     groupId: string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventUpdateManyMutationInput = {
@@ -6926,14 +6926,14 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventUncheckedUpdateManyInput = {
@@ -6945,36 +6945,36 @@ export namespace Prisma {
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
     groupId?: StringFieldUpdateOperationsInput | string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type InstagramProfileCreateInput = {
-    id: string
+    id?: string
     username: string
     name?: string | null
     followers?: string | null
     following?: string | null
     posts?: string | null
     profilePic?: string | null
-    Location?: LocationCreateNestedManyWithoutInstagramProfileInput
+    locations?: LocationCreateNestedManyWithoutInstagramProfilesInput
   }
 
   export type InstagramProfileUncheckedCreateInput = {
-    id: string
+    id?: string
     username: string
     name?: string | null
     followers?: string | null
     following?: string | null
     posts?: string | null
     profilePic?: string | null
-    Location?: LocationUncheckedCreateNestedManyWithoutInstagramProfileInput
+    locations?: LocationUncheckedCreateNestedManyWithoutInstagramProfilesInput
   }
 
   export type InstagramProfileUpdateInput = {
@@ -6985,7 +6985,7 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    Location?: LocationUpdateManyWithoutInstagramProfileNestedInput
+    locations?: LocationUpdateManyWithoutInstagramProfilesNestedInput
   }
 
   export type InstagramProfileUncheckedUpdateInput = {
@@ -6996,11 +6996,11 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    Location?: LocationUncheckedUpdateManyWithoutInstagramProfileNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutInstagramProfilesNestedInput
   }
 
   export type InstagramProfileCreateManyInput = {
-    id: string
+    id?: string
     username: string
     name?: string | null
     followers?: string | null
@@ -7264,8 +7264,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     logo?: SortOrder
-    tagLine?: SortOrder
     posterUrls?: SortOrder
+    tagLine?: SortOrder
   }
 
   export type GroupMaxOrderByAggregateInput = {
@@ -7362,14 +7362,14 @@ export namespace Prisma {
     price?: SortOrder
     locationId?: SortOrder
     groupId?: SortOrder
+    posterUrls?: SortOrder
     meta?: SortOrder
+    includes?: SortOrder
+    excludes?: SortOrder
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isArchived?: SortOrder
-    posterUrls?: SortOrder
-    includes?: SortOrder
-    excludes?: SortOrder
   }
 
   export type EventAvgOrderByAggregateInput = {
@@ -7475,9 +7475,9 @@ export namespace Prisma {
     connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
   }
 
-  export type InstagramProfileCreateNestedManyWithoutLocationInput = {
-    create?: XOR<InstagramProfileCreateWithoutLocationInput, InstagramProfileUncheckedCreateWithoutLocationInput> | InstagramProfileCreateWithoutLocationInput[] | InstagramProfileUncheckedCreateWithoutLocationInput[]
-    connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationInput | InstagramProfileCreateOrConnectWithoutLocationInput[]
+  export type InstagramProfileCreateNestedManyWithoutLocationsInput = {
+    create?: XOR<InstagramProfileCreateWithoutLocationsInput, InstagramProfileUncheckedCreateWithoutLocationsInput> | InstagramProfileCreateWithoutLocationsInput[] | InstagramProfileUncheckedCreateWithoutLocationsInput[]
+    connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationsInput | InstagramProfileCreateOrConnectWithoutLocationsInput[]
     connect?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
   }
 
@@ -7494,9 +7494,9 @@ export namespace Prisma {
     connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
   }
 
-  export type InstagramProfileUncheckedCreateNestedManyWithoutLocationInput = {
-    create?: XOR<InstagramProfileCreateWithoutLocationInput, InstagramProfileUncheckedCreateWithoutLocationInput> | InstagramProfileCreateWithoutLocationInput[] | InstagramProfileUncheckedCreateWithoutLocationInput[]
-    connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationInput | InstagramProfileCreateOrConnectWithoutLocationInput[]
+  export type InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput = {
+    create?: XOR<InstagramProfileCreateWithoutLocationsInput, InstagramProfileUncheckedCreateWithoutLocationsInput> | InstagramProfileCreateWithoutLocationsInput[] | InstagramProfileUncheckedCreateWithoutLocationsInput[]
+    connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationsInput | InstagramProfileCreateOrConnectWithoutLocationsInput[]
     connect?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
   }
 
@@ -7543,16 +7543,16 @@ export namespace Prisma {
     deleteMany?: GroupScalarWhereInput | GroupScalarWhereInput[]
   }
 
-  export type InstagramProfileUpdateManyWithoutLocationNestedInput = {
-    create?: XOR<InstagramProfileCreateWithoutLocationInput, InstagramProfileUncheckedCreateWithoutLocationInput> | InstagramProfileCreateWithoutLocationInput[] | InstagramProfileUncheckedCreateWithoutLocationInput[]
-    connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationInput | InstagramProfileCreateOrConnectWithoutLocationInput[]
-    upsert?: InstagramProfileUpsertWithWhereUniqueWithoutLocationInput | InstagramProfileUpsertWithWhereUniqueWithoutLocationInput[]
+  export type InstagramProfileUpdateManyWithoutLocationsNestedInput = {
+    create?: XOR<InstagramProfileCreateWithoutLocationsInput, InstagramProfileUncheckedCreateWithoutLocationsInput> | InstagramProfileCreateWithoutLocationsInput[] | InstagramProfileUncheckedCreateWithoutLocationsInput[]
+    connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationsInput | InstagramProfileCreateOrConnectWithoutLocationsInput[]
+    upsert?: InstagramProfileUpsertWithWhereUniqueWithoutLocationsInput | InstagramProfileUpsertWithWhereUniqueWithoutLocationsInput[]
     set?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
     disconnect?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
     delete?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
     connect?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
-    update?: InstagramProfileUpdateWithWhereUniqueWithoutLocationInput | InstagramProfileUpdateWithWhereUniqueWithoutLocationInput[]
-    updateMany?: InstagramProfileUpdateManyWithWhereWithoutLocationInput | InstagramProfileUpdateManyWithWhereWithoutLocationInput[]
+    update?: InstagramProfileUpdateWithWhereUniqueWithoutLocationsInput | InstagramProfileUpdateWithWhereUniqueWithoutLocationsInput[]
+    updateMany?: InstagramProfileUpdateManyWithWhereWithoutLocationsInput | InstagramProfileUpdateManyWithWhereWithoutLocationsInput[]
     deleteMany?: InstagramProfileScalarWhereInput | InstagramProfileScalarWhereInput[]
   }
 
@@ -7583,16 +7583,16 @@ export namespace Prisma {
     deleteMany?: GroupScalarWhereInput | GroupScalarWhereInput[]
   }
 
-  export type InstagramProfileUncheckedUpdateManyWithoutLocationNestedInput = {
-    create?: XOR<InstagramProfileCreateWithoutLocationInput, InstagramProfileUncheckedCreateWithoutLocationInput> | InstagramProfileCreateWithoutLocationInput[] | InstagramProfileUncheckedCreateWithoutLocationInput[]
-    connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationInput | InstagramProfileCreateOrConnectWithoutLocationInput[]
-    upsert?: InstagramProfileUpsertWithWhereUniqueWithoutLocationInput | InstagramProfileUpsertWithWhereUniqueWithoutLocationInput[]
+  export type InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput = {
+    create?: XOR<InstagramProfileCreateWithoutLocationsInput, InstagramProfileUncheckedCreateWithoutLocationsInput> | InstagramProfileCreateWithoutLocationsInput[] | InstagramProfileUncheckedCreateWithoutLocationsInput[]
+    connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationsInput | InstagramProfileCreateOrConnectWithoutLocationsInput[]
+    upsert?: InstagramProfileUpsertWithWhereUniqueWithoutLocationsInput | InstagramProfileUpsertWithWhereUniqueWithoutLocationsInput[]
     set?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
     disconnect?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
     delete?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
     connect?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
-    update?: InstagramProfileUpdateWithWhereUniqueWithoutLocationInput | InstagramProfileUpdateWithWhereUniqueWithoutLocationInput[]
-    updateMany?: InstagramProfileUpdateManyWithWhereWithoutLocationInput | InstagramProfileUpdateManyWithWhereWithoutLocationInput[]
+    update?: InstagramProfileUpdateWithWhereUniqueWithoutLocationsInput | InstagramProfileUpdateWithWhereUniqueWithoutLocationsInput[]
+    updateMany?: InstagramProfileUpdateManyWithWhereWithoutLocationsInput | InstagramProfileUpdateManyWithWhereWithoutLocationsInput[]
     deleteMany?: InstagramProfileScalarWhereInput | InstagramProfileScalarWhereInput[]
   }
 
@@ -7712,41 +7712,41 @@ export namespace Prisma {
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutEventsInput, LocationUpdateWithoutEventsInput>, LocationUncheckedUpdateWithoutEventsInput>
   }
 
-  export type LocationCreateNestedManyWithoutInstagramProfileInput = {
-    create?: XOR<LocationCreateWithoutInstagramProfileInput, LocationUncheckedCreateWithoutInstagramProfileInput> | LocationCreateWithoutInstagramProfileInput[] | LocationUncheckedCreateWithoutInstagramProfileInput[]
-    connectOrCreate?: LocationCreateOrConnectWithoutInstagramProfileInput | LocationCreateOrConnectWithoutInstagramProfileInput[]
+  export type LocationCreateNestedManyWithoutInstagramProfilesInput = {
+    create?: XOR<LocationCreateWithoutInstagramProfilesInput, LocationUncheckedCreateWithoutInstagramProfilesInput> | LocationCreateWithoutInstagramProfilesInput[] | LocationUncheckedCreateWithoutInstagramProfilesInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutInstagramProfilesInput | LocationCreateOrConnectWithoutInstagramProfilesInput[]
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
   }
 
-  export type LocationUncheckedCreateNestedManyWithoutInstagramProfileInput = {
-    create?: XOR<LocationCreateWithoutInstagramProfileInput, LocationUncheckedCreateWithoutInstagramProfileInput> | LocationCreateWithoutInstagramProfileInput[] | LocationUncheckedCreateWithoutInstagramProfileInput[]
-    connectOrCreate?: LocationCreateOrConnectWithoutInstagramProfileInput | LocationCreateOrConnectWithoutInstagramProfileInput[]
+  export type LocationUncheckedCreateNestedManyWithoutInstagramProfilesInput = {
+    create?: XOR<LocationCreateWithoutInstagramProfilesInput, LocationUncheckedCreateWithoutInstagramProfilesInput> | LocationCreateWithoutInstagramProfilesInput[] | LocationUncheckedCreateWithoutInstagramProfilesInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutInstagramProfilesInput | LocationCreateOrConnectWithoutInstagramProfilesInput[]
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
   }
 
-  export type LocationUpdateManyWithoutInstagramProfileNestedInput = {
-    create?: XOR<LocationCreateWithoutInstagramProfileInput, LocationUncheckedCreateWithoutInstagramProfileInput> | LocationCreateWithoutInstagramProfileInput[] | LocationUncheckedCreateWithoutInstagramProfileInput[]
-    connectOrCreate?: LocationCreateOrConnectWithoutInstagramProfileInput | LocationCreateOrConnectWithoutInstagramProfileInput[]
-    upsert?: LocationUpsertWithWhereUniqueWithoutInstagramProfileInput | LocationUpsertWithWhereUniqueWithoutInstagramProfileInput[]
+  export type LocationUpdateManyWithoutInstagramProfilesNestedInput = {
+    create?: XOR<LocationCreateWithoutInstagramProfilesInput, LocationUncheckedCreateWithoutInstagramProfilesInput> | LocationCreateWithoutInstagramProfilesInput[] | LocationUncheckedCreateWithoutInstagramProfilesInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutInstagramProfilesInput | LocationCreateOrConnectWithoutInstagramProfilesInput[]
+    upsert?: LocationUpsertWithWhereUniqueWithoutInstagramProfilesInput | LocationUpsertWithWhereUniqueWithoutInstagramProfilesInput[]
     set?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
     disconnect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
     delete?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    update?: LocationUpdateWithWhereUniqueWithoutInstagramProfileInput | LocationUpdateWithWhereUniqueWithoutInstagramProfileInput[]
-    updateMany?: LocationUpdateManyWithWhereWithoutInstagramProfileInput | LocationUpdateManyWithWhereWithoutInstagramProfileInput[]
+    update?: LocationUpdateWithWhereUniqueWithoutInstagramProfilesInput | LocationUpdateWithWhereUniqueWithoutInstagramProfilesInput[]
+    updateMany?: LocationUpdateManyWithWhereWithoutInstagramProfilesInput | LocationUpdateManyWithWhereWithoutInstagramProfilesInput[]
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
-  export type LocationUncheckedUpdateManyWithoutInstagramProfileNestedInput = {
-    create?: XOR<LocationCreateWithoutInstagramProfileInput, LocationUncheckedCreateWithoutInstagramProfileInput> | LocationCreateWithoutInstagramProfileInput[] | LocationUncheckedCreateWithoutInstagramProfileInput[]
-    connectOrCreate?: LocationCreateOrConnectWithoutInstagramProfileInput | LocationCreateOrConnectWithoutInstagramProfileInput[]
-    upsert?: LocationUpsertWithWhereUniqueWithoutInstagramProfileInput | LocationUpsertWithWhereUniqueWithoutInstagramProfileInput[]
+  export type LocationUncheckedUpdateManyWithoutInstagramProfilesNestedInput = {
+    create?: XOR<LocationCreateWithoutInstagramProfilesInput, LocationUncheckedCreateWithoutInstagramProfilesInput> | LocationCreateWithoutInstagramProfilesInput[] | LocationUncheckedCreateWithoutInstagramProfilesInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutInstagramProfilesInput | LocationCreateOrConnectWithoutInstagramProfilesInput[]
+    upsert?: LocationUpsertWithWhereUniqueWithoutInstagramProfilesInput | LocationUpsertWithWhereUniqueWithoutInstagramProfilesInput[]
     set?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
     disconnect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
     delete?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
-    update?: LocationUpdateWithWhereUniqueWithoutInstagramProfileInput | LocationUpdateWithWhereUniqueWithoutInstagramProfileInput[]
-    updateMany?: LocationUpdateManyWithWhereWithoutInstagramProfileInput | LocationUpdateManyWithWhereWithoutInstagramProfileInput[]
+    update?: LocationUpdateWithWhereUniqueWithoutInstagramProfilesInput | LocationUpdateWithWhereUniqueWithoutInstagramProfilesInput[]
+    updateMany?: LocationUpdateManyWithWhereWithoutInstagramProfilesInput | LocationUpdateManyWithWhereWithoutInstagramProfilesInput[]
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
@@ -7933,14 +7933,14 @@ export namespace Prisma {
     durations?: string | null
     details?: string | null
     price?: number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
     group: GroupCreateNestedOneWithoutEventsInput
   }
 
@@ -7952,14 +7952,14 @@ export namespace Prisma {
     details?: string | null
     price?: number | null
     groupId: string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventCreateOrConnectWithoutLocationInput = {
@@ -7986,8 +7986,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    tagLine?: string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
     events?: EventCreateNestedManyWithoutGroupInput
   }
 
@@ -8005,8 +8005,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    tagLine?: string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
   }
 
@@ -8015,8 +8015,8 @@ export namespace Prisma {
     create: XOR<GroupCreateWithoutLocationsInput, GroupUncheckedCreateWithoutLocationsInput>
   }
 
-  export type InstagramProfileCreateWithoutLocationInput = {
-    id: string
+  export type InstagramProfileCreateWithoutLocationsInput = {
+    id?: string
     username: string
     name?: string | null
     followers?: string | null
@@ -8025,8 +8025,8 @@ export namespace Prisma {
     profilePic?: string | null
   }
 
-  export type InstagramProfileUncheckedCreateWithoutLocationInput = {
-    id: string
+  export type InstagramProfileUncheckedCreateWithoutLocationsInput = {
+    id?: string
     username: string
     name?: string | null
     followers?: string | null
@@ -8035,9 +8035,9 @@ export namespace Prisma {
     profilePic?: string | null
   }
 
-  export type InstagramProfileCreateOrConnectWithoutLocationInput = {
+  export type InstagramProfileCreateOrConnectWithoutLocationsInput = {
     where: InstagramProfileWhereUniqueInput
-    create: XOR<InstagramProfileCreateWithoutLocationInput, InstagramProfileUncheckedCreateWithoutLocationInput>
+    create: XOR<InstagramProfileCreateWithoutLocationsInput, InstagramProfileUncheckedCreateWithoutLocationsInput>
   }
 
   export type EventUpsertWithWhereUniqueWithoutLocationInput = {
@@ -8068,14 +8068,14 @@ export namespace Prisma {
     price?: IntNullableFilter<"Event"> | number | null
     locationId?: StringFilter<"Event"> | string
     groupId?: StringFilter<"Event"> | string
+    posterUrls?: JsonNullableFilter<"Event">
     meta?: JsonNullableFilter<"Event">
+    includes?: JsonNullableFilter<"Event">
+    excludes?: JsonNullableFilter<"Event">
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
     isArchived?: BoolFilter<"Event"> | boolean
-    posterUrls?: JsonNullableFilter<"Event">
-    includes?: JsonNullableFilter<"Event">
-    excludes?: JsonNullableFilter<"Event">
   }
 
   export type GroupUpsertWithWhereUniqueWithoutLocationsInput = {
@@ -8111,24 +8111,24 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Group"> | Date | string
     updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
-    tagLine?: StringNullableFilter<"Group"> | string | null
     posterUrls?: JsonNullableFilter<"Group">
+    tagLine?: StringNullableFilter<"Group"> | string | null
   }
 
-  export type InstagramProfileUpsertWithWhereUniqueWithoutLocationInput = {
+  export type InstagramProfileUpsertWithWhereUniqueWithoutLocationsInput = {
     where: InstagramProfileWhereUniqueInput
-    update: XOR<InstagramProfileUpdateWithoutLocationInput, InstagramProfileUncheckedUpdateWithoutLocationInput>
-    create: XOR<InstagramProfileCreateWithoutLocationInput, InstagramProfileUncheckedCreateWithoutLocationInput>
+    update: XOR<InstagramProfileUpdateWithoutLocationsInput, InstagramProfileUncheckedUpdateWithoutLocationsInput>
+    create: XOR<InstagramProfileCreateWithoutLocationsInput, InstagramProfileUncheckedCreateWithoutLocationsInput>
   }
 
-  export type InstagramProfileUpdateWithWhereUniqueWithoutLocationInput = {
+  export type InstagramProfileUpdateWithWhereUniqueWithoutLocationsInput = {
     where: InstagramProfileWhereUniqueInput
-    data: XOR<InstagramProfileUpdateWithoutLocationInput, InstagramProfileUncheckedUpdateWithoutLocationInput>
+    data: XOR<InstagramProfileUpdateWithoutLocationsInput, InstagramProfileUncheckedUpdateWithoutLocationsInput>
   }
 
-  export type InstagramProfileUpdateManyWithWhereWithoutLocationInput = {
+  export type InstagramProfileUpdateManyWithWhereWithoutLocationsInput = {
     where: InstagramProfileScalarWhereInput
-    data: XOR<InstagramProfileUpdateManyMutationInput, InstagramProfileUncheckedUpdateManyWithoutLocationInput>
+    data: XOR<InstagramProfileUpdateManyMutationInput, InstagramProfileUncheckedUpdateManyWithoutLocationsInput>
   }
 
   export type InstagramProfileScalarWhereInput = {
@@ -8151,14 +8151,14 @@ export namespace Prisma {
     durations?: string | null
     details?: string | null
     price?: number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
     location: LocationCreateNestedOneWithoutEventsInput
   }
 
@@ -8170,14 +8170,14 @@ export namespace Prisma {
     details?: string | null
     price?: number | null
     locationId: string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventCreateOrConnectWithoutGroupInput = {
@@ -8200,7 +8200,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     posterUrl?: string | null
     events?: EventCreateNestedManyWithoutLocationInput
-    InstagramProfile?: InstagramProfileCreateNestedManyWithoutLocationInput
+    instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUncheckedCreateWithoutGroupsInput = {
@@ -8213,7 +8213,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     posterUrl?: string | null
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
-    InstagramProfile?: InstagramProfileUncheckedCreateNestedManyWithoutLocationInput
+    instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationCreateOrConnectWithoutGroupsInput = {
@@ -8281,8 +8281,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    tagLine?: string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
     locations?: LocationCreateNestedManyWithoutGroupsInput
   }
 
@@ -8300,8 +8300,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    tagLine?: string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
   }
 
@@ -8320,7 +8320,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     posterUrl?: string | null
     groups?: GroupCreateNestedManyWithoutLocationsInput
-    InstagramProfile?: InstagramProfileCreateNestedManyWithoutLocationInput
+    instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUncheckedCreateWithoutEventsInput = {
@@ -8333,7 +8333,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     posterUrl?: string | null
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
-    InstagramProfile?: InstagramProfileUncheckedCreateNestedManyWithoutLocationInput
+    instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationCreateOrConnectWithoutEventsInput = {
@@ -8366,8 +8366,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     locations?: LocationUpdateManyWithoutGroupsNestedInput
   }
 
@@ -8385,8 +8385,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
   }
 
@@ -8411,7 +8411,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: GroupUpdateManyWithoutLocationsNestedInput
-    InstagramProfile?: InstagramProfileUpdateManyWithoutLocationNestedInput
+    instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateWithoutEventsInput = {
@@ -8424,10 +8424,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
-    InstagramProfile?: InstagramProfileUncheckedUpdateManyWithoutLocationNestedInput
+    instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
   }
 
-  export type LocationCreateWithoutInstagramProfileInput = {
+  export type LocationCreateWithoutInstagramProfilesInput = {
     id?: string
     city: string
     slug: string
@@ -8440,7 +8440,7 @@ export namespace Prisma {
     groups?: GroupCreateNestedManyWithoutLocationsInput
   }
 
-  export type LocationUncheckedCreateWithoutInstagramProfileInput = {
+  export type LocationUncheckedCreateWithoutInstagramProfilesInput = {
     id?: string
     city: string
     slug: string
@@ -8453,25 +8453,25 @@ export namespace Prisma {
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
   }
 
-  export type LocationCreateOrConnectWithoutInstagramProfileInput = {
+  export type LocationCreateOrConnectWithoutInstagramProfilesInput = {
     where: LocationWhereUniqueInput
-    create: XOR<LocationCreateWithoutInstagramProfileInput, LocationUncheckedCreateWithoutInstagramProfileInput>
+    create: XOR<LocationCreateWithoutInstagramProfilesInput, LocationUncheckedCreateWithoutInstagramProfilesInput>
   }
 
-  export type LocationUpsertWithWhereUniqueWithoutInstagramProfileInput = {
+  export type LocationUpsertWithWhereUniqueWithoutInstagramProfilesInput = {
     where: LocationWhereUniqueInput
-    update: XOR<LocationUpdateWithoutInstagramProfileInput, LocationUncheckedUpdateWithoutInstagramProfileInput>
-    create: XOR<LocationCreateWithoutInstagramProfileInput, LocationUncheckedCreateWithoutInstagramProfileInput>
+    update: XOR<LocationUpdateWithoutInstagramProfilesInput, LocationUncheckedUpdateWithoutInstagramProfilesInput>
+    create: XOR<LocationCreateWithoutInstagramProfilesInput, LocationUncheckedCreateWithoutInstagramProfilesInput>
   }
 
-  export type LocationUpdateWithWhereUniqueWithoutInstagramProfileInput = {
+  export type LocationUpdateWithWhereUniqueWithoutInstagramProfilesInput = {
     where: LocationWhereUniqueInput
-    data: XOR<LocationUpdateWithoutInstagramProfileInput, LocationUncheckedUpdateWithoutInstagramProfileInput>
+    data: XOR<LocationUpdateWithoutInstagramProfilesInput, LocationUncheckedUpdateWithoutInstagramProfilesInput>
   }
 
-  export type LocationUpdateManyWithWhereWithoutInstagramProfileInput = {
+  export type LocationUpdateManyWithWhereWithoutInstagramProfilesInput = {
     where: LocationScalarWhereInput
-    data: XOR<LocationUpdateManyMutationInput, LocationUncheckedUpdateManyWithoutInstagramProfileInput>
+    data: XOR<LocationUpdateManyMutationInput, LocationUncheckedUpdateManyWithoutInstagramProfilesInput>
   }
 
   export type EventCreateManyLocationInput = {
@@ -8482,14 +8482,14 @@ export namespace Prisma {
     details?: string | null
     price?: number | null
     groupId: string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventUpdateWithoutLocationInput = {
@@ -8499,14 +8499,14 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
   }
 
@@ -8518,14 +8518,14 @@ export namespace Prisma {
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
     groupId?: StringFieldUpdateOperationsInput | string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventUncheckedUpdateManyWithoutLocationInput = {
@@ -8536,14 +8536,14 @@ export namespace Prisma {
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
     groupId?: StringFieldUpdateOperationsInput | string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type GroupUpdateWithoutLocationsInput = {
@@ -8560,8 +8560,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutGroupNestedInput
   }
 
@@ -8579,8 +8579,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
   }
 
@@ -8598,11 +8598,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type InstagramProfileUpdateWithoutLocationInput = {
+  export type InstagramProfileUpdateWithoutLocationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8612,7 +8612,7 @@ export namespace Prisma {
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type InstagramProfileUncheckedUpdateWithoutLocationInput = {
+  export type InstagramProfileUncheckedUpdateWithoutLocationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8622,7 +8622,7 @@ export namespace Prisma {
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type InstagramProfileUncheckedUpdateManyWithoutLocationInput = {
+  export type InstagramProfileUncheckedUpdateManyWithoutLocationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8640,14 +8640,14 @@ export namespace Prisma {
     details?: string | null
     price?: number | null
     locationId: string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventUpdateWithoutGroupInput = {
@@ -8657,14 +8657,14 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
   }
 
@@ -8676,14 +8676,14 @@ export namespace Prisma {
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type EventUncheckedUpdateManyWithoutGroupInput = {
@@ -8694,14 +8694,14 @@ export namespace Prisma {
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
     meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type LocationUpdateWithoutGroupsInput = {
@@ -8714,7 +8714,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutLocationNestedInput
-    InstagramProfile?: InstagramProfileUpdateManyWithoutLocationNestedInput
+    instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateWithoutGroupsInput = {
@@ -8727,7 +8727,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
-    InstagramProfile?: InstagramProfileUncheckedUpdateManyWithoutLocationNestedInput
+    instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateManyWithoutGroupsInput = {
@@ -8741,7 +8741,7 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type LocationUpdateWithoutInstagramProfileInput = {
+  export type LocationUpdateWithoutInstagramProfilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -8754,7 +8754,7 @@ export namespace Prisma {
     groups?: GroupUpdateManyWithoutLocationsNestedInput
   }
 
-  export type LocationUncheckedUpdateWithoutInstagramProfileInput = {
+  export type LocationUncheckedUpdateWithoutInstagramProfilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -8767,7 +8767,7 @@ export namespace Prisma {
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
   }
 
-  export type LocationUncheckedUpdateManyWithoutInstagramProfileInput = {
+  export type LocationUncheckedUpdateManyWithoutInstagramProfilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string

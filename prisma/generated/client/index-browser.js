@@ -142,8 +142,8 @@ exports.Prisma.GroupScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   logo: 'logo',
-  tagLine: 'tagLine',
-  posterUrls: 'posterUrls'
+  posterUrls: 'posterUrls',
+  tagLine: 'tagLine'
 };
 
 exports.Prisma.EventScalarFieldEnum = {
@@ -155,14 +155,14 @@ exports.Prisma.EventScalarFieldEnum = {
   price: 'price',
   locationId: 'locationId',
   groupId: 'groupId',
+  posterUrls: 'posterUrls',
   meta: 'meta',
+  includes: 'includes',
+  excludes: 'excludes',
   source: 'source',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isArchived: 'isArchived',
-  posterUrls: 'posterUrls',
-  includes: 'includes',
-  excludes: 'excludes'
+  isArchived: 'isArchived'
 };
 
 exports.Prisma.InstagramProfileScalarFieldEnum = {

@@ -6,6 +6,7 @@ import { LocationCard } from "@/components/location-card";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Metadata } from "next";
+import { TrendingInstagramProfiles } from "@/components/trending-instagram-profiles";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -48,6 +49,19 @@ export default async function HomePage() {
           }
         >
           <TrendingGroupsCarousel />
+        </PageSection>
+        <PageSection
+          href="/"
+          label={
+            <span>
+              Trending groups on{" "}
+              <span className="text-destructive">Instagram </span>
+            </span>
+          }
+        >
+          <Suspense key={"instagram-profiles"}>
+            <TrendingInstagramProfiles />
+          </Suspense>
         </PageSection>
         <PageSection
           href="/trips"

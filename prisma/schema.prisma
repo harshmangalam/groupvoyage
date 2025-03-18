@@ -10,17 +10,17 @@ datasource db {
 }
 
 model Location {
-  id               String             @id @default(uuid())
-  city             String
-  slug             String             @unique
-  country          String
-  active           Boolean            @default(true)
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  posterUrl        String?
-  events           Event[]
-  groups           Group[]            @relation("GroupToLocation")
-  InstagramProfile InstagramProfile[]
+  id                String             @id @default(uuid())
+  city              String
+  slug              String             @unique
+  country           String
+  active            Boolean            @default(true)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  posterUrl         String?
+  events            Event[]
+  groups            Group[]            @relation("GroupToLocation")
+  instagramProfiles InstagramProfile[] @relation("InstagramProfileToLocation")
 }
 
 model Group {
@@ -37,8 +37,8 @@ model Group {
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   logo       String?
-  tagLine    String?
   posterUrls Json?
+  tagLine    String?
   events     Event[]
   locations  Location[] @relation("GroupToLocation")
 }
@@ -52,25 +52,25 @@ model Event {
   price      Int?
   locationId String
   groupId    String
+  posterUrls Json?
   meta       Json?
+  includes   Json?
+  excludes   Json?
   source     String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   isArchived Boolean  @default(false)
-  posterUrls Json?
-  includes   Json?
-  excludes   Json?
   group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
   location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
 }
 
 model InstagramProfile {
-  id         String     @id
+  id         String     @id @default(uuid())
   username   String     @unique
   name       String?
   followers  String?
   following  String?
   posts      String?
   profilePic String?
-  Location   Location[]
+  locations  Location[] @relation("InstagramProfileToLocation")
 }

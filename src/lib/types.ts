@@ -38,3 +38,5 @@ export type DurationMap = {
 
 export type T_DropdownOption = { label: string; value: string };
 export type T_Group = Prisma.GroupGetPayload<{}>;
+
+export type T_InstagramProfile = Prisma.InstagramProfileGetPayload<{}>;
