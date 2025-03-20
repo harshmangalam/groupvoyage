@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import { cache } from "react";
+import { Prisma } from "../../prisma/generated/client";
 
 export const getInstagramProfileList = cache(
   async ({
@@ -34,6 +35,22 @@ export const getInstagramProfileList = cache(
       skip,
       orderBy: {
         followersCount: "desc",
+      },
+    });
+  }
+);
+
+export const getInstagramProfile = cache(
+  async ({ username }: { username?: string | null }) => {
+    if (!username) return null;
+    const filter: any = {};
+    if (username) {
+      filter.username = username;
+    }
+
+    return prisma.instagramProfile.findUnique({
+      where: {
+        ...filter,
       },
     });
   }

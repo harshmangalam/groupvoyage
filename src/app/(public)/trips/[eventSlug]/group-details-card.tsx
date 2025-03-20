@@ -5,7 +5,6 @@ import Link from "next/link";
 import { siInstagram } from "simple-icons";
 
 export function GroupDetailsCard({
-  instagram,
   name,
   phone,
   slug,
@@ -22,19 +21,6 @@ export function GroupDetailsCard({
             </Link>
           </div>
 
-          {instagram && (
-            <div className="flex items-center gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                className="w-4 h-4 fill-current"
-                dangerouslySetInnerHTML={{ __html: siInstagram.svg }}
-              />
-              <a target="_blank" className="hover:underline" href={instagram}>
-                Instagram
-              </a>
-            </div>
-          )}
           <div className="flex items-center gap-2">
             <PhoneIcon className="h-4 w-4" />
             <span>{phone}</span>

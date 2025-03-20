@@ -19,6 +19,9 @@ import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CustomPagination } from "@/components/custom-pagination";
 import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constatnts";
 import { GroupMetaType } from "@/lib/types";
+import { InstagramProfileCard } from "@/components/instagram-card";
+import { getInstagramUsername } from "@/lib/utils";
+import { getInstagramProfile } from "@/actions/instagram-profile";
 
 export async function generateMetadata({ params }) {
   const { groupSlug } = await params;
@@ -40,6 +43,9 @@ export default async function GroupHomePage({
   const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
   if (!group) return notFound();
+
+  const username = getInstagramUsername(group.instagram);
+  const instagramProfile = await getInstagramProfile({ username });
 
   const { durations = "", locations = "" } = await searchParams;
   const pageStr = (await searchParams).page ?? "1";
@@ -127,9 +133,13 @@ export default async function GroupHomePage({
 
       <div className="max-w-7xl mx-auto px-4">
         <PageSection label={"About us"}>
-          <p>{group.details}</p>
+          <p className="mb-0">{group.details}</p>
         </PageSection>
-
+        {instagramProfile && (
+          <PageSection label={"Social Media"}>
+            <InstagramProfileCard {...instagramProfile} />
+          </PageSection>
+        )}
         <PageSection
           label={
             <span>

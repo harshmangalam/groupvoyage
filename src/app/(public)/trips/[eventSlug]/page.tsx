@@ -18,6 +18,9 @@ import { BookNow } from "./book-now";
 import { SectionList } from "./section-list";
 import { TripPostersCarousel } from "./trip-posters-carousel";
 import { TripDetails } from "./trip-details";
+import { InstagramProfileCard } from "@/components/instagram-card";
+import { getInstagramProfile } from "@/actions/instagram-profile";
+import { getInstagramUsername } from "@/lib/utils";
 
 export async function generateMetadata({ params }) {
   const { eventSlug } = await params;
@@ -40,6 +43,11 @@ export default async function TripDetailsPage({
   const { eventSlug } = await params;
   const event = await getEventDetails({ eventSlug });
   if (!event) return notFound();
+
+  const username = getInstagramUsername(event.group.instagram);
+  const instagramProfile = await getInstagramProfile({
+    username,
+  });
 
   const originalPrice = (event.meta as EventMetaType)?.originalPrice;
   const price = event.price || 0;
@@ -148,6 +156,12 @@ export default async function TripDetailsPage({
                 <BookNow source={event.source} />
               </CardContent>
             </Card>
+            <div>
+              {instagramProfile && (
+                <InstagramProfileCard {...instagramProfile} />
+              )}
+            </div>
+
             <GroupDetailsCard {...event.group} />
           </div>
         </div>

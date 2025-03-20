@@ -23,3 +23,8 @@ export function getInstagramHandler(url: string) {
 export function getWebsiteOrigin(url: string) {
   return new URL(url).host;
 }
+
+export function getInstagramUsername(url?: string | null) {
+  if (!url) return null;
+  return new URL(url).pathname.split("/").filter(Boolean)[0];
+}
