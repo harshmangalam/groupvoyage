@@ -5,7 +5,6 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { CalendarCheckIcon, ExternalLinkIcon, MapPin } from "lucide-react";
 
 import Link from "next/link";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
 import { getGroupDetails } from "@/actions/group";
 import { notFound } from "next/navigation";
