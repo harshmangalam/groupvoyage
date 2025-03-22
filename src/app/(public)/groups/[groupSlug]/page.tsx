@@ -21,6 +21,7 @@ import { GroupMetaType } from "@/lib/types";
 import { InstagramProfileCard } from "@/components/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
 import { getInstagramProfile } from "@/actions/instagram-profile";
+import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 
 export async function generateMetadata({ params }) {
   const { groupSlug } = await params;
@@ -139,6 +140,14 @@ export default async function GroupHomePage({
             <InstagramProfileCard {...instagramProfile} />
           </PageSection>
         )}
+        <PageSection
+          href={`/destinations/?groups=${groupSlug}`}
+          label={<span>Destinations</span>}
+        >
+          <Suspense key={`featured-destinations-${groupSlug}`}>
+            <TrendingDestinationsCarousel groupSlug={groupSlug} />
+          </Suspense>
+        </PageSection>
         <PageSection
           label={
             <span>

@@ -13,7 +13,12 @@ export const metadata: Metadata = {
 };
 
 type DestinationsPageProps = {
-  searchParams: Promise<{ locations: string; durations: string; page: string }>;
+  searchParams: Promise<{
+    locations: string;
+    durations: string;
+    page: string;
+    groups: string;
+  }>;
 };
 export default async function DestinationsPage({
   searchParams,
@@ -21,11 +26,13 @@ export default async function DestinationsPage({
   const pageStr = (await searchParams).page ?? "1";
   const page = Number(pageStr);
   const locations = (await searchParams).locations ?? "";
+  const groups = (await searchParams).groups ?? "";
 
   const destinations = await getDestinationList({
     take: DESTINATIONS_PER_PAGE,
     skip: (page - 1) * DESTINATIONS_PER_PAGE,
     locationSlug: locations,
+    groupSlug: groups,
   });
 
   return (
