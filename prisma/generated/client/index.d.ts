@@ -33,6 +33,11 @@ export type Event = $Result.DefaultSelection<Prisma.$EventPayload>
  * 
  */
 export type InstagramProfile = $Result.DefaultSelection<Prisma.$InstagramProfilePayload>
+/**
+ * Model Destination
+ * 
+ */
+export type Destination = $Result.DefaultSelection<Prisma.$DestinationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +203,16 @@ export class PrismaClient<
     * ```
     */
   get instagramProfile(): Prisma.InstagramProfileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.destination`: Exposes CRUD operations for the **Destination** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Destinations
+    * const destinations = await prisma.destination.findMany()
+    * ```
+    */
+  get destination(): Prisma.DestinationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +656,8 @@ export namespace Prisma {
     Location: 'Location',
     Group: 'Group',
     Event: 'Event',
-    InstagramProfile: 'InstagramProfile'
+    InstagramProfile: 'InstagramProfile',
+    Destination: 'Destination'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +676,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "location" | "group" | "event" | "instagramProfile"
+      modelProps: "location" | "group" | "event" | "instagramProfile" | "destination"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +976,80 @@ export namespace Prisma {
           }
         }
       }
+      Destination: {
+        payload: Prisma.$DestinationPayload<ExtArgs>
+        fields: Prisma.DestinationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DestinationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DestinationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          findFirst: {
+            args: Prisma.DestinationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DestinationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          findMany: {
+            args: Prisma.DestinationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>[]
+          }
+          create: {
+            args: Prisma.DestinationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          createMany: {
+            args: Prisma.DestinationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DestinationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>[]
+          }
+          delete: {
+            args: Prisma.DestinationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          update: {
+            args: Prisma.DestinationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          deleteMany: {
+            args: Prisma.DestinationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DestinationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DestinationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>[]
+          }
+          upsert: {
+            args: Prisma.DestinationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DestinationPayload>
+          }
+          aggregate: {
+            args: Prisma.DestinationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDestination>
+          }
+          groupBy: {
+            args: Prisma.DestinationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DestinationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DestinationCountArgs<ExtArgs>
+            result: $Utils.Optional<DestinationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1048,6 +1138,7 @@ export namespace Prisma {
     group?: GroupOmit
     event?: EventOmit
     instagramProfile?: InstagramProfileOmit
+    destination?: DestinationOmit
   }
 
   /* Types for Logging */
@@ -1145,12 +1236,14 @@ export namespace Prisma {
     events: number
     groups: number
     instagramProfiles: number
+    destinations: number
   }
 
   export type LocationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | LocationCountOutputTypeCountEventsArgs
     groups?: boolean | LocationCountOutputTypeCountGroupsArgs
     instagramProfiles?: boolean | LocationCountOutputTypeCountInstagramProfilesArgs
+    destinations?: boolean | LocationCountOutputTypeCountDestinationsArgs
   }
 
   // Custom InputTypes
@@ -1185,6 +1278,13 @@ export namespace Prisma {
     where?: InstagramProfileWhereInput
   }
 
+  /**
+   * LocationCountOutputType without action
+   */
+  export type LocationCountOutputTypeCountDestinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationWhereInput
+  }
+
 
   /**
    * Count Type GroupCountOutputType
@@ -1193,11 +1293,13 @@ export namespace Prisma {
   export type GroupCountOutputType = {
     events: number
     locations: number
+    destinations: number
   }
 
   export type GroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | GroupCountOutputTypeCountEventsArgs
     locations?: boolean | GroupCountOutputTypeCountLocationsArgs
+    destinations?: boolean | GroupCountOutputTypeCountDestinationsArgs
   }
 
   // Custom InputTypes
@@ -1223,6 +1325,13 @@ export namespace Prisma {
    */
   export type GroupCountOutputTypeCountLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LocationWhereInput
+  }
+
+  /**
+   * GroupCountOutputType without action
+   */
+  export type GroupCountOutputTypeCountDestinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationWhereInput
   }
 
 
@@ -1253,6 +1362,55 @@ export namespace Prisma {
    * InstagramProfileCountOutputType without action
    */
   export type InstagramProfileCountOutputTypeCountLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LocationWhereInput
+  }
+
+
+  /**
+   * Count Type DestinationCountOutputType
+   */
+
+  export type DestinationCountOutputType = {
+    events: number
+    groups: number
+    locations: number
+  }
+
+  export type DestinationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    events?: boolean | DestinationCountOutputTypeCountEventsArgs
+    groups?: boolean | DestinationCountOutputTypeCountGroupsArgs
+    locations?: boolean | DestinationCountOutputTypeCountLocationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DestinationCountOutputType without action
+   */
+  export type DestinationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCountOutputType
+     */
+    select?: DestinationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DestinationCountOutputType without action
+   */
+  export type DestinationCountOutputTypeCountEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventWhereInput
+  }
+
+  /**
+   * DestinationCountOutputType without action
+   */
+  export type DestinationCountOutputTypeCountGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GroupWhereInput
+  }
+
+  /**
+   * DestinationCountOutputType without action
+   */
+  export type DestinationCountOutputTypeCountLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LocationWhereInput
   }
 
@@ -1452,6 +1610,7 @@ export namespace Prisma {
     events?: boolean | Location$eventsArgs<ExtArgs>
     groups?: boolean | Location$groupsArgs<ExtArgs>
     instagramProfiles?: boolean | Location$instagramProfilesArgs<ExtArgs>
+    destinations?: boolean | Location$destinationsArgs<ExtArgs>
     _count?: boolean | LocationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["location"]>
 
@@ -1493,6 +1652,7 @@ export namespace Prisma {
     events?: boolean | Location$eventsArgs<ExtArgs>
     groups?: boolean | Location$groupsArgs<ExtArgs>
     instagramProfiles?: boolean | Location$instagramProfilesArgs<ExtArgs>
+    destinations?: boolean | Location$destinationsArgs<ExtArgs>
     _count?: boolean | LocationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1504,6 +1664,7 @@ export namespace Prisma {
       events: Prisma.$EventPayload<ExtArgs>[]
       groups: Prisma.$GroupPayload<ExtArgs>[]
       instagramProfiles: Prisma.$InstagramProfilePayload<ExtArgs>[]
+      destinations: Prisma.$DestinationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1911,6 +2072,7 @@ export namespace Prisma {
     events<T extends Location$eventsArgs<ExtArgs> = {}>(args?: Subset<T, Location$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     groups<T extends Location$groupsArgs<ExtArgs> = {}>(args?: Subset<T, Location$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     instagramProfiles<T extends Location$instagramProfilesArgs<ExtArgs> = {}>(args?: Subset<T, Location$instagramProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstagramProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    destinations<T extends Location$destinationsArgs<ExtArgs> = {}>(args?: Subset<T, Location$destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2408,6 +2570,30 @@ export namespace Prisma {
   }
 
   /**
+   * Location.destinations
+   */
+  export type Location$destinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    where?: DestinationWhereInput
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    cursor?: DestinationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DestinationScalarFieldEnum | DestinationScalarFieldEnum[]
+  }
+
+  /**
    * Location without action
    */
   export type LocationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2664,6 +2850,7 @@ export namespace Prisma {
     tagLine?: boolean
     events?: boolean | Group$eventsArgs<ExtArgs>
     locations?: boolean | Group$locationsArgs<ExtArgs>
+    destinations?: boolean | Group$destinationsArgs<ExtArgs>
     _count?: boolean | GroupCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["group"]>
 
@@ -2725,6 +2912,7 @@ export namespace Prisma {
   export type GroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Group$eventsArgs<ExtArgs>
     locations?: boolean | Group$locationsArgs<ExtArgs>
+    destinations?: boolean | Group$destinationsArgs<ExtArgs>
     _count?: boolean | GroupCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2735,6 +2923,7 @@ export namespace Prisma {
     objects: {
       events: Prisma.$EventPayload<ExtArgs>[]
       locations: Prisma.$LocationPayload<ExtArgs>[]
+      destinations: Prisma.$DestinationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3148,6 +3337,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     events<T extends Group$eventsArgs<ExtArgs> = {}>(args?: Subset<T, Group$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     locations<T extends Group$locationsArgs<ExtArgs> = {}>(args?: Subset<T, Group$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    destinations<T extends Group$destinationsArgs<ExtArgs> = {}>(args?: Subset<T, Group$destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3628,6 +3818,30 @@ export namespace Prisma {
   }
 
   /**
+   * Group.destinations
+   */
+  export type Group$destinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    where?: DestinationWhereInput
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    cursor?: DestinationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DestinationScalarFieldEnum | DestinationScalarFieldEnum[]
+  }
+
+  /**
    * Group without action
    */
   export type GroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3679,6 +3893,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     isArchived: boolean | null
+    destinationId: string | null
   }
 
   export type EventMaxAggregateOutputType = {
@@ -3694,6 +3909,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     isArchived: boolean | null
+    destinationId: string | null
   }
 
   export type EventCountAggregateOutputType = {
@@ -3713,6 +3929,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     isArchived: number
+    destinationId: number
     _all: number
   }
 
@@ -3738,6 +3955,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isArchived?: true
+    destinationId?: true
   }
 
   export type EventMaxAggregateInputType = {
@@ -3753,6 +3971,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isArchived?: true
+    destinationId?: true
   }
 
   export type EventCountAggregateInputType = {
@@ -3772,6 +3991,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isArchived?: true
+    destinationId?: true
     _all?: true
   }
 
@@ -3878,6 +4098,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     isArchived: boolean
+    destinationId: string | null
     _count: EventCountAggregateOutputType | null
     _avg: EventAvgAggregateOutputType | null
     _sum: EventSumAggregateOutputType | null
@@ -3916,8 +4137,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isArchived?: boolean
+    destinationId?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
+    destination?: boolean | Event$destinationArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
 
   export type EventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3937,8 +4160,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isArchived?: boolean
+    destinationId?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
+    destination?: boolean | Event$destinationArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
 
   export type EventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3958,8 +4183,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isArchived?: boolean
+    destinationId?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
+    destination?: boolean | Event$destinationArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
 
   export type EventSelectScalar = {
@@ -3979,20 +4206,24 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isArchived?: boolean
+    destinationId?: boolean
   }
 
-  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "durations" | "details" | "price" | "locationId" | "groupId" | "posterUrls" | "meta" | "includes" | "excludes" | "source" | "createdAt" | "updatedAt" | "isArchived", ExtArgs["result"]["event"]>
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "durations" | "details" | "price" | "locationId" | "groupId" | "posterUrls" | "meta" | "includes" | "excludes" | "source" | "createdAt" | "updatedAt" | "isArchived" | "destinationId", ExtArgs["result"]["event"]>
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
+    destination?: boolean | Event$destinationArgs<ExtArgs>
   }
   export type EventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
+    destination?: boolean | Event$destinationArgs<ExtArgs>
   }
   export type EventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
+    destination?: boolean | Event$destinationArgs<ExtArgs>
   }
 
   export type $EventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4000,6 +4231,7 @@ export namespace Prisma {
     objects: {
       group: Prisma.$GroupPayload<ExtArgs>
       location: Prisma.$LocationPayload<ExtArgs>
+      destination: Prisma.$DestinationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4018,6 +4250,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       isArchived: boolean
+      destinationId: string | null
     }, ExtArgs["result"]["event"]>
     composites: {}
   }
@@ -4414,6 +4647,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     group<T extends GroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GroupDefaultArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    destination<T extends Event$destinationArgs<ExtArgs> = {}>(args?: Subset<T, Event$destinationArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4459,6 +4693,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Event", 'DateTime'>
     readonly updatedAt: FieldRef<"Event", 'DateTime'>
     readonly isArchived: FieldRef<"Event", 'Boolean'>
+    readonly destinationId: FieldRef<"Event", 'String'>
   }
     
 
@@ -4852,6 +5087,25 @@ export namespace Prisma {
      * Limit how many Events to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Event.destination
+   */
+  export type Event$destinationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    where?: DestinationWhereInput
   }
 
   /**
@@ -6017,6 +6271,1145 @@ export namespace Prisma {
 
 
   /**
+   * Model Destination
+   */
+
+  export type AggregateDestination = {
+    _count: DestinationCountAggregateOutputType | null
+    _min: DestinationMinAggregateOutputType | null
+    _max: DestinationMaxAggregateOutputType | null
+  }
+
+  export type DestinationMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    slug: string | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DestinationMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    slug: string | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DestinationCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    active: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DestinationMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DestinationMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DestinationCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DestinationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Destination to aggregate.
+     */
+    where?: DestinationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Destinations to fetch.
+     */
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DestinationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Destinations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Destinations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Destinations
+    **/
+    _count?: true | DestinationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DestinationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DestinationMaxAggregateInputType
+  }
+
+  export type GetDestinationAggregateType<T extends DestinationAggregateArgs> = {
+        [P in keyof T & keyof AggregateDestination]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDestination[P]>
+      : GetScalarType<T[P], AggregateDestination[P]>
+  }
+
+
+
+
+  export type DestinationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DestinationWhereInput
+    orderBy?: DestinationOrderByWithAggregationInput | DestinationOrderByWithAggregationInput[]
+    by: DestinationScalarFieldEnum[] | DestinationScalarFieldEnum
+    having?: DestinationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DestinationCountAggregateInputType | true
+    _min?: DestinationMinAggregateInputType
+    _max?: DestinationMaxAggregateInputType
+  }
+
+  export type DestinationGroupByOutputType = {
+    id: string
+    name: string
+    slug: string
+    active: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: DestinationCountAggregateOutputType | null
+    _min: DestinationMinAggregateOutputType | null
+    _max: DestinationMaxAggregateOutputType | null
+  }
+
+  type GetDestinationGroupByPayload<T extends DestinationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DestinationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DestinationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DestinationGroupByOutputType[P]>
+            : GetScalarType<T[P], DestinationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DestinationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    events?: boolean | Destination$eventsArgs<ExtArgs>
+    groups?: boolean | Destination$groupsArgs<ExtArgs>
+    locations?: boolean | Destination$locationsArgs<ExtArgs>
+    _count?: boolean | DestinationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["destination"]>
+
+  export type DestinationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["destination"]>
+
+  export type DestinationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["destination"]>
+
+  export type DestinationSelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["destination"]>
+  export type DestinationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    events?: boolean | Destination$eventsArgs<ExtArgs>
+    groups?: boolean | Destination$groupsArgs<ExtArgs>
+    locations?: boolean | Destination$locationsArgs<ExtArgs>
+    _count?: boolean | DestinationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DestinationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DestinationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $DestinationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Destination"
+    objects: {
+      events: Prisma.$EventPayload<ExtArgs>[]
+      groups: Prisma.$GroupPayload<ExtArgs>[]
+      locations: Prisma.$LocationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      slug: string
+      active: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["destination"]>
+    composites: {}
+  }
+
+  type DestinationGetPayload<S extends boolean | null | undefined | DestinationDefaultArgs> = $Result.GetResult<Prisma.$DestinationPayload, S>
+
+  type DestinationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DestinationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DestinationCountAggregateInputType | true
+    }
+
+  export interface DestinationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Destination'], meta: { name: 'Destination' } }
+    /**
+     * Find zero or one Destination that matches the filter.
+     * @param {DestinationFindUniqueArgs} args - Arguments to find a Destination
+     * @example
+     * // Get one Destination
+     * const destination = await prisma.destination.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DestinationFindUniqueArgs>(args: SelectSubset<T, DestinationFindUniqueArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Destination that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DestinationFindUniqueOrThrowArgs} args - Arguments to find a Destination
+     * @example
+     * // Get one Destination
+     * const destination = await prisma.destination.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DestinationFindUniqueOrThrowArgs>(args: SelectSubset<T, DestinationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Destination that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationFindFirstArgs} args - Arguments to find a Destination
+     * @example
+     * // Get one Destination
+     * const destination = await prisma.destination.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DestinationFindFirstArgs>(args?: SelectSubset<T, DestinationFindFirstArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Destination that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationFindFirstOrThrowArgs} args - Arguments to find a Destination
+     * @example
+     * // Get one Destination
+     * const destination = await prisma.destination.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DestinationFindFirstOrThrowArgs>(args?: SelectSubset<T, DestinationFindFirstOrThrowArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Destinations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Destinations
+     * const destinations = await prisma.destination.findMany()
+     * 
+     * // Get first 10 Destinations
+     * const destinations = await prisma.destination.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const destinationWithIdOnly = await prisma.destination.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DestinationFindManyArgs>(args?: SelectSubset<T, DestinationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Destination.
+     * @param {DestinationCreateArgs} args - Arguments to create a Destination.
+     * @example
+     * // Create one Destination
+     * const Destination = await prisma.destination.create({
+     *   data: {
+     *     // ... data to create a Destination
+     *   }
+     * })
+     * 
+     */
+    create<T extends DestinationCreateArgs>(args: SelectSubset<T, DestinationCreateArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Destinations.
+     * @param {DestinationCreateManyArgs} args - Arguments to create many Destinations.
+     * @example
+     * // Create many Destinations
+     * const destination = await prisma.destination.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DestinationCreateManyArgs>(args?: SelectSubset<T, DestinationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Destinations and returns the data saved in the database.
+     * @param {DestinationCreateManyAndReturnArgs} args - Arguments to create many Destinations.
+     * @example
+     * // Create many Destinations
+     * const destination = await prisma.destination.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Destinations and only return the `id`
+     * const destinationWithIdOnly = await prisma.destination.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DestinationCreateManyAndReturnArgs>(args?: SelectSubset<T, DestinationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Destination.
+     * @param {DestinationDeleteArgs} args - Arguments to delete one Destination.
+     * @example
+     * // Delete one Destination
+     * const Destination = await prisma.destination.delete({
+     *   where: {
+     *     // ... filter to delete one Destination
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DestinationDeleteArgs>(args: SelectSubset<T, DestinationDeleteArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Destination.
+     * @param {DestinationUpdateArgs} args - Arguments to update one Destination.
+     * @example
+     * // Update one Destination
+     * const destination = await prisma.destination.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DestinationUpdateArgs>(args: SelectSubset<T, DestinationUpdateArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Destinations.
+     * @param {DestinationDeleteManyArgs} args - Arguments to filter Destinations to delete.
+     * @example
+     * // Delete a few Destinations
+     * const { count } = await prisma.destination.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DestinationDeleteManyArgs>(args?: SelectSubset<T, DestinationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Destinations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Destinations
+     * const destination = await prisma.destination.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DestinationUpdateManyArgs>(args: SelectSubset<T, DestinationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Destinations and returns the data updated in the database.
+     * @param {DestinationUpdateManyAndReturnArgs} args - Arguments to update many Destinations.
+     * @example
+     * // Update many Destinations
+     * const destination = await prisma.destination.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Destinations and only return the `id`
+     * const destinationWithIdOnly = await prisma.destination.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DestinationUpdateManyAndReturnArgs>(args: SelectSubset<T, DestinationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Destination.
+     * @param {DestinationUpsertArgs} args - Arguments to update or create a Destination.
+     * @example
+     * // Update or create a Destination
+     * const destination = await prisma.destination.upsert({
+     *   create: {
+     *     // ... data to create a Destination
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Destination we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DestinationUpsertArgs>(args: SelectSubset<T, DestinationUpsertArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Destinations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationCountArgs} args - Arguments to filter Destinations to count.
+     * @example
+     * // Count the number of Destinations
+     * const count = await prisma.destination.count({
+     *   where: {
+     *     // ... the filter for the Destinations we want to count
+     *   }
+     * })
+    **/
+    count<T extends DestinationCountArgs>(
+      args?: Subset<T, DestinationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DestinationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Destination.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DestinationAggregateArgs>(args: Subset<T, DestinationAggregateArgs>): Prisma.PrismaPromise<GetDestinationAggregateType<T>>
+
+    /**
+     * Group by Destination.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DestinationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DestinationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DestinationGroupByArgs['orderBy'] }
+        : { orderBy?: DestinationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DestinationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDestinationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Destination model
+   */
+  readonly fields: DestinationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Destination.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DestinationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    events<T extends Destination$eventsArgs<ExtArgs> = {}>(args?: Subset<T, Destination$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    groups<T extends Destination$groupsArgs<ExtArgs> = {}>(args?: Subset<T, Destination$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    locations<T extends Destination$locationsArgs<ExtArgs> = {}>(args?: Subset<T, Destination$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Destination model
+   */ 
+  interface DestinationFieldRefs {
+    readonly id: FieldRef<"Destination", 'String'>
+    readonly name: FieldRef<"Destination", 'String'>
+    readonly slug: FieldRef<"Destination", 'String'>
+    readonly active: FieldRef<"Destination", 'Boolean'>
+    readonly createdAt: FieldRef<"Destination", 'DateTime'>
+    readonly updatedAt: FieldRef<"Destination", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Destination findUnique
+   */
+  export type DestinationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destination to fetch.
+     */
+    where: DestinationWhereUniqueInput
+  }
+
+  /**
+   * Destination findUniqueOrThrow
+   */
+  export type DestinationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destination to fetch.
+     */
+    where: DestinationWhereUniqueInput
+  }
+
+  /**
+   * Destination findFirst
+   */
+  export type DestinationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destination to fetch.
+     */
+    where?: DestinationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Destinations to fetch.
+     */
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Destinations.
+     */
+    cursor?: DestinationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Destinations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Destinations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Destinations.
+     */
+    distinct?: DestinationScalarFieldEnum | DestinationScalarFieldEnum[]
+  }
+
+  /**
+   * Destination findFirstOrThrow
+   */
+  export type DestinationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destination to fetch.
+     */
+    where?: DestinationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Destinations to fetch.
+     */
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Destinations.
+     */
+    cursor?: DestinationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Destinations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Destinations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Destinations.
+     */
+    distinct?: DestinationScalarFieldEnum | DestinationScalarFieldEnum[]
+  }
+
+  /**
+   * Destination findMany
+   */
+  export type DestinationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter, which Destinations to fetch.
+     */
+    where?: DestinationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Destinations to fetch.
+     */
+    orderBy?: DestinationOrderByWithRelationInput | DestinationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Destinations.
+     */
+    cursor?: DestinationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Destinations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Destinations.
+     */
+    skip?: number
+    distinct?: DestinationScalarFieldEnum | DestinationScalarFieldEnum[]
+  }
+
+  /**
+   * Destination create
+   */
+  export type DestinationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Destination.
+     */
+    data: XOR<DestinationCreateInput, DestinationUncheckedCreateInput>
+  }
+
+  /**
+   * Destination createMany
+   */
+  export type DestinationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Destinations.
+     */
+    data: DestinationCreateManyInput | DestinationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Destination createManyAndReturn
+   */
+  export type DestinationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Destinations.
+     */
+    data: DestinationCreateManyInput | DestinationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Destination update
+   */
+  export type DestinationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Destination.
+     */
+    data: XOR<DestinationUpdateInput, DestinationUncheckedUpdateInput>
+    /**
+     * Choose, which Destination to update.
+     */
+    where: DestinationWhereUniqueInput
+  }
+
+  /**
+   * Destination updateMany
+   */
+  export type DestinationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Destinations.
+     */
+    data: XOR<DestinationUpdateManyMutationInput, DestinationUncheckedUpdateManyInput>
+    /**
+     * Filter which Destinations to update
+     */
+    where?: DestinationWhereInput
+    /**
+     * Limit how many Destinations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Destination updateManyAndReturn
+   */
+  export type DestinationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * The data used to update Destinations.
+     */
+    data: XOR<DestinationUpdateManyMutationInput, DestinationUncheckedUpdateManyInput>
+    /**
+     * Filter which Destinations to update
+     */
+    where?: DestinationWhereInput
+    /**
+     * Limit how many Destinations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Destination upsert
+   */
+  export type DestinationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Destination to update in case it exists.
+     */
+    where: DestinationWhereUniqueInput
+    /**
+     * In case the Destination found by the `where` argument doesn't exist, create a new Destination with this data.
+     */
+    create: XOR<DestinationCreateInput, DestinationUncheckedCreateInput>
+    /**
+     * In case the Destination was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DestinationUpdateInput, DestinationUncheckedUpdateInput>
+  }
+
+  /**
+   * Destination delete
+   */
+  export type DestinationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
+     * Filter which Destination to delete.
+     */
+    where: DestinationWhereUniqueInput
+  }
+
+  /**
+   * Destination deleteMany
+   */
+  export type DestinationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Destinations to delete
+     */
+    where?: DestinationWhereInput
+    /**
+     * Limit how many Destinations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Destination.events
+   */
+  export type Destination$eventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Event
+     */
+    omit?: EventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventInclude<ExtArgs> | null
+    where?: EventWhereInput
+    orderBy?: EventOrderByWithRelationInput | EventOrderByWithRelationInput[]
+    cursor?: EventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventScalarFieldEnum | EventScalarFieldEnum[]
+  }
+
+  /**
+   * Destination.groups
+   */
+  export type Destination$groupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Group
+     */
+    omit?: GroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    where?: GroupWhereInput
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    cursor?: GroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+  /**
+   * Destination.locations
+   */
+  export type Destination$locationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Location
+     */
+    select?: LocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Location
+     */
+    omit?: LocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LocationInclude<ExtArgs> | null
+    where?: LocationWhereInput
+    orderBy?: LocationOrderByWithRelationInput | LocationOrderByWithRelationInput[]
+    cursor?: LocationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LocationScalarFieldEnum | LocationScalarFieldEnum[]
+  }
+
+  /**
+   * Destination without action
+   */
+  export type DestinationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6081,7 +7474,8 @@ export namespace Prisma {
     source: 'source',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    isArchived: 'isArchived'
+    isArchived: 'isArchived',
+    destinationId: 'destinationId'
   };
 
   export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -6099,6 +7493,18 @@ export namespace Prisma {
   };
 
   export type InstagramProfileScalarFieldEnum = (typeof InstagramProfileScalarFieldEnum)[keyof typeof InstagramProfileScalarFieldEnum]
+
+
+  export const DestinationScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    active: 'active',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DestinationScalarFieldEnum = (typeof DestinationScalarFieldEnum)[keyof typeof DestinationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6177,7 +7583,8 @@ export namespace Prisma {
     details: 'details',
     locationId: 'locationId',
     groupId: 'groupId',
-    source: 'source'
+    source: 'source',
+    destinationId: 'destinationId'
   };
 
   export type EventOrderByRelevanceFieldEnum = (typeof EventOrderByRelevanceFieldEnum)[keyof typeof EventOrderByRelevanceFieldEnum]
@@ -6194,6 +7601,15 @@ export namespace Prisma {
   };
 
   export type InstagramProfileOrderByRelevanceFieldEnum = (typeof InstagramProfileOrderByRelevanceFieldEnum)[keyof typeof InstagramProfileOrderByRelevanceFieldEnum]
+
+
+  export const DestinationOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug'
+  };
+
+  export type DestinationOrderByRelevanceFieldEnum = (typeof DestinationOrderByRelevanceFieldEnum)[keyof typeof DestinationOrderByRelevanceFieldEnum]
 
 
   /**
@@ -6296,6 +7712,7 @@ export namespace Prisma {
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
     instagramProfiles?: InstagramProfileListRelationFilter
+    destinations?: DestinationListRelationFilter
   }
 
   export type LocationOrderByWithRelationInput = {
@@ -6310,6 +7727,7 @@ export namespace Prisma {
     events?: EventOrderByRelationAggregateInput
     groups?: GroupOrderByRelationAggregateInput
     instagramProfiles?: InstagramProfileOrderByRelationAggregateInput
+    destinations?: DestinationOrderByRelationAggregateInput
     _relevance?: LocationOrderByRelevanceInput
   }
 
@@ -6328,6 +7746,7 @@ export namespace Prisma {
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
     instagramProfiles?: InstagramProfileListRelationFilter
+    destinations?: DestinationListRelationFilter
   }, "id" | "slug">
 
   export type LocationOrderByWithAggregationInput = {
@@ -6379,6 +7798,7 @@ export namespace Prisma {
     tagLine?: StringNullableFilter<"Group"> | string | null
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
+    destinations?: DestinationListRelationFilter
   }
 
   export type GroupOrderByWithRelationInput = {
@@ -6399,6 +7819,7 @@ export namespace Prisma {
     tagLine?: SortOrderInput | SortOrder
     events?: EventOrderByRelationAggregateInput
     locations?: LocationOrderByRelationAggregateInput
+    destinations?: DestinationOrderByRelationAggregateInput
     _relevance?: GroupOrderByRelevanceInput
   }
 
@@ -6423,6 +7844,7 @@ export namespace Prisma {
     tagLine?: StringNullableFilter<"Group"> | string | null
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
+    destinations?: DestinationListRelationFilter
   }, "id" | "name" | "slug">
 
   export type GroupOrderByWithAggregationInput = {
@@ -6487,8 +7909,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
     isArchived?: BoolFilter<"Event"> | boolean
+    destinationId?: StringNullableFilter<"Event"> | string | null
     group?: XOR<GroupScalarRelationFilter, GroupWhereInput>
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    destination?: XOR<DestinationNullableScalarRelationFilter, DestinationWhereInput> | null
   }
 
   export type EventOrderByWithRelationInput = {
@@ -6508,8 +7932,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isArchived?: SortOrder
+    destinationId?: SortOrderInput | SortOrder
     group?: GroupOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
+    destination?: DestinationOrderByWithRelationInput
     _relevance?: EventOrderByRelevanceInput
   }
 
@@ -6533,8 +7959,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
     isArchived?: BoolFilter<"Event"> | boolean
+    destinationId?: StringNullableFilter<"Event"> | string | null
     group?: XOR<GroupScalarRelationFilter, GroupWhereInput>
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    destination?: XOR<DestinationNullableScalarRelationFilter, DestinationWhereInput> | null
   }, "id" | "slug">
 
   export type EventOrderByWithAggregationInput = {
@@ -6554,6 +7982,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isArchived?: SortOrder
+    destinationId?: SortOrderInput | SortOrder
     _count?: EventCountOrderByAggregateInput
     _avg?: EventAvgOrderByAggregateInput
     _max?: EventMaxOrderByAggregateInput
@@ -6581,6 +8010,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     isArchived?: BoolWithAggregatesFilter<"Event"> | boolean
+    destinationId?: StringNullableWithAggregatesFilter<"Event"> | string | null
   }
 
   export type InstagramProfileWhereInput = {
@@ -6656,6 +8086,73 @@ export namespace Prisma {
     profilePic?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
   }
 
+  export type DestinationWhereInput = {
+    AND?: DestinationWhereInput | DestinationWhereInput[]
+    OR?: DestinationWhereInput[]
+    NOT?: DestinationWhereInput | DestinationWhereInput[]
+    id?: StringFilter<"Destination"> | string
+    name?: StringFilter<"Destination"> | string
+    slug?: StringFilter<"Destination"> | string
+    active?: BoolFilter<"Destination"> | boolean
+    createdAt?: DateTimeFilter<"Destination"> | Date | string
+    updatedAt?: DateTimeFilter<"Destination"> | Date | string
+    events?: EventListRelationFilter
+    groups?: GroupListRelationFilter
+    locations?: LocationListRelationFilter
+  }
+
+  export type DestinationOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    events?: EventOrderByRelationAggregateInput
+    groups?: GroupOrderByRelationAggregateInput
+    locations?: LocationOrderByRelationAggregateInput
+    _relevance?: DestinationOrderByRelevanceInput
+  }
+
+  export type DestinationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: DestinationWhereInput | DestinationWhereInput[]
+    OR?: DestinationWhereInput[]
+    NOT?: DestinationWhereInput | DestinationWhereInput[]
+    name?: StringFilter<"Destination"> | string
+    active?: BoolFilter<"Destination"> | boolean
+    createdAt?: DateTimeFilter<"Destination"> | Date | string
+    updatedAt?: DateTimeFilter<"Destination"> | Date | string
+    events?: EventListRelationFilter
+    groups?: GroupListRelationFilter
+    locations?: LocationListRelationFilter
+  }, "id" | "slug">
+
+  export type DestinationOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DestinationCountOrderByAggregateInput
+    _max?: DestinationMaxOrderByAggregateInput
+    _min?: DestinationMinOrderByAggregateInput
+  }
+
+  export type DestinationScalarWhereWithAggregatesInput = {
+    AND?: DestinationScalarWhereWithAggregatesInput | DestinationScalarWhereWithAggregatesInput[]
+    OR?: DestinationScalarWhereWithAggregatesInput[]
+    NOT?: DestinationScalarWhereWithAggregatesInput | DestinationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Destination"> | string
+    name?: StringWithAggregatesFilter<"Destination"> | string
+    slug?: StringWithAggregatesFilter<"Destination"> | string
+    active?: BoolWithAggregatesFilter<"Destination"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Destination"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Destination"> | Date | string
+  }
+
   export type LocationCreateInput = {
     id?: string
     city: string
@@ -6668,6 +8165,7 @@ export namespace Prisma {
     events?: EventCreateNestedManyWithoutLocationInput
     groups?: GroupCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
+    destinations?: DestinationCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUncheckedCreateInput = {
@@ -6682,6 +8180,7 @@ export namespace Prisma {
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
+    destinations?: DestinationUncheckedCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUpdateInput = {
@@ -6696,6 +8195,7 @@ export namespace Prisma {
     events?: EventUpdateManyWithoutLocationNestedInput
     groups?: GroupUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
+    destinations?: DestinationUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateInput = {
@@ -6710,6 +8210,7 @@ export namespace Prisma {
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
+    destinations?: DestinationUncheckedUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationCreateManyInput = {
@@ -6763,6 +8264,7 @@ export namespace Prisma {
     tagLine?: string | null
     events?: EventCreateNestedManyWithoutGroupInput
     locations?: LocationCreateNestedManyWithoutGroupsInput
+    destinations?: DestinationCreateNestedManyWithoutGroupsInput
   }
 
   export type GroupUncheckedCreateInput = {
@@ -6783,6 +8285,7 @@ export namespace Prisma {
     tagLine?: string | null
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
+    destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
   }
 
   export type GroupUpdateInput = {
@@ -6803,6 +8306,7 @@ export namespace Prisma {
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutGroupNestedInput
     locations?: LocationUpdateManyWithoutGroupsNestedInput
+    destinations?: DestinationUpdateManyWithoutGroupsNestedInput
   }
 
   export type GroupUncheckedUpdateInput = {
@@ -6823,6 +8327,7 @@ export namespace Prisma {
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
+    destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
   }
 
   export type GroupCreateManyInput = {
@@ -6896,6 +8401,7 @@ export namespace Prisma {
     isArchived?: boolean
     group: GroupCreateNestedOneWithoutEventsInput
     location: LocationCreateNestedOneWithoutEventsInput
+    destination?: DestinationCreateNestedOneWithoutEventsInput
   }
 
   export type EventUncheckedCreateInput = {
@@ -6915,6 +8421,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
+    destinationId?: string | null
   }
 
   export type EventUpdateInput = {
@@ -6934,6 +8441,7 @@ export namespace Prisma {
     isArchived?: BoolFieldUpdateOperationsInput | boolean
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
+    destination?: DestinationUpdateOneWithoutEventsNestedInput
   }
 
   export type EventUncheckedUpdateInput = {
@@ -6953,6 +8461,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
+    destinationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EventCreateManyInput = {
@@ -6972,6 +8481,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
+    destinationId?: string | null
   }
 
   export type EventUpdateManyMutationInput = {
@@ -7008,6 +8518,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
+    destinationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InstagramProfileCreateInput = {
@@ -7091,6 +8602,81 @@ export namespace Prisma {
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type DestinationCreateInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventCreateNestedManyWithoutDestinationInput
+    groups?: GroupCreateNestedManyWithoutDestinationsInput
+    locations?: LocationCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type DestinationUncheckedCreateInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventUncheckedCreateNestedManyWithoutDestinationInput
+    groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
+    locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type DestinationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUpdateManyWithoutDestinationNestedInput
+    groups?: GroupUpdateManyWithoutDestinationsNestedInput
+    locations?: LocationUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type DestinationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUncheckedUpdateManyWithoutDestinationNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type DestinationCreateManyInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DestinationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DestinationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -7157,6 +8743,12 @@ export namespace Prisma {
     none?: InstagramProfileWhereInput
   }
 
+  export type DestinationListRelationFilter = {
+    every?: DestinationWhereInput
+    some?: DestinationWhereInput
+    none?: DestinationWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -7171,6 +8763,10 @@ export namespace Prisma {
   }
 
   export type InstagramProfileOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DestinationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7409,6 +9005,11 @@ export namespace Prisma {
     isNot?: LocationWhereInput
   }
 
+  export type DestinationNullableScalarRelationFilter = {
+    is?: DestinationWhereInput | null
+    isNot?: DestinationWhereInput | null
+  }
+
   export type EventOrderByRelevanceInput = {
     fields: EventOrderByRelevanceFieldEnum | EventOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -7432,6 +9033,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isArchived?: SortOrder
+    destinationId?: SortOrder
   }
 
   export type EventAvgOrderByAggregateInput = {
@@ -7451,6 +9053,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isArchived?: SortOrder
+    destinationId?: SortOrder
   }
 
   export type EventMinOrderByAggregateInput = {
@@ -7466,6 +9069,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isArchived?: SortOrder
+    destinationId?: SortOrder
   }
 
   export type EventSumOrderByAggregateInput = {
@@ -7535,6 +9139,39 @@ export namespace Prisma {
     followersCount?: SortOrder
   }
 
+  export type DestinationOrderByRelevanceInput = {
+    fields: DestinationOrderByRelevanceFieldEnum | DestinationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type DestinationCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DestinationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DestinationMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type EventCreateNestedManyWithoutLocationInput = {
     create?: XOR<EventCreateWithoutLocationInput, EventUncheckedCreateWithoutLocationInput> | EventCreateWithoutLocationInput[] | EventUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: EventCreateOrConnectWithoutLocationInput | EventCreateOrConnectWithoutLocationInput[]
@@ -7554,6 +9191,12 @@ export namespace Prisma {
     connect?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
   }
 
+  export type DestinationCreateNestedManyWithoutLocationsInput = {
+    create?: XOR<DestinationCreateWithoutLocationsInput, DestinationUncheckedCreateWithoutLocationsInput> | DestinationCreateWithoutLocationsInput[] | DestinationUncheckedCreateWithoutLocationsInput[]
+    connectOrCreate?: DestinationCreateOrConnectWithoutLocationsInput | DestinationCreateOrConnectWithoutLocationsInput[]
+    connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+  }
+
   export type EventUncheckedCreateNestedManyWithoutLocationInput = {
     create?: XOR<EventCreateWithoutLocationInput, EventUncheckedCreateWithoutLocationInput> | EventCreateWithoutLocationInput[] | EventUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: EventCreateOrConnectWithoutLocationInput | EventCreateOrConnectWithoutLocationInput[]
@@ -7571,6 +9214,12 @@ export namespace Prisma {
     create?: XOR<InstagramProfileCreateWithoutLocationsInput, InstagramProfileUncheckedCreateWithoutLocationsInput> | InstagramProfileCreateWithoutLocationsInput[] | InstagramProfileUncheckedCreateWithoutLocationsInput[]
     connectOrCreate?: InstagramProfileCreateOrConnectWithoutLocationsInput | InstagramProfileCreateOrConnectWithoutLocationsInput[]
     connect?: InstagramProfileWhereUniqueInput | InstagramProfileWhereUniqueInput[]
+  }
+
+  export type DestinationUncheckedCreateNestedManyWithoutLocationsInput = {
+    create?: XOR<DestinationCreateWithoutLocationsInput, DestinationUncheckedCreateWithoutLocationsInput> | DestinationCreateWithoutLocationsInput[] | DestinationUncheckedCreateWithoutLocationsInput[]
+    connectOrCreate?: DestinationCreateOrConnectWithoutLocationsInput | DestinationCreateOrConnectWithoutLocationsInput[]
+    connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -7629,6 +9278,19 @@ export namespace Prisma {
     deleteMany?: InstagramProfileScalarWhereInput | InstagramProfileScalarWhereInput[]
   }
 
+  export type DestinationUpdateManyWithoutLocationsNestedInput = {
+    create?: XOR<DestinationCreateWithoutLocationsInput, DestinationUncheckedCreateWithoutLocationsInput> | DestinationCreateWithoutLocationsInput[] | DestinationUncheckedCreateWithoutLocationsInput[]
+    connectOrCreate?: DestinationCreateOrConnectWithoutLocationsInput | DestinationCreateOrConnectWithoutLocationsInput[]
+    upsert?: DestinationUpsertWithWhereUniqueWithoutLocationsInput | DestinationUpsertWithWhereUniqueWithoutLocationsInput[]
+    set?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    disconnect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    delete?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    update?: DestinationUpdateWithWhereUniqueWithoutLocationsInput | DestinationUpdateWithWhereUniqueWithoutLocationsInput[]
+    updateMany?: DestinationUpdateManyWithWhereWithoutLocationsInput | DestinationUpdateManyWithWhereWithoutLocationsInput[]
+    deleteMany?: DestinationScalarWhereInput | DestinationScalarWhereInput[]
+  }
+
   export type EventUncheckedUpdateManyWithoutLocationNestedInput = {
     create?: XOR<EventCreateWithoutLocationInput, EventUncheckedCreateWithoutLocationInput> | EventCreateWithoutLocationInput[] | EventUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: EventCreateOrConnectWithoutLocationInput | EventCreateOrConnectWithoutLocationInput[]
@@ -7669,6 +9331,19 @@ export namespace Prisma {
     deleteMany?: InstagramProfileScalarWhereInput | InstagramProfileScalarWhereInput[]
   }
 
+  export type DestinationUncheckedUpdateManyWithoutLocationsNestedInput = {
+    create?: XOR<DestinationCreateWithoutLocationsInput, DestinationUncheckedCreateWithoutLocationsInput> | DestinationCreateWithoutLocationsInput[] | DestinationUncheckedCreateWithoutLocationsInput[]
+    connectOrCreate?: DestinationCreateOrConnectWithoutLocationsInput | DestinationCreateOrConnectWithoutLocationsInput[]
+    upsert?: DestinationUpsertWithWhereUniqueWithoutLocationsInput | DestinationUpsertWithWhereUniqueWithoutLocationsInput[]
+    set?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    disconnect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    delete?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    update?: DestinationUpdateWithWhereUniqueWithoutLocationsInput | DestinationUpdateWithWhereUniqueWithoutLocationsInput[]
+    updateMany?: DestinationUpdateManyWithWhereWithoutLocationsInput | DestinationUpdateManyWithWhereWithoutLocationsInput[]
+    deleteMany?: DestinationScalarWhereInput | DestinationScalarWhereInput[]
+  }
+
   export type EventCreateNestedManyWithoutGroupInput = {
     create?: XOR<EventCreateWithoutGroupInput, EventUncheckedCreateWithoutGroupInput> | EventCreateWithoutGroupInput[] | EventUncheckedCreateWithoutGroupInput[]
     connectOrCreate?: EventCreateOrConnectWithoutGroupInput | EventCreateOrConnectWithoutGroupInput[]
@@ -7682,6 +9357,12 @@ export namespace Prisma {
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
   }
 
+  export type DestinationCreateNestedManyWithoutGroupsInput = {
+    create?: XOR<DestinationCreateWithoutGroupsInput, DestinationUncheckedCreateWithoutGroupsInput> | DestinationCreateWithoutGroupsInput[] | DestinationUncheckedCreateWithoutGroupsInput[]
+    connectOrCreate?: DestinationCreateOrConnectWithoutGroupsInput | DestinationCreateOrConnectWithoutGroupsInput[]
+    connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+  }
+
   export type EventUncheckedCreateNestedManyWithoutGroupInput = {
     create?: XOR<EventCreateWithoutGroupInput, EventUncheckedCreateWithoutGroupInput> | EventCreateWithoutGroupInput[] | EventUncheckedCreateWithoutGroupInput[]
     connectOrCreate?: EventCreateOrConnectWithoutGroupInput | EventCreateOrConnectWithoutGroupInput[]
@@ -7693,6 +9374,12 @@ export namespace Prisma {
     create?: XOR<LocationCreateWithoutGroupsInput, LocationUncheckedCreateWithoutGroupsInput> | LocationCreateWithoutGroupsInput[] | LocationUncheckedCreateWithoutGroupsInput[]
     connectOrCreate?: LocationCreateOrConnectWithoutGroupsInput | LocationCreateOrConnectWithoutGroupsInput[]
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+  }
+
+  export type DestinationUncheckedCreateNestedManyWithoutGroupsInput = {
+    create?: XOR<DestinationCreateWithoutGroupsInput, DestinationUncheckedCreateWithoutGroupsInput> | DestinationCreateWithoutGroupsInput[] | DestinationUncheckedCreateWithoutGroupsInput[]
+    connectOrCreate?: DestinationCreateOrConnectWithoutGroupsInput | DestinationCreateOrConnectWithoutGroupsInput[]
+    connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
   }
 
   export type EventUpdateManyWithoutGroupNestedInput = {
@@ -7722,6 +9409,19 @@ export namespace Prisma {
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
+  export type DestinationUpdateManyWithoutGroupsNestedInput = {
+    create?: XOR<DestinationCreateWithoutGroupsInput, DestinationUncheckedCreateWithoutGroupsInput> | DestinationCreateWithoutGroupsInput[] | DestinationUncheckedCreateWithoutGroupsInput[]
+    connectOrCreate?: DestinationCreateOrConnectWithoutGroupsInput | DestinationCreateOrConnectWithoutGroupsInput[]
+    upsert?: DestinationUpsertWithWhereUniqueWithoutGroupsInput | DestinationUpsertWithWhereUniqueWithoutGroupsInput[]
+    set?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    disconnect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    delete?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    update?: DestinationUpdateWithWhereUniqueWithoutGroupsInput | DestinationUpdateWithWhereUniqueWithoutGroupsInput[]
+    updateMany?: DestinationUpdateManyWithWhereWithoutGroupsInput | DestinationUpdateManyWithWhereWithoutGroupsInput[]
+    deleteMany?: DestinationScalarWhereInput | DestinationScalarWhereInput[]
+  }
+
   export type EventUncheckedUpdateManyWithoutGroupNestedInput = {
     create?: XOR<EventCreateWithoutGroupInput, EventUncheckedCreateWithoutGroupInput> | EventCreateWithoutGroupInput[] | EventUncheckedCreateWithoutGroupInput[]
     connectOrCreate?: EventCreateOrConnectWithoutGroupInput | EventCreateOrConnectWithoutGroupInput[]
@@ -7749,6 +9449,19 @@ export namespace Prisma {
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
+  export type DestinationUncheckedUpdateManyWithoutGroupsNestedInput = {
+    create?: XOR<DestinationCreateWithoutGroupsInput, DestinationUncheckedCreateWithoutGroupsInput> | DestinationCreateWithoutGroupsInput[] | DestinationUncheckedCreateWithoutGroupsInput[]
+    connectOrCreate?: DestinationCreateOrConnectWithoutGroupsInput | DestinationCreateOrConnectWithoutGroupsInput[]
+    upsert?: DestinationUpsertWithWhereUniqueWithoutGroupsInput | DestinationUpsertWithWhereUniqueWithoutGroupsInput[]
+    set?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    disconnect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    delete?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+    update?: DestinationUpdateWithWhereUniqueWithoutGroupsInput | DestinationUpdateWithWhereUniqueWithoutGroupsInput[]
+    updateMany?: DestinationUpdateManyWithWhereWithoutGroupsInput | DestinationUpdateManyWithWhereWithoutGroupsInput[]
+    deleteMany?: DestinationScalarWhereInput | DestinationScalarWhereInput[]
+  }
+
   export type GroupCreateNestedOneWithoutEventsInput = {
     create?: XOR<GroupCreateWithoutEventsInput, GroupUncheckedCreateWithoutEventsInput>
     connectOrCreate?: GroupCreateOrConnectWithoutEventsInput
@@ -7759,6 +9472,12 @@ export namespace Prisma {
     create?: XOR<LocationCreateWithoutEventsInput, LocationUncheckedCreateWithoutEventsInput>
     connectOrCreate?: LocationCreateOrConnectWithoutEventsInput
     connect?: LocationWhereUniqueInput
+  }
+
+  export type DestinationCreateNestedOneWithoutEventsInput = {
+    create?: XOR<DestinationCreateWithoutEventsInput, DestinationUncheckedCreateWithoutEventsInput>
+    connectOrCreate?: DestinationCreateOrConnectWithoutEventsInput
+    connect?: DestinationWhereUniqueInput
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -7783,6 +9502,16 @@ export namespace Prisma {
     upsert?: LocationUpsertWithoutEventsInput
     connect?: LocationWhereUniqueInput
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutEventsInput, LocationUpdateWithoutEventsInput>, LocationUncheckedUpdateWithoutEventsInput>
+  }
+
+  export type DestinationUpdateOneWithoutEventsNestedInput = {
+    create?: XOR<DestinationCreateWithoutEventsInput, DestinationUncheckedCreateWithoutEventsInput>
+    connectOrCreate?: DestinationCreateOrConnectWithoutEventsInput
+    upsert?: DestinationUpsertWithoutEventsInput
+    disconnect?: DestinationWhereInput | boolean
+    delete?: DestinationWhereInput | boolean
+    connect?: DestinationWhereUniqueInput
+    update?: XOR<XOR<DestinationUpdateToOneWithWhereWithoutEventsInput, DestinationUpdateWithoutEventsInput>, DestinationUncheckedUpdateWithoutEventsInput>
   }
 
   export type LocationCreateNestedManyWithoutInstagramProfilesInput = {
@@ -7820,6 +9549,124 @@ export namespace Prisma {
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
     update?: LocationUpdateWithWhereUniqueWithoutInstagramProfilesInput | LocationUpdateWithWhereUniqueWithoutInstagramProfilesInput[]
     updateMany?: LocationUpdateManyWithWhereWithoutInstagramProfilesInput | LocationUpdateManyWithWhereWithoutInstagramProfilesInput[]
+    deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
+  }
+
+  export type EventCreateNestedManyWithoutDestinationInput = {
+    create?: XOR<EventCreateWithoutDestinationInput, EventUncheckedCreateWithoutDestinationInput> | EventCreateWithoutDestinationInput[] | EventUncheckedCreateWithoutDestinationInput[]
+    connectOrCreate?: EventCreateOrConnectWithoutDestinationInput | EventCreateOrConnectWithoutDestinationInput[]
+    createMany?: EventCreateManyDestinationInputEnvelope
+    connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+  }
+
+  export type GroupCreateNestedManyWithoutDestinationsInput = {
+    create?: XOR<GroupCreateWithoutDestinationsInput, GroupUncheckedCreateWithoutDestinationsInput> | GroupCreateWithoutDestinationsInput[] | GroupUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutDestinationsInput | GroupCreateOrConnectWithoutDestinationsInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+  }
+
+  export type LocationCreateNestedManyWithoutDestinationsInput = {
+    create?: XOR<LocationCreateWithoutDestinationsInput, LocationUncheckedCreateWithoutDestinationsInput> | LocationCreateWithoutDestinationsInput[] | LocationUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutDestinationsInput | LocationCreateOrConnectWithoutDestinationsInput[]
+    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+  }
+
+  export type EventUncheckedCreateNestedManyWithoutDestinationInput = {
+    create?: XOR<EventCreateWithoutDestinationInput, EventUncheckedCreateWithoutDestinationInput> | EventCreateWithoutDestinationInput[] | EventUncheckedCreateWithoutDestinationInput[]
+    connectOrCreate?: EventCreateOrConnectWithoutDestinationInput | EventCreateOrConnectWithoutDestinationInput[]
+    createMany?: EventCreateManyDestinationInputEnvelope
+    connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+  }
+
+  export type GroupUncheckedCreateNestedManyWithoutDestinationsInput = {
+    create?: XOR<GroupCreateWithoutDestinationsInput, GroupUncheckedCreateWithoutDestinationsInput> | GroupCreateWithoutDestinationsInput[] | GroupUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutDestinationsInput | GroupCreateOrConnectWithoutDestinationsInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+  }
+
+  export type LocationUncheckedCreateNestedManyWithoutDestinationsInput = {
+    create?: XOR<LocationCreateWithoutDestinationsInput, LocationUncheckedCreateWithoutDestinationsInput> | LocationCreateWithoutDestinationsInput[] | LocationUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutDestinationsInput | LocationCreateOrConnectWithoutDestinationsInput[]
+    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+  }
+
+  export type EventUpdateManyWithoutDestinationNestedInput = {
+    create?: XOR<EventCreateWithoutDestinationInput, EventUncheckedCreateWithoutDestinationInput> | EventCreateWithoutDestinationInput[] | EventUncheckedCreateWithoutDestinationInput[]
+    connectOrCreate?: EventCreateOrConnectWithoutDestinationInput | EventCreateOrConnectWithoutDestinationInput[]
+    upsert?: EventUpsertWithWhereUniqueWithoutDestinationInput | EventUpsertWithWhereUniqueWithoutDestinationInput[]
+    createMany?: EventCreateManyDestinationInputEnvelope
+    set?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    disconnect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    delete?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    update?: EventUpdateWithWhereUniqueWithoutDestinationInput | EventUpdateWithWhereUniqueWithoutDestinationInput[]
+    updateMany?: EventUpdateManyWithWhereWithoutDestinationInput | EventUpdateManyWithWhereWithoutDestinationInput[]
+    deleteMany?: EventScalarWhereInput | EventScalarWhereInput[]
+  }
+
+  export type GroupUpdateManyWithoutDestinationsNestedInput = {
+    create?: XOR<GroupCreateWithoutDestinationsInput, GroupUncheckedCreateWithoutDestinationsInput> | GroupCreateWithoutDestinationsInput[] | GroupUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutDestinationsInput | GroupCreateOrConnectWithoutDestinationsInput[]
+    upsert?: GroupUpsertWithWhereUniqueWithoutDestinationsInput | GroupUpsertWithWhereUniqueWithoutDestinationsInput[]
+    set?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    disconnect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    delete?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    update?: GroupUpdateWithWhereUniqueWithoutDestinationsInput | GroupUpdateWithWhereUniqueWithoutDestinationsInput[]
+    updateMany?: GroupUpdateManyWithWhereWithoutDestinationsInput | GroupUpdateManyWithWhereWithoutDestinationsInput[]
+    deleteMany?: GroupScalarWhereInput | GroupScalarWhereInput[]
+  }
+
+  export type LocationUpdateManyWithoutDestinationsNestedInput = {
+    create?: XOR<LocationCreateWithoutDestinationsInput, LocationUncheckedCreateWithoutDestinationsInput> | LocationCreateWithoutDestinationsInput[] | LocationUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutDestinationsInput | LocationCreateOrConnectWithoutDestinationsInput[]
+    upsert?: LocationUpsertWithWhereUniqueWithoutDestinationsInput | LocationUpsertWithWhereUniqueWithoutDestinationsInput[]
+    set?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    disconnect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    delete?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    update?: LocationUpdateWithWhereUniqueWithoutDestinationsInput | LocationUpdateWithWhereUniqueWithoutDestinationsInput[]
+    updateMany?: LocationUpdateManyWithWhereWithoutDestinationsInput | LocationUpdateManyWithWhereWithoutDestinationsInput[]
+    deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
+  }
+
+  export type EventUncheckedUpdateManyWithoutDestinationNestedInput = {
+    create?: XOR<EventCreateWithoutDestinationInput, EventUncheckedCreateWithoutDestinationInput> | EventCreateWithoutDestinationInput[] | EventUncheckedCreateWithoutDestinationInput[]
+    connectOrCreate?: EventCreateOrConnectWithoutDestinationInput | EventCreateOrConnectWithoutDestinationInput[]
+    upsert?: EventUpsertWithWhereUniqueWithoutDestinationInput | EventUpsertWithWhereUniqueWithoutDestinationInput[]
+    createMany?: EventCreateManyDestinationInputEnvelope
+    set?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    disconnect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    delete?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    update?: EventUpdateWithWhereUniqueWithoutDestinationInput | EventUpdateWithWhereUniqueWithoutDestinationInput[]
+    updateMany?: EventUpdateManyWithWhereWithoutDestinationInput | EventUpdateManyWithWhereWithoutDestinationInput[]
+    deleteMany?: EventScalarWhereInput | EventScalarWhereInput[]
+  }
+
+  export type GroupUncheckedUpdateManyWithoutDestinationsNestedInput = {
+    create?: XOR<GroupCreateWithoutDestinationsInput, GroupUncheckedCreateWithoutDestinationsInput> | GroupCreateWithoutDestinationsInput[] | GroupUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutDestinationsInput | GroupCreateOrConnectWithoutDestinationsInput[]
+    upsert?: GroupUpsertWithWhereUniqueWithoutDestinationsInput | GroupUpsertWithWhereUniqueWithoutDestinationsInput[]
+    set?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    disconnect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    delete?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    update?: GroupUpdateWithWhereUniqueWithoutDestinationsInput | GroupUpdateWithWhereUniqueWithoutDestinationsInput[]
+    updateMany?: GroupUpdateManyWithWhereWithoutDestinationsInput | GroupUpdateManyWithWhereWithoutDestinationsInput[]
+    deleteMany?: GroupScalarWhereInput | GroupScalarWhereInput[]
+  }
+
+  export type LocationUncheckedUpdateManyWithoutDestinationsNestedInput = {
+    create?: XOR<LocationCreateWithoutDestinationsInput, LocationUncheckedCreateWithoutDestinationsInput> | LocationCreateWithoutDestinationsInput[] | LocationUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: LocationCreateOrConnectWithoutDestinationsInput | LocationCreateOrConnectWithoutDestinationsInput[]
+    upsert?: LocationUpsertWithWhereUniqueWithoutDestinationsInput | LocationUpsertWithWhereUniqueWithoutDestinationsInput[]
+    set?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    disconnect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    delete?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+    update?: LocationUpdateWithWhereUniqueWithoutDestinationsInput | LocationUpdateWithWhereUniqueWithoutDestinationsInput[]
+    updateMany?: LocationUpdateManyWithWhereWithoutDestinationsInput | LocationUpdateManyWithWhereWithoutDestinationsInput[]
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
@@ -8015,6 +9862,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isArchived?: boolean
     group: GroupCreateNestedOneWithoutEventsInput
+    destination?: DestinationCreateNestedOneWithoutEventsInput
   }
 
   export type EventUncheckedCreateWithoutLocationInput = {
@@ -8033,6 +9881,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
+    destinationId?: string | null
   }
 
   export type EventCreateOrConnectWithoutLocationInput = {
@@ -8062,6 +9911,7 @@ export namespace Prisma {
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
     tagLine?: string | null
     events?: EventCreateNestedManyWithoutGroupInput
+    destinations?: DestinationCreateNestedManyWithoutGroupsInput
   }
 
   export type GroupUncheckedCreateWithoutLocationsInput = {
@@ -8081,6 +9931,7 @@ export namespace Prisma {
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
     tagLine?: string | null
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
+    destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
   }
 
   export type GroupCreateOrConnectWithoutLocationsInput = {
@@ -8113,6 +9964,33 @@ export namespace Prisma {
   export type InstagramProfileCreateOrConnectWithoutLocationsInput = {
     where: InstagramProfileWhereUniqueInput
     create: XOR<InstagramProfileCreateWithoutLocationsInput, InstagramProfileUncheckedCreateWithoutLocationsInput>
+  }
+
+  export type DestinationCreateWithoutLocationsInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventCreateNestedManyWithoutDestinationInput
+    groups?: GroupCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type DestinationUncheckedCreateWithoutLocationsInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventUncheckedCreateNestedManyWithoutDestinationInput
+    groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type DestinationCreateOrConnectWithoutLocationsInput = {
+    where: DestinationWhereUniqueInput
+    create: XOR<DestinationCreateWithoutLocationsInput, DestinationUncheckedCreateWithoutLocationsInput>
   }
 
   export type EventUpsertWithWhereUniqueWithoutLocationInput = {
@@ -8151,6 +10029,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
     isArchived?: BoolFilter<"Event"> | boolean
+    destinationId?: StringNullableFilter<"Event"> | string | null
   }
 
   export type GroupUpsertWithWhereUniqueWithoutLocationsInput = {
@@ -8220,6 +10099,34 @@ export namespace Prisma {
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
   }
 
+  export type DestinationUpsertWithWhereUniqueWithoutLocationsInput = {
+    where: DestinationWhereUniqueInput
+    update: XOR<DestinationUpdateWithoutLocationsInput, DestinationUncheckedUpdateWithoutLocationsInput>
+    create: XOR<DestinationCreateWithoutLocationsInput, DestinationUncheckedCreateWithoutLocationsInput>
+  }
+
+  export type DestinationUpdateWithWhereUniqueWithoutLocationsInput = {
+    where: DestinationWhereUniqueInput
+    data: XOR<DestinationUpdateWithoutLocationsInput, DestinationUncheckedUpdateWithoutLocationsInput>
+  }
+
+  export type DestinationUpdateManyWithWhereWithoutLocationsInput = {
+    where: DestinationScalarWhereInput
+    data: XOR<DestinationUpdateManyMutationInput, DestinationUncheckedUpdateManyWithoutLocationsInput>
+  }
+
+  export type DestinationScalarWhereInput = {
+    AND?: DestinationScalarWhereInput | DestinationScalarWhereInput[]
+    OR?: DestinationScalarWhereInput[]
+    NOT?: DestinationScalarWhereInput | DestinationScalarWhereInput[]
+    id?: StringFilter<"Destination"> | string
+    name?: StringFilter<"Destination"> | string
+    slug?: StringFilter<"Destination"> | string
+    active?: BoolFilter<"Destination"> | boolean
+    createdAt?: DateTimeFilter<"Destination"> | Date | string
+    updatedAt?: DateTimeFilter<"Destination"> | Date | string
+  }
+
   export type EventCreateWithoutGroupInput = {
     id?: string
     title: string
@@ -8236,6 +10143,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isArchived?: boolean
     location: LocationCreateNestedOneWithoutEventsInput
+    destination?: DestinationCreateNestedOneWithoutEventsInput
   }
 
   export type EventUncheckedCreateWithoutGroupInput = {
@@ -8254,6 +10162,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
+    destinationId?: string | null
   }
 
   export type EventCreateOrConnectWithoutGroupInput = {
@@ -8277,6 +10186,7 @@ export namespace Prisma {
     posterUrl?: string | null
     events?: EventCreateNestedManyWithoutLocationInput
     instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
+    destinations?: DestinationCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUncheckedCreateWithoutGroupsInput = {
@@ -8290,11 +10200,39 @@ export namespace Prisma {
     posterUrl?: string | null
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
     instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
+    destinations?: DestinationUncheckedCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationCreateOrConnectWithoutGroupsInput = {
     where: LocationWhereUniqueInput
     create: XOR<LocationCreateWithoutGroupsInput, LocationUncheckedCreateWithoutGroupsInput>
+  }
+
+  export type DestinationCreateWithoutGroupsInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventCreateNestedManyWithoutDestinationInput
+    locations?: LocationCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type DestinationUncheckedCreateWithoutGroupsInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventUncheckedCreateNestedManyWithoutDestinationInput
+    locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type DestinationCreateOrConnectWithoutGroupsInput = {
+    where: DestinationWhereUniqueInput
+    create: XOR<DestinationCreateWithoutGroupsInput, DestinationUncheckedCreateWithoutGroupsInput>
   }
 
   export type EventUpsertWithWhereUniqueWithoutGroupInput = {
@@ -8343,6 +10281,22 @@ export namespace Prisma {
     posterUrl?: StringNullableFilter<"Location"> | string | null
   }
 
+  export type DestinationUpsertWithWhereUniqueWithoutGroupsInput = {
+    where: DestinationWhereUniqueInput
+    update: XOR<DestinationUpdateWithoutGroupsInput, DestinationUncheckedUpdateWithoutGroupsInput>
+    create: XOR<DestinationCreateWithoutGroupsInput, DestinationUncheckedCreateWithoutGroupsInput>
+  }
+
+  export type DestinationUpdateWithWhereUniqueWithoutGroupsInput = {
+    where: DestinationWhereUniqueInput
+    data: XOR<DestinationUpdateWithoutGroupsInput, DestinationUncheckedUpdateWithoutGroupsInput>
+  }
+
+  export type DestinationUpdateManyWithWhereWithoutGroupsInput = {
+    where: DestinationScalarWhereInput
+    data: XOR<DestinationUpdateManyMutationInput, DestinationUncheckedUpdateManyWithoutGroupsInput>
+  }
+
   export type GroupCreateWithoutEventsInput = {
     id?: string
     name: string
@@ -8360,6 +10314,7 @@ export namespace Prisma {
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
     tagLine?: string | null
     locations?: LocationCreateNestedManyWithoutGroupsInput
+    destinations?: DestinationCreateNestedManyWithoutGroupsInput
   }
 
   export type GroupUncheckedCreateWithoutEventsInput = {
@@ -8379,6 +10334,7 @@ export namespace Prisma {
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
     tagLine?: string | null
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
+    destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
   }
 
   export type GroupCreateOrConnectWithoutEventsInput = {
@@ -8397,6 +10353,7 @@ export namespace Prisma {
     posterUrl?: string | null
     groups?: GroupCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
+    destinations?: DestinationCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUncheckedCreateWithoutEventsInput = {
@@ -8410,11 +10367,39 @@ export namespace Prisma {
     posterUrl?: string | null
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
+    destinations?: DestinationUncheckedCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationCreateOrConnectWithoutEventsInput = {
     where: LocationWhereUniqueInput
     create: XOR<LocationCreateWithoutEventsInput, LocationUncheckedCreateWithoutEventsInput>
+  }
+
+  export type DestinationCreateWithoutEventsInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    groups?: GroupCreateNestedManyWithoutDestinationsInput
+    locations?: LocationCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type DestinationUncheckedCreateWithoutEventsInput = {
+    id?: string
+    name: string
+    slug: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
+    locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type DestinationCreateOrConnectWithoutEventsInput = {
+    where: DestinationWhereUniqueInput
+    create: XOR<DestinationCreateWithoutEventsInput, DestinationUncheckedCreateWithoutEventsInput>
   }
 
   export type GroupUpsertWithoutEventsInput = {
@@ -8445,6 +10430,7 @@ export namespace Prisma {
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     locations?: LocationUpdateManyWithoutGroupsNestedInput
+    destinations?: DestinationUpdateManyWithoutGroupsNestedInput
   }
 
   export type GroupUncheckedUpdateWithoutEventsInput = {
@@ -8464,6 +10450,7 @@ export namespace Prisma {
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
+    destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
   }
 
   export type LocationUpsertWithoutEventsInput = {
@@ -8488,6 +10475,7 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: GroupUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
+    destinations?: DestinationUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateWithoutEventsInput = {
@@ -8501,6 +10489,40 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
+    destinations?: DestinationUncheckedUpdateManyWithoutLocationsNestedInput
+  }
+
+  export type DestinationUpsertWithoutEventsInput = {
+    update: XOR<DestinationUpdateWithoutEventsInput, DestinationUncheckedUpdateWithoutEventsInput>
+    create: XOR<DestinationCreateWithoutEventsInput, DestinationUncheckedCreateWithoutEventsInput>
+    where?: DestinationWhereInput
+  }
+
+  export type DestinationUpdateToOneWithWhereWithoutEventsInput = {
+    where?: DestinationWhereInput
+    data: XOR<DestinationUpdateWithoutEventsInput, DestinationUncheckedUpdateWithoutEventsInput>
+  }
+
+  export type DestinationUpdateWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    groups?: GroupUpdateManyWithoutDestinationsNestedInput
+    locations?: LocationUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type DestinationUncheckedUpdateWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
   }
 
   export type LocationCreateWithoutInstagramProfilesInput = {
@@ -8514,6 +10536,7 @@ export namespace Prisma {
     posterUrl?: string | null
     events?: EventCreateNestedManyWithoutLocationInput
     groups?: GroupCreateNestedManyWithoutLocationsInput
+    destinations?: DestinationCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationUncheckedCreateWithoutInstagramProfilesInput = {
@@ -8527,6 +10550,7 @@ export namespace Prisma {
     posterUrl?: string | null
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
+    destinations?: DestinationUncheckedCreateNestedManyWithoutLocationsInput
   }
 
   export type LocationCreateOrConnectWithoutInstagramProfilesInput = {
@@ -8550,6 +10574,180 @@ export namespace Prisma {
     data: XOR<LocationUpdateManyMutationInput, LocationUncheckedUpdateManyWithoutInstagramProfilesInput>
   }
 
+  export type EventCreateWithoutDestinationInput = {
+    id?: string
+    title: string
+    slug: string
+    durations?: string | null
+    details?: string | null
+    price?: number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
+    source: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isArchived?: boolean
+    group: GroupCreateNestedOneWithoutEventsInput
+    location: LocationCreateNestedOneWithoutEventsInput
+  }
+
+  export type EventUncheckedCreateWithoutDestinationInput = {
+    id?: string
+    title: string
+    slug: string
+    durations?: string | null
+    details?: string | null
+    price?: number | null
+    locationId: string
+    groupId: string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
+    source: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isArchived?: boolean
+  }
+
+  export type EventCreateOrConnectWithoutDestinationInput = {
+    where: EventWhereUniqueInput
+    create: XOR<EventCreateWithoutDestinationInput, EventUncheckedCreateWithoutDestinationInput>
+  }
+
+  export type EventCreateManyDestinationInputEnvelope = {
+    data: EventCreateManyDestinationInput | EventCreateManyDestinationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GroupCreateWithoutDestinationsInput = {
+    id?: string
+    name: string
+    slug: string
+    details: string
+    instagram?: string | null
+    phone?: string | null
+    email?: string | null
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    source: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    logo?: string | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
+    events?: EventCreateNestedManyWithoutGroupInput
+    locations?: LocationCreateNestedManyWithoutGroupsInput
+  }
+
+  export type GroupUncheckedCreateWithoutDestinationsInput = {
+    id?: string
+    name: string
+    slug: string
+    details: string
+    instagram?: string | null
+    phone?: string | null
+    email?: string | null
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    source: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    logo?: string | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: string | null
+    events?: EventUncheckedCreateNestedManyWithoutGroupInput
+    locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
+  }
+
+  export type GroupCreateOrConnectWithoutDestinationsInput = {
+    where: GroupWhereUniqueInput
+    create: XOR<GroupCreateWithoutDestinationsInput, GroupUncheckedCreateWithoutDestinationsInput>
+  }
+
+  export type LocationCreateWithoutDestinationsInput = {
+    id?: string
+    city: string
+    slug: string
+    country: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posterUrl?: string | null
+    events?: EventCreateNestedManyWithoutLocationInput
+    groups?: GroupCreateNestedManyWithoutLocationsInput
+    instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
+  }
+
+  export type LocationUncheckedCreateWithoutDestinationsInput = {
+    id?: string
+    city: string
+    slug: string
+    country: string
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    posterUrl?: string | null
+    events?: EventUncheckedCreateNestedManyWithoutLocationInput
+    groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
+    instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
+  }
+
+  export type LocationCreateOrConnectWithoutDestinationsInput = {
+    where: LocationWhereUniqueInput
+    create: XOR<LocationCreateWithoutDestinationsInput, LocationUncheckedCreateWithoutDestinationsInput>
+  }
+
+  export type EventUpsertWithWhereUniqueWithoutDestinationInput = {
+    where: EventWhereUniqueInput
+    update: XOR<EventUpdateWithoutDestinationInput, EventUncheckedUpdateWithoutDestinationInput>
+    create: XOR<EventCreateWithoutDestinationInput, EventUncheckedCreateWithoutDestinationInput>
+  }
+
+  export type EventUpdateWithWhereUniqueWithoutDestinationInput = {
+    where: EventWhereUniqueInput
+    data: XOR<EventUpdateWithoutDestinationInput, EventUncheckedUpdateWithoutDestinationInput>
+  }
+
+  export type EventUpdateManyWithWhereWithoutDestinationInput = {
+    where: EventScalarWhereInput
+    data: XOR<EventUpdateManyMutationInput, EventUncheckedUpdateManyWithoutDestinationInput>
+  }
+
+  export type GroupUpsertWithWhereUniqueWithoutDestinationsInput = {
+    where: GroupWhereUniqueInput
+    update: XOR<GroupUpdateWithoutDestinationsInput, GroupUncheckedUpdateWithoutDestinationsInput>
+    create: XOR<GroupCreateWithoutDestinationsInput, GroupUncheckedCreateWithoutDestinationsInput>
+  }
+
+  export type GroupUpdateWithWhereUniqueWithoutDestinationsInput = {
+    where: GroupWhereUniqueInput
+    data: XOR<GroupUpdateWithoutDestinationsInput, GroupUncheckedUpdateWithoutDestinationsInput>
+  }
+
+  export type GroupUpdateManyWithWhereWithoutDestinationsInput = {
+    where: GroupScalarWhereInput
+    data: XOR<GroupUpdateManyMutationInput, GroupUncheckedUpdateManyWithoutDestinationsInput>
+  }
+
+  export type LocationUpsertWithWhereUniqueWithoutDestinationsInput = {
+    where: LocationWhereUniqueInput
+    update: XOR<LocationUpdateWithoutDestinationsInput, LocationUncheckedUpdateWithoutDestinationsInput>
+    create: XOR<LocationCreateWithoutDestinationsInput, LocationUncheckedCreateWithoutDestinationsInput>
+  }
+
+  export type LocationUpdateWithWhereUniqueWithoutDestinationsInput = {
+    where: LocationWhereUniqueInput
+    data: XOR<LocationUpdateWithoutDestinationsInput, LocationUncheckedUpdateWithoutDestinationsInput>
+  }
+
+  export type LocationUpdateManyWithWhereWithoutDestinationsInput = {
+    where: LocationScalarWhereInput
+    data: XOR<LocationUpdateManyMutationInput, LocationUncheckedUpdateManyWithoutDestinationsInput>
+  }
+
   export type EventCreateManyLocationInput = {
     id?: string
     title: string
@@ -8566,6 +10764,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
+    destinationId?: string | null
   }
 
   export type EventUpdateWithoutLocationInput = {
@@ -8584,6 +10783,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
+    destination?: DestinationUpdateOneWithoutEventsNestedInput
   }
 
   export type EventUncheckedUpdateWithoutLocationInput = {
@@ -8602,6 +10802,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
+    destinationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EventUncheckedUpdateManyWithoutLocationInput = {
@@ -8620,6 +10821,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
+    destinationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GroupUpdateWithoutLocationsInput = {
@@ -8639,6 +10841,7 @@ export namespace Prisma {
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutGroupNestedInput
+    destinations?: DestinationUpdateManyWithoutGroupsNestedInput
   }
 
   export type GroupUncheckedUpdateWithoutLocationsInput = {
@@ -8658,6 +10861,7 @@ export namespace Prisma {
     posterUrls?: NullableJsonNullValueInput | InputJsonValue
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
+    destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
   }
 
   export type GroupUncheckedUpdateManyWithoutLocationsInput = {
@@ -8711,6 +10915,37 @@ export namespace Prisma {
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type DestinationUpdateWithoutLocationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUpdateManyWithoutDestinationNestedInput
+    groups?: GroupUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type DestinationUncheckedUpdateWithoutLocationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUncheckedUpdateManyWithoutDestinationNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type DestinationUncheckedUpdateManyWithoutLocationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EventCreateManyGroupInput = {
     id?: string
     title: string
@@ -8727,6 +10962,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isArchived?: boolean
+    destinationId?: string | null
   }
 
   export type EventUpdateWithoutGroupInput = {
@@ -8745,6 +10981,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
+    destination?: DestinationUpdateOneWithoutEventsNestedInput
   }
 
   export type EventUncheckedUpdateWithoutGroupInput = {
@@ -8763,6 +11000,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
+    destinationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EventUncheckedUpdateManyWithoutGroupInput = {
@@ -8781,6 +11019,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isArchived?: BoolFieldUpdateOperationsInput | boolean
+    destinationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationUpdateWithoutGroupsInput = {
@@ -8794,6 +11033,7 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutLocationNestedInput
     instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
+    destinations?: DestinationUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateWithoutGroupsInput = {
@@ -8807,6 +11047,7 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
     instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
+    destinations?: DestinationUncheckedUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateManyWithoutGroupsInput = {
@@ -8820,6 +11061,37 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type DestinationUpdateWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUpdateManyWithoutDestinationNestedInput
+    locations?: LocationUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type DestinationUncheckedUpdateWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUncheckedUpdateManyWithoutDestinationNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type DestinationUncheckedUpdateManyWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LocationUpdateWithoutInstagramProfilesInput = {
     id?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
@@ -8831,6 +11103,7 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutLocationNestedInput
     groups?: GroupUpdateManyWithoutLocationsNestedInput
+    destinations?: DestinationUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateWithoutInstagramProfilesInput = {
@@ -8844,9 +11117,183 @@ export namespace Prisma {
     posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
+    destinations?: DestinationUncheckedUpdateManyWithoutLocationsNestedInput
   }
 
   export type LocationUncheckedUpdateManyWithoutInstagramProfilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventCreateManyDestinationInput = {
+    id?: string
+    title: string
+    slug: string
+    durations?: string | null
+    details?: string | null
+    price?: number | null
+    locationId: string
+    groupId: string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
+    source: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isArchived?: boolean
+  }
+
+  export type EventUpdateWithoutDestinationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    durations?: NullableStringFieldUpdateOperationsInput | string | null
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    group?: GroupUpdateOneRequiredWithoutEventsNestedInput
+    location?: LocationUpdateOneRequiredWithoutEventsNestedInput
+  }
+
+  export type EventUncheckedUpdateWithoutDestinationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    durations?: NullableStringFieldUpdateOperationsInput | string | null
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    locationId?: StringFieldUpdateOperationsInput | string
+    groupId?: StringFieldUpdateOperationsInput | string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type EventUncheckedUpdateManyWithoutDestinationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    durations?: NullableStringFieldUpdateOperationsInput | string | null
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    locationId?: StringFieldUpdateOperationsInput | string
+    groupId?: StringFieldUpdateOperationsInput | string
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    includes?: NullableJsonNullValueInput | InputJsonValue
+    excludes?: NullableJsonNullValueInput | InputJsonValue
+    source?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GroupUpdateWithoutDestinationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    details?: StringFieldUpdateOperationsInput | string
+    instagram?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    source?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    events?: EventUpdateManyWithoutGroupNestedInput
+    locations?: LocationUpdateManyWithoutGroupsNestedInput
+  }
+
+  export type GroupUncheckedUpdateWithoutDestinationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    details?: StringFieldUpdateOperationsInput | string
+    instagram?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    source?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    events?: EventUncheckedUpdateManyWithoutGroupNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
+  }
+
+  export type GroupUncheckedUpdateManyWithoutDestinationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    details?: StringFieldUpdateOperationsInput | string
+    instagram?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    source?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LocationUpdateWithoutDestinationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    events?: EventUpdateManyWithoutLocationNestedInput
+    groups?: GroupUpdateManyWithoutLocationsNestedInput
+    instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
+  }
+
+  export type LocationUncheckedUpdateWithoutDestinationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    events?: EventUncheckedUpdateManyWithoutLocationNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
+    instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
+  }
+
+  export type LocationUncheckedUpdateManyWithoutDestinationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string

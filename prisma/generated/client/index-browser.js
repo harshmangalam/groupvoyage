@@ -162,7 +162,8 @@ exports.Prisma.EventScalarFieldEnum = {
   source: 'source',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isArchived: 'isArchived'
+  isArchived: 'isArchived',
+  destinationId: 'destinationId'
 };
 
 exports.Prisma.InstagramProfileScalarFieldEnum = {
@@ -174,6 +175,15 @@ exports.Prisma.InstagramProfileScalarFieldEnum = {
   following: 'following',
   posts: 'posts',
   profilePic: 'profilePic'
+};
+
+exports.Prisma.DestinationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -231,7 +241,8 @@ exports.Prisma.EventOrderByRelevanceFieldEnum = {
   details: 'details',
   locationId: 'locationId',
   groupId: 'groupId',
-  source: 'source'
+  source: 'source',
+  destinationId: 'destinationId'
 };
 
 exports.Prisma.InstagramProfileOrderByRelevanceFieldEnum = {
@@ -244,12 +255,19 @@ exports.Prisma.InstagramProfileOrderByRelevanceFieldEnum = {
   profilePic: 'profilePic'
 };
 
+exports.Prisma.DestinationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+};
+
 
 exports.Prisma.ModelName = {
   Location: 'Location',
   Group: 'Group',
   Event: 'Event',
-  InstagramProfile: 'InstagramProfile'
+  InstagramProfile: 'InstagramProfile',
+  Destination: 'Destination'
 };
 
 /**

@@ -21,26 +21,28 @@ model Location {
   events            Event[]
   groups            Group[]            @relation("GroupToLocation")
   instagramProfiles InstagramProfile[] @relation("InstagramProfileToLocation")
+  destinations      Destination[]      @relation("LocationToDestination")
 }
 
 model Group {
-  id         String     @id @default(uuid())
-  name       String     @unique
-  slug       String     @unique
-  details    String
-  instagram  String?
-  phone      String?
-  email      String?
-  meta       Json?
-  source     String
-  active     Boolean    @default(true)
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  logo       String?
-  posterUrls Json?
-  tagLine    String?
-  events     Event[]
-  locations  Location[] @relation("GroupToLocation")
+  id           String        @id @default(uuid())
+  name         String        @unique
+  slug         String        @unique
+  details      String
+  instagram    String?
+  phone        String?
+  email        String?
+  meta         Json?
+  source       String
+  active       Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  logo         String?
+  posterUrls   Json?
+  tagLine      String?
+  events       Event[]
+  locations    Location[]    @relation("GroupToLocation")
+  destinations Destination[] @relation("GroupToDestination")
 }
 
 model Event {
@@ -62,6 +64,9 @@ model Event {
   isArchived Boolean  @default(false)
   group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
   location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  destinationId String?
+  destination   Destination? @relation(name: "EventToDestination", fields: [destinationId], references: [id], onDelete: SetNull)
 }
 
 model InstagramProfile {
@@ -74,4 +79,16 @@ model InstagramProfile {
   posts          String?
   profilePic     String?
   locations      Location[] @relation("InstagramProfileToLocation")
+}
+
+model Destination {
+  id        String     @id @default(uuid())
+  name      String
+  slug      String     @unique
+  active    Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  events    Event[]    @relation("EventToDestination")
+  groups    Group[]    @relation("GroupToDestination")
+  locations Location[] @relation("LocationToDestination")
 }
