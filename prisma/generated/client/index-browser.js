@@ -162,8 +162,7 @@ exports.Prisma.EventScalarFieldEnum = {
   source: 'source',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isArchived: 'isArchived',
-  destinationId: 'destinationId'
+  isArchived: 'isArchived'
 };
 
 exports.Prisma.InstagramProfileScalarFieldEnum = {
@@ -241,8 +240,7 @@ exports.Prisma.EventOrderByRelevanceFieldEnum = {
   details: 'details',
   locationId: 'locationId',
   groupId: 'groupId',
-  source: 'source',
-  destinationId: 'destinationId'
+  source: 'source'
 };
 
 exports.Prisma.InstagramProfileOrderByRelevanceFieldEnum = {

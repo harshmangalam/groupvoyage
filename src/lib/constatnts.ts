@@ -8,3 +8,4 @@ export const DURATIONS: DurationMap[] = [
 ];
 
 export const TRIPS_PER_PAGE = 8;
+export const DESTINATIONS_PER_PAGE = 15;

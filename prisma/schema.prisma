@@ -65,8 +65,7 @@ model Event {
   group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
   location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
 
-  destinationId String?
-  destination   Destination? @relation(name: "EventToDestination", fields: [destinationId], references: [id], onDelete: SetNull)
+  destinations Destination[] @relation("EventToDestination")
 }
 
 model InstagramProfile {

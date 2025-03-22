@@ -1,16 +1,21 @@
 import Link from "next/link";
-import { CalendarClock, MapPin, Users } from "lucide-react";
+import { CalendarClock, Users } from "lucide-react";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { T_Location } from "@/lib/types";
+import { Badge } from "../ui/badge";
 
 interface DestinationProps {
   name: string;
   slug: string;
   eventsCount: number;
   groupsCount: number;
-  locations: Pick<T_Location, "city" | "slug">[];
+  locations: Pick<T_Location, "city" | "slug" | "id">[];
 }
 
 export function DestinationCard({
@@ -22,9 +27,9 @@ export function DestinationCard({
 }: DestinationProps) {
   return (
     <Link href={`/destinations/${slug}`}>
-      <Card className="h-full transition-all hover:shadow-md">
+      <Card className="h-full transition-all hover:shadow-sm hover:bg-muted shadow-none">
         <CardHeader className="pb-2">
-          <h3 className="text-xl font-bold tracking-tight">{name}</h3>
+          <h3 className="text-lg font-bold tracking-tight">{name}</h3>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -32,7 +37,7 @@ export function DestinationCard({
               <CalendarClock className="h-4 w-4 text-primary" />
               <span className="font-medium">{eventsCount}</span>
               <span className="text-muted-foreground">
-                {eventsCount === 1 ? "Event" : "Events"}
+                {eventsCount === 1 ? "Trip" : "Trips"}
               </span>
             </div>
 
@@ -43,43 +48,27 @@ export function DestinationCard({
                 {groupsCount === 1 ? "Group" : "Groups"}
               </span>
             </div>
-
-            <div className="pt-1">
-              <div className="mb-1 flex items-center gap-1 text-sm">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span className="font-medium">Top Locations</span>
-              </div>
-
-              <div className="space-y-1 pl-6">
-                {locations.length > 0 ? (
-                  locations.slice(0, 3).map((location, index) => (
-                    <p
-                      key={index}
-                      className={cn(
-                        "text-sm",
-                        index === 0
-                          ? "text-foreground"
-                          : "text-muted-foreground"
-                      )}
-                    >
-                      {location.city}
-                    </p>
-                  ))
-                ) : (
-                  <p className="text-sm text-muted-foreground italic">
-                    No locations yet
-                  </p>
-                )}
-
-                {locations.length > 3 && (
-                  <p className="text-xs text-muted-foreground">
-                    +{locations.length - 3} more
-                  </p>
-                )}
-              </div>
-            </div>
           </div>
         </CardContent>
+        <CardFooter>
+          {locations.length > 0 ? (
+            <div className="flex flex-wrap gap-1">
+              {locations.map((location) => (
+                <Badge
+                  className="rounded-md"
+                  variant={"secondary"}
+                  key={location.id}
+                >
+                  {location.city}
+                </Badge>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground italic">
+              No locations yet
+            </p>
+          )}
+        </CardFooter>
       </Card>
     </Link>
   );
