@@ -9,6 +9,8 @@ import { TripsCarousel } from "@/components/trips-carousel";
 import { SITE_NAME } from "@/lib/constatnts";
 import { InstagramProfilesCarosel } from "@/components/instagram-profiles-carousel";
 import { getInstagramProfileList } from "@/actions/instagram-profile";
+import { Suspense } from "react";
+import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 
 type LocationPageProps = {
   params: Promise<{ locationSlug: string }>;
@@ -45,6 +47,19 @@ export default async function LocationPage({ params }: LocationPageProps) {
   if (!location) return notFound();
   return (
     <div className="max-w-7xl px-4 mx-auto">
+      <PageSection
+        href={`/destinations/?locations=${locationSlug}`}
+        label={
+          <span>
+            Trending destinations from{" "}
+            <span className="text-destructive">{location.city}</span>
+          </span>
+        }
+      >
+        <Suspense key={`featured-destinations-${locationSlug}`}>
+          <TrendingDestinationsCarousel locationSlug={locationSlug} />
+        </Suspense>
+      </PageSection>
       <PageSection
         href={`/instagram-profiles?locations=${locationSlug}`}
         label={

@@ -7,6 +7,7 @@ import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Metadata } from "next";
 import { TrendingInstagramProfiles } from "@/components/trending-instagram-profiles";
+import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -27,15 +28,24 @@ export default async function HomePage() {
               Trending <span className="text-destructive">cities</span>
             </span>
           }
-          description={
-            "Discover the most popular cities buzzing with travel groups and events!"
-          }
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {locations.map((location) => (
               <LocationCard key={location.id} {...location} />
             ))}
           </div>
+        </PageSection>
+        <PageSection
+          href="/destinations"
+          label={
+            <span>
+              Trending <span className="text-destructive">destinations</span>
+            </span>
+          }
+        >
+          <Suspense key={"featured-destinations"}>
+            <TrendingDestinationsCarousel />
+          </Suspense>
         </PageSection>
         <PageSection
           href="/instagram-profiles"
@@ -57,11 +67,10 @@ export default async function HomePage() {
               Trending <span className="text-destructive">groups</span>
             </span>
           }
-          description={
-            "Join the most popular travel communities and explore with like-minded adventurers."
-          }
         >
-          <TrendingGroupsCarousel />
+          <Suspense key={"featured-groups"}>
+            <TrendingGroupsCarousel />
+          </Suspense>
         </PageSection>
 
         <PageSection
@@ -70,9 +79,6 @@ export default async function HomePage() {
             <span>
               Trending <span className="text-destructive">trips</span>
             </span>
-          }
-          description={
-            "Check out the hottest upcoming trips and start your next adventure today!"
           }
         >
           <Suspense key={"featured-events"}>
