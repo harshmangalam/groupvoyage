@@ -31,4 +31,8 @@ export const NAVIGATIONS_MENU = [
     name: "Trips",
     href: "/trips",
   },
+  {
+    name: "Instagram",
+    href: "/instagram-profiles",
+  },
 ];

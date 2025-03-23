@@ -8,7 +8,7 @@ import { ListView } from "./list-view";
 import { SITE_NAME } from "@/lib/constatnts";
 import { PageSection } from "@/components/page-section";
 import { GroupCard } from "@/components/groups/group-card";
-import { InstagramProfileCard } from "@/components/instagrams/instagram-card";
+import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
 
 export async function generateMetadata({ searchParams }) {
@@ -44,28 +44,11 @@ export default async function SearchPage({ searchParams }) {
         </div>
       </div>
 
-      <PageSection
-        label={`${events?.events?.length ?? 0} Trips found`}
-        others={<ViewMode />}
-      >
-        {events?.events?.length ? (
-          <div>
-            {viewMode === "list" ? (
-              <ListView trips={events.events} />
-            ) : viewMode === "table" ? (
-              <TableView trips={events.events} />
-            ) : null}
-          </div>
-        ) : (
-          <p className="text-muted-foreground">No trips found</p>
-        )}
-      </PageSection>
-
       {destinations?.destinations?.length ? (
         <PageSection
-          label={`${
+          label={`(${
             destinations?.destinations?.length ?? 0
-          } Destinations found`}
+          }) Destinations Found`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {destinations.destinations.map((destination) => (
@@ -81,9 +64,8 @@ export default async function SearchPage({ searchParams }) {
           </div>
         </PageSection>
       ) : null}
-
       {instagramProfiles?.length ? (
-        <PageSection label={`${groups?.length ?? 0} Instagram groups found`}>
+        <PageSection label={`Instagram Groups (${instagramProfiles.length})`}>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {instagramProfiles.map((instagramProfile) => (
               <InstagramProfileCard
@@ -94,13 +76,26 @@ export default async function SearchPage({ searchParams }) {
           </div>
         </PageSection>
       ) : null}
-
       {groups?.length ? (
-        <PageSection label={`${groups?.length ?? 0} Groups found`}>
+        <PageSection label={`Groups (${groups?.length ?? 0})`}>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {groups.map((group) => (
               <GroupCard key={group.id} group={group} />
             ))}
+          </div>
+        </PageSection>
+      ) : null}
+      {events?.events?.length ? (
+        <PageSection
+          label={`Trips (${events?.events?.length ?? 0})`}
+          others={<ViewMode />}
+        >
+          <div>
+            {viewMode === "list" ? (
+              <ListView trips={events.events} />
+            ) : viewMode === "table" ? (
+              <TableView trips={events.events} />
+            ) : null}
           </div>
         </PageSection>
       ) : null}

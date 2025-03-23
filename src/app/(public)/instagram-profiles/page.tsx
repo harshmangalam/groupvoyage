@@ -24,12 +24,7 @@ export default async function InstagramProfilePage({
   return (
     <div className="max-w-7xl mx-auto px-4">
       <PageSection
-        label={
-          <span>
-            Explore groups on{" "}
-            <span className="text-destructive">Instagram</span>
-          </span>
-        }
+        label={<span>Explore Instagram Groups</span>}
         others={
           <Suspense
             fallback={<Skeleton className="h-10 w-32 rounded-md" />}

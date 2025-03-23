@@ -53,7 +53,7 @@ export function TripCard({ event }: TripCardProps) {
                   <IndianRupee className="w-3 h-3" />
                   {originalPrice}
                 </span>
-                <span className="text-sm text-green-600 dark:text-green-500 font-semibold">
+                <span className="text-xs text-green-600 dark:text-green-500 font-semibold">
                   ({percentageSaved}% OFF)
                 </span>
               </>
