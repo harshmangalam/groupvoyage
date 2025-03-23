@@ -18,7 +18,7 @@ import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CustomPagination } from "@/components/custom-pagination";
 import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constatnts";
 import { GroupMetaType } from "@/lib/types";
-import { InstagramProfileCard } from "@/components/instagrams/instagram-card";
+import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
 import { getInstagramProfile } from "@/actions/instagram-profile";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";

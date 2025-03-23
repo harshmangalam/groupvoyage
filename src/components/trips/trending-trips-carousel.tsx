@@ -13,11 +13,18 @@ import { TripCard } from "./trip-card";
 export async function TrendingTripsCarousel({
   locationSlug,
   durations,
+  destinations,
 }: {
   locationSlug?: string;
   durations?: string;
+  destinations?: string;
 }) {
-  const events = await getEventList({ take: 10, locationSlug, durations });
+  const events = await getEventList({
+    take: 10,
+    locationSlug,
+    durations,
+    destinationSlug: destinations,
+  });
   return (
     <Carousel
       opts={{

@@ -4,8 +4,9 @@ import { getGroupList } from "@/actions/group";
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
 import { GroupsCarousel } from "@/components/groups/groups-carousel";
-import { TripsCarousel } from "@/components/trips-carousel";
 import { getDestinationDetails } from "@/actions/destinations";
+import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
+import { Suspense } from "react";
 
 type DestinationPageProps = {
   params: Promise<{ destinationSlug: string }>;
@@ -55,7 +56,9 @@ export default async function DestinationDetailsPage({
           </span>
         }
       >
-        <TripsCarousel events={events.events} />
+        <Suspense key={`featured-events-destination-${destinationSlug}`}>
+          <TrendingTripsCarousel destinations={destinationSlug} />
+        </Suspense>
       </PageSection>
     </div>
   );

@@ -32,7 +32,7 @@ export function DestinationCard({
           <h3 className="text-lg font-bold tracking-tight">{name}</h3>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
+          <div className="flex gap-6 items-center">
             <div className="flex items-center gap-2 text-sm">
               <CalendarClock className="h-4 w-4 text-primary" />
               <span className="font-medium">{eventsCount}</span>
