@@ -55,3 +55,26 @@ export const getDestinationList = cache(
     };
   }
 );
+
+export const getDestinationDetails = cache(
+  async (params: { destinationSlug: string }) => {
+    const { destinationSlug } = params;
+
+    const whereClause = {
+      ...(destinationSlug && { slug: destinationSlug }),
+    };
+
+    const destination = await prisma.destination.findFirst({
+      where: whereClause,
+      select: {
+        name: true,
+        slug: true,
+        id: true,
+        _count: { select: { events: true, groups: true } },
+        locations: { select: { id: true, slug: true, city: true } },
+      },
+    });
+
+    return destination;
+  }
+);

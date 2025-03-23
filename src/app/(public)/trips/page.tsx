@@ -15,19 +15,26 @@ export const metadata: Metadata = {
     "Browse and compare trips from multiple travel groups. Filter by location and duration to find your perfect journey.",
 };
 type TripsPageProps = {
-  searchParams: Promise<{ locations: string; durations: string; page: string }>;
+  searchParams: Promise<{
+    locations: string;
+    durations: string;
+    page: string;
+    destinations: string;
+  }>;
 };
 export default async function TripsPage({ searchParams }: TripsPageProps) {
   const locations = (await searchParams).locations ?? "";
   const durations = (await searchParams).durations ?? "";
   const pageStr = (await searchParams).page ?? "1";
   const page = Number(pageStr);
+  const destinations = (await searchParams).destinations ?? "";
 
   const events = await getEventList({
     locationSlug: locations,
     durations,
     take: TRIPS_PER_PAGE,
     skip: (page - 1) * TRIPS_PER_PAGE,
+    destinationSlug: destinations,
   });
 
   return (

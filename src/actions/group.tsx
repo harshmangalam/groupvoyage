@@ -42,11 +42,13 @@ export const getGroupList = cache(
     take,
     skip,
     search,
+    destinationSlug,
   }: {
     locationSlug?: string;
     take?: number;
     skip?: number;
     search?: string;
+    destinationSlug?: string;
   }) => {
     const filter: Record<string, unknown> = {};
     if (search) {
@@ -58,6 +60,14 @@ export const getGroupList = cache(
       filter.locations = {
         some: {
           slug: locationSlug,
+        },
+      };
+    }
+
+    if (destinationSlug) {
+      filter.destinations = {
+        some: {
+          slug: destinationSlug,
         },
       };
     }

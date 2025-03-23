@@ -11,6 +11,7 @@ export const getEventList = cache(
     search,
     includeArchieve = false,
     durations,
+    destinationSlug,
   }: {
     locationSlug?: string;
     groupSlug?: string;
@@ -19,9 +20,13 @@ export const getEventList = cache(
     search?: string;
     includeArchieve?: boolean;
     durations?: string;
+    destinationSlug?: string;
   }) => {
     const filter: Record<string, unknown> = {};
 
+    if (destinationSlug) {
+      filter.destinations = { some: { slug: destinationSlug } };
+    }
     if (groupSlug) {
       filter.group = { slug: groupSlug };
     }

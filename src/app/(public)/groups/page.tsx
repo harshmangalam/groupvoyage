@@ -12,11 +12,20 @@ export const metadata: Metadata = {
 };
 
 type GroupsPageProps = {
-  searchParams: Promise<{ locations: string; durations: string }>;
+  searchParams: Promise<{
+    locations: string;
+    durations: string;
+    destinations: string;
+  }>;
 };
 export default async function GroupsPage({ searchParams }: GroupsPageProps) {
   const locations = (await searchParams).locations ?? "";
-  const groups = await getGroupList({ locationSlug: locations });
+  const destinations = (await searchParams).destinations ?? "";
+
+  const groups = await getGroupList({
+    locationSlug: locations,
+    destinationSlug: destinations,
+  });
   return (
     <div className="max-w-7xl mx-auto px-4">
       <PageSection
