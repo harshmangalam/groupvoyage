@@ -3,7 +3,7 @@ import { CustomPagination } from "@/components/custom-pagination";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { PageSection } from "@/components/page-section";
-import { TripCard } from "@/components/trip-card";
+import { TripCard } from "@/components/trips/trip-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TRIPS_PER_PAGE } from "@/lib/constatnts";
 import { Metadata } from "next";

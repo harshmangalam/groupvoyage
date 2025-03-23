@@ -7,8 +7,8 @@ import TableView from "./table-view";
 import { ListView } from "./list-view";
 import { SITE_NAME } from "@/lib/constatnts";
 import { PageSection } from "@/components/page-section";
-import { GroupCard } from "@/components/group-card";
-import { InstagramProfileCard } from "@/components/instagram-card";
+import { GroupCard } from "@/components/groups/group-card";
+import { InstagramProfileCard } from "@/components/instagrams/instagram-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
 
 export async function generateMetadata({ searchParams }) {

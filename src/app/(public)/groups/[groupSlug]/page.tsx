@@ -1,4 +1,4 @@
-import { TripCard } from "@/components/trip-card";
+import { TripCard } from "@/components/trips/trip-card";
 import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -18,7 +18,7 @@ import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CustomPagination } from "@/components/custom-pagination";
 import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constatnts";
 import { GroupMetaType } from "@/lib/types";
-import { InstagramProfileCard } from "@/components/instagram-card";
+import { InstagramProfileCard } from "@/components/instagrams/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
 import { getInstagramProfile } from "@/actions/instagram-profile";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";

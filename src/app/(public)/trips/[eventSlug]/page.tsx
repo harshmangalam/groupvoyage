@@ -18,7 +18,7 @@ import { BookNow } from "./book-now";
 import { SectionList } from "./section-list";
 import { TripPostersCarousel } from "./trip-posters-carousel";
 import { TripDetails } from "./trip-details";
-import { InstagramProfileCard } from "@/components/instagram-card";
+import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramProfile } from "@/actions/instagram-profile";
 import { getInstagramUsername } from "@/lib/utils";
 
@@ -161,7 +161,6 @@ export default async function TripDetailsPage({
                 <InstagramProfileCard {...instagramProfile} />
               )}
             </div>
-
             <GroupDetailsCard {...event.group} />
           </div>
         </div>

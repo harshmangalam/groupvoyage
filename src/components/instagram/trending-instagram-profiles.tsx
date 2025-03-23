@@ -7,14 +7,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { getInstagramProfileList } from "@/actions/instagram-profile";
 import { InstagramProfileCard } from "./instagram-card";
-import { T_InstagramProfile } from "@/lib/types";
 
-export async function InstagramProfilesCarosel({
-  instagramProfiles,
+export async function TrendingInstagramProfiles({
+  locationSlug,
 }: {
-  instagramProfiles: T_InstagramProfile[];
+  locationSlug?: string;
 }) {
+  const instagramProfiles = await getInstagramProfileList({
+    take: 10,
+    locationSlug,
+  });
+
   return (
     <Carousel
       opts={{

@@ -1,12 +1,12 @@
 import { getLocations } from "@/actions/location";
-import { TrendingEventsCarousel } from "@/components/trending-events-carousel";
-import { TrendingGroupsCarousel } from "@/components/featured-groups-carousel";
+import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
+import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
 import { HomeHero } from "@/components/home-hero";
 import { LocationCard } from "@/components/location-card";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Metadata } from "next";
-import { TrendingInstagramProfiles } from "@/components/trending-instagram-profiles";
+import { TrendingInstagramProfiles } from "@/components/instagram/trending-instagram-profiles";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 
 export const metadata: Metadata = {
@@ -21,15 +21,8 @@ export default async function HomePage() {
       {/* hero section  */}
       <HomeHero />
       <div className="max-w-7xl w-full mx-auto px-4">
-        <PageSection
-          href="/locations"
-          label={
-            <span>
-              Trending <span className="text-destructive">locations</span>
-            </span>
-          }
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <PageSection href="/locations" label={<span>Trending Locations</span>}>
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {locations.map((location) => (
               <LocationCard key={location.id} {...location} />
             ))}
@@ -37,11 +30,7 @@ export default async function HomePage() {
         </PageSection>
         <PageSection
           href="/destinations"
-          label={
-            <span>
-              Trending <span className="text-destructive">destinations</span>
-            </span>
-          }
+          label={<span>Must-Visit Weekend Destinations</span>}
         >
           <Suspense key={"featured-destinations"}>
             <TrendingDestinationsCarousel />
@@ -49,40 +38,21 @@ export default async function HomePage() {
         </PageSection>
         <PageSection
           href="/instagram-profiles"
-          label={
-            <span>
-              Trending groups on{" "}
-              <span className="text-destructive">Instagram </span>
-            </span>
-          }
+          label={<span>Insta-Worthy Groups</span>}
         >
           <Suspense key={"instagram-profiles"}>
             <TrendingInstagramProfiles />
           </Suspense>
         </PageSection>
-        <PageSection
-          href="/groups"
-          label={
-            <span>
-              Trending <span className="text-destructive">groups</span>
-            </span>
-          }
-        >
+        <PageSection href="/groups" label={<span>Trending Groups</span>}>
           <Suspense key={"featured-groups"}>
             <TrendingGroupsCarousel />
           </Suspense>
         </PageSection>
 
-        <PageSection
-          href="/trips"
-          label={
-            <span>
-              Trending <span className="text-destructive">trips</span>
-            </span>
-          }
-        >
+        <PageSection href="/trips" label={<span>Trending Trips</span>}>
           <Suspense key={"featured-events"}>
-            <TrendingEventsCarousel />
+            <TrendingTripsCarousel />
           </Suspense>
         </PageSection>
       </div>

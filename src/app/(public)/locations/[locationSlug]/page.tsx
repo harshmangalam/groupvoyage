@@ -1,16 +1,12 @@
-import { getEventList } from "@/actions/event";
-import { getGroupList } from "@/actions/group";
 import { getLocation } from "@/actions/location";
-
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
-import { GroupsCarousel } from "@/components/groups-carousel";
-import { TripsCarousel } from "@/components/trips-carousel";
 import { SITE_NAME } from "@/lib/constatnts";
-import { InstagramProfilesCarosel } from "@/components/instagram-profiles-carousel";
-import { getInstagramProfileList } from "@/actions/instagram-profile";
+import { TrendingInstagramProfiles } from "@/components/instagram/trending-instagram-profiles";
 import { Suspense } from "react";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
+import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
+import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
 
 type LocationPageProps = {
   params: Promise<{ locationSlug: string }>;
@@ -28,23 +24,9 @@ export async function generateMetadata({ params }) {
 export default async function LocationPage({ params }: LocationPageProps) {
   const locationSlug = (await params).locationSlug.toString();
   const location = await getLocation({ locationSlug });
-  const groups = await getGroupList({ locationSlug, take: 10 });
-  const instagramProfiles = await getInstagramProfileList({
-    locationSlug,
-    take: 10,
-  });
-  const oneDayEvents = await getEventList({
-    locationSlug,
-    take: 10,
-    durations: "1 day",
-  });
-  const twoDaysEvents = await getEventList({
-    locationSlug,
-    take: 10,
-    durations: "2 day",
-  });
 
   if (!location) return notFound();
+
   return (
     <div className="max-w-7xl px-4 mx-auto">
       <PageSection
@@ -69,7 +51,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
           </span>
         }
       >
-        <InstagramProfilesCarosel instagramProfiles={instagramProfiles} />
+        <TrendingInstagramProfiles locationSlug={locationSlug} />
       </PageSection>
       <PageSection
         href={`/groups?locations=${locationSlug}`}
@@ -82,7 +64,9 @@ export default async function LocationPage({ params }: LocationPageProps) {
         description={` Join local travel communities in ${location.city} and connect with
             fellow explorers for amazing weekend trips.`}
       >
-        <GroupsCarousel groups={groups} />
+        <Suspense key={`featured-groups-${locationSlug}`}>
+          <TrendingGroupsCarousel locationSlug={locationSlug} />
+        </Suspense>
       </PageSection>
 
       <PageSection
@@ -96,7 +80,12 @@ export default async function LocationPage({ params }: LocationPageProps) {
         description={`Browse and compare budget-friendly weekend trips organized by
             different travel groups in {location.city}`}
       >
-        <TripsCarousel events={oneDayEvents.events} />
+        <Suspense key={`featured-events-1-day-${locationSlug}`}>
+          <TrendingTripsCarousel
+            locationSlug={locationSlug}
+            durations={"1-day"}
+          />
+        </Suspense>
       </PageSection>
       <PageSection
         href={`/trips/?locations=${locationSlug}&durations=2-days`}
@@ -107,7 +96,12 @@ export default async function LocationPage({ params }: LocationPageProps) {
           </span>
         }
       >
-        <TripsCarousel events={twoDaysEvents.events} />
+        <Suspense key={`featured-events-2-days-${locationSlug}`}>
+          <TrendingTripsCarousel
+            locationSlug={locationSlug}
+            durations={"2-days"}
+          />
+        </Suspense>
       </PageSection>
     </div>
   );

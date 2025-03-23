@@ -21,9 +21,9 @@ export function TripCard({ event }: TripCardProps) {
 
   return (
     <Link href={`/trips/${slug}`} className="block">
-      <Card className="w-full shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full">
+      <Card className="shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full w-full">
         {firstPosterUrl && (
-          <div className="relative h-48 sm:h-64">
+          <div className="relative h-40">
             <Image
               src={firstPosterUrl || ""}
               alt={`${title} poster`}
@@ -39,11 +39,11 @@ export function TripCard({ event }: TripCardProps) {
           </div>
         )}
         <CardContent className="p-4">
-          <h3 className="text-lg font-semibold mb-2 line-clamp-1">{title}</h3>
+          <h3 className="font-semibold mb-2 line-clamp-1">{title}</h3>
 
           {/* Price & Discount */}
           <div className="flex items-center gap-2 mb-2">
-            <p className="text-lg font-semibold flex items-center">
+            <p className="font-semibold flex items-center">
               <IndianRupee className="w-4 h-4" />
               {price || "N/A"}
             </p>

@@ -1,6 +1,6 @@
 import { getInstagramProfileList } from "@/actions/instagram-profile";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
-import { InstagramProfileCard } from "@/components/instagram-card";
+import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { PageSection } from "@/components/page-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Metadata } from "next";

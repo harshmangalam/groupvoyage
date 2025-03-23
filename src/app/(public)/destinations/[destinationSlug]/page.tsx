@@ -3,7 +3,7 @@ import { getGroupList } from "@/actions/group";
 
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
-import { GroupsCarousel } from "@/components/groups-carousel";
+import { GroupsCarousel } from "@/components/groups/groups-carousel";
 import { TripsCarousel } from "@/components/trips-carousel";
 import { getDestinationDetails } from "@/actions/destinations";
 

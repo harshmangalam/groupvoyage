@@ -1,4 +1,4 @@
-import { TripCard } from "@/components/trip-card";
+import { TripCard } from "@/components/trips/trip-card";
 import { T_EventCard } from "@/lib/types";
 
 export function ListView({ trips }: { trips: T_EventCard[] }) {

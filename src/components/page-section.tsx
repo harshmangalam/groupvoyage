@@ -7,6 +7,7 @@ export function PageSection({
   label,
   href,
   others,
+  description,
 }: React.PropsWithChildren & {
   label: unknown;
   description?: string;
@@ -15,21 +16,23 @@ export function PageSection({
 }) {
   return (
     <section className="flex flex-col gap-4 md:gap-6 py-4 md:py-6">
-      <div className="flex flex-row items-center gap-4 justify-between flex-wrap">
+      <div className="flex flex-row items-center gap-2 justify-between flex-wrap">
         <div className="flex flex-col">
           <h2 className="text-xl md:text-2xl font-bold tracking-tight">
             {label as React.ReactNode}
           </h2>
-          {/* <p className="leading-6 font-normal text-muted-foreground">
+          <p className="leading-6 font-normal text-muted-foreground">
             {description}
-          </p> */}
+          </p>
         </div>
         {href && (
-          <Button size={"sm"} asChild variant={"ghost"}>
-            <Link href={href}>
-              See all <ArrowRightIcon />
-            </Link>
-          </Button>
+          <div className="hidden sm:block">
+            <Button size={"sm"} asChild variant={"ghost"}>
+              <Link href={href}>
+                View more <ArrowRightIcon />
+              </Link>
+            </Button>
+          </div>
         )}
         {others}
       </div>

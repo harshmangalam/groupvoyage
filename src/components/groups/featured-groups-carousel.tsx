@@ -7,10 +7,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { TripCard } from "./trip-card";
-import { T_EventCard } from "@/lib/types";
+import { getTrendingGroupList } from "@/actions/group";
+import { GroupCard } from "./group-card";
 
-export async function TripsCarousel({ events }: { events: T_EventCard[] }) {
+export async function TrendingGroupsCarousel({
+  locationSlug,
+}: {
+  locationSlug?: string;
+}) {
+  const groups = await getTrendingGroupList({ locationSlug });
   return (
     <Carousel
       opts={{
@@ -19,16 +24,16 @@ export async function TripsCarousel({ events }: { events: T_EventCard[] }) {
       className="w-full"
     >
       <CarouselContent>
-        {events.map((event, index) => (
+        {groups.map((group) => (
           <CarouselItem
-            key={index}
-            className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+            key={group.id}
+            className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
           >
-            <TripCard key={event.id} event={event} />
+            <GroupCard group={group} />
           </CarouselItem>
         ))}
       </CarouselContent>
-      {events.length > 1 ? (
+      {groups.length > 1 ? (
         <>
           <CarouselPrevious className="absolute -left-3" />
           <CarouselNext className="absolute -right-3" />
