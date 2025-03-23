@@ -38,11 +38,7 @@ export default async function DestinationsPage({
   return (
     <div className="px-4 max-w-7xl mx-auto">
       <PageSection
-        label={
-          <span>
-            Explore <span className="text-destructive">Destinations</span>
-          </span>
-        }
+        label={<span>Explore Destinations</span>}
         others={
           <div>
             <LocationsFilter />

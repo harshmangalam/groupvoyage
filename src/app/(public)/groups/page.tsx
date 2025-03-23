@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Explore Travel Groups",
+  title: "Explore Groups",
   description: `Discover and compare travel groups effortlessly. Filter by location and choose the best group trip for your journey.`,
 };
 
@@ -29,11 +29,7 @@ export default async function GroupsPage({ searchParams }: GroupsPageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4">
       <PageSection
-        label={
-          <span>
-            Explore <span className="text-destructive">Groups</span>
-          </span>
-        }
+        label={<span>Explore Groups</span>}
         others={
           <Suspense
             fallback={<Skeleton className="h-10 w-32 rounded-md" />}
@@ -45,13 +41,7 @@ export default async function GroupsPage({ searchParams }: GroupsPageProps) {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {groups.length ? (
-            groups.map((group) => (
-              <GroupCard
-                location={group.locations[0]}
-                key={group.id}
-                group={group}
-              />
-            ))
+            groups.map((group) => <GroupCard key={group.id} group={group} />)
           ) : (
             <p>No groups</p>
           )}

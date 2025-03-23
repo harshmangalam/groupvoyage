@@ -10,7 +10,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Explore & Compare Trips",
+  title: "Explore Trips",
   description:
     "Browse and compare trips from multiple travel groups. Filter by location and duration to find your perfect journey.",
 };
@@ -40,11 +40,7 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4">
       <PageSection
-        label={
-          <span>
-            Explore <span className="text-destructive">Trips</span>
-          </span>
-        }
+        label={<span>Explore Trips</span>}
         others={
           <div className="flex items-center flex-wrap gap-2  md:justify-end justify-start">
             <Suspense

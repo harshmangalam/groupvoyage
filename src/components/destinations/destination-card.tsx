@@ -29,7 +29,7 @@ export function DestinationCard({
     <Link href={`/destinations/${slug}`}>
       <Card className="h-full transition-all hover:shadow-sm hover:bg-muted shadow-none">
         <CardHeader className="pb-2">
-          <h3 className="text-lg font-bold tracking-tight">{name}</h3>
+          <h3 className="font-bold tracking-tight">{name}</h3>
         </CardHeader>
         <CardContent>
           <div className="flex gap-6 items-center">
