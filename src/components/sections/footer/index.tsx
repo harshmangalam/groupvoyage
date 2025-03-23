@@ -14,6 +14,26 @@ export default function FooterSection() {
       label: "Home",
       href: "/",
     },
+    {
+      label: "Locations",
+      href: "/locations",
+    },
+    {
+      label: "Destinations",
+      href: "/destinations",
+    },
+    {
+      label: "Groups",
+      href: "/groups",
+    },
+    {
+      label: "Trips",
+      href: "/trips",
+    },
+    {
+      label: "Instagram Groups",
+      href: "/instagram-profiles",
+    },
   ];
   const locations = [
     {
