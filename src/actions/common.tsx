@@ -70,8 +70,13 @@ export const getSearchResults = cache(
       groups: await getGroupList({ search, locationSlug }),
       instagramProfiles: await getInstagramProfileList({
         search,
+        locationSlug,
       }),
-      destinations: await getDestinationList({ search, take: 30 }),
+      destinations: await getDestinationList({
+        search,
+        take: 30,
+        locationSlug,
+      }),
     };
   }
 );

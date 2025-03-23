@@ -46,9 +46,7 @@ export default async function SearchPage({ searchParams }) {
 
       {destinations?.destinations?.length ? (
         <PageSection
-          label={`(${
-            destinations?.destinations?.length ?? 0
-          }) Destinations Found`}
+          label={`Destinations (${destinations?.destinations?.length ?? 0})`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {destinations.destinations.map((destination) => (
