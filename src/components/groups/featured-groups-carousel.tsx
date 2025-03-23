@@ -7,15 +7,21 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { getTrendingGroupList } from "@/actions/group";
+import { getGroupList } from "@/actions/group";
 import { GroupCard } from "./group-card";
 
 export async function TrendingGroupsCarousel({
   locationSlug,
+  destinations,
 }: {
   locationSlug?: string;
+  destinations?: string;
 }) {
-  const groups = await getTrendingGroupList({ locationSlug });
+  const groups = await getGroupList({
+    locationSlug,
+    destinationSlug: destinations,
+    take: 10,
+  });
   return (
     <Carousel
       opts={{
