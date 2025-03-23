@@ -83,6 +83,13 @@ export const getEventList = cache(
         },
       },
       ...(shouldPaginate ? { take, skip } : {}), // Apply only if pagination is needed
+      orderBy: [
+        {
+          destinations: {
+            _count: "desc",
+          },
+        },
+      ],
     });
 
     // Calculate pagination metadata
