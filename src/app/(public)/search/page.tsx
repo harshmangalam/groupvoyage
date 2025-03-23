@@ -9,6 +9,7 @@ import { SITE_NAME } from "@/lib/constatnts";
 import { PageSection } from "@/components/page-section";
 import { GroupCard } from "@/components/group-card";
 import { InstagramProfileCard } from "@/components/instagram-card";
+import { DestinationCard } from "@/components/destinations/destination-card";
 
 export async function generateMetadata({ searchParams }) {
   const { q } = await searchParams;
@@ -21,11 +22,12 @@ export async function generateMetadata({ searchParams }) {
 
 export default async function SearchPage({ searchParams }) {
   const { viewMode = "list", q, locations, durations } = await searchParams;
-  const { events, groups, instagramProfiles } = await getSearchResults({
-    search: q,
-    durations,
-    locationSlug: locations,
-  });
+  const { events, groups, instagramProfiles, destinations } =
+    await getSearchResults({
+      search: q,
+      durations,
+      locationSlug: locations,
+    });
 
   return (
     <div className="max-w-7xl w-full mx-auto px-4 py-8">
@@ -58,6 +60,28 @@ export default async function SearchPage({ searchParams }) {
           <p className="text-muted-foreground">No trips found</p>
         )}
       </PageSection>
+
+      {destinations?.destinations?.length ? (
+        <PageSection
+          label={`${
+            destinations?.destinations?.length ?? 0
+          } Destinations found`}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {destinations.destinations.map((destination) => (
+              <DestinationCard
+                key={destination.id}
+                eventsCount={destination._count.events}
+                groupsCount={destination._count.groups}
+                locations={destination.locations}
+                name={destination.name}
+                slug={destination.slug}
+              />
+            ))}
+          </div>
+        </PageSection>
+      ) : null}
+
       {instagramProfiles?.length ? (
         <PageSection label={`${groups?.length ?? 0} Instagram groups found`}>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

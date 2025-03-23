@@ -6,17 +6,25 @@ type GetDestinationsParams = {
   groupSlug?: string;
   take?: number;
   skip?: number;
+  search?: string;
 };
 
 export const getDestinationList = cache(
   async (params: GetDestinationsParams = {}) => {
-    const { locationSlug, groupSlug, take = 10, skip = 0 } = params;
+    const {
+      locationSlug,
+      groupSlug,
+      take = 10,
+      skip = 0,
+      search = "",
+    } = params;
 
     const shouldPaginate = take !== undefined;
 
     const whereClause = {
       ...(locationSlug && { locations: { some: { slug: locationSlug } } }),
       ...(groupSlug && { groups: { some: { slug: groupSlug } } }),
+      ...(search && { name: { search: search.replace(/[^a-zA-Z]/g, "") } }),
     };
 
     const destinations = await prisma.destination.findMany({

@@ -5,6 +5,7 @@ import { getEventList } from "./event";
 import { cache } from "react";
 import { getGroupList } from "./group";
 import { getInstagramProfileList } from "./instagram-profile";
+import { getDestinationList } from "./destinations";
 
 export const getRandomPosters = cache(async () => {
   const groupPosters = await prisma.group.findMany({
@@ -30,19 +31,26 @@ export const getRandomPosters = cache(async () => {
 });
 
 export const getPublicStats = cache(async () => {
-  const [eventsCount, groupsCount, locationsCount, instagramProfilesCount] =
-    await Promise.all([
-      prisma.event.count(),
-      prisma.group.count(),
-      prisma.location.count(),
-      prisma.instagramProfile.count(),
-    ]);
+  const [
+    eventsCount,
+    groupsCount,
+    locationsCount,
+    instagramProfilesCount,
+    destinationsCount,
+  ] = await Promise.all([
+    prisma.event.count(),
+    prisma.group.count(),
+    prisma.location.count(),
+    prisma.instagramProfile.count(),
+    prisma.destination.count(),
+  ]);
 
   return {
     eventsCount,
     groupsCount,
     locationsCount,
     instagramProfilesCount,
+    destinationsCount,
   };
 });
 
@@ -56,7 +64,7 @@ export const getSearchResults = cache(
     durations?: string;
     locationSlug?: string;
   }) => {
-    if (!search) return {};
+    if (!search || search?.trim().length <= 2) return {};
     return {
       events: await getEventList({ search, durations, locationSlug, take: 30 }),
       groups: await getGroupList({ search, locationSlug }),
@@ -64,6 +72,7 @@ export const getSearchResults = cache(
         search,
         locationSlug,
       }),
+      destinations: await getDestinationList({ search, take: 30 }),
     };
   }
 );
