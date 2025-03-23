@@ -3,32 +3,14 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  {
-    name: "Locations",
-    href: "/locations",
-  },
-  {
-    name: "Destinations",
-    href: "/destinations",
-  },
-  {
-    name: "Groups",
-    href: "/groups",
-  },
-  {
-    name: "Trips",
-    href: "/trips",
-  },
-];
+import { NAVIGATIONS_MENU } from "@/lib/constatnts";
 
 export default function NavigationLinks() {
   const pathname = usePathname();
 
   return (
     <div className="hidden md:flex md:items-center md:gap-6">
-      {navLinks.map((link) => (
+      {NAVIGATIONS_MENU.map((link) => (
         <Link
           key={link.href}
           href={link.href}

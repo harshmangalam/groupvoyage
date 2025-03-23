@@ -20,12 +20,12 @@ export default async function HomePage() {
     <div>
       {/* hero section  */}
       <HomeHero />
-      <div className="max-w-7xl w-full mx-auto px-4 ">
+      <div className="max-w-7xl w-full mx-auto px-4">
         <PageSection
           href="/locations"
           label={
             <span>
-              Trending <span className="text-destructive">cities</span>
+              Trending <span className="text-destructive">locations</span>
             </span>
           }
         >

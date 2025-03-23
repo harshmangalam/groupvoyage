@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import NavigationLinks from "./navigation-links";
+import { NavigationsDropdownMenu } from "./navigations-drodown-menu";
 
 export function Navbar() {
   return (
@@ -14,7 +15,11 @@ export function Navbar() {
         </div>
 
         <NavigationLinks />
+
         <div className="flex items-center gap-1">
+          <div className="block md:hidden">
+            <NavigationsDropdownMenu />
+          </div>
           <Button size="icon" asChild variant="outline">
             <Link href={"/search"}>
               <SearchIcon />
