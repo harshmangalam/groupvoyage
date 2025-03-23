@@ -135,27 +135,19 @@ export default async function GroupHomePage({
         <PageSection label={"About us"}>
           <p className="mb-0">{group.details}</p>
         </PageSection>
-        {instagramProfile && (
-          <PageSection label={"Social Media"}>
-            <InstagramProfileCard {...instagramProfile} />
-          </PageSection>
-        )}
+        {instagramProfile && <InstagramProfileCard {...instagramProfile} />}
         <PageSection
           href={`/destinations/?groups=${groupSlug}`}
-          label={<span>Destinations</span>}
+          label={<span>Weekend Destinations</span>}
+          description={`Stunning destinations covered by ${group.name}, ideal for a quick escape and explore.`}
         >
           <Suspense key={`featured-destinations-${groupSlug}`}>
             <TrendingDestinationsCarousel groupSlug={groupSlug} />
           </Suspense>
         </PageSection>
         <PageSection
-          label={
-            <span>
-              Trips by <span className="text-destructive">{group.name}</span>
-            </span>
-          }
-          description={`Check out the latest trips organized by ${group.name} and find the
-            perfect weekend adventure for you!`}
+          label={<span>Trips</span>}
+          description={`Discover unmissable weekend trips offered by ${group.name}`}
           others={
             <div className="flex items-center flex-wrap gap-2  md:justify-end justify-start">
               <Suspense
