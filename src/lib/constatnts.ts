@@ -1,6 +1,6 @@
 import { DurationMap } from "./types";
 export const SITE_NAME = "GroupVoyage";
-export const SITE_URL = "groupvoyage.in";
+export const SITE_URL = "https://groupvoyage.in";
 
 export const DURATIONS: DurationMap[] = [
   { label: "1 Day Trip", value: "1-day" },

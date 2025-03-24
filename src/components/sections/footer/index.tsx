@@ -38,11 +38,11 @@ export default function FooterSection() {
   const locations = [
     {
       label: "Trips from Bangalore",
-      href: "/in-bangalore",
+      href: "/locations/in-bangalore",
     },
     {
       label: "Trips from Hyderabad",
-      href: "/in-hyderabad",
+      href: "/locations/in-hyderabad",
     },
   ];
 

@@ -73,7 +73,7 @@ export const getLocations = cache(
   }: {
     search?: string;
     includeInactive?: boolean;
-  }) => {
+  } = {}) => {
     const filter: Record<string, unknown> = {};
     if (search) {
       filter.city = { search: search.replace(/[^a-zA-Z]/g, "") };
@@ -83,7 +83,7 @@ export const getLocations = cache(
     }
     return prisma.location.findMany({
       take: 5,
-      where: { ...filter },
+      where: { ...filter, active: true },
       select: {
         slug: true,
         city: true,
@@ -101,5 +101,5 @@ export const getLocations = cache(
 );
 
 export const getAllLocationsCount = cache(async () => {
-  return prisma.location.count();
+  return prisma.location.count({ where: { active: true } });
 });
