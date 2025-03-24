@@ -4,6 +4,7 @@ import { getDestinationDetails } from "@/actions/destinations";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 import { Suspense } from "react";
 import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
+import ComparePrice from "./compare-price";
 
 type DestinationPageProps = {
   params: Promise<{ destinationSlug: string }>;
@@ -25,7 +26,7 @@ export default async function DestinationDetailsPage({
   const destination = await getDestinationDetails({ destinationSlug });
   if (!destination) return notFound();
   return (
-    <div className="max-w-7xl px-4 mx-auto">
+    <div className="max-w-7xl px-4 mx-auto relative">
       <PageSection
         href={`/groups?destinations=${destinationSlug}`}
         label={<span>{destination.name} Getaways with Top Groups</span>}
@@ -43,6 +44,14 @@ export default async function DestinationDetailsPage({
       >
         <Suspense key={`featured-events-destination-${destinationSlug}`}>
           <TrendingTripsCarousel destinations={destinationSlug} />
+        </Suspense>
+      </PageSection>
+      <PageSection
+        label={<span> {destination.name} Price Comparison</span>}
+        description={`Find the best deals for ${destination.name} across all available groups and trips.`}
+      >
+        <Suspense key={`compare-destination-price-${destinationSlug}`}>
+          <ComparePrice destinationSlug={destinationSlug} />
         </Suspense>
       </PageSection>
     </div>
