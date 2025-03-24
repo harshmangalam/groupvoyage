@@ -4,7 +4,7 @@ import { Users, Grid3X3 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { T_InstagramProfile } from "@/lib/types";
-import { SITE_URL } from "@/lib/constatnts";
+import { SITE_URL } from "@/lib/constants";
 import { siInstagram } from "simple-icons";
 
 export function InstagramProfileCard({

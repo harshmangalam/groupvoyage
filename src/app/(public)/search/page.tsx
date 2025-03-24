@@ -5,7 +5,7 @@ import { ViewMode } from "./view-mode";
 import { getSearchResults } from "@/actions/common";
 import TableView from "./table-view";
 import { ListView } from "./list-view";
-import { SITE_NAME } from "@/lib/constatnts";
+import { SITE_NAME } from "@/lib/constants";
 import { PageSection } from "@/components/page-section";
 import { GroupCard } from "@/components/groups/group-card";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";

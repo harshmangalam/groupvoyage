@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SITE_NAME } from "@/lib/constatnts";
+import { SITE_NAME } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationProgress } from "@/components/navigation-progress";
 

@@ -1,7 +1,7 @@
 import { getLocations } from "@/actions/location";
 import { LocationCard } from "@/components/location-card";
 import { PageSection } from "@/components/page-section";
-import { SITE_NAME } from "@/lib/constatnts";
+import { SITE_NAME } from "@/lib/constants";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

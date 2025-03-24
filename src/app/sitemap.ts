@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/constatnts";
+import { SITE_URL } from "@/lib/constants";
 import { getLocations } from "@/actions/location";
 import { getGroupList } from "@/actions/group";
 import { getDestinationList } from "@/actions/destinations";

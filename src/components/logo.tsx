@@ -1,4 +1,4 @@
-import { SITE_NAME } from "@/lib/constatnts";
+import { SITE_NAME } from "@/lib/constants";
 
 import Link from "next/link";
 

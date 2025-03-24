@@ -1,6 +1,6 @@
 import { getEventDetails } from "@/actions/event";
 import { Card, CardContent } from "@/components/ui/card";
-import { SITE_NAME } from "@/lib/constatnts";
+import { SITE_NAME } from "@/lib/constants";
 import { EventMetaType } from "@/lib/types";
 import {
   Clock,

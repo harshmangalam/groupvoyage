@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { NAVIGATIONS_MENU } from "@/lib/constatnts";
+import { NAVIGATIONS_MENU } from "@/lib/constants";
 
 export default function NavigationLinks() {
   const pathname = usePathname();

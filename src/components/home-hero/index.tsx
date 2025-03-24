@@ -1,7 +1,7 @@
 import { Posters } from "./posters";
 import { Suspense } from "react";
 import { Stats } from "./stats";
-import { SITE_NAME } from "@/lib/constatnts";
+import { SITE_NAME } from "@/lib/constants";
 import { Skeleton } from "../ui/skeleton";
 
 export async function HomeHero() {

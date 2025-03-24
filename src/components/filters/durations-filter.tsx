@@ -1,7 +1,7 @@
 "use client";
 
 import { CustomDropdownMenu } from "@/components/custom-dropdown-menu";
-import { DURATIONS } from "@/lib/constatnts";
+import { DURATIONS } from "@/lib/constants";
 import { searchParams } from "@/lib/search-params";
 import { CalendarClockIcon } from "lucide-react";
 import { useQueryState } from "nuqs";

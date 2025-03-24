@@ -1,7 +1,7 @@
 import { getLocation } from "@/actions/location";
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
-import { SITE_NAME } from "@/lib/constatnts";
+import { SITE_NAME } from "@/lib/constants";
 import { TrendingInstagramProfiles } from "@/components/instagram/trending-instagram-profiles";
 import { Suspense } from "react";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";

@@ -3,7 +3,7 @@ import { CustomPagination } from "@/components/custom-pagination";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { PageSection } from "@/components/page-section";
-import { DESTINATIONS_PER_PAGE } from "@/lib/constatnts";
+import { DESTINATIONS_PER_PAGE } from "@/lib/constants";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

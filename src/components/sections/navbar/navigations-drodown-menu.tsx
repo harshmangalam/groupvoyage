@@ -7,7 +7,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { NAVIGATIONS_MENU } from "@/lib/constatnts";
+import { NAVIGATIONS_MENU } from "@/lib/constants";
 import { MenuIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 

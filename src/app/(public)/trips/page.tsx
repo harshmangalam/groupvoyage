@@ -5,7 +5,7 @@ import { LocationsFilter } from "@/components/filters/locations/locations-filter
 import { PageSection } from "@/components/page-section";
 import { TripCard } from "@/components/trips/trip-card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TRIPS_PER_PAGE } from "@/lib/constatnts";
+import { TRIPS_PER_PAGE } from "@/lib/constants";
 import { Metadata } from "next";
 import { Suspense } from "react";
 

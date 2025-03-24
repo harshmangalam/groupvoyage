@@ -16,7 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CustomPagination } from "@/components/custom-pagination";
-import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constatnts";
+import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constants";
 import { GroupMetaType } from "@/lib/types";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";

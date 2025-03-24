@@ -5,7 +5,7 @@ import {
   FooterContent,
 } from "../../ui/footer";
 import Link from "next/link";
-import { SITE_NAME } from "@/lib/constatnts";
+import { SITE_NAME } from "@/lib/constants";
 import { Logo } from "@/components/logo";
 
 export default function FooterSection() {
