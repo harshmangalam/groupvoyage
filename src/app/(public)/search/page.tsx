@@ -3,13 +3,13 @@ import { LocationsFilter } from "@/components/filters/locations/locations-filter
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { ViewMode } from "./view-mode";
 import { getSearchResults } from "@/actions/common";
-import TableView from "./table-view";
 import { ListView } from "./list-view";
 import { SITE_NAME } from "@/lib/constants";
 import { PageSection } from "@/components/page-section";
 import { GroupCard } from "@/components/groups/group-card";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { DestinationCard } from "@/components/destinations/destination-card";
+import PriceTable from "@/components/trips/price-table";
 
 export async function generateMetadata({ searchParams }) {
   const { q } = await searchParams;
@@ -92,7 +92,7 @@ export default async function SearchPage({ searchParams }) {
             {viewMode === "list" ? (
               <ListView trips={events.events} />
             ) : viewMode === "table" ? (
-              <TableView trips={events.events} />
+              <PriceTable trips={events.events} />
             ) : null}
           </div>
         </PageSection>
