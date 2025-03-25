@@ -24,20 +24,6 @@ export function InstagramProfileCard({
       <Card className="h-auto w-full transition-all hover:bg-muted max-w-md">
         <CardContent className="p-4 space-y-3">
           <div className="flex items-center gap-3">
-            <Avatar className="h-16 w-16 border flex-none">
-              {profilePic ? (
-                <AvatarImage
-                  src={`/api/insta-profile-proxy?url=${encodeURIComponent(
-                    profilePic
-                  )}`}
-                  alt={name || username}
-                />
-              ) : (
-                <AvatarFallback>
-                  {name?.substring(0, 2)?.toUpperCase()}
-                </AvatarFallback>
-              )}
-            </Avatar>
             <div className="space-y-1 flex-1 overflow-hidden">
               <div className="flex items-center justify-between gap-2">
                 <span className="font-medium truncate overflow-hidden text-ellipsis">
