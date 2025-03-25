@@ -20,23 +20,17 @@ export function TripCard({ event }: TripCardProps) {
       : 0;
 
   return (
-    <Link href={`/trips/${slug}`} className="block">
+    <Link href={`/trips/${slug}`} className="block h-full">
       <Card className="shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full w-full">
         {firstPosterUrl && (
-          <div className="relative h-40">
-            <Image
-              src={firstPosterUrl || ""}
-              alt={`${title} poster`}
-              width={400}
-              height={400}
-              className="w-full h-full aspect-auto object-cover"
-              loading="lazy"
-              style={{
-                maxWidth: "100%",
-                objectFit: "cover",
-              }}
-            />
-          </div>
+          <Image
+            src={firstPosterUrl || ""}
+            alt={`${title} poster`}
+            width={400}
+            height={300}
+            className="w-full h-52 aspect-video object-cover"
+            loading="lazy"
+          />
         )}
         <CardContent className="p-4">
           <h3 className="font-semibold mb-2 line-clamp-1">{title}</h3>

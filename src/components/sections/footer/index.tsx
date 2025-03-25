@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/constants";
 import { Logo } from "@/components/logo";
+import { ProductHuntBadge } from "@/components/product-hunt-badge";
 
 export default function FooterSection() {
   const quickLinks = [
@@ -136,6 +137,7 @@ export default function FooterSection() {
           <div>
             © {new Date().getFullYear()} {SITE_NAME}. All rights reserved
           </div>
+          <ProductHuntBadge className="w-40 h-10" />
         </FooterBottom>
       </Footer>
     </footer>

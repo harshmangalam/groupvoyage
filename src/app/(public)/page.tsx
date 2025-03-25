@@ -8,6 +8,8 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import { TrendingInstagramProfiles } from "@/components/instagram/trending-instagram-profiles";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Stats } from "@/components/home-hero/stats";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -21,6 +23,21 @@ export default async function HomePage() {
       {/* hero section  */}
       <HomeHero />
       <div className="max-w-7xl w-full mx-auto px-4">
+        <div className="mt-0 md:mt-16 mb-4 md:mb-6">
+          <Suspense
+            key={"home-hero-stats"}
+            fallback={
+              <div className="grid grid-cols-2 md:grid-cols-4   gap-4">
+                <Skeleton className="w-full h-[70px]" />
+                <Skeleton className="w-full h-[70px]" />
+                <Skeleton className="w-full h-[70px]" />
+                <Skeleton className="w-full h-[70px]" />
+              </div>
+            }
+          >
+            <Stats />
+          </Suspense>
+        </div>
         <PageSection
           href="/locations"
           label={<span>Top Locations</span>}

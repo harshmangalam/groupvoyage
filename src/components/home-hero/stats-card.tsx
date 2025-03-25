@@ -9,12 +9,12 @@ export async function StatsCard({
   count: number;
 }) {
   return (
-    <Card className="py-2 px-4 w-full">
+    <Card className="p-4 w-full">
       <div className="flex flex-col gap-1">
-        <h3 className="text-xl font-bold">
+        <h3 className="text-3xl font-bold">
           <CountUp end={count} />
         </h3>
-        <p className="text-sm font-medium text-muted-foreground">{label}</p>
+        <p className="font-medium text-muted-foreground">{label}</p>
       </div>
     </Card>
   );
