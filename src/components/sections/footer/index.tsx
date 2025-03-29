@@ -5,7 +5,7 @@ import {
   FooterContent,
 } from "../../ui/footer";
 import Link from "next/link";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_EMAIL, SITE_NAME } from "@/lib/constants";
 import { Logo } from "@/components/logo";
 import { ProductHuntBadge } from "@/components/product-hunt-badge";
 
@@ -57,7 +57,7 @@ export default function FooterSection() {
   const customerSupports = [
     {
       label: "Email",
-      href: "mailto:groupvoyageofficial@gmail.com",
+      href: `mailto:${SITE_EMAIL}`,
     },
   ];
 
