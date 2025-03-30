@@ -172,7 +172,7 @@ export default async function GroupHomePage({
                 <TripCard key={event.id} event={event} />
               ))
             ) : (
-              <p className="opacity-50 text-sm">No Events</p>
+              <p className="opacity-50 text-sm">No Trips</p>
             )}
           </div>
           <div className="mt-6">

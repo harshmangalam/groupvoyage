@@ -46,9 +46,9 @@ export const getEventList = cache(
 
     if (durations) {
       const searchValue = durations.replace("-", " ").toLowerCase(); // Normalize input
-
       filter.durations = {
         contains: searchValue,
+        mode: "insensitive",
       };
     }
 
