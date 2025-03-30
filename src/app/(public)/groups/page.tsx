@@ -6,8 +6,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = {
   title: "Explore Groups",
   description: `Discover and compare travel groups effortlessly. Filter by location and choose the best group trip for your journey.`,
