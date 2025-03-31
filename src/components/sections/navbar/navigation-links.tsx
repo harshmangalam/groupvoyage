@@ -9,7 +9,7 @@ export default function NavigationLinks() {
   const pathname = usePathname();
 
   return (
-    <div className="hidden md:flex md:items-center md:gap-6">
+    <div className="hidden lg:flex lg:items-center md:gap-6">
       {NAVIGATIONS_MENU.map((link) => (
         <Link
           key={link.href}

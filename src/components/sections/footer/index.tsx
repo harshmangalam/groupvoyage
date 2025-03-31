@@ -8,6 +8,8 @@ import Link from "next/link";
 import { SITE_EMAIL, SITE_NAME } from "@/lib/constants";
 import { Logo } from "@/components/logo";
 import { ProductHuntBadge } from "@/components/product-hunt-badge";
+import Image from "next/image";
+import { LogoImg } from "@/components/logo-img";
 
 export default function FooterSection() {
   const quickLinks = [
@@ -72,9 +74,7 @@ export default function FooterSection() {
           {/* Logo Section */}
           <FooterColumn className="col-span-2 sm:col-span-3 md:col-span-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-xl font-bold">
-                <Logo />
-              </h3>
+              <Logo />
             </div>
           </FooterColumn>
 
