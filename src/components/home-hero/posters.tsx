@@ -19,11 +19,11 @@ export async function Posters() {
                 ? "rounded-b-none rounded-t-2xl"
                 : "rounded-2xl"
             } `}
-            priority={index === 1}
             style={{
               maxWidth: "100%",
-              height: "auto"
-            }} />
+              height: "auto",
+            }}
+          />
         </div>
       ))}
     </div>

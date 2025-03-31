@@ -96,6 +96,11 @@ export const getLocations = cache(
           },
         },
       },
+      orderBy: {
+        events: {
+          _count: "desc",
+        },
+      },
     });
   }
 );
