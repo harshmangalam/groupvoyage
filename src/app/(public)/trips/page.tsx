@@ -10,9 +10,31 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Explore Trips",
+  title: "Best Weekend Trips - 1-Day & 2-Day Getaways at Affordable Price",
   description:
-    "Browse and compare trips from multiple travel groups. Filter by location and duration to find your perfect journey.",
+    "Explore the best weekend trips from major cities. Compare prices for 1-day & 2-day getaways, adventure tours, trekking trips, and road trips to top destinations.",
+  keywords: [
+    "best weekend trips",
+    "1-day and 2-day trips",
+    "short trips near me",
+    "budget weekend getaways",
+    "group trips for the weekend",
+    "adventure weekend trips",
+    "trekking weekend trips",
+    "road trips for the weekend",
+    "affordable group trips",
+    "scenic weekend destinations",
+    "best quick getaways",
+    "short road trips from major cities",
+    "family-friendly weekend trips",
+    "solo travel weekend trips",
+    "offbeat weekend escapes",
+    "nature getaways this weekend",
+    "best places to visit this weekend",
+    "top weekend travel packages",
+    "quick vacation ideas",
+    "best 2-day tour packages",
+  ],
 };
 type TripsPageProps = {
   searchParams: Promise<{

@@ -28,6 +28,25 @@ export async function generateMetadata({ params }) {
   return {
     title: event?.title,
     description: `Discover details about ${event?.title} Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
+    keywords: [
+      `${event?.title} weekend trip`,
+      `${event?.title} 1-day trip`,
+      `${event?.title} 2-day trip`,
+      `${event?.title} tour package`,
+      `budget-friendly ${event?.title} trip`,
+      `best group trip to ${event?.title}`,
+      `affordable trip to ${event?.title}`,
+      `adventure trip to ${event?.title}`,
+      `trekking trip to ${event?.title}`,
+      `road trip to ${event?.title}`,
+      `scenic weekend trip to ${event?.title}`,
+      `compare ${event?.title} trip prices`,
+      `book ${event?.title} weekend tour`,
+      `1-day and 2-day trip to ${event?.title}`,
+      `best places to visit in ${event?.title}`,
+      `group travel to ${event?.title}`,
+      `short weekend escape to ${event?.title}`,
+    ],
   };
 }
 
