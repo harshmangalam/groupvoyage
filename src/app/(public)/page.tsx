@@ -10,7 +10,31 @@ import { TrendingInstagramProfiles } from "@/components/instagram/trending-insta
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Compare & Book Weekend Group Trips - 1-Day & 2-Day Getaways",
+  description:
+    "Discover the best weekend group trips from your city. Compare prices, check itineraries, and join 1-day & 2-day budget-friendly trips for trekking, adventure, and scenic getaways.",
+  keywords: [
+    "weekend group trips",
+    "1-day and 2-day trips",
+    "best weekend getaways",
+    "budget-friendly weekend trips",
+    "adventure group trips",
+    "trekking weekend getaways",
+    "affordable short trips",
+    "road trips from my city",
+    "quick weekend escapes",
+    "nature getaways for the weekend",
+    "top weekend destinations",
+    "solo and group weekend travel",
+    "short trips near me",
+    "scenic weekend vacations",
+    "best 2-day trip packages",
+    "budget weekend tours",
+    "weekend hiking trips",
+    "best places to visit this weekend",
+    "travel groups for weekend trips",
+    "price comparison for weekend tours",
+  ],
 };
 
 export default async function HomePage() {
