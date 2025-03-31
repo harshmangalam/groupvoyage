@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Users, Grid3X3 } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { T_InstagramProfile } from "@/lib/types";
 import { SITE_URL } from "@/lib/constants";
 import { siInstagram } from "simple-icons";
@@ -12,7 +11,6 @@ export function InstagramProfileCard({
   following,
   name,
   posts,
-  profilePic,
   username,
 }: T_InstagramProfile) {
   return (
@@ -21,7 +19,7 @@ export function InstagramProfileCard({
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Card className="h-auto w-full transition-all hover:bg-muted max-w-md">
+      <Card className="h-auto w-full transition-all hover:bg-muted max-w-xs">
         <CardContent className="p-4 space-y-3">
           <div className="flex items-center gap-3">
             <div className="space-y-1 flex-1 overflow-hidden">
