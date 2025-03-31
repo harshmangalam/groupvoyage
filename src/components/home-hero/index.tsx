@@ -41,10 +41,10 @@ export async function HomeHero() {
               key={"home-hero-stats"}
               fallback={
                 <div className="grid grid-cols-2 md:grid-cols-4   gap-4">
-                  <Skeleton className="w-full h-[70px]" />
-                  <Skeleton className="w-full h-[70px]" />
-                  <Skeleton className="w-full h-[70px]" />
-                  <Skeleton className="w-full h-[70px]" />
+                  <Skeleton className="w-full h-[98px]" />
+                  <Skeleton className="w-full h-[98px]" />
+                  <Skeleton className="w-full h-[98px]" />
+                  <Skeleton className="w-full h-[98px]" />
                 </div>
               }
             >
