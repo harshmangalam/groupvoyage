@@ -16,7 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CustomPagination } from "@/components/custom-pagination";
-import { SITE_NAME, TRIPS_PER_PAGE } from "@/lib/constants";
+import { SITE_URL, TRIPS_PER_PAGE } from "@/lib/constants";
 import { GroupMetaType } from "@/lib/types";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
@@ -110,7 +110,7 @@ export default async function GroupHomePage({
                   <ExternalLinkIcon size={18} />
                   <a
                     target="_blank"
-                    href={group.source}
+                    href={`${group.source}?utm_source=${SITE_URL}&utm_medium=referral`}
                     className="hover:underline"
                   >
                     Website
