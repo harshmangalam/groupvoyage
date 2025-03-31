@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
     ],
+    minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days
+    formats: ["image/webp"],
   },
 };
 
