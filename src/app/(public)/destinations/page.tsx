@@ -6,11 +6,38 @@ import { PageSection } from "@/components/page-section";
 import { DESTINATIONS_PER_PAGE } from "@/lib/constants";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Explore Destinations",
-  description:
-    "Explore top weekend getaway destinations for a refreshing escape.",
-};
+export async function generateMetadata() {
+  const destinationsName = (await getDestinationList({ take: 5 })).destinations
+    .map((d) => d.name)
+    .join(", ");
+  return {
+    title:
+      "Best Weekend Trips - Explore 1-Day & 2-Day Getaways to Top Destinations",
+    description: `Discover top weekend trips to ${destinationsName} & more. Compare prices, book 1-day & 2-day getaways, and explore adventure & scenic destinations.`,
+    keywords: [
+      "best weekend destinations in India",
+      "top short trips for the weekend",
+      "1-day and 2-day travel destinations",
+      "affordable weekend getaways near me",
+      "budget-friendly travel destinations in India",
+      "best adventure destinations for weekend trips",
+      "short road trips and weekend escapes",
+      "top trekking destinations for weekend trips",
+      "nature escapes and weekend retreats",
+      "best holiday destinations for quick getaways",
+      "best travel spots for short trips",
+      "mountain getaways for weekend trips",
+      "beach destinations for 2-day vacations",
+      "best scenic destinations for short travel",
+      "solo-friendly weekend travel destinations",
+      "family-friendly weekend getaways",
+      "top destinations for road trips in India",
+      "nature and wildlife weekend travel spots",
+      "best unexplored weekend destinations in India",
+      "best offbeat weekend destinations near me",
+    ],
+  };
+}
 
 type DestinationsPageProps = {
   searchParams: Promise<{

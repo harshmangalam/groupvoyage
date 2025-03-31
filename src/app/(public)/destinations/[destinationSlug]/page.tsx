@@ -14,8 +14,25 @@ export async function generateMetadata({ params }) {
   const { destinationSlug } = await params;
   const destination = await getDestinationDetails({ destinationSlug });
   return {
-    title: `${destination?.name}`,
-    description: `Discover groups and trips going to ${destination?.name}.`,
+    title: `Weekend Trip to ${destination?.name} - Best 1-Day & 2-Day Getaways`,
+    description: `Plan a weekend trip to ${destination?.name}. Compare prices, check itineraries, and book 1-day & 2-day group trips. Explore adventure, trekking & scenic getaways!`,
+    keywords: [
+      `weekend trip to ${destination?.name}`,
+      `best 1-day and 2-day trips to ${destination?.name}`,
+      `budget-friendly weekend trips to ${destination?.name}`,
+      `group trips to ${destination?.name}`,
+      `short trips to ${destination?.name} from major cities`,
+      `top places to visit in ${destination?.name} this weekend`,
+      `adventure and trekking trips to ${destination?.name}`,
+      `road trip to ${destination?.name} this weekend`,
+      `scenic getaways to ${destination?.name}`,
+      `best weekend travel packages for ${destination?.name}`,
+      `affordable travel deals for ${destination?.name}`,
+      `top things to do in ${destination?.name} on a short trip`,
+      `family-friendly weekend trips to ${destination?.name}`,
+      `solo and group travel to ${destination?.name}`,
+      `offbeat weekend escapes to ${destination?.name}`,
+    ],
   };
 }
 
