@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     default: SITE_NAME,
   },
   description:
-    "Find local groups, compare prices, and join budget-friendly trips",
+    "Find local groups, compare prices, and join budget-friendly weekend trips",
   metadataBase: new URL("https://www.groupvoyage.in/"),
 };
 
