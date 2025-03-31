@@ -1,7 +1,6 @@
 import { getLocation } from "@/actions/location";
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
-import { SITE_NAME } from "@/lib/constants";
 import { TrendingInstagramProfiles } from "@/components/instagram/trending-instagram-profiles";
 import { Suspense } from "react";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
@@ -16,8 +15,34 @@ export async function generateMetadata({ params }) {
   const { locationSlug } = await params;
   const location = await getLocation({ locationSlug });
   return {
-    title: `Explore ${location?.city} Top Groups & Trips`,
-    description: `Discover groups and trips in ${location?.city}. Compare prices and join budget-friendly adventures with ${SITE_NAME}.`,
+    title: `Explore ${location?.city} Travel Groups & Trips`,
+    description: `Join the best travel groups in ${location?.city} for budget-friendly trips & treks. Explore weekend getaways, adventure tours, and affordable group travel options.`,
+    keywords: [
+      `travel groups in ${location?.city}`,
+      `group trips from ${location?.city}`,
+      `${location?.city} group trips`,
+      `trekking groups in ${location?.city}`,
+      `budget travel ${location?.city}`,
+      `affordable trips from ${location?.city}`,
+      `weekend getaways ${location?.city}`,
+      `local travel groups in ${location?.city}`,
+      `best trekking groups in ${location?.city}`,
+      `budget-friendly weekend trips from ${location?.city}`,
+      `group travel ${location?.city}`,
+      `backpacking groups in ${location?.city}`,
+      `road trips from ${location?.city}`,
+      `adventure trips from ${location?.city}`,
+      `solo traveler groups in ${location?.city}`,
+      `women travel groups in ${location?.city}`,
+      `best weekend treks near ${location?.city}`,
+      `affordable travel clubs in ${location?.city}`,
+      `${location?.city} weekend adventure trips`,
+      `how to join travel groups in ${location?.city}`,
+      `compare travel groups in ${location?.city}`,
+      `best price for group trips in ${location?.city}`,
+      `weekend getaways from ${location?.city} with price`,
+      `group trip price comparison in ${location?.city}`,
+    ],
   };
 }
 
