@@ -26,10 +26,29 @@ import { TrendingDestinationsCarousel } from "@/components/destinations/trending
 export async function generateMetadata({ params }) {
   const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
-  const description = `Explore ${group?.name} group details and their listed trips on ${SITE_NAME}. Compare and choose the best travel experience.`;
+  const cities = group?.locations.map((l) => l.city).join(", ");
+  const description = `Join ${group?.name} for weekend trips from ${cities}. Compare prices, check itineraries, and book 1-day & 2-day group tours to top destinations.`;
+
   return {
-    title: `${group?.name} (${group?._count?.events} trips)`,
+    title: `Join ${group?.name} for Weekend Trips & Getaways - Compare Prices`,
     description,
+    keywords: [
+      `join ${group?.name} travel group`,
+      `best weekend trips with ${group?.name}`,
+      `${group?.name} group trips from ${cities}`,
+      `1-day and 2-day trips with ${group?.name}`,
+      `${group?.name} group tour packages`,
+      `compare ${group?.name} travel group prices`,
+      `${group?.name} budget-friendly weekend tours`,
+      `adventure trips with ${group?.name}`,
+      `trekking and road trips by ${group?.name}`,
+      `affordable weekend getaways with ${group?.name}`,
+      `explore destinations with ${group?.name}`,
+      `verified travel group: ${group?.name}`,
+      `book a weekend tour with ${group?.name}`,
+      `short trips and getaways with ${group?.name}`,
+      `top-rated weekend travel groups: ${group?.name}`,
+    ],
   };
 }
 
