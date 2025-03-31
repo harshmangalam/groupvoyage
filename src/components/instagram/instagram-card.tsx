@@ -46,7 +46,7 @@ export function InstagramProfileCard({
             </div>
           </div>
 
-          <div className="flex justify-between text-sm">
+          <div className="flex justify-between gap-6 text-sm">
             <div className="flex items-center gap-1">
               <Users className="h-4 w-4 text-muted-foreground" />
               <span>{followers}</span>

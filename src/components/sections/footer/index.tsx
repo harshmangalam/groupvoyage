@@ -3,7 +3,7 @@ import {
   FooterColumn,
   FooterBottom,
   FooterContent,
-} from "../../ui/footer";
+} from "@/components/ui/footer";
 import Link from "next/link";
 import { SITE_EMAIL, SITE_NAME } from "@/lib/constants";
 import { Logo } from "@/components/logo";
@@ -44,6 +44,10 @@ export default function FooterSection() {
     {
       label: "Trips from Hyderabad",
       href: "/locations/in-hyderabad",
+    },
+    {
+      label: "Trips from Pune",
+      href: "/locations/in-pune",
     },
   ];
 
