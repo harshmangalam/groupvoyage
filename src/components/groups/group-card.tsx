@@ -4,19 +4,20 @@ import { T_GroupCard } from "@/lib/types";
 import Image from "next/image";
 
 export function GroupCard({ group }: { group: T_GroupCard }) {
-  const { _count, logo, name, slug } = group;
+  const { _count, posterUrls, name, slug } = group;
   return (
     <Link href={`/groups/${slug}`} className="block h-full">
       <Card className="hover:shadow-md hover:bg-muted transition-all cursor-pointer group overflow-hidden h-full">
         <CardContent className="p-0">
-          {logo && (
+          {(posterUrls as any)?.length && (
             <div className="relative w-full aspect-video">
               <Image
-                src={logo}
+                src={posterUrls?.[0]}
                 alt={name}
                 width={300}
                 height={300}
                 className="object-cover rounded-t-lg aspect-video w-full h-40"
+                loading="lazy"
               />
             </div>
           )}
