@@ -30,6 +30,7 @@ export function TripCard({ event }: TripCardProps) {
             height={300}
             className="w-full h-52 aspect-video object-cover"
             loading="lazy"
+            unoptimized
           />
         )}
         <CardContent className="p-4">

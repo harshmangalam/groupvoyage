@@ -1,5 +1,5 @@
 import { getLocations } from "@/actions/location";
-import { LocationCard } from "@/components/location-card";
+import { LocationCard } from "@/components/locations/location-card";
 import { PageSection } from "@/components/page-section";
 import { Metadata } from "next";
 

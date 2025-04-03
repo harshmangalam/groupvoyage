@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Form from "next/form";
 import ImagePreviewInput from "@/components/image-preview-input";
 import { Textarea } from "@/components/ui/textarea";
-import { LocationsDropdown } from "@/components/locations-dropdown";
+import { LocationsDropdown } from "@/components/locations/locations-dropdown";
 
 type GroupFormProps = {
   action: NonNullable<

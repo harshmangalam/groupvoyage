@@ -2,7 +2,7 @@ import { getLocations } from "@/actions/location";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
 import { HomeHero } from "@/components/home-hero";
-import { LocationCard } from "@/components/location-card";
+import { LocationCard } from "@/components/locations/location-card";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Metadata } from "next";

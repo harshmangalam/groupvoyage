@@ -1,4 +1,3 @@
-import { Posters } from "./posters";
 import { Suspense } from "react";
 import { SITE_NAME } from "@/lib/constants";
 import { ProductHuntBadge } from "../product-hunt-badge";
@@ -52,12 +51,6 @@ export async function HomeHero() {
             </Suspense>
           </div>
         </div>
-
-        {/* <div className="relative h-full">
-          <Suspense key={"home-hero-posters"}>
-            <Posters />
-          </Suspense>
-        </div> */}
       </div>
     </div>
   );
