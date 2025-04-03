@@ -121,12 +121,6 @@ export default async function TripDetailsPage({
       <div className="max-w-7xl  mx-auto px-4 py-8 md:py-12">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2 space-y-6">
-            {event?.details && (
-              <div>
-                <h2 className="text-2xl font-semibold mb-4">Trip Details</h2>
-                <TripDetails details={event.details} />
-              </div>
-            )}
             <SectionList
               label={"Trip Highlights"}
               Icon={
@@ -146,6 +140,7 @@ export default async function TripDetailsPage({
               Icon={<XIcon className="h-4 w-4 mt-1 flex-none  text-red-500" />}
               data={event.excludes as string[]}
             />
+            {event?.details && <TripDetails details={event.details} />}
           </div>
           <div className="space-y-6">
             <Card>

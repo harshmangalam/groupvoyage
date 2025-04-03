@@ -80,6 +80,7 @@ export const getGroupList = cache(
         slug: true,
         name: true,
         posterUrls: true,
+        logo: true,
         locations: {
           select: {
             id: true,

@@ -28,10 +28,10 @@ export function DestinationCard({
   return (
     <Link href={`/destinations/${slug}`}>
       <Card className="h-full transition-all hover:shadow-sm hover:bg-muted shadow-none">
-        <CardHeader className="pb-2">
+        <CardHeader className="p-3 px-4 ">
           <h3 className="font-bold tracking-tight">{name}</h3>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-4">
           <div className="flex gap-6 items-center">
             <div className="flex items-center gap-2 text-sm">
               <CalendarClock className="h-4 w-4 text-primary" />
@@ -50,18 +50,17 @@ export function DestinationCard({
             </div>
           </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="px-4 pb-3">
           {locations.length > 0 ? (
             <div className="flex flex-wrap gap-1">
-              {locations.map((location) => (
-                <Badge
-                  className="rounded-md"
-                  variant={"secondary"}
-                  key={location.id}
-                >
+              {locations.slice(0, 2).map((location) => (
+                <Badge variant="secondary" key={location.id}>
                   {location.city}
                 </Badge>
               ))}
+              {locations.length > 2 && (
+                <Badge variant="destructive">+{locations.length - 2}</Badge>
+              )}
             </div>
           ) : (
             <p className="text-sm text-muted-foreground italic">

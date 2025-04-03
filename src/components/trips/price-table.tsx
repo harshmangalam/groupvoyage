@@ -85,7 +85,7 @@ export default function PriceTable({ trips }: { trips: T_EventCard[] }) {
                 </TableCell>
 
                 <TableCell className="min-w-52"> ₹{trip.price}</TableCell>
-                <TableCell>
+                <TableCell className="min-w-52">
                   <Link
                     className="hover:underline"
                     href={`/locations/${trip.location.slug}`}
@@ -94,9 +94,9 @@ export default function PriceTable({ trips }: { trips: T_EventCard[] }) {
                   </Link>
                 </TableCell>
                 <TableCell className="min-w-80">{trip.title}</TableCell>
-                <TableCell className="min-w-52">{trip.durations}</TableCell>
+                <TableCell className="min-w-32">{trip.durations}</TableCell>
 
-                <TableCell className="text-right min-w-40">
+                <TableCell className="text-right min-w-24">
                   <Button variant="ghost" size="sm" asChild>
                     <Link href={`/trips/${trip.slug}`}>
                       <span className="sr-only">
