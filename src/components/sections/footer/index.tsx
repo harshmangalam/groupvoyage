@@ -51,6 +51,14 @@ export default function FooterSection() {
       label: "Trips from Pune",
       href: "/locations/in-pune",
     },
+    {
+      label: "Trips from Mumbai",
+      href: "/locations/in-mumbai",
+    },
+    {
+      label: "Trips from Delhi",
+      href: "/locations/in-delhi",
+    },
   ];
 
   const connectionLinks = [
