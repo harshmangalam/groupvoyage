@@ -62,8 +62,6 @@ export default async function TripDetailsPage({
   const { eventSlug } = await params;
   const event = await getEventDetails({ eventSlug });
   if (!event) return notFound();
-
-  console.log(event.group.instagram);
   const username = getInstagramUsername(event.group.instagram);
   const instagramProfile = await getInstagramProfile({
     username,
