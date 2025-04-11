@@ -26,5 +26,5 @@ export function getWebsiteOrigin(url: string) {
 
 export function getInstagramUsername(url?: string | null) {
   if (!url) return null;
-  return new URL(url).pathname.split("/").filter(Boolean)[0];
+  return new URL(url).pathname.split("/").filter(Boolean)[0].toLowerCase();
 }
