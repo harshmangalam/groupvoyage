@@ -17,7 +17,7 @@ export function Navbar() {
         <NavigationLinks />
 
         <div className="flex items-center gap-1">
-          <div className="block md:hidden">
+          <div className="block lg:hidden">
             <NavigationsDropdownMenu />
           </div>
           <Button size="icon" asChild variant="outline">

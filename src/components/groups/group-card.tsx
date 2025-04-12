@@ -16,7 +16,7 @@ export function GroupCard({ group }: { group: T_GroupCard }) {
                 alt={name}
                 width={300}
                 height={300}
-                className="object-cover rounded-t-lg aspect-video w-full h-40"
+                className="object-cover rounded-t-lg aspect-video w-full h-full md:h-40"
                 loading="lazy"
               />
             </div>
