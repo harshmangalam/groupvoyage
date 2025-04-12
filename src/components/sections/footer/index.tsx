@@ -66,6 +66,10 @@ export default function FooterSection() {
       label: "Instagram",
       href: "https://www.instagram.com/groupvoyageofficial/",
     },
+    {
+      label: "X",
+      href: "https://x.com/groupvoyage_",
+    },
   ];
 
   const customerSupports = [
