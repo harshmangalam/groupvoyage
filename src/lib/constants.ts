@@ -42,3 +42,6 @@ export const NAVIGATIONS_MENU = [
     href: "/instagram-profiles",
   },
 ];
+
+export const INSTAGRAM = "https://www.instagram.com/groupvoyageofficial/";
+export const X = "https://x.com/groupvoyage_";

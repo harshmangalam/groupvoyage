@@ -5,7 +5,7 @@ import {
   FooterContent,
 } from "@/components/ui/footer";
 import Link from "next/link";
-import { SITE_EMAIL, SITE_NAME } from "@/lib/constants";
+import { INSTAGRAM, SITE_EMAIL, SITE_NAME, X } from "@/lib/constants";
 import { Logo } from "@/components/logo";
 import { ProductHuntBadge } from "@/components/product-hunt-badge";
 import Image from "next/image";
@@ -64,11 +64,11 @@ export default function FooterSection() {
   const connectionLinks = [
     {
       label: "Instagram",
-      href: "https://www.instagram.com/groupvoyageofficial/",
+      href: INSTAGRAM,
     },
     {
       label: "X",
-      href: "https://x.com/groupvoyage_",
+      href: X,
     },
   ];
 
