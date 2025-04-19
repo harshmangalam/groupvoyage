@@ -2,6 +2,11 @@ import { DurationMap } from "./types";
 export const SITE_NAME = "GroupVoyage";
 export const SITE_URL = "https://groupvoyage.in";
 export const SITE_EMAIL = "groupvoyagetravel@gmail.com";
+export const SITE_DESCRIPTION = `${SITE_NAME} connects you with like-minded travelers from your
+city, making weekend getaways effortless and exciting. Explore a
+curated list of local and city-specific travel groups, compare
+trip prices, and find the perfect adventure that fits your
+budget.`;
 
 export const DURATIONS: DurationMap[] = [
   { label: "1 Day Trip", value: "1-day" },

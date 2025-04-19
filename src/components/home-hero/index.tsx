@@ -1,9 +1,10 @@
 import { Suspense } from "react";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/constants";
 import { ProductHuntBadge } from "../product-hunt-badge";
 import Balancer from "react-wrap-balancer";
 import { Skeleton } from "../ui/skeleton";
 import { Stats } from "./stats";
+import { StatsFallback } from "./stats-fallback";
 
 export async function HomeHero() {
   return (
@@ -22,34 +23,17 @@ export async function HomeHero() {
             </h1>
 
             <p className="mt-4 text-lg text-muted-foreground">
-              <Balancer>
-                {SITE_NAME} connects you with like-minded travelers from your
-                city, making weekend getaways effortless and exciting. Explore a
-                curated list of local and city-specific travel groups, compare
-                trip prices, and find the perfect adventure that fits your
-                budget.
-              </Balancer>
+              <Balancer>{SITE_DESCRIPTION}</Balancer>
             </p>
           </div>
 
-          <div className="mt-6 md:mt-14 flex justify-center">
+          <div className="mt-6 mb-16 md:mt-14 flex justify-center">
             <ProductHuntBadge />
           </div>
-          <div className="mt-16">
-            <Suspense
-              key={"home-hero-stats"}
-              fallback={
-                <div className="grid grid-cols-2 md:grid-cols-4   gap-4">
-                  <Skeleton className="w-full h-[98px]" />
-                  <Skeleton className="w-full h-[98px]" />
-                  <Skeleton className="w-full h-[98px]" />
-                  <Skeleton className="w-full h-[98px]" />
-                </div>
-              }
-            >
-              <Stats />
-            </Suspense>
-          </div>
+
+          <Suspense key={"home-hero-stats"} fallback={<StatsFallback />}>
+            <Stats />
+          </Suspense>
         </div>
       </div>
     </div>
