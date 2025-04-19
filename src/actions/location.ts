@@ -70,20 +70,26 @@ export const getLocations = cache(
   async ({
     search,
     includeInactive,
+    take,
+    skip,
   }: {
     search?: string;
     includeInactive?: boolean;
+    take?: number;
+    skip?: number;
   } = {}) => {
     const filter: Record<string, unknown> = {};
+
     if (search) {
       filter.city = { search: search.replace(/[^a-zA-Z]/g, "") };
     }
+
     if (!includeInactive) {
       filter.active = true;
     }
+
     return prisma.location.findMany({
-      take: 5,
-      where: { ...filter, active: true },
+      where: filter,
       select: {
         slug: true,
         city: true,
@@ -91,16 +97,25 @@ export const getLocations = cache(
         id: true,
         _count: {
           select: {
-            events: true,
             groups: true,
+            events: true,
           },
         },
       },
-      orderBy: {
-        events: {
-          _count: "desc",
+      orderBy: [
+        {
+          groups: {
+            _count: "desc",
+          },
         },
-      },
+        {
+          events: {
+            _count: "desc",
+          },
+        },
+      ],
+      ...(typeof take === "number" ? { take } : {}),
+      ...(typeof skip === "number" ? { skip } : {}),
     });
   }
 );
