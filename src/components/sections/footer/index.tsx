@@ -63,17 +63,6 @@ export default function FooterSection() {
 
   const connectionLinks = [
     {
-      label: "Instagram",
-      href: INSTAGRAM,
-    },
-    {
-      label: "X",
-      href: X,
-    },
-  ];
-
-  const customerSupports = [
-    {
       label: "Email",
       href: `mailto:${SITE_EMAIL}`,
     },
@@ -88,6 +77,10 @@ export default function FooterSection() {
             <div className="flex items-center gap-2">
               <Logo />
             </div>
+            <p className="text-muted-foreground">
+              Find local groups, compare prices, and join budget-friendly
+              weekend trips
+            </p>
           </FooterColumn>
 
           {/* Quick Links Section */}
@@ -120,8 +113,8 @@ export default function FooterSection() {
 
           {/* Customer Support */}
           <FooterColumn>
-            <h3 className="text-md pt-1 font-semibold">Customer Support</h3>
-            {customerSupports.map((link) => (
+            <h3 className="text-md pt-1 font-semibold">Contacts</h3>
+            {connectionLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -134,26 +127,15 @@ export default function FooterSection() {
           </FooterColumn>
           {/* Social Media Section */}
           <FooterColumn>
-            <h3 className="text-md pt-1 font-semibold">Follow Us</h3>
-            {connectionLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                className="text-sm text-muted-foreground hover:underline"
-              >
-                {link.label}
-              </a>
-            ))}
+            <ProductHuntBadge className="w-40 h-10" />
           </FooterColumn>
         </FooterContent>
 
         {/* Footer Bottom with Copyright */}
-        <FooterBottom>
-          <div>
+        <FooterBottom className="flex justify-center">
+          <div className="text-center">
             © {new Date().getFullYear()} {SITE_NAME}. All rights reserved
           </div>
-          <ProductHuntBadge className="w-40 h-10" />
         </FooterBottom>
       </Footer>
     </footer>
