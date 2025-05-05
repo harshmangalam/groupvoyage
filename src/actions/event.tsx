@@ -1,4 +1,5 @@
 "use server";
+import { featuredGroups } from "@/lib/config";
 import { prisma } from "@/lib/db";
 import { cache } from "react";
 
@@ -45,11 +46,23 @@ export const getEventList = cache(
     }
 
     if (durations) {
-      const searchValue = durations.replace("-", " ").toLowerCase(); // Normalize input
-      filter.durations = {
-        contains: searchValue,
-        mode: "insensitive",
-      };
+      const durationVal = parseInt(durations.replace("-", " ").toLowerCase());
+
+      if (durationVal === 1) {
+        // Only 1-day trips
+        filter.durations = {
+          contains: "1 day",
+          mode: "insensitive",
+        };
+      } else {
+        // All except 1-day trips (correct structure)
+        filter.durations = {
+          not: {
+            contains: "1 day",
+          },
+          mode: "insensitive",
+        };
+      }
     }
 
     // Get total count for pagination
@@ -133,5 +146,88 @@ export const getEventDetails = cache(
         },
       },
     });
+  }
+);
+
+export const getFeaturedEvents = cache(
+  async ({
+    durations,
+    destinationSlug,
+    groupSlug,
+    locationSlug,
+  }: {
+    locationSlug?: string;
+    groupSlug?: string;
+    durations?: string;
+    destinationSlug?: string;
+  }) => {
+    const filter: Record<string, unknown> = {};
+
+    if (destinationSlug) {
+      filter.destinations = { some: { slug: destinationSlug } };
+    }
+    if (groupSlug) {
+      filter.group = { slug: groupSlug };
+    }
+    if (locationSlug) {
+      filter.location = { slug: locationSlug };
+    }
+
+    const durationsVal = durations?.replace("-", " ")?.toLowerCase();
+    if (durations) {
+      const searchValue = durationsVal;
+      filter.durations = {
+        contains: searchValue,
+        mode: "insensitive",
+      };
+    }
+
+    const eventsPerGroup = await Promise.all(
+      featuredGroups.map((slug) =>
+        prisma.event.findFirst({
+          where: {
+            price: {
+              lte: 5500,
+            },
+            group: {
+              slug: slug,
+            },
+            ...filter,
+          },
+          select: {
+            posterUrls: true,
+            durations: true,
+            id: true,
+            title: true,
+            price: true,
+            slug: true,
+            meta: true,
+            location: {
+              select: {
+                slug: true,
+                city: true,
+              },
+            },
+            group: {
+              select: {
+                name: true,
+                slug: true,
+              },
+            },
+          },
+          orderBy: {
+            destinations: {
+              _count: "desc",
+            },
+          },
+          take: 1,
+        })
+      )
+    );
+
+    // Filter out nulls (in case some groups have no events)
+    const events = eventsPerGroup.filter(Boolean);
+
+    return events;
   }
 );
