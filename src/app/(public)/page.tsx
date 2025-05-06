@@ -9,8 +9,6 @@ import { TrendingDestinationsCarousel } from "@/components/destinations/trending
 import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
 import { TrendingLocationsFallback } from "@/components/locations/trending-locations-fallback";
 
-export const revalidate = 3600; // every hour
-
 export const metadata: Metadata = {
   title: "Compare & Book Weekend Group Trips - 1-Day & 2-Day Getaways",
   description:
