@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     "budget-friendly weekend tour options",
   ],
 };
+export const dynamic = "force-dynamic";
 
 export default async function LocationsPage() {
   const locations = await getLocations();
