@@ -15,9 +15,9 @@ export default function NavigationLinks() {
           key={link.href}
           href={link.href}
           className={cn(
-            "relative text-sm font-semibold transition-colors hover:text-primary",
+            "relative text-sm font-semibold transition-colors hover:text-destructive",
             pathname === link.href
-              ? "text-primary font-semibold"
+              ? "text-destructive"
               : "text-muted-foreground"
           )}
         >

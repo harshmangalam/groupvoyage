@@ -1,8 +1,6 @@
-import { getLocations } from "@/actions/location";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
 import { HomeHero } from "@/components/home-hero";
-import { LocationCard } from "@/components/locations/location-card";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Metadata } from "next";
@@ -10,6 +8,8 @@ import { TrendingInstagramProfiles } from "@/components/instagram/trending-insta
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
 import { TrendingLocationsFallback } from "@/components/locations/trending-locations-fallback";
+
+export const revalidate = 3600; // every hour
 
 export const metadata: Metadata = {
   title: "Compare & Book Weekend Group Trips - 1-Day & 2-Day Getaways",
@@ -40,8 +40,6 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const locations = await getLocations({});
-
   return (
     <div>
       {/* hero section  */}

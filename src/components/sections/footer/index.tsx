@@ -5,13 +5,16 @@ import {
   FooterContent,
 } from "@/components/ui/footer";
 import Link from "next/link";
-import { INSTAGRAM, SITE_EMAIL, SITE_NAME, X } from "@/lib/constants";
+import { SITE_EMAIL, SITE_NAME, SITE_TAGLINE } from "@/lib/constants";
 import { Logo } from "@/components/logo";
 import { ProductHuntBadge } from "@/components/product-hunt-badge";
-import Image from "next/image";
-import { LogoImg } from "@/components/logo-img";
+import { Button } from "@/components/ui/button";
+import { InstagramIcon, MailIcon, TwitterIcon } from "lucide-react";
+import { DestinationLinks } from "./destination-links";
+import { Suspense } from "react";
+import { LocationLinks } from "./location-link";
 
-export default function FooterSection() {
+export default async function FooterSection() {
   const quickLinks = [
     {
       label: "Home",
@@ -37,27 +40,9 @@ export default function FooterSection() {
       label: "Instagram Groups",
       href: "/instagram-profiles",
     },
-  ];
-  const locations = [
     {
-      label: "Trips from Bangalore",
-      href: "/locations/in-bangalore",
-    },
-    {
-      label: "Trips from Hyderabad",
-      href: "/locations/in-hyderabad",
-    },
-    {
-      label: "Trips from Pune",
-      href: "/locations/in-pune",
-    },
-    {
-      label: "Trips from Mumbai",
-      href: "/locations/in-mumbai",
-    },
-    {
-      label: "Trips from Delhi",
-      href: "/locations/in-delhi",
+      label: "Search",
+      href: "/search",
     },
   ];
 
@@ -65,6 +50,17 @@ export default function FooterSection() {
     {
       label: "Email",
       href: `mailto:${SITE_EMAIL}`,
+      icon: MailIcon,
+    },
+    {
+      label: "Instagram",
+      href: `https://www.instagram.com/groupvoyage_/`,
+      icon: InstagramIcon,
+    },
+    {
+      label: "Twitter",
+      href: "https://x.com/groupvoyage_",
+      icon: TwitterIcon,
     },
   ];
 
@@ -77,10 +73,7 @@ export default function FooterSection() {
             <div className="flex items-center gap-2">
               <Logo />
             </div>
-            <p className="text-muted-foreground">
-              Find local groups, compare prices, and join budget-friendly
-              weekend trips
-            </p>
+            <p className="text-muted-foreground">{SITE_TAGLINE}</p>
           </FooterColumn>
 
           {/* Quick Links Section */}
@@ -100,34 +93,38 @@ export default function FooterSection() {
           {/* Locations Section */}
           <FooterColumn>
             <h3 className="text-md pt-1 font-semibold">Trips by Location</h3>
-            {locations.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:underline"
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Suspense key={"footer-locations"}>
+              <LocationLinks />
+            </Suspense>
           </FooterColumn>
 
-          {/* Customer Support */}
+          {/* Destinations */}
           <FooterColumn>
-            <h3 className="text-md pt-1 font-semibold">Contacts</h3>
-            {connectionLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                className="text-sm text-muted-foreground hover:underline"
-              >
-                {link.label}
-              </a>
-            ))}
+            <h3 className="text-md pt-1 font-semibold">Destinations</h3>
+            <Suspense key={"footer-destinations"}>
+              <DestinationLinks />
+            </Suspense>
           </FooterColumn>
           {/* Social Media Section */}
           <FooterColumn>
+            <h3 className="text-md pt-1 font-semibold">Social</h3>
             <ProductHuntBadge className="w-40 h-10" />
+            <div className="flex flex-wrap gap-3">
+              {connectionLinks.map((social) => (
+                <Button
+                  key={social.label}
+                  asChild
+                  variant={"outline"}
+                  size={"icon"}
+                  title={social.label}
+                  aria-label={social.label}
+                >
+                  <a href={social.href} target="_blank">
+                    <social.icon />
+                  </a>
+                </Button>
+              ))}
+            </div>
           </FooterColumn>
         </FooterContent>
 
