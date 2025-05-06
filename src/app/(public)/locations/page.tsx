@@ -30,8 +30,6 @@ export const metadata: Metadata = {
   ],
 };
 
-export const revalidate = 3600; // every hour
-
 export default async function LocationsPage() {
   const locations = await getLocations();
   return (
