@@ -3,7 +3,6 @@ import { LocationCard } from "@/components/locations/location-card";
 import { PageSection } from "@/components/page-section";
 import { Metadata } from "next";
 
-export const revalidate = 3600 * 24; // every day
 export const metadata: Metadata = {
   title: "Best Weekend Trips & Getaways from Your City | Compare Prices",
   description: `Find and compare 1-day & 2-day weekend trips from your city. Discover the best trekking, adventure, and budget-friendly group tours`,
@@ -30,6 +29,9 @@ export const metadata: Metadata = {
     "budget-friendly weekend tour options",
   ],
 };
+
+export const revalidate = 3600; // every hour
+
 export default async function LocationsPage() {
   const locations = await getLocations();
   return (
