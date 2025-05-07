@@ -26,7 +26,7 @@ export async function TrendingLocationsCarousel() {
         {locations.map((location) => (
           <CarouselItem
             key={location.id}
-            className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+            className="basis-1/2 sm:basis-1/2 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 w-full"
           >
             <LocationCard {...location} />
           </CarouselItem>
