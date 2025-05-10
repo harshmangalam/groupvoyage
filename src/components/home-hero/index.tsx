@@ -5,10 +5,11 @@ import Balancer from "react-wrap-balancer";
 import { Skeleton } from "../ui/skeleton";
 import { Stats } from "./stats";
 import { StatsFallback } from "./stats-fallback";
+import { GroupsLogoCarousel } from "../groups/groups-logo-carousel";
 
 export async function HomeHero() {
   return (
-    <div className="py-12 lg:h-[100vh] z-[1]">
+    <div className="py-12 md:py-6 lg:h-[100vh] z-[1]">
       <div className="mx-auto h-full max-w-7xl items-center gap-12 px-4 grid grid-cols-1">
         {/* Left Content */}
         <div className="items-center">

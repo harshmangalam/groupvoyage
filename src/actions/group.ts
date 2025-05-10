@@ -167,3 +167,23 @@ export const getTrendingGroupList = cache(
     });
   }
 );
+
+export const getGroupsLogo = cache(async () => {
+  const groups = await prisma.group.findMany({
+    where: {
+      active: true,
+    },
+    select: {
+      logo: true,
+      slug: true,
+      name: true,
+    },
+    orderBy: {
+      events: {
+        _count: "desc",
+      },
+    },
+  });
+
+  return groups.filter((g) => g.logo);
+});

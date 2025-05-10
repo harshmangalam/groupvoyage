@@ -8,6 +8,7 @@ import { TrendingInstagramProfiles } from "@/components/instagram/trending-insta
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
 import { TrendingLocationsFallback } from "@/components/locations/trending-locations-fallback";
+import { GroupsLogo } from "@/components/groups/groups-logo";
 
 export const dynamic = "force-dynamic";
 
@@ -93,6 +94,15 @@ export default async function HomePage() {
         >
           <Suspense key={"trending-events"}>
             <TrendingTripsCarousel />
+          </Suspense>
+        </PageSection>
+
+        <PageSection
+          label={<span>Collaborators</span>}
+          description="Travel groups whose curated trips are featured from publicly available sources."
+        >
+          <Suspense fallback={<></>}>
+            <GroupsLogo />
           </Suspense>
         </PageSection>
       </div>
