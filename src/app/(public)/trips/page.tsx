@@ -1,5 +1,6 @@
 import { getEventList } from "@/actions/event";
 import { CustomPagination } from "@/components/custom-pagination";
+import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { PageSection } from "@/components/page-section";
@@ -70,6 +71,12 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
               key={`locations-filter`}
             >
               <LocationsFilter />
+            </Suspense>
+            <Suspense
+              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+              key={`destinations-filter`}
+            >
+              <DestinationsFilter />
             </Suspense>
 
             <Suspense

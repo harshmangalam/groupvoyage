@@ -78,3 +78,13 @@ export const getDestinationDetails = cache(
     return destination;
   }
 );
+
+export const getDestinationsOption = cache(async () => {
+  return prisma.destination.findMany({
+    select: {
+      name: true,
+      slug: true,
+    },
+    orderBy: [{ events: { _count: "desc" } }, { groups: { _count: "desc" } }],
+  });
+});

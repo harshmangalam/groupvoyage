@@ -1,4 +1,5 @@
 import { getGroupList } from "@/actions/group";
+import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { GroupCard } from "@/components/groups/group-card";
 import { PageSection } from "@/components/page-section";
@@ -53,12 +54,20 @@ export default async function GroupsPage({ searchParams }: GroupsPageProps) {
       <PageSection
         label={<span>Explore Groups</span>}
         others={
-          <Suspense
-            fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-            key={`locations-filter`}
-          >
-            <LocationsFilter />
-          </Suspense>
+          <div className="flex items-center flex-wrap gap-2  md:justify-end justify-start">
+            <Suspense
+              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+              key={`locations-filter`}
+            >
+              <LocationsFilter />
+            </Suspense>
+            <Suspense
+              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+              key={`destinations-filter`}
+            >
+              <DestinationsFilter />
+            </Suspense>
+          </div>
         }
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

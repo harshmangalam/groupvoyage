@@ -22,7 +22,11 @@ export function CustomDropdownMenu({
   onValueChange,
   onClear,
   loading,
-  buttonProps,
+  buttonProps = {
+    className: "text-xs px-2 py-1",
+    size: "sm",
+    variant: "secondary",
+  },
 }: {
   options: T_DropdownOption[];
   label: string;
