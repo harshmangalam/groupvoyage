@@ -1,11 +1,9 @@
 import { Suspense } from "react";
-import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/constants";
+import { SITE_DESCRIPTION } from "@/lib/constants";
 import { ProductHuntBadge } from "../product-hunt-badge";
 import Balancer from "react-wrap-balancer";
-import { Skeleton } from "../ui/skeleton";
 import { Stats } from "./stats";
 import { StatsFallback } from "./stats-fallback";
-import { GroupsLogoCarousel } from "../groups/groups-logo-carousel";
 
 export async function HomeHero() {
   return (

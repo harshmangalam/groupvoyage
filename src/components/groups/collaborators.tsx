@@ -1,0 +1,12 @@
+import { env } from "@/lib/env";
+import { CollaboratorsCarousel } from "./collaborators-carousel";
+import { getCollaborators } from "@/actions/group";
+
+export async function Collaborators() {
+  const slugs = env.ALLOWED_COLLABORATORS?.split(",").filter(Boolean) ?? [];
+  console.log(slugs);
+  const groupsLogo = await getCollaborators({
+    slugs,
+  });
+  return <CollaboratorsCarousel collaborators={groupsLogo} />;
+}

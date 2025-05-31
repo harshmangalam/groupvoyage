@@ -6,10 +6,10 @@ import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 
-export function GroupsLogoCarousel({
-  groupsLogo,
+export function CollaboratorsCarousel({
+  collaborators,
 }: {
-  groupsLogo: Pick<T_Group, "slug" | "name" | "logo">[];
+  collaborators: Pick<T_Group, "slug" | "name" | "logo">[];
 }) {
   return (
     <Carousel
@@ -28,9 +28,9 @@ export function GroupsLogoCarousel({
       ]}
     >
       <CarouselContent>
-        {groupsLogo.map((groupLogo) => (
+        {collaborators.map((groupLogo) => (
           <CarouselItem key={groupLogo.slug} className="basis-1/1">
-            <div className="flex-shrink-0 mx-4 grayscale hover:grayscale-0 transition-all duration-300">
+            <div className="flex-shrink-0 mx-4 transition-all duration-300 hover:scale-105">
               <Link href={`/groups/${groupLogo.slug}`}>
                 <Image
                   src={groupLogo.logo || "/placeholder.svg"}

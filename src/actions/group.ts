@@ -168,11 +168,19 @@ export const getTrendingGroupList = cache(
   }
 );
 
-export const getGroupsLogo = cache(async () => {
+export const getCollaborators = cache(async (filters?: { slugs: string[] }) => {
+  const where: Record<string, any> = {
+    active: true,
+  };
+
+  if (filters?.slugs.length) {
+    where.slug = {
+      in: filters.slugs,
+    };
+  }
+
   const groups = await prisma.group.findMany({
-    where: {
-      active: true,
-    },
+    where,
     select: {
       logo: true,
       slug: true,

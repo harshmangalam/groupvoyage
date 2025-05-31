@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 const envSchema = z.object({
-  TURSO_DATABASE_URL: z.string(),
-  TURSO_AUTH_TOKEN: z.string(),
+  DATABASE_URL: z.string(),
+  ALLOWED_COLLABORATORS: z.string().optional(),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
