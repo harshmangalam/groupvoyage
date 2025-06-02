@@ -10,8 +10,6 @@ import { TrendingLocationsCarousel } from "@/components/locations/trending-locat
 import { TrendingLocationsFallback } from "@/components/locations/trending-locations-fallback";
 import { Collaborators } from "@/components/groups/collaborators";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Compare & Book Weekend Group Trips - 1-Day & 2-Day Getaways",
   description:
