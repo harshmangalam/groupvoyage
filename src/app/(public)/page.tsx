@@ -95,14 +95,14 @@ export default async function HomePage() {
           </Suspense>
         </PageSection>
 
-        <PageSection
+        {/* <PageSection
           label={<span>Collaborators</span>}
           description="Travel groups whose curated trips are featured from publicly available sources."
         >
           <Suspense fallback={<></>}>
             <Collaborators />
           </Suspense>
-        </PageSection>
+        </PageSection> */}
       </div>
     </div>
   );
