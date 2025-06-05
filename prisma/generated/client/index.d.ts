@@ -271,8 +271,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.5.0
-   * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
+   * Prisma Client JS version: 6.9.0
+   * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
    */
   export type PrismaVersion = {
     client: string
@@ -2131,7 +2131,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Location model
-   */ 
+   */
   interface LocationFieldRefs {
     readonly id: FieldRef<"Location", 'String'>
     readonly city: FieldRef<"Location", 'String'>
@@ -2842,7 +2842,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     logo: string | null
-    posterUrls: JsonValue | null
+    posterUrls: string[]
     tagLine: string | null
     _count: GroupCountAggregateOutputType | null
     _min: GroupMinAggregateOutputType | null
@@ -2970,7 +2970,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       logo: string | null
-      posterUrls: Prisma.JsonValue | null
+      posterUrls: string[]
       tagLine: string | null
     }, ExtArgs["result"]["group"]>
     composites: {}
@@ -3396,7 +3396,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Group model
-   */ 
+   */
   interface GroupFieldRefs {
     readonly id: FieldRef<"Group", 'String'>
     readonly name: FieldRef<"Group", 'String'>
@@ -3411,7 +3411,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Group", 'DateTime'>
     readonly updatedAt: FieldRef<"Group", 'DateTime'>
     readonly logo: FieldRef<"Group", 'String'>
-    readonly posterUrls: FieldRef<"Group", 'Json'>
+    readonly posterUrls: FieldRef<"Group", 'String[]'>
     readonly tagLine: FieldRef<"Group", 'String'>
   }
     
@@ -4115,10 +4115,10 @@ export namespace Prisma {
     price: number | null
     locationId: string
     groupId: string
-    posterUrls: JsonValue | null
+    posterUrls: string[]
     meta: JsonValue | null
-    includes: JsonValue | null
-    excludes: JsonValue | null
+    includes: string[]
+    excludes: string[]
     source: string
     createdAt: Date
     updatedAt: Date
@@ -4260,10 +4260,10 @@ export namespace Prisma {
       price: number | null
       locationId: string
       groupId: string
-      posterUrls: Prisma.JsonValue | null
+      posterUrls: string[]
       meta: Prisma.JsonValue | null
-      includes: Prisma.JsonValue | null
-      excludes: Prisma.JsonValue | null
+      includes: string[]
+      excludes: string[]
       source: string
       createdAt: Date
       updatedAt: Date
@@ -4692,7 +4692,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Event model
-   */ 
+   */
   interface EventFieldRefs {
     readonly id: FieldRef<"Event", 'String'>
     readonly title: FieldRef<"Event", 'String'>
@@ -4702,10 +4702,10 @@ export namespace Prisma {
     readonly price: FieldRef<"Event", 'Int'>
     readonly locationId: FieldRef<"Event", 'String'>
     readonly groupId: FieldRef<"Event", 'String'>
-    readonly posterUrls: FieldRef<"Event", 'Json'>
+    readonly posterUrls: FieldRef<"Event", 'String[]'>
     readonly meta: FieldRef<"Event", 'Json'>
-    readonly includes: FieldRef<"Event", 'Json'>
-    readonly excludes: FieldRef<"Event", 'Json'>
+    readonly includes: FieldRef<"Event", 'String[]'>
+    readonly excludes: FieldRef<"Event", 'String[]'>
     readonly source: FieldRef<"Event", 'String'>
     readonly createdAt: FieldRef<"Event", 'DateTime'>
     readonly updatedAt: FieldRef<"Event", 'DateTime'>
@@ -5851,7 +5851,7 @@ export namespace Prisma {
 
   /**
    * Fields of the InstagramProfile model
-   */ 
+   */
   interface InstagramProfileFieldRefs {
     readonly id: FieldRef<"InstagramProfile", 'String'>
     readonly username: FieldRef<"InstagramProfile", 'String'>
@@ -6944,7 +6944,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Destination model
-   */ 
+   */
   interface DestinationFieldRefs {
     readonly id: FieldRef<"Destination", 'String'>
     readonly name: FieldRef<"Destination", 'String'>
@@ -7589,6 +7589,7 @@ export namespace Prisma {
     email: 'email',
     source: 'source',
     logo: 'logo',
+    posterUrls: 'posterUrls',
     tagLine: 'tagLine'
   };
 
@@ -7603,6 +7604,9 @@ export namespace Prisma {
     details: 'details',
     locationId: 'locationId',
     groupId: 'groupId',
+    posterUrls: 'posterUrls',
+    includes: 'includes',
+    excludes: 'excludes',
     source: 'source'
   };
 
@@ -7632,7 +7636,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 
@@ -7813,7 +7817,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Group"> | Date | string
     updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
-    posterUrls?: JsonNullableFilter<"Group">
+    posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
@@ -7834,7 +7838,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     logo?: SortOrderInput | SortOrder
-    posterUrls?: SortOrderInput | SortOrder
+    posterUrls?: SortOrder
     tagLine?: SortOrderInput | SortOrder
     events?: EventOrderByRelationAggregateInput
     locations?: LocationOrderByRelationAggregateInput
@@ -7859,7 +7863,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Group"> | Date | string
     updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
-    posterUrls?: JsonNullableFilter<"Group">
+    posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
@@ -7880,7 +7884,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     logo?: SortOrderInput | SortOrder
-    posterUrls?: SortOrderInput | SortOrder
+    posterUrls?: SortOrder
     tagLine?: SortOrderInput | SortOrder
     _count?: GroupCountOrderByAggregateInput
     _max?: GroupMaxOrderByAggregateInput
@@ -7904,7 +7908,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
     logo?: StringNullableWithAggregatesFilter<"Group"> | string | null
-    posterUrls?: JsonNullableWithAggregatesFilter<"Group">
+    posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableWithAggregatesFilter<"Group"> | string | null
   }
 
@@ -7920,10 +7924,10 @@ export namespace Prisma {
     price?: IntNullableFilter<"Event"> | number | null
     locationId?: StringFilter<"Event"> | string
     groupId?: StringFilter<"Event"> | string
-    posterUrls?: JsonNullableFilter<"Event">
+    posterUrls?: StringNullableListFilter<"Event">
     meta?: JsonNullableFilter<"Event">
-    includes?: JsonNullableFilter<"Event">
-    excludes?: JsonNullableFilter<"Event">
+    includes?: StringNullableListFilter<"Event">
+    excludes?: StringNullableListFilter<"Event">
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
@@ -7942,10 +7946,10 @@ export namespace Prisma {
     price?: SortOrderInput | SortOrder
     locationId?: SortOrder
     groupId?: SortOrder
-    posterUrls?: SortOrderInput | SortOrder
+    posterUrls?: SortOrder
     meta?: SortOrderInput | SortOrder
-    includes?: SortOrderInput | SortOrder
-    excludes?: SortOrderInput | SortOrder
+    includes?: SortOrder
+    excludes?: SortOrder
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7968,10 +7972,10 @@ export namespace Prisma {
     price?: IntNullableFilter<"Event"> | number | null
     locationId?: StringFilter<"Event"> | string
     groupId?: StringFilter<"Event"> | string
-    posterUrls?: JsonNullableFilter<"Event">
+    posterUrls?: StringNullableListFilter<"Event">
     meta?: JsonNullableFilter<"Event">
-    includes?: JsonNullableFilter<"Event">
-    excludes?: JsonNullableFilter<"Event">
+    includes?: StringNullableListFilter<"Event">
+    excludes?: StringNullableListFilter<"Event">
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
@@ -7990,10 +7994,10 @@ export namespace Prisma {
     price?: SortOrderInput | SortOrder
     locationId?: SortOrder
     groupId?: SortOrder
-    posterUrls?: SortOrderInput | SortOrder
+    posterUrls?: SortOrder
     meta?: SortOrderInput | SortOrder
-    includes?: SortOrderInput | SortOrder
-    excludes?: SortOrderInput | SortOrder
+    includes?: SortOrder
+    excludes?: SortOrder
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8017,10 +8021,10 @@ export namespace Prisma {
     price?: IntNullableWithAggregatesFilter<"Event"> | number | null
     locationId?: StringWithAggregatesFilter<"Event"> | string
     groupId?: StringWithAggregatesFilter<"Event"> | string
-    posterUrls?: JsonNullableWithAggregatesFilter<"Event">
+    posterUrls?: StringNullableListFilter<"Event">
     meta?: JsonNullableWithAggregatesFilter<"Event">
-    includes?: JsonNullableWithAggregatesFilter<"Event">
-    excludes?: JsonNullableWithAggregatesFilter<"Event">
+    includes?: StringNullableListFilter<"Event">
+    excludes?: StringNullableListFilter<"Event">
     source?: StringWithAggregatesFilter<"Event"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
@@ -8274,7 +8278,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     events?: EventCreateNestedManyWithoutGroupInput
     locations?: LocationCreateNestedManyWithoutGroupsInput
@@ -8295,7 +8299,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
@@ -8316,7 +8320,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutGroupNestedInput
     locations?: LocationUpdateManyWithoutGroupsNestedInput
@@ -8337,7 +8341,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
@@ -8358,7 +8362,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
   }
 
@@ -8376,7 +8380,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8394,7 +8398,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8405,10 +8409,10 @@ export namespace Prisma {
     durations?: string | null
     details?: string | null
     price?: number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8427,10 +8431,10 @@ export namespace Prisma {
     price?: number | null
     locationId: string
     groupId: string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8445,10 +8449,10 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8467,10 +8471,10 @@ export namespace Prisma {
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
     groupId?: StringFieldUpdateOperationsInput | string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8487,10 +8491,10 @@ export namespace Prisma {
     price?: number | null
     locationId: string
     groupId: string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8504,10 +8508,10 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8523,10 +8527,10 @@ export namespace Prisma {
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
     groupId?: StringFieldUpdateOperationsInput | string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8880,7 +8884,7 @@ export namespace Prisma {
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
-  export type JsonNullableFilter<$PrismaModel = never> = 
+  export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
         Required<JsonNullableFilterBase<$PrismaModel>>
@@ -8902,6 +8906,14 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
   }
 
   export type LocationListRelationFilter = {
@@ -8969,7 +8981,7 @@ export namespace Prisma {
     logo?: SortOrder
     tagLine?: SortOrder
   }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
         Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
@@ -9348,6 +9360,10 @@ export namespace Prisma {
     deleteMany?: DestinationScalarWhereInput | DestinationScalarWhereInput[]
   }
 
+  export type GroupCreateposterUrlsInput = {
+    set: string[]
+  }
+
   export type EventCreateNestedManyWithoutGroupInput = {
     create?: XOR<EventCreateWithoutGroupInput, EventUncheckedCreateWithoutGroupInput> | EventCreateWithoutGroupInput[] | EventUncheckedCreateWithoutGroupInput[]
     connectOrCreate?: EventCreateOrConnectWithoutGroupInput | EventCreateOrConnectWithoutGroupInput[]
@@ -9384,6 +9400,11 @@ export namespace Prisma {
     create?: XOR<DestinationCreateWithoutGroupsInput, DestinationUncheckedCreateWithoutGroupsInput> | DestinationCreateWithoutGroupsInput[] | DestinationUncheckedCreateWithoutGroupsInput[]
     connectOrCreate?: DestinationCreateOrConnectWithoutGroupsInput | DestinationCreateOrConnectWithoutGroupsInput[]
     connect?: DestinationWhereUniqueInput | DestinationWhereUniqueInput[]
+  }
+
+  export type GroupUpdateposterUrlsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type EventUpdateManyWithoutGroupNestedInput = {
@@ -9466,6 +9487,18 @@ export namespace Prisma {
     deleteMany?: DestinationScalarWhereInput | DestinationScalarWhereInput[]
   }
 
+  export type EventCreateposterUrlsInput = {
+    set: string[]
+  }
+
+  export type EventCreateincludesInput = {
+    set: string[]
+  }
+
+  export type EventCreateexcludesInput = {
+    set: string[]
+  }
+
   export type GroupCreateNestedOneWithoutEventsInput = {
     create?: XOR<GroupCreateWithoutEventsInput, GroupUncheckedCreateWithoutEventsInput>
     connectOrCreate?: GroupCreateOrConnectWithoutEventsInput
@@ -9496,6 +9529,21 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type EventUpdateposterUrlsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type EventUpdateincludesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type EventUpdateexcludesInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type GroupUpdateOneRequiredWithoutEventsNestedInput = {
@@ -9817,7 +9865,7 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
-  export type NestedJsonNullableFilter<$PrismaModel = never> = 
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
         Required<NestedJsonNullableFilterBase<$PrismaModel>>
@@ -9875,10 +9923,10 @@ export namespace Prisma {
     durations?: string | null
     details?: string | null
     price?: number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9895,10 +9943,10 @@ export namespace Prisma {
     details?: string | null
     price?: number | null
     groupId: string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9930,7 +9978,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     events?: EventCreateNestedManyWithoutGroupInput
     destinations?: DestinationCreateNestedManyWithoutGroupsInput
@@ -9950,7 +9998,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
@@ -10043,10 +10091,10 @@ export namespace Prisma {
     price?: IntNullableFilter<"Event"> | number | null
     locationId?: StringFilter<"Event"> | string
     groupId?: StringFilter<"Event"> | string
-    posterUrls?: JsonNullableFilter<"Event">
+    posterUrls?: StringNullableListFilter<"Event">
     meta?: JsonNullableFilter<"Event">
-    includes?: JsonNullableFilter<"Event">
-    excludes?: JsonNullableFilter<"Event">
+    includes?: StringNullableListFilter<"Event">
+    excludes?: StringNullableListFilter<"Event">
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
@@ -10086,7 +10134,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Group"> | Date | string
     updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
-    posterUrls?: JsonNullableFilter<"Group">
+    posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
   }
 
@@ -10155,10 +10203,10 @@ export namespace Prisma {
     durations?: string | null
     details?: string | null
     price?: number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10175,10 +10223,10 @@ export namespace Prisma {
     details?: string | null
     price?: number | null
     locationId: string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10332,7 +10380,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     locations?: LocationCreateNestedManyWithoutGroupsInput
     destinations?: DestinationCreateNestedManyWithoutGroupsInput
@@ -10352,7 +10400,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
@@ -10448,7 +10496,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     locations?: LocationUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUpdateManyWithoutGroupsNestedInput
@@ -10468,7 +10516,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
@@ -10585,10 +10633,10 @@ export namespace Prisma {
     durations?: string | null
     details?: string | null
     price?: number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10606,10 +10654,10 @@ export namespace Prisma {
     price?: number | null
     locationId: string
     groupId: string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10635,7 +10683,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     events?: EventCreateNestedManyWithoutGroupInput
     locations?: LocationCreateNestedManyWithoutGroupsInput
@@ -10655,7 +10703,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     logo?: string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
@@ -10755,10 +10803,10 @@ export namespace Prisma {
     details?: string | null
     price?: number | null
     groupId: string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10772,10 +10820,10 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10792,10 +10840,10 @@ export namespace Prisma {
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
     groupId?: StringFieldUpdateOperationsInput | string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10811,10 +10859,10 @@ export namespace Prisma {
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
     groupId?: StringFieldUpdateOperationsInput | string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10835,7 +10883,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutGroupNestedInput
     destinations?: DestinationUpdateManyWithoutGroupsNestedInput
@@ -10855,7 +10903,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
@@ -10875,7 +10923,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -10951,10 +10999,10 @@ export namespace Prisma {
     details?: string | null
     price?: number | null
     locationId: string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventCreateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventCreateincludesInput | string[]
+    excludes?: EventCreateexcludesInput | string[]
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10968,10 +11016,10 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10988,10 +11036,10 @@ export namespace Prisma {
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11007,10 +11055,10 @@ export namespace Prisma {
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11164,10 +11212,10 @@ export namespace Prisma {
     durations?: NullableStringFieldUpdateOperationsInput | string | null
     details?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableIntFieldUpdateOperationsInput | number | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11185,10 +11233,10 @@ export namespace Prisma {
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
     groupId?: StringFieldUpdateOperationsInput | string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11204,10 +11252,10 @@ export namespace Prisma {
     price?: NullableIntFieldUpdateOperationsInput | number | null
     locationId?: StringFieldUpdateOperationsInput | string
     groupId?: StringFieldUpdateOperationsInput | string
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: EventUpdateposterUrlsInput | string[]
     meta?: NullableJsonNullValueInput | InputJsonValue
-    includes?: NullableJsonNullValueInput | InputJsonValue
-    excludes?: NullableJsonNullValueInput | InputJsonValue
+    includes?: EventUpdateincludesInput | string[]
+    excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11228,7 +11276,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutGroupNestedInput
     locations?: LocationUpdateManyWithoutGroupsNestedInput
@@ -11248,7 +11296,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
@@ -11268,7 +11316,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    posterUrls?: NullableJsonNullValueInput | InputJsonValue
+    posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

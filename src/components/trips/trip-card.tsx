@@ -22,7 +22,7 @@ export function TripCard({ event }: TripCardProps) {
   return (
     <Link href={`/trips/${slug}`} className="block h-full">
       <Card className="shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full w-full">
-        {firstPosterUrl && (
+        {firstPosterUrl ? (
           <Image
             src={firstPosterUrl || ""}
             alt={`${title} poster`}
@@ -32,7 +32,7 @@ export function TripCard({ event }: TripCardProps) {
             loading="lazy"
             unoptimized
           />
-        )}
+        ) : null}
         <CardContent className="p-4">
           <h3 className="font-semibold mb-2 line-clamp-1">{title}</h3>
 

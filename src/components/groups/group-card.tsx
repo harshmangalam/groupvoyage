@@ -9,7 +9,7 @@ export function GroupCard({ group }: { group: T_GroupCard }) {
     <Link href={`/groups/${slug}`} className="block h-full">
       <Card className="hover:shadow-md hover:bg-muted transition-all cursor-pointer group overflow-hidden h-full">
         <CardContent className="p-0">
-          {(posterUrls as any)?.length && (
+          {posterUrls.length ? (
             <div className="relative w-full aspect-video">
               <Image
                 src={posterUrls?.[0]}
@@ -20,7 +20,7 @@ export function GroupCard({ group }: { group: T_GroupCard }) {
                 loading="lazy"
               />
             </div>
-          )}
+          ) : null}
           <div className="p-4">
             <h3 className="font-semibold line-clamp-1">{name}</h3>
             <p className="text-muted-foreground text-sm">
