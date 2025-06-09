@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   },
   description:
     "Discover the best weekend trips from your city. Compare prices, itineraries, and join group trips to amazing destinations.",
-
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
@@ -48,6 +47,9 @@ export const metadata: Metadata = {
     description:
       "Discover the best weekend trips from your city. Compare prices, itineraries, and join group trips to amazing destinations.",
     images: ["logo.png"],
+  },
+  other: {
+    "google-adsense-account": "ca-pub-8051590553831420",
   },
 };
 
