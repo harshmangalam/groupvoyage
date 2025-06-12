@@ -40,7 +40,6 @@ export function LocationsDropdown({
   if (error)
     return <p className="text-muted-foreground">Something went wrong</p>;
 
-  console.log(selectedLocation);
   return (
     <div className="relative w-full">
       <DropdownMenu open={open} onOpenChange={setOpen}>

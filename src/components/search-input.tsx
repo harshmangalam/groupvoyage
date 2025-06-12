@@ -3,20 +3,17 @@
 import React, { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { RefreshCwIcon, Search } from "lucide-react";
-import { useQueryState } from "nuqs";
-import { searchParams } from "@/lib/search-params";
+import { parseAsString, useQueryState } from "nuqs";
 
 export default function SearchInput() {
   const [isLoading, startTransition] = React.useTransition();
   const [query, setQuery] = useQueryState(
     "q",
-    searchParams.q.withOptions({
+    parseAsString.withDefault("").withOptions({
       history: "replace",
       shallow: false,
-      scroll: true,
       throttleMs: 1000,
       startTransition,
-      clearOnDefault: true,
     })
   );
 
@@ -42,7 +39,7 @@ export default function SearchInput() {
         )}
       </div>
       <Input
-        placeholder="Search for groups & trips"
+        placeholder="Start typing..."
         className="w-full pl-10 overflow-hidden"
         aria-label="Search"
         value={query}

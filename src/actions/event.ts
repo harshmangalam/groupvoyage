@@ -1,6 +1,6 @@
 "use server";
-import { featuredGroups } from "@/lib/config";
 import { prisma } from "@/lib/db";
+import { env } from "@/lib/env";
 import { cache } from "react";
 
 export const getEventList = cache(
@@ -13,6 +13,7 @@ export const getEventList = cache(
     includeArchieve = false,
     durations,
     destinationSlug,
+    priceRange,
   }: {
     locationSlug?: string;
     groupSlug?: string;
@@ -22,6 +23,7 @@ export const getEventList = cache(
     includeArchieve?: boolean;
     durations?: string;
     destinationSlug?: string;
+    priceRange?: any;
   }) => {
     const filter: Record<string, unknown> = {};
 
@@ -43,6 +45,12 @@ export const getEventList = cache(
         { details: { search: search.replace(/[^a-zA-Z]/g, "") } },
         { durations: { search: search.replace(/[^a-zA-Z]/g, "") } },
       ];
+    }
+
+    if (priceRange) {
+      filter.price = {
+        lte: +priceRange,
+      };
     }
 
     if (durations) {
@@ -182,6 +190,7 @@ export const getFeaturedEvents = cache(
       };
     }
 
+    const featuredGroups = env.FEATURED_GROUPS?.split(",") || [];
     const eventsPerGroup = await Promise.all(
       featuredGroups.map((slug) =>
         prisma.event.findFirst({

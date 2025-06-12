@@ -2,9 +2,8 @@
 
 import { CustomDropdownMenu } from "@/components/custom-dropdown-menu";
 import { DURATIONS } from "@/lib/constants";
-import { searchParams } from "@/lib/search-params";
 import { CalendarClockIcon } from "lucide-react";
-import { useQueryState } from "nuqs";
+import { parseAsString, useQueryState } from "nuqs";
 import React from "react";
 import { ButtonProps } from "../ui/button";
 
@@ -16,12 +15,9 @@ export function DurationsFilter({
   const [isLoading, startTransition] = React.useTransition();
   const [query, setQuery] = useQueryState(
     "durations",
-    searchParams.locations.withOptions({
-      history: "push",
+    parseAsString.withDefault("").withOptions({
       shallow: false,
-      scroll: false,
       startTransition,
-      clearOnDefault: true,
     })
   );
   return (
