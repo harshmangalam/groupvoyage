@@ -5,14 +5,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { searchParamsLoader } from "@/lib/search-params";
-import { useQueryStates } from "nuqs";
+import { parseAsString, useQueryState } from "nuqs";
+import { useTransition } from "react";
 
 export function SortResults() {
-  const [{ sort }, setSearchParams] = useQueryStates(searchParamsLoader);
+  const [isPending, startTransition] = useTransition();
+  const [sort, setSearchParams] = useQueryState(
+    "sort",
+    parseAsString.withDefault("").withOptions({
+      shallow: false,
+      startTransition,
+    })
+  );
 
   return (
-    <Select value={sort} onValueChange={(sort) => setSearchParams({ sort })}>
+    <Select
+      value={sort}
+      onValueChange={(sort) => {
+        startTransition(() => {
+          setSearchParams(sort);
+        });
+      }}
+    >
       <SelectTrigger className="w-48">
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
