@@ -1,8 +1,10 @@
 "use server";
+import { DURATIONS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { cache } from "react";
 
+type DurationFilter = (typeof DURATIONS)[number]["value"];
 export const getEventList = cache(
   async ({
     locationSlug,
@@ -21,7 +23,7 @@ export const getEventList = cache(
     skip?: number;
     search?: string;
     includeArchieve?: boolean;
-    durations?: string;
+    durations?: DurationFilter;
     destinationSlug?: string;
     priceRange?: any;
   }) => {
@@ -54,22 +56,68 @@ export const getEventList = cache(
     }
 
     if (durations) {
-      const durationVal = parseInt(durations.replace("-", " ").toLowerCase());
-
-      if (durationVal === 1) {
-        // Only 1-day trips
-        filter.durations = {
-          contains: "1 day",
-          mode: "insensitive",
-        };
-      } else {
-        // All except 1-day trips (correct structure)
-        filter.durations = {
-          not: {
+      switch (durations) {
+        case "short-trips":
+          // Only 1-day trips
+          filter.durations = {
             contains: "1 day",
-          },
-          mode: "insensitive",
-        };
+            mode: "insensitive",
+          };
+          break;
+
+        case "weekend-trips":
+          // 2 or 3-day trips
+          filter.OR = [
+            {
+              durations: {
+                contains: "2 days",
+                mode: "insensitive",
+              },
+            },
+            {
+              durations: {
+                contains: "3 days",
+                mode: "insensitive",
+              },
+            },
+          ];
+          break;
+
+        case "long-weekend":
+          // 4+ day trips
+          filter.OR = [
+            {
+              durations: {
+                contains: "4 days",
+                mode: "insensitive",
+              },
+            },
+            {
+              durations: {
+                contains: "5 days",
+                mode: "insensitive",
+              },
+            },
+            {
+              durations: {
+                contains: "6 days",
+                mode: "insensitive",
+              },
+            },
+            {
+              durations: {
+                contains: "7 days",
+                mode: "insensitive",
+              },
+            },
+            // Add more if needed
+          ];
+          break;
+
+        default:
+          // Optional: handle unknown filter values
+          console.warn(`Unknown duration filter: ${durations}`);
+          break;
       }
     }
 

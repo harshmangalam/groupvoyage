@@ -23,7 +23,7 @@ export function DurationsFilter({
   return (
     <CustomDropdownMenu
       placeholder="Filter Durations"
-      options={DURATIONS}
+      options={[...DURATIONS]}
       label="Durations"
       icon={<CalendarClockIcon />}
       onValueChange={(value) => setQuery(value)}

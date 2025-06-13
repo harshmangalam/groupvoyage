@@ -10,10 +10,11 @@ curated list of local and city-specific travel groups, compare
 trip prices, and find the perfect adventure that fits your
 budget.`;
 
-export const DURATIONS: DurationMap[] = [
-  { label: "Short Trips (1 day)", value: "1-day" },
-  { label: "Long Trips (2+ days)", value: "2-days" },
-];
+export const DURATIONS = [
+  { label: "Short Trips (1 day)", value: "short-trips" },
+  { label: "Weekend Trips (2 days)", value: "weekend-trips" },
+  { label: "Long Weekend Trips (3+ days)", value: "long-weekend" },
+] as const;
 
 export const TRIPS_PER_PAGE = 8;
 export const DESTINATIONS_PER_PAGE = 15;
