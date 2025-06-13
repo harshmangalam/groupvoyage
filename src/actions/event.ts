@@ -45,6 +45,7 @@ export const getEventList = cache(
         { title: { search: search.replace(/[^a-zA-Z]/g, "") } },
         { details: { search: search.replace(/[^a-zA-Z]/g, "") } },
         { durations: { search: search.replace(/[^a-zA-Z]/g, "") } },
+        { group: { name: { search: search.replace(/[^a-zA-Z]/g, "") } } },
       ];
     }
 

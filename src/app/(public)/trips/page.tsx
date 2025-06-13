@@ -54,7 +54,7 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
 
   const events = await getEventList({
     locationSlug: locations,
-    durations,
+    durations: durations as any,
     take: TRIPS_PER_PAGE,
     skip: (page - 1) * TRIPS_PER_PAGE,
     destinationSlug: destinations,

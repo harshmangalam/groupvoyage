@@ -24,18 +24,13 @@ export async function generateMetadata({ searchParams }) {
 }
 
 export default async function SearchPage({ searchParams }) {
-  const {
-    viewMode = "list",
-    q = "",
-    locations,
-    durations = "",
-    priceRange,
-  } = await searchParams;
+  const { q = "", locations, durations = "", priceRange } = await searchParams;
   const { events, groups, instagramProfiles, destinations, locationsList } =
     await getSearchResults({
       search: q,
       locationSlug: locations,
       priceRange,
+      durations: durations as any,
     });
 
   const totalCount =
@@ -89,15 +84,6 @@ export default async function SearchPage({ searchParams }) {
           </FiltersSidebar>
         </div>
 
-        {events?.events?.length ? (
-          <PageSection label={`Trips (${events?.events?.length ?? 0})`}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {events.events.map((trip) => (
-                <TripCard key={trip.id} event={trip} />
-              ))}
-            </div>
-          </PageSection>
-        ) : null}
         {destinations?.destinations?.length ? (
           <PageSection
             label={`Destinations (${destinations?.destinations?.length ?? 0})`}
@@ -117,6 +103,16 @@ export default async function SearchPage({ searchParams }) {
           </PageSection>
         ) : null}
 
+        {groups?.length ? (
+          <PageSection label={`Groups (${groups?.length ?? 0})`}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {groups.map((group) => (
+                <GroupCard key={group.id} group={group} />
+              ))}
+            </div>
+          </PageSection>
+        ) : null}
+
         {locationsList?.length ? (
           <PageSection label={`Locations (${locationsList?.length ?? 0})`}>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -126,6 +122,7 @@ export default async function SearchPage({ searchParams }) {
             </div>
           </PageSection>
         ) : null}
+
         {instagramProfiles?.length ? (
           <PageSection label={`Instagram Groups (${instagramProfiles.length})`}>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -138,11 +135,12 @@ export default async function SearchPage({ searchParams }) {
             </div>
           </PageSection>
         ) : null}
-        {groups?.length ? (
-          <PageSection label={`Groups (${groups?.length ?? 0})`}>
+
+        {events?.events?.length ? (
+          <PageSection label={`Trips (${events?.events?.length ?? 0})`}>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {groups.map((group) => (
-                <GroupCard key={group.id} group={group} />
+              {events.events.map((trip) => (
+                <TripCard key={trip.id} event={trip} />
               ))}
             </div>
           </PageSection>
