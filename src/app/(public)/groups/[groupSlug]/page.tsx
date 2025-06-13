@@ -71,7 +71,7 @@ export default async function GroupHomePage({
   const page = Number(pageStr);
   const events = await getEventList({
     groupSlug,
-    durations,
+    durations: durations as any,
     locationSlug: locations,
     take: TRIPS_PER_PAGE,
     skip: (page - 1) * TRIPS_PER_PAGE,

@@ -2,6 +2,7 @@ import { getEventDetails, getEventList } from "@/actions/event";
 import { getGroupList } from "@/actions/group";
 import { getLocations, getLocationsOption } from "@/actions/location";
 import { Prisma } from "../../prisma/generated/client";
+import { DURATIONS } from "./constants";
 
 export type GroupMetaType = {
   membersCount: number;
@@ -41,3 +42,4 @@ export type T_Group = Prisma.GroupGetPayload<{}>;
 
 export type T_InstagramProfile = Prisma.InstagramProfileGetPayload<{}>;
 export type T_Location = Prisma.LocationGetPayload<{}>;
+export type DurationFilter = (typeof DURATIONS)[number]["value"];

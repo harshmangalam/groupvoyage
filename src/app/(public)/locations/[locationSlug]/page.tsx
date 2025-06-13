@@ -71,27 +71,39 @@ export default async function LocationPage({ params }: LocationPageProps) {
       </PageSection>
 
       <PageSection
-        href={`/trips/?locations=${locationSlug}&durations=2-days`}
-        label={<span>Epic 2-Days Trips from {location.city}</span>}
-        description={`Discover unmissable 2-days weekend trips near ${location.city}`}
+        href={`/trips/?locations=${locationSlug}&durations=short-trips`}
+        label={<span>Epic 1-Day Trips from {location.city}</span>}
+        description={`Discover unmissable 1 day short weekend trips near ${location.city}`}
       >
-        <Suspense key={`featured-events-2-days-${locationSlug}`}>
+        <Suspense key={`featured-events-1-day-${locationSlug}`}>
           <TrendingTripsCarousel
             locationSlug={locationSlug}
-            durations={"2-days"}
+            durations={"short-trips"}
           />
         </Suspense>
       </PageSection>
 
       <PageSection
-        href={`/trips/?locations=${locationSlug}&durations=1-day`}
-        label={<span>Epic 1-Day Trips from {location.city}</span>}
-        description={`Discover unmissable 1-day weekend trips near ${location.city}`}
+        href={`/trips/?locations=${locationSlug}&durations=weekend-trips`}
+        label={<span>Epic 2-Days Trips from {location.city}</span>}
+        description={`Discover unmissable 2 days weekend trips near ${location.city}`}
       >
-        <Suspense key={`featured-events-1-day-${locationSlug}`}>
+        <Suspense key={`featured-events-2-days-${locationSlug}`}>
           <TrendingTripsCarousel
             locationSlug={locationSlug}
-            durations={"1-day"}
+            durations={"weekend-trips"}
+          />
+        </Suspense>
+      </PageSection>
+      <PageSection
+        href={`/trips/?locations=${locationSlug}&durations=long-weekend`}
+        label={<span>Epic 3+ days Trips from {location.city}</span>}
+        description={`Discover unmissable 3+ days long weekend trips near ${location.city}`}
+      >
+        <Suspense key={`featured-events-2-days-${locationSlug}`}>
+          <TrendingTripsCarousel
+            locationSlug={locationSlug}
+            durations={"long-weekend"}
           />
         </Suspense>
       </PageSection>

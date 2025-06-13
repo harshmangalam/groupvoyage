@@ -8,7 +8,6 @@ import { TrendingInstagramProfiles } from "@/components/instagram/trending-insta
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
 import { TrendingLocationsFallback } from "@/components/locations/trending-locations-fallback";
-import { Collaborators } from "@/components/groups/collaborators";
 
 export const metadata: Metadata = {
   title: "Compare & Book Weekend Group Trips - 1-Day & 2-Day Getaways",
@@ -91,18 +90,9 @@ export default async function HomePage() {
           description="Unmissable trips to make your weekend epic."
         >
           <Suspense key={"trending-events"}>
-            <TrendingTripsCarousel />
+            <TrendingTripsCarousel durations="weekend-trips" />
           </Suspense>
         </PageSection>
-
-        {/* <PageSection
-          label={<span>Collaborators</span>}
-          description="Travel groups whose curated trips are featured from publicly available sources."
-        >
-          <Suspense fallback={<></>}>
-            <Collaborators />
-          </Suspense>
-        </PageSection> */}
       </div>
     </div>
   );

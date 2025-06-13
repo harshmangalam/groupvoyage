@@ -7,6 +7,7 @@ import { getGroupList } from "./group";
 import { getInstagramProfileList } from "./instagram-profile";
 import { getDestinationList } from "./destinations";
 import { getLocations } from "./location";
+import { DurationFilter } from "@/lib/types";
 
 export const getRandomPosters = cache(async () => {
   const groupPosters = await prisma.group.findMany({
@@ -63,7 +64,7 @@ export const getSearchResults = cache(
     priceRange,
   }: {
     search?: string;
-    durations?: string;
+    durations?: DurationFilter;
     locationSlug?: string;
     priceRange?: any;
   }) => {

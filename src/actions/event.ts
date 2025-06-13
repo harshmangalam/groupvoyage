@@ -1,10 +1,9 @@
 "use server";
-import { DURATIONS } from "@/lib/constants";
 import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
+import { DurationFilter } from "@/lib/types";
 import { cache } from "react";
 
-type DurationFilter = (typeof DURATIONS)[number]["value"];
 export const getEventList = cache(
   async ({
     locationSlug,
@@ -202,89 +201,5 @@ export const getEventDetails = cache(
         },
       },
     });
-  }
-);
-
-export const getFeaturedEvents = cache(
-  async ({
-    durations,
-    destinationSlug,
-    groupSlug,
-    locationSlug,
-  }: {
-    locationSlug?: string;
-    groupSlug?: string;
-    durations?: string;
-    destinationSlug?: string;
-  }) => {
-    const filter: Record<string, unknown> = {};
-
-    if (destinationSlug) {
-      filter.destinations = { some: { slug: destinationSlug } };
-    }
-    if (groupSlug) {
-      filter.group = { slug: groupSlug };
-    }
-    if (locationSlug) {
-      filter.location = { slug: locationSlug };
-    }
-
-    const durationsVal = durations?.replace("-", " ")?.toLowerCase();
-    if (durations) {
-      const searchValue = durationsVal;
-      filter.durations = {
-        contains: searchValue,
-        mode: "insensitive",
-      };
-    }
-
-    const featuredGroups = env.FEATURED_GROUPS?.split(",") || [];
-    const eventsPerGroup = await Promise.all(
-      featuredGroups.map((slug) =>
-        prisma.event.findFirst({
-          where: {
-            price: {
-              lte: 5500,
-            },
-            group: {
-              slug: slug,
-            },
-            ...filter,
-          },
-          select: {
-            posterUrls: true,
-            durations: true,
-            id: true,
-            title: true,
-            price: true,
-            slug: true,
-            meta: true,
-            location: {
-              select: {
-                slug: true,
-                city: true,
-              },
-            },
-            group: {
-              select: {
-                name: true,
-                slug: true,
-              },
-            },
-          },
-          orderBy: {
-            destinations: {
-              _count: "desc",
-            },
-          },
-          take: 1,
-        })
-      )
-    );
-
-    // Filter out nulls (in case some groups have no events)
-    const events = eventsPerGroup.filter(Boolean);
-
-    return events;
   }
 );
