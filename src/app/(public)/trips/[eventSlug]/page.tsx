@@ -16,11 +16,11 @@ import { notFound } from "next/navigation";
 import { GroupDetailsCard } from "./group-details-card";
 import { BookNow } from "./book-now";
 import { SectionList } from "./section-list";
-import { TripPostersCarousel } from "./trip-posters-carousel";
 import { TripDetails } from "./trip-details";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramProfile } from "@/actions/instagram-profile";
 import { getInstagramUsername } from "@/lib/utils";
+import { ImageGallery } from "@/components/image-gallery";
 
 export async function generateMetadata({ params }) {
   const { eventSlug } = await params;
@@ -78,46 +78,32 @@ export default async function TripDetailsPage({
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="relative">
-        <TripPostersCarousel
-          posterUrls={event.posterUrls as string[]}
+      <div className="pt-12 max-w-7xl  mx-auto px-4 py-8 md:py-12 flex flex-col gap-2">
+        <h1
           title={event.title}
-        />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent pt-24 pb-6 px-6 md:px-8">
-          <div className="flex items-start justify-between gap-4 flex-wrap text-white">
-            <div className="max-w-3xl flex flex-col gap-4">
-              <h1
-                title={event.title}
-                className="text-2xl md:text-3xl lg:text-4xl  font-bold tracking-tight mb-2 line-clamp-2"
-              >
-                {event.title}
-              </h1>
-              <div className="flex flex-wrap gap-4 text-sm md:text-base">
-                {event.durations && (
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    <span>{event.durations}</span>
-                  </div>
-                )}
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
-                  <Link href={`/${event.location.slug}`}>
-                    {event.location.city}
-                  </Link>
-                </div>
-                {groupSize && (
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4" />
-                    <span>{groupSize} people</span>
-                  </div>
-                )}
-              </div>
+          className="text-2xl md:text-3xl lg:text-4xl  font-bold tracking-tight mb-2 line-clamp-2"
+        >
+          {event.title}
+        </h1>
+        <div className="flex flex-wrap gap-4 text-sm md:text-base mb-8">
+          {event.durations && (
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4" />
+              <span>{event.durations}</span>
             </div>
+          )}
+          <div className="flex items-center gap-2">
+            <MapPin className="h-4 w-4" />
+            <Link href={`/${event.location.slug}`}>{event.location.city}</Link>
           </div>
+          {groupSize && (
+            <div className="flex items-center gap-2">
+              <Users className="h-4 w-4" />
+              <span>{groupSize} people</span>
+            </div>
+          )}
         </div>
-      </div>
 
-      <div className="max-w-7xl  mx-auto px-4 py-8 md:py-12">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2 space-y-6">
             <SectionList
@@ -176,6 +162,12 @@ export default async function TripDetailsPage({
             </div>
             <GroupDetailsCard {...event.group} />
           </div>
+        </div>
+        <div className="my-8">
+          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            Get a Glimpse Before You Go
+          </h3>
+          <ImageGallery images={event.posterUrls} />
         </div>
       </div>
     </div>
