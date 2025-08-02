@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Compass, MapPin, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { INSTAGRAM } from "@/lib/constants";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 export function NotFound() {
   return (
@@ -53,7 +53,7 @@ export function NotFound() {
           Follow us?{" "}
           <a
             target="_blank"
-            href={INSTAGRAM}
+            href={SOCIAL_LINKS.INSTAGRAM}
             className="text-destructive hover:underline"
           >
             Instagram

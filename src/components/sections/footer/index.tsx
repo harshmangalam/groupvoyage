@@ -5,7 +5,12 @@ import {
   FooterContent,
 } from "@/components/ui/footer";
 import Link from "next/link";
-import { SITE_EMAIL, SITE_NAME, SITE_TAGLINE } from "@/lib/constants";
+import {
+  SITE_EMAIL,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SOCIAL_LINKS,
+} from "@/lib/constants";
 import { Logo } from "@/components/logo";
 import { ProductHuntBadge } from "@/components/product-hunt-badge";
 import { Button } from "@/components/ui/button";
@@ -54,12 +59,12 @@ export default async function FooterSection() {
     },
     {
       label: "Instagram",
-      href: `https://www.instagram.com/groupvoyage_/`,
+      href: SOCIAL_LINKS.INSTAGRAM,
       icon: InstagramIcon,
     },
     {
       label: "Twitter",
-      href: "https://x.com/groupvoyage_",
+      href: SOCIAL_LINKS.X,
       icon: TwitterIcon,
     },
   ];
@@ -130,8 +135,15 @@ export default async function FooterSection() {
 
         {/* Footer Bottom with Copyright */}
         <FooterBottom className="flex justify-center">
-          <div className="text-center">
-            © {new Date().getFullYear()} {SITE_NAME}. All rights reserved
+          <div className="text-center text-muted-foreground">
+            © {new Date().getFullYear()} {SITE_NAME}. Crafted with ❤️ for
+            explorers by{" "}
+            <a
+              href={SOCIAL_LINKS.LINKEDIN}
+              className="text-primary hover:underline"
+            >
+              Harsh Mangalam
+            </a>
           </div>
         </FooterBottom>
       </Footer>

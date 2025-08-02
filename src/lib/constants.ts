@@ -1,7 +1,7 @@
 import { DurationMap } from "./types";
 export const SITE_NAME = "GroupVoyage";
 export const SITE_URL = "https://groupvoyage.in";
-export const SITE_EMAIL = "groupvoyagetravel@gmail.com";
+export const SITE_EMAIL = "trip.diaries.coll1@gmail.com";
 export const SITE_TAGLINE =
   "Find local groups, compare prices, and join budget-friendly weekend trips";
 export const SITE_DESCRIPTION = `${SITE_NAME} connects you with like-minded travelers from your
@@ -46,5 +46,8 @@ export const NAVIGATIONS_MENU = [
   },
 ];
 
-export const INSTAGRAM = "https://www.instagram.com/groupvoyageofficial/";
-export const X = "https://x.com/groupvoyage_";
+export const SOCIAL_LINKS = {
+  LINKEDIN: "https://www.linkedin.com/in/harshmangalam/",
+  X: "https://x.com/harshmangalam_",
+  INSTAGRAM: "https://www.instagram.com/harshmangalam_/",
+};

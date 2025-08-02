@@ -7,11 +7,11 @@ import { StatsFallback } from "./stats-fallback";
 
 export async function HomeHero() {
   return (
-    <div className="py-12 md:py-6 lg:h-[100vh] z-[1]">
+    <div className="py-12 md:py-6 lg:h-[70vh] z-[1]">
       <div className="mx-auto h-full max-w-7xl items-center gap-12 px-4 grid grid-cols-1">
         {/* Left Content */}
         <div className="items-center">
-          <div className="text-center">
+          <div className="text-center mb-6">
             <h1 className="tracking-tight text-3xl md:text-4xl lg:text-5xl :text-4xl font-bold text-gray-900 dark:text-white !leading-9 md:!leading-[48px] lg:!leading-[56px]">
               <Balancer>
                 Find local <span className="text-destructive">groups</span>,
@@ -24,10 +24,6 @@ export async function HomeHero() {
             <p className="mt-4 text-lg text-muted-foreground">
               <Balancer>{SITE_DESCRIPTION}</Balancer>
             </p>
-          </div>
-
-          <div className="mt-6 mb-16 md:mt-14 flex justify-center">
-            <ProductHuntBadge />
           </div>
 
           <Suspense key={"home-hero-stats"} fallback={<StatsFallback />}>

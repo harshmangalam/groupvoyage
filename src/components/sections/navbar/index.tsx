@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import NavigationLinks from "./navigation-links";
 import { NavigationsDropdownMenu } from "./navigations-drodown-menu";
+import { SearchBtn } from "./search-btn";
 
 export function Navbar() {
   return (
@@ -20,12 +21,7 @@ export function Navbar() {
           <div className="block lg:hidden">
             <NavigationsDropdownMenu />
           </div>
-          <Button size="icon" asChild variant="outline">
-            <Link href={"/search"}>
-              <SearchIcon />
-            </Link>
-          </Button>
-
+          <SearchBtn />
           <ModeToggle />
         </div>
       </div>
