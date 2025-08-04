@@ -38,6 +38,11 @@ export type InstagramProfile = $Result.DefaultSelection<Prisma.$InstagramProfile
  * 
  */
 export type Destination = $Result.DefaultSelection<Prisma.$DestinationPayload>
+/**
+ * Model OrganiserSubmission
+ * 
+ */
+export type OrganiserSubmission = $Result.DefaultSelection<Prisma.$OrganiserSubmissionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +218,16 @@ export class PrismaClient<
     * ```
     */
   get destination(): Prisma.DestinationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.organiserSubmission`: Exposes CRUD operations for the **OrganiserSubmission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OrganiserSubmissions
+    * const organiserSubmissions = await prisma.organiserSubmission.findMany()
+    * ```
+    */
+  get organiserSubmission(): Prisma.OrganiserSubmissionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +672,8 @@ export namespace Prisma {
     Group: 'Group',
     Event: 'Event',
     InstagramProfile: 'InstagramProfile',
-    Destination: 'Destination'
+    Destination: 'Destination',
+    OrganiserSubmission: 'OrganiserSubmission'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "location" | "group" | "event" | "instagramProfile" | "destination"
+      modelProps: "location" | "group" | "event" | "instagramProfile" | "destination" | "organiserSubmission"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1066,80 @@ export namespace Prisma {
           }
         }
       }
+      OrganiserSubmission: {
+        payload: Prisma.$OrganiserSubmissionPayload<ExtArgs>
+        fields: Prisma.OrganiserSubmissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OrganiserSubmissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OrganiserSubmissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
+          }
+          findFirst: {
+            args: Prisma.OrganiserSubmissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OrganiserSubmissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
+          }
+          findMany: {
+            args: Prisma.OrganiserSubmissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>[]
+          }
+          create: {
+            args: Prisma.OrganiserSubmissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
+          }
+          createMany: {
+            args: Prisma.OrganiserSubmissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OrganiserSubmissionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>[]
+          }
+          delete: {
+            args: Prisma.OrganiserSubmissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
+          }
+          update: {
+            args: Prisma.OrganiserSubmissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.OrganiserSubmissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OrganiserSubmissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OrganiserSubmissionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>[]
+          }
+          upsert: {
+            args: Prisma.OrganiserSubmissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
+          }
+          aggregate: {
+            args: Prisma.OrganiserSubmissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOrganiserSubmission>
+          }
+          groupBy: {
+            args: Prisma.OrganiserSubmissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OrganiserSubmissionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OrganiserSubmissionCountArgs<ExtArgs>
+            result: $Utils.Optional<OrganiserSubmissionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1147,6 +1237,7 @@ export namespace Prisma {
     event?: EventOmit
     instagramProfile?: InstagramProfileOmit
     destination?: DestinationOmit
+    organiserSubmission?: OrganiserSubmissionOmit
   }
 
   /* Types for Logging */
@@ -7444,6 +7535,997 @@ export namespace Prisma {
 
 
   /**
+   * Model OrganiserSubmission
+   */
+
+  export type AggregateOrganiserSubmission = {
+    _count: OrganiserSubmissionCountAggregateOutputType | null
+    _min: OrganiserSubmissionMinAggregateOutputType | null
+    _max: OrganiserSubmissionMaxAggregateOutputType | null
+  }
+
+  export type OrganiserSubmissionMinAggregateOutputType = {
+    id: string | null
+    websiteURL: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type OrganiserSubmissionMaxAggregateOutputType = {
+    id: string | null
+    websiteURL: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type OrganiserSubmissionCountAggregateOutputType = {
+    id: number
+    websiteURL: number
+    locations: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type OrganiserSubmissionMinAggregateInputType = {
+    id?: true
+    websiteURL?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type OrganiserSubmissionMaxAggregateInputType = {
+    id?: true
+    websiteURL?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type OrganiserSubmissionCountAggregateInputType = {
+    id?: true
+    websiteURL?: true
+    locations?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type OrganiserSubmissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrganiserSubmission to aggregate.
+     */
+    where?: OrganiserSubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrganiserSubmissions to fetch.
+     */
+    orderBy?: OrganiserSubmissionOrderByWithRelationInput | OrganiserSubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OrganiserSubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrganiserSubmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrganiserSubmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OrganiserSubmissions
+    **/
+    _count?: true | OrganiserSubmissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrganiserSubmissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrganiserSubmissionMaxAggregateInputType
+  }
+
+  export type GetOrganiserSubmissionAggregateType<T extends OrganiserSubmissionAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrganiserSubmission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrganiserSubmission[P]>
+      : GetScalarType<T[P], AggregateOrganiserSubmission[P]>
+  }
+
+
+
+
+  export type OrganiserSubmissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrganiserSubmissionWhereInput
+    orderBy?: OrganiserSubmissionOrderByWithAggregationInput | OrganiserSubmissionOrderByWithAggregationInput[]
+    by: OrganiserSubmissionScalarFieldEnum[] | OrganiserSubmissionScalarFieldEnum
+    having?: OrganiserSubmissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrganiserSubmissionCountAggregateInputType | true
+    _min?: OrganiserSubmissionMinAggregateInputType
+    _max?: OrganiserSubmissionMaxAggregateInputType
+  }
+
+  export type OrganiserSubmissionGroupByOutputType = {
+    id: string
+    websiteURL: string
+    locations: string[]
+    createdAt: Date
+    updatedAt: Date
+    _count: OrganiserSubmissionCountAggregateOutputType | null
+    _min: OrganiserSubmissionMinAggregateOutputType | null
+    _max: OrganiserSubmissionMaxAggregateOutputType | null
+  }
+
+  type GetOrganiserSubmissionGroupByPayload<T extends OrganiserSubmissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrganiserSubmissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrganiserSubmissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrganiserSubmissionGroupByOutputType[P]>
+            : GetScalarType<T[P], OrganiserSubmissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OrganiserSubmissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    websiteURL?: boolean
+    locations?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["organiserSubmission"]>
+
+  export type OrganiserSubmissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    websiteURL?: boolean
+    locations?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["organiserSubmission"]>
+
+  export type OrganiserSubmissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    websiteURL?: boolean
+    locations?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["organiserSubmission"]>
+
+  export type OrganiserSubmissionSelectScalar = {
+    id?: boolean
+    websiteURL?: boolean
+    locations?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type OrganiserSubmissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "websiteURL" | "locations" | "createdAt" | "updatedAt", ExtArgs["result"]["organiserSubmission"]>
+
+  export type $OrganiserSubmissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OrganiserSubmission"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      websiteURL: string
+      locations: string[]
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["organiserSubmission"]>
+    composites: {}
+  }
+
+  type OrganiserSubmissionGetPayload<S extends boolean | null | undefined | OrganiserSubmissionDefaultArgs> = $Result.GetResult<Prisma.$OrganiserSubmissionPayload, S>
+
+  type OrganiserSubmissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OrganiserSubmissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OrganiserSubmissionCountAggregateInputType | true
+    }
+
+  export interface OrganiserSubmissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OrganiserSubmission'], meta: { name: 'OrganiserSubmission' } }
+    /**
+     * Find zero or one OrganiserSubmission that matches the filter.
+     * @param {OrganiserSubmissionFindUniqueArgs} args - Arguments to find a OrganiserSubmission
+     * @example
+     * // Get one OrganiserSubmission
+     * const organiserSubmission = await prisma.organiserSubmission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OrganiserSubmissionFindUniqueArgs>(args: SelectSubset<T, OrganiserSubmissionFindUniqueArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OrganiserSubmission that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OrganiserSubmissionFindUniqueOrThrowArgs} args - Arguments to find a OrganiserSubmission
+     * @example
+     * // Get one OrganiserSubmission
+     * const organiserSubmission = await prisma.organiserSubmission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OrganiserSubmissionFindUniqueOrThrowArgs>(args: SelectSubset<T, OrganiserSubmissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OrganiserSubmission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganiserSubmissionFindFirstArgs} args - Arguments to find a OrganiserSubmission
+     * @example
+     * // Get one OrganiserSubmission
+     * const organiserSubmission = await prisma.organiserSubmission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OrganiserSubmissionFindFirstArgs>(args?: SelectSubset<T, OrganiserSubmissionFindFirstArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OrganiserSubmission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganiserSubmissionFindFirstOrThrowArgs} args - Arguments to find a OrganiserSubmission
+     * @example
+     * // Get one OrganiserSubmission
+     * const organiserSubmission = await prisma.organiserSubmission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OrganiserSubmissionFindFirstOrThrowArgs>(args?: SelectSubset<T, OrganiserSubmissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OrganiserSubmissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganiserSubmissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OrganiserSubmissions
+     * const organiserSubmissions = await prisma.organiserSubmission.findMany()
+     * 
+     * // Get first 10 OrganiserSubmissions
+     * const organiserSubmissions = await prisma.organiserSubmission.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const organiserSubmissionWithIdOnly = await prisma.organiserSubmission.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OrganiserSubmissionFindManyArgs>(args?: SelectSubset<T, OrganiserSubmissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OrganiserSubmission.
+     * @param {OrganiserSubmissionCreateArgs} args - Arguments to create a OrganiserSubmission.
+     * @example
+     * // Create one OrganiserSubmission
+     * const OrganiserSubmission = await prisma.organiserSubmission.create({
+     *   data: {
+     *     // ... data to create a OrganiserSubmission
+     *   }
+     * })
+     * 
+     */
+    create<T extends OrganiserSubmissionCreateArgs>(args: SelectSubset<T, OrganiserSubmissionCreateArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OrganiserSubmissions.
+     * @param {OrganiserSubmissionCreateManyArgs} args - Arguments to create many OrganiserSubmissions.
+     * @example
+     * // Create many OrganiserSubmissions
+     * const organiserSubmission = await prisma.organiserSubmission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OrganiserSubmissionCreateManyArgs>(args?: SelectSubset<T, OrganiserSubmissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many OrganiserSubmissions and returns the data saved in the database.
+     * @param {OrganiserSubmissionCreateManyAndReturnArgs} args - Arguments to create many OrganiserSubmissions.
+     * @example
+     * // Create many OrganiserSubmissions
+     * const organiserSubmission = await prisma.organiserSubmission.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OrganiserSubmissions and only return the `id`
+     * const organiserSubmissionWithIdOnly = await prisma.organiserSubmission.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OrganiserSubmissionCreateManyAndReturnArgs>(args?: SelectSubset<T, OrganiserSubmissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a OrganiserSubmission.
+     * @param {OrganiserSubmissionDeleteArgs} args - Arguments to delete one OrganiserSubmission.
+     * @example
+     * // Delete one OrganiserSubmission
+     * const OrganiserSubmission = await prisma.organiserSubmission.delete({
+     *   where: {
+     *     // ... filter to delete one OrganiserSubmission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OrganiserSubmissionDeleteArgs>(args: SelectSubset<T, OrganiserSubmissionDeleteArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OrganiserSubmission.
+     * @param {OrganiserSubmissionUpdateArgs} args - Arguments to update one OrganiserSubmission.
+     * @example
+     * // Update one OrganiserSubmission
+     * const organiserSubmission = await prisma.organiserSubmission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OrganiserSubmissionUpdateArgs>(args: SelectSubset<T, OrganiserSubmissionUpdateArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OrganiserSubmissions.
+     * @param {OrganiserSubmissionDeleteManyArgs} args - Arguments to filter OrganiserSubmissions to delete.
+     * @example
+     * // Delete a few OrganiserSubmissions
+     * const { count } = await prisma.organiserSubmission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OrganiserSubmissionDeleteManyArgs>(args?: SelectSubset<T, OrganiserSubmissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OrganiserSubmissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganiserSubmissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OrganiserSubmissions
+     * const organiserSubmission = await prisma.organiserSubmission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OrganiserSubmissionUpdateManyArgs>(args: SelectSubset<T, OrganiserSubmissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OrganiserSubmissions and returns the data updated in the database.
+     * @param {OrganiserSubmissionUpdateManyAndReturnArgs} args - Arguments to update many OrganiserSubmissions.
+     * @example
+     * // Update many OrganiserSubmissions
+     * const organiserSubmission = await prisma.organiserSubmission.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OrganiserSubmissions and only return the `id`
+     * const organiserSubmissionWithIdOnly = await prisma.organiserSubmission.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OrganiserSubmissionUpdateManyAndReturnArgs>(args: SelectSubset<T, OrganiserSubmissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one OrganiserSubmission.
+     * @param {OrganiserSubmissionUpsertArgs} args - Arguments to update or create a OrganiserSubmission.
+     * @example
+     * // Update or create a OrganiserSubmission
+     * const organiserSubmission = await prisma.organiserSubmission.upsert({
+     *   create: {
+     *     // ... data to create a OrganiserSubmission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OrganiserSubmission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OrganiserSubmissionUpsertArgs>(args: SelectSubset<T, OrganiserSubmissionUpsertArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OrganiserSubmissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganiserSubmissionCountArgs} args - Arguments to filter OrganiserSubmissions to count.
+     * @example
+     * // Count the number of OrganiserSubmissions
+     * const count = await prisma.organiserSubmission.count({
+     *   where: {
+     *     // ... the filter for the OrganiserSubmissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends OrganiserSubmissionCountArgs>(
+      args?: Subset<T, OrganiserSubmissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrganiserSubmissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OrganiserSubmission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganiserSubmissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrganiserSubmissionAggregateArgs>(args: Subset<T, OrganiserSubmissionAggregateArgs>): Prisma.PrismaPromise<GetOrganiserSubmissionAggregateType<T>>
+
+    /**
+     * Group by OrganiserSubmission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrganiserSubmissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OrganiserSubmissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OrganiserSubmissionGroupByArgs['orderBy'] }
+        : { orderBy?: OrganiserSubmissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OrganiserSubmissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrganiserSubmissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OrganiserSubmission model
+   */
+  readonly fields: OrganiserSubmissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OrganiserSubmission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OrganiserSubmissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OrganiserSubmission model
+   */
+  interface OrganiserSubmissionFieldRefs {
+    readonly id: FieldRef<"OrganiserSubmission", 'String'>
+    readonly websiteURL: FieldRef<"OrganiserSubmission", 'String'>
+    readonly locations: FieldRef<"OrganiserSubmission", 'String[]'>
+    readonly createdAt: FieldRef<"OrganiserSubmission", 'DateTime'>
+    readonly updatedAt: FieldRef<"OrganiserSubmission", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OrganiserSubmission findUnique
+   */
+  export type OrganiserSubmissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * Filter, which OrganiserSubmission to fetch.
+     */
+    where: OrganiserSubmissionWhereUniqueInput
+  }
+
+  /**
+   * OrganiserSubmission findUniqueOrThrow
+   */
+  export type OrganiserSubmissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * Filter, which OrganiserSubmission to fetch.
+     */
+    where: OrganiserSubmissionWhereUniqueInput
+  }
+
+  /**
+   * OrganiserSubmission findFirst
+   */
+  export type OrganiserSubmissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * Filter, which OrganiserSubmission to fetch.
+     */
+    where?: OrganiserSubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrganiserSubmissions to fetch.
+     */
+    orderBy?: OrganiserSubmissionOrderByWithRelationInput | OrganiserSubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrganiserSubmissions.
+     */
+    cursor?: OrganiserSubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrganiserSubmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrganiserSubmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrganiserSubmissions.
+     */
+    distinct?: OrganiserSubmissionScalarFieldEnum | OrganiserSubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * OrganiserSubmission findFirstOrThrow
+   */
+  export type OrganiserSubmissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * Filter, which OrganiserSubmission to fetch.
+     */
+    where?: OrganiserSubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrganiserSubmissions to fetch.
+     */
+    orderBy?: OrganiserSubmissionOrderByWithRelationInput | OrganiserSubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrganiserSubmissions.
+     */
+    cursor?: OrganiserSubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrganiserSubmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrganiserSubmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrganiserSubmissions.
+     */
+    distinct?: OrganiserSubmissionScalarFieldEnum | OrganiserSubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * OrganiserSubmission findMany
+   */
+  export type OrganiserSubmissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * Filter, which OrganiserSubmissions to fetch.
+     */
+    where?: OrganiserSubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrganiserSubmissions to fetch.
+     */
+    orderBy?: OrganiserSubmissionOrderByWithRelationInput | OrganiserSubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OrganiserSubmissions.
+     */
+    cursor?: OrganiserSubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrganiserSubmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrganiserSubmissions.
+     */
+    skip?: number
+    distinct?: OrganiserSubmissionScalarFieldEnum | OrganiserSubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * OrganiserSubmission create
+   */
+  export type OrganiserSubmissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a OrganiserSubmission.
+     */
+    data: XOR<OrganiserSubmissionCreateInput, OrganiserSubmissionUncheckedCreateInput>
+  }
+
+  /**
+   * OrganiserSubmission createMany
+   */
+  export type OrganiserSubmissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OrganiserSubmissions.
+     */
+    data: OrganiserSubmissionCreateManyInput | OrganiserSubmissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OrganiserSubmission createManyAndReturn
+   */
+  export type OrganiserSubmissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * The data used to create many OrganiserSubmissions.
+     */
+    data: OrganiserSubmissionCreateManyInput | OrganiserSubmissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OrganiserSubmission update
+   */
+  export type OrganiserSubmissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a OrganiserSubmission.
+     */
+    data: XOR<OrganiserSubmissionUpdateInput, OrganiserSubmissionUncheckedUpdateInput>
+    /**
+     * Choose, which OrganiserSubmission to update.
+     */
+    where: OrganiserSubmissionWhereUniqueInput
+  }
+
+  /**
+   * OrganiserSubmission updateMany
+   */
+  export type OrganiserSubmissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OrganiserSubmissions.
+     */
+    data: XOR<OrganiserSubmissionUpdateManyMutationInput, OrganiserSubmissionUncheckedUpdateManyInput>
+    /**
+     * Filter which OrganiserSubmissions to update
+     */
+    where?: OrganiserSubmissionWhereInput
+    /**
+     * Limit how many OrganiserSubmissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OrganiserSubmission updateManyAndReturn
+   */
+  export type OrganiserSubmissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * The data used to update OrganiserSubmissions.
+     */
+    data: XOR<OrganiserSubmissionUpdateManyMutationInput, OrganiserSubmissionUncheckedUpdateManyInput>
+    /**
+     * Filter which OrganiserSubmissions to update
+     */
+    where?: OrganiserSubmissionWhereInput
+    /**
+     * Limit how many OrganiserSubmissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OrganiserSubmission upsert
+   */
+  export type OrganiserSubmissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the OrganiserSubmission to update in case it exists.
+     */
+    where: OrganiserSubmissionWhereUniqueInput
+    /**
+     * In case the OrganiserSubmission found by the `where` argument doesn't exist, create a new OrganiserSubmission with this data.
+     */
+    create: XOR<OrganiserSubmissionCreateInput, OrganiserSubmissionUncheckedCreateInput>
+    /**
+     * In case the OrganiserSubmission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OrganiserSubmissionUpdateInput, OrganiserSubmissionUncheckedUpdateInput>
+  }
+
+  /**
+   * OrganiserSubmission delete
+   */
+  export type OrganiserSubmissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+    /**
+     * Filter which OrganiserSubmission to delete.
+     */
+    where: OrganiserSubmissionWhereUniqueInput
+  }
+
+  /**
+   * OrganiserSubmission deleteMany
+   */
+  export type OrganiserSubmissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrganiserSubmissions to delete
+     */
+    where?: OrganiserSubmissionWhereInput
+    /**
+     * Limit how many OrganiserSubmissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OrganiserSubmission without action
+   */
+  export type OrganiserSubmissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganiserSubmission
+     */
+    select?: OrganiserSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganiserSubmission
+     */
+    omit?: OrganiserSubmissionOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7538,6 +8620,17 @@ export namespace Prisma {
   };
 
   export type DestinationScalarFieldEnum = (typeof DestinationScalarFieldEnum)[keyof typeof DestinationScalarFieldEnum]
+
+
+  export const OrganiserSubmissionScalarFieldEnum: {
+    id: 'id',
+    websiteURL: 'websiteURL',
+    locations: 'locations',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type OrganiserSubmissionScalarFieldEnum = (typeof OrganiserSubmissionScalarFieldEnum)[keyof typeof OrganiserSubmissionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7646,6 +8739,15 @@ export namespace Prisma {
   };
 
   export type DestinationOrderByRelevanceFieldEnum = (typeof DestinationOrderByRelevanceFieldEnum)[keyof typeof DestinationOrderByRelevanceFieldEnum]
+
+
+  export const OrganiserSubmissionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    websiteURL: 'websiteURL',
+    locations: 'locations'
+  };
+
+  export type OrganiserSubmissionOrderByRelevanceFieldEnum = (typeof OrganiserSubmissionOrderByRelevanceFieldEnum)[keyof typeof OrganiserSubmissionOrderByRelevanceFieldEnum]
 
 
   /**
@@ -8184,6 +9286,59 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Destination"> | Date | string
   }
 
+  export type OrganiserSubmissionWhereInput = {
+    AND?: OrganiserSubmissionWhereInput | OrganiserSubmissionWhereInput[]
+    OR?: OrganiserSubmissionWhereInput[]
+    NOT?: OrganiserSubmissionWhereInput | OrganiserSubmissionWhereInput[]
+    id?: StringFilter<"OrganiserSubmission"> | string
+    websiteURL?: StringFilter<"OrganiserSubmission"> | string
+    locations?: StringNullableListFilter<"OrganiserSubmission">
+    createdAt?: DateTimeFilter<"OrganiserSubmission"> | Date | string
+    updatedAt?: DateTimeFilter<"OrganiserSubmission"> | Date | string
+  }
+
+  export type OrganiserSubmissionOrderByWithRelationInput = {
+    id?: SortOrder
+    websiteURL?: SortOrder
+    locations?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: OrganiserSubmissionOrderByRelevanceInput
+  }
+
+  export type OrganiserSubmissionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    websiteURL?: string
+    AND?: OrganiserSubmissionWhereInput | OrganiserSubmissionWhereInput[]
+    OR?: OrganiserSubmissionWhereInput[]
+    NOT?: OrganiserSubmissionWhereInput | OrganiserSubmissionWhereInput[]
+    locations?: StringNullableListFilter<"OrganiserSubmission">
+    createdAt?: DateTimeFilter<"OrganiserSubmission"> | Date | string
+    updatedAt?: DateTimeFilter<"OrganiserSubmission"> | Date | string
+  }, "id" | "websiteURL">
+
+  export type OrganiserSubmissionOrderByWithAggregationInput = {
+    id?: SortOrder
+    websiteURL?: SortOrder
+    locations?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: OrganiserSubmissionCountOrderByAggregateInput
+    _max?: OrganiserSubmissionMaxOrderByAggregateInput
+    _min?: OrganiserSubmissionMinOrderByAggregateInput
+  }
+
+  export type OrganiserSubmissionScalarWhereWithAggregatesInput = {
+    AND?: OrganiserSubmissionScalarWhereWithAggregatesInput | OrganiserSubmissionScalarWhereWithAggregatesInput[]
+    OR?: OrganiserSubmissionScalarWhereWithAggregatesInput[]
+    NOT?: OrganiserSubmissionScalarWhereWithAggregatesInput | OrganiserSubmissionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"OrganiserSubmission"> | string
+    websiteURL?: StringWithAggregatesFilter<"OrganiserSubmission"> | string
+    locations?: StringNullableListFilter<"OrganiserSubmission">
+    createdAt?: DateTimeWithAggregatesFilter<"OrganiserSubmission"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"OrganiserSubmission"> | Date | string
+  }
+
   export type LocationCreateInput = {
     id?: string
     city: string
@@ -8706,6 +9861,62 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type OrganiserSubmissionCreateInput = {
+    id?: string
+    websiteURL: string
+    locations?: OrganiserSubmissionCreatelocationsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrganiserSubmissionUncheckedCreateInput = {
+    id?: string
+    websiteURL: string
+    locations?: OrganiserSubmissionCreatelocationsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrganiserSubmissionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    websiteURL?: StringFieldUpdateOperationsInput | string
+    locations?: OrganiserSubmissionUpdatelocationsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrganiserSubmissionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    websiteURL?: StringFieldUpdateOperationsInput | string
+    locations?: OrganiserSubmissionUpdatelocationsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrganiserSubmissionCreateManyInput = {
+    id?: string
+    websiteURL: string
+    locations?: OrganiserSubmissionCreatelocationsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrganiserSubmissionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    websiteURL?: StringFieldUpdateOperationsInput | string
+    locations?: OrganiserSubmissionUpdatelocationsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrganiserSubmissionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    websiteURL?: StringFieldUpdateOperationsInput | string
+    locations?: OrganiserSubmissionUpdatelocationsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -9197,6 +10408,34 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrganiserSubmissionOrderByRelevanceInput = {
+    fields: OrganiserSubmissionOrderByRelevanceFieldEnum | OrganiserSubmissionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type OrganiserSubmissionCountOrderByAggregateInput = {
+    id?: SortOrder
+    websiteURL?: SortOrder
+    locations?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrganiserSubmissionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    websiteURL?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrganiserSubmissionMinOrderByAggregateInput = {
+    id?: SortOrder
+    websiteURL?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9751,6 +10990,15 @@ export namespace Prisma {
     update?: LocationUpdateWithWhereUniqueWithoutDestinationsInput | LocationUpdateWithWhereUniqueWithoutDestinationsInput[]
     updateMany?: LocationUpdateManyWithWhereWithoutDestinationsInput | LocationUpdateManyWithWhereWithoutDestinationsInput[]
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
+  }
+
+  export type OrganiserSubmissionCreatelocationsInput = {
+    set: string[]
+  }
+
+  export type OrganiserSubmissionUpdatelocationsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {

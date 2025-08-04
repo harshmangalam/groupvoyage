@@ -31,6 +31,7 @@ export async function generateMetadata({ params }) {
       `best short travel escapes from ${location?.city}`,
       `local weekend travel groups in ${location?.city}`,
       `find the best 2-day trips from ${location?.city}`,
+      `${location?.city} travel groups`,
     ],
   };
 }

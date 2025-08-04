@@ -188,6 +188,14 @@ exports.Prisma.DestinationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.OrganiserSubmissionScalarFieldEnum = {
+  id: 'id',
+  websiteURL: 'websiteURL',
+  locations: 'locations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -266,13 +274,20 @@ exports.Prisma.DestinationOrderByRelevanceFieldEnum = {
   slug: 'slug'
 };
 
+exports.Prisma.OrganiserSubmissionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  websiteURL: 'websiteURL',
+  locations: 'locations'
+};
+
 
 exports.Prisma.ModelName = {
   Location: 'Location',
   Group: 'Group',
   Event: 'Event',
   InstagramProfile: 'InstagramProfile',
-  Destination: 'Destination'
+  Destination: 'Destination',
+  OrganiserSubmission: 'OrganiserSubmission'
 };
 
 /**

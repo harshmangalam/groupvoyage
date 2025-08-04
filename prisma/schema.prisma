@@ -90,3 +90,11 @@ model Destination {
   groups    Group[]    @relation("GroupToDestination")
   locations Location[] @relation("LocationToDestination")
 }
+
+model OrganiserSubmission {
+  id         String   @id @default(uuid())
+  websiteURL String   @unique
+  locations  String[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
