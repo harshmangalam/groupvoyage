@@ -56,3 +56,13 @@ export const getCategoryList = cache(
     };
   }
 );
+
+export const getCategoriesOption = cache(async () => {
+  return prisma.category.findMany({
+    select: {
+      name: true,
+      slug: true,
+    },
+    orderBy: [{ events: { _count: "desc" } }, { events: { _count: "desc" } }],
+  });
+});

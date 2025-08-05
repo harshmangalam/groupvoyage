@@ -15,6 +15,7 @@ export const getEventList = cache(
     durations,
     destinationSlug,
     priceRange,
+    categories,
   }: {
     locationSlug?: string;
     groupSlug?: string;
@@ -25,11 +26,15 @@ export const getEventList = cache(
     durations?: DurationFilter;
     destinationSlug?: string;
     priceRange?: any;
+    categories?: string;
   }) => {
     const filter: Record<string, unknown> = {};
 
     if (destinationSlug) {
       filter.destinations = { some: { slug: destinationSlug } };
+    }
+    if (categories) {
+      filter.categories = { some: { slug: categories } };
     }
     if (groupSlug) {
       filter.group = { slug: groupSlug };

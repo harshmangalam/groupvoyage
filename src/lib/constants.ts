@@ -33,6 +33,10 @@ export const NAVIGATIONS_MENU = [
     href: "/destinations",
   },
   {
+    name: "Categories",
+    href: "/categories",
+  },
+  {
     name: "Groups",
     href: "/groups",
   },

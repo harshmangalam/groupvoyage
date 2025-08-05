@@ -1,5 +1,6 @@
 import { getEventList } from "@/actions/event";
 import { CustomPagination } from "@/components/custom-pagination";
+import { CategoriesFilter } from "@/components/filters/categories/categories-filter";
 import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
@@ -43,21 +44,27 @@ type TripsPageProps = {
     durations: string;
     page: string;
     destinations: string;
+    categories: string;
   }>;
 };
 export default async function TripsPage({ searchParams }: TripsPageProps) {
-  const locations = (await searchParams).locations ?? "";
-  const durations = (await searchParams).durations ?? "";
-  const pageStr = (await searchParams).page ?? "1";
-  const page = Number(pageStr);
-  const destinations = (await searchParams).destinations ?? "";
+  const {
+    locations = "",
+    destinations = "",
+    categories = "",
+    durations = "",
+    page = "1",
+  } = await searchParams;
+
+  const pageNum = Number(page);
 
   const events = await getEventList({
     locationSlug: locations,
     durations: durations as any,
     take: TRIPS_PER_PAGE,
-    skip: (page - 1) * TRIPS_PER_PAGE,
+    skip: (pageNum - 1) * TRIPS_PER_PAGE,
     destinationSlug: destinations,
+    categories,
   });
 
   return (
@@ -77,6 +84,13 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
               key={`destinations-filter`}
             >
               <DestinationsFilter />
+            </Suspense>
+
+            <Suspense
+              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+              key={`categories-filter`}
+            >
+              <CategoriesFilter />
             </Suspense>
 
             <Suspense

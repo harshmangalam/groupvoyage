@@ -1,17 +1,28 @@
 import type React from "react";
 import { CategoryCard } from "@/components/categories/category-card";
 import { getCategoryList } from "@/actions/categories";
-import { CategoryHeader } from "./category-header";
+import { PageSection } from "@/components/page-section";
+import SearchInput from "@/components/search-input";
+import { SortCategories } from "./sort-categories";
 
 export default async function CategoriesPage({ searchParams }) {
   const { q, sort } = await searchParams;
   const categoriesResp = await getCategoryList({ search: q, sort });
-  console.log(categoriesResp.pagination);
   return (
-    <div className="container mx-auto px-4 py-8 md:px-6 lg:py-12">
-      <CategoryHeader count={categoriesResp.categories.length} />
+    <div className="px-4 max-w-7xl mx-auto mb-8">
+      <PageSection
+        label={<span>Explore Categories</span>}
+        others={
+          <div className="flex items-center gap-4">
+            <div className="max-w-md w-full">
+              <SearchInput />
+            </div>
+            <SortCategories />
+          </div>
+        }
+      ></PageSection>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {categoriesResp.categories.map((category) => (
           <CategoryCard
             key={category.id}
@@ -19,6 +30,12 @@ export default async function CategoriesPage({ searchParams }) {
             eventCount={category._count.events}
           />
         ))}
+
+        {categoriesResp.categories.length === 0 && (
+          <div className="col-span-full text-center text-muted-foreground py-8">
+            No categories found matching your criteria.
+          </div>
+        )}
       </div>
     </div>
   );

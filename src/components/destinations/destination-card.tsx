@@ -34,16 +34,20 @@ export function DestinationCard({
         <CardContent className="px-4">
           <div className="flex gap-6 items-center">
             <div className="flex items-center gap-2 text-sm">
-              <CalendarClock className="h-4 w-4 text-primary" />
-              <span className="font-medium">{eventsCount}</span>
+              <div className="flex items-center gap-1">
+                <CalendarClock className="h-4 w-4 text-primary" />
+                <span className="font-medium">{eventsCount}</span>
+              </div>
               <span className="text-muted-foreground">
                 {eventsCount === 1 ? "Trip" : "Trips"}
               </span>
             </div>
 
             <div className="flex items-center gap-2 text-sm">
-              <Users className="h-4 w-4 text-primary" />
-              <span className="font-medium">{groupsCount}</span>
+              <div className="flex items-center gap-1">
+                <Users className="h-4 w-4 text-primary" />
+                <span className="font-medium">{groupsCount}</span>
+              </div>
               <span className="text-muted-foreground">
                 {groupsCount === 1 ? "Group" : "Groups"}
               </span>
