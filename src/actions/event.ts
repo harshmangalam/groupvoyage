@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { DurationFilter } from "@/lib/types";
 import { cache } from "react";
+import { id } from "zod/v4/locales";
 
 export const getEventList = cache(
   async ({
@@ -153,6 +154,13 @@ export const getEventList = cache(
           select: {
             name: true,
             slug: true,
+          },
+        },
+        categories: {
+          select: {
+            slug: true,
+            id: true,
+            name: true,
           },
         },
       },
