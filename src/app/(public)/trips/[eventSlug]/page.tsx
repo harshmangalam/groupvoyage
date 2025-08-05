@@ -21,6 +21,7 @@ import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramProfile } from "@/actions/instagram-profile";
 import { getInstagramUsername } from "@/lib/utils";
 import { ImageGallery } from "@/components/image-gallery";
+import { Badge } from "@/components/ui/badge";
 
 export async function generateMetadata({ params }) {
   const { eventSlug } = await params;
@@ -85,7 +86,8 @@ export default async function TripDetailsPage({
         >
           {event.title}
         </h1>
-        <div className="flex flex-wrap gap-4 text-sm md:text-base mb-8">
+
+        <div className="flex flex-wrap gap-4 text-sm md:text-base">
           {event.durations && (
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
@@ -104,7 +106,20 @@ export default async function TripDetailsPage({
           )}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="flex items-center mb-2 gap-1 flex-wrap mt-4">
+          {event.categories.map((category) => (
+            <Link
+              href={`/trips/?categories=${category.slug}`}
+              key={category.id}
+            >
+              <Badge variant={"secondary"} className="capitalize">
+                {category.name}
+              </Badge>
+            </Link>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 mt-8">
           <div className="md:col-span-2 space-y-6">
             <SectionList
               label={"Trip Highlights"}

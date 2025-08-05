@@ -213,6 +213,13 @@ export const getEventDetails = cache(
             phone: true,
           },
         },
+        categories: {
+          select: {
+            id: true,
+            slug: true,
+            name: true,
+          },
+        },
       },
     });
   }

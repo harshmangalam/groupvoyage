@@ -73,7 +73,7 @@ export function TripCard({ event }: TripCardProps) {
             </div>
           </div>
           <div className="flex items-center mb-2 gap-1 flex-wrap mt-4">
-            {event.categories.slice(0, 3).map((category) => (
+            {event.categories.slice(0, 6).map((category) => (
               <Badge
                 variant={"secondary"}
                 key={category.id}

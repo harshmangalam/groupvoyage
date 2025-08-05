@@ -8,7 +8,8 @@ import { TrendingInstagramProfiles } from "@/components/instagram/trending-insta
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
 import { TrendingLocationsFallback } from "@/components/locations/trending-locations-fallback";
-import { OrganizerSubmission } from "@/components/organisation-submission";
+import { TrendingCategoriesCarousel } from "@/components/categories/trending-categories-carousel";
+// import { OrganizerSubmission } from "@/components/organisation-submission";
 
 export const metadata: Metadata = {
   title: "Compare & Book Weekend Group Trips - 1-Day & 2-Day Getaways",
@@ -76,6 +77,16 @@ export default async function HomePage() {
         </PageSection>
 
         <PageSection
+          href="/trips"
+          label={<span>Top Categories</span>}
+          description="Pick a vibe. Pack your bag. Your weekend just got sorted."
+        >
+          <Suspense key={"trending-categories"}>
+            <TrendingCategoriesCarousel />
+          </Suspense>
+        </PageSection>
+
+        <PageSection
           href="/groups"
           label={<span>Top Travel Groups</span>}
           description="Join the best groups for weekend adventures."
@@ -94,7 +105,7 @@ export default async function HomePage() {
             <TrendingTripsCarousel durations="weekend-trips" />
           </Suspense>
         </PageSection>
-        <OrganizerSubmission />
+        {/* <OrganizerSubmission /> */}
       </div>
     </div>
   );
