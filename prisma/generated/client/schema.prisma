@@ -5,8 +5,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Location {
@@ -65,6 +66,7 @@ model Event {
   group        Group         @relation(fields: [groupId], references: [id], onDelete: Cascade)
   location     Location      @relation(fields: [locationId], references: [id], onDelete: Cascade)
   destinations Destination[] @relation("EventToDestination")
+  categories   Category[]    @relation("EventToCategory")
 }
 
 model InstagramProfile {
@@ -97,4 +99,14 @@ model OrganiserSubmission {
   locations  String[]
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  events    Event[]  @relation("EventToCategory")
 }
