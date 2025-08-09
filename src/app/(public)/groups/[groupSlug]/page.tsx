@@ -22,6 +22,8 @@ import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
 import { getInstagramProfile } from "@/actions/instagram-profile";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
+import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
+import { CategoriesFilter } from "@/components/filters/categories/categories-filter";
 
 export async function generateMetadata({ params }) {
   const { groupSlug } = await params;
@@ -174,6 +176,19 @@ export default async function GroupHomePage({
                 key={`locations-filter`}
               >
                 <LocationsFilter />
+              </Suspense>
+              <Suspense
+                fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+                key={`destinations-filter`}
+              >
+                <DestinationsFilter />
+              </Suspense>
+
+              <Suspense
+                fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+                key={`categories-filter`}
+              >
+                <CategoriesFilter />
               </Suspense>
 
               <Suspense

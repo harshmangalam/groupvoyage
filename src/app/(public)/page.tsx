@@ -102,7 +102,7 @@ export default async function HomePage() {
           description="Unmissable trips to make your weekend epic."
         >
           <Suspense key={"trending-events"}>
-            <TrendingTripsCarousel durations="weekend-trips" />
+            <TrendingTripsCarousel />
           </Suspense>
         </PageSection>
         {/* <OrganizerSubmission /> */}

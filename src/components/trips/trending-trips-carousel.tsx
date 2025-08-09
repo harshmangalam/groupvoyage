@@ -24,6 +24,7 @@ export async function TrendingTripsCarousel({
     locationSlug,
     durations,
     destinationSlug: destinations,
+    take: 10,
   });
   return (
     <Carousel

@@ -1,9 +1,7 @@
 "use server";
 import { prisma } from "@/lib/db";
-import { env } from "@/lib/env";
 import { DurationFilter } from "@/lib/types";
 import { cache } from "react";
-import { id } from "zod/v4/locales";
 
 export const getEventList = cache(
   async ({
@@ -163,14 +161,7 @@ export const getEventList = cache(
           },
         },
       },
-      ...(shouldPaginate ? { take, skip } : {}), // Apply only if pagination is needed
-      orderBy: [
-        {
-          destinations: {
-            _count: "desc",
-          },
-        },
-      ],
+      ...(shouldPaginate ? { take, skip } : {}),
     });
 
     // Calculate pagination metadata
