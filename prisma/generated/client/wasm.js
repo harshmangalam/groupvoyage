@@ -136,6 +136,8 @@ exports.Prisma.GroupScalarFieldEnum = {
   name: 'name',
   slug: 'slug',
   details: 'details',
+  processedShortBio: 'processedShortBio',
+  processedDescription: 'processedDescription',
   instagram: 'instagram',
   phone: 'phone',
   email: 'email',
@@ -146,7 +148,8 @@ exports.Prisma.GroupScalarFieldEnum = {
   updatedAt: 'updatedAt',
   logo: 'logo',
   posterUrls: 'posterUrls',
-  tagLine: 'tagLine'
+  tagLine: 'tagLine',
+  status: 'status'
 };
 
 exports.Prisma.EventScalarFieldEnum = {
@@ -165,7 +168,7 @@ exports.Prisma.EventScalarFieldEnum = {
   source: 'source',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isArchived: 'isArchived'
+  status: 'status'
 };
 
 exports.Prisma.InstagramProfileScalarFieldEnum = {
@@ -176,7 +179,8 @@ exports.Prisma.InstagramProfileScalarFieldEnum = {
   followersCount: 'followersCount',
   following: 'following',
   posts: 'posts',
-  profilePic: 'profilePic'
+  profilePic: 'profilePic',
+  status: 'status'
 };
 
 exports.Prisma.DestinationScalarFieldEnum = {
@@ -185,24 +189,18 @@ exports.Prisma.DestinationScalarFieldEnum = {
   slug: 'slug',
   active: 'active',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.OrganiserSubmissionScalarFieldEnum = {
-  id: 'id',
-  websiteURL: 'websiteURL',
-  locations: 'locations',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  status: 'status'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
-  active: 'active',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  show: 'show',
+  status: 'status'
 };
 
 exports.Prisma.SortOrder = {
@@ -244,6 +242,8 @@ exports.Prisma.GroupOrderByRelevanceFieldEnum = {
   name: 'name',
   slug: 'slug',
   details: 'details',
+  processedShortBio: 'processedShortBio',
+  processedDescription: 'processedDescription',
   instagram: 'instagram',
   phone: 'phone',
   email: 'email',
@@ -283,18 +283,16 @@ exports.Prisma.DestinationOrderByRelevanceFieldEnum = {
   slug: 'slug'
 };
 
-exports.Prisma.OrganiserSubmissionOrderByRelevanceFieldEnum = {
-  id: 'id',
-  websiteURL: 'websiteURL',
-  locations: 'locations'
-};
-
 exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug'
 };
-
+exports.Status = exports.$Enums.Status = {
+  raw: 'raw',
+  processed: 'processed',
+  failed: 'failed'
+};
 
 exports.Prisma.ModelName = {
   Location: 'Location',
@@ -302,7 +300,6 @@ exports.Prisma.ModelName = {
   Event: 'Event',
   InstagramProfile: 'InstagramProfile',
   Destination: 'Destination',
-  OrganiserSubmission: 'OrganiserSubmission',
   Category: 'Category'
 };
 

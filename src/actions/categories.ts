@@ -15,7 +15,6 @@ export const getCategoryList = cache(
 
     const whereClause = {
       ...(search && { name: { search: search.replace(/[^a-zA-Z]/g, "") } }),
-      active: true,
     };
 
     const categories = await prisma.category.findMany({

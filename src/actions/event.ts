@@ -44,7 +44,6 @@ export const getEventList = cache(
       filter.location = { slug: locationSlug };
     }
     if (!includeArchieve) {
-      filter.isArchived = false;
     }
     if (search) {
       filter.OR = [

@@ -9,14 +9,12 @@ export async function createLocation(formData: FormData) {
   const city = formData.get("city") as string;
   const country = formData.get("country") as string;
   const slug = createLocationSlug(country, city);
-  const active = formData.get("active") as string;
   const posterUrl = formData.get("posterUrl") as string;
 
   const newLocation = {
     slug,
     country,
     city,
-    active: active === "on",
     posterUrl,
   };
   await prisma.location.create({
@@ -30,10 +28,9 @@ export async function editLocation(formData: FormData) {
   const locationId = formData.get("locationId") as string;
   const city = formData.get("city") as string;
   const country = formData.get("country") as string;
-  const active = formData.get("active") as string;
 
   const slug = createLocationSlug(country, city);
-  const newLocation = { slug, country, city, active: active === "on" };
+  const newLocation = { slug, country, city };
   await prisma.location.update({
     where: {
       id: locationId,
@@ -52,7 +49,6 @@ export async function deleteLocation(formData: FormData) {
 
 export const getLocationsOption = cache(async () => {
   return prisma.location.findMany({
-    where: { active: true },
     select: { id: true, slug: true, city: true },
   });
 });
@@ -85,7 +81,6 @@ export const getLocations = cache(
     }
 
     if (!includeInactive) {
-      filter.active = true;
     }
 
     return prisma.location.findMany({
@@ -121,5 +116,5 @@ export const getLocations = cache(
 );
 
 export const getAllLocationsCount = cache(async () => {
-  return prisma.location.count({ where: { active: true } });
+  return prisma.location.count({ where: {} });
 });

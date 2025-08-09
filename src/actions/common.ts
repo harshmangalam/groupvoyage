@@ -40,11 +40,11 @@ export const getPublicStats = cache(async () => {
     instagramProfilesCount,
     destinationsCount,
   ] = await Promise.all([
-    prisma.event.count({ where: { isArchived: false } }),
-    prisma.group.count({ where: { active: true } }),
-    prisma.location.count({ where: { active: true } }),
+    prisma.event.count(),
+    prisma.group.count(),
+    prisma.location.count(),
     prisma.instagramProfile.count(),
-    prisma.destination.count({ where: { active: true } }),
+    prisma.destination.count(),
   ]);
 
   return {

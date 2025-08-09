@@ -39,15 +39,28 @@ export type InstagramProfile = $Result.DefaultSelection<Prisma.$InstagramProfile
  */
 export type Destination = $Result.DefaultSelection<Prisma.$DestinationPayload>
 /**
- * Model OrganiserSubmission
- * 
- */
-export type OrganiserSubmission = $Result.DefaultSelection<Prisma.$OrganiserSubmissionPayload>
-/**
  * Model Category
  * 
  */
 export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const Status: {
+  raw: 'raw',
+  processed: 'processed',
+  failed: 'failed'
+};
+
+export type Status = (typeof Status)[keyof typeof Status]
+
+}
+
+export type Status = $Enums.Status
+
+export const Status: typeof $Enums.Status
 
 /**
  * ##  Prisma Client ʲˢ
@@ -223,16 +236,6 @@ export class PrismaClient<
     * ```
     */
   get destination(): Prisma.DestinationDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.organiserSubmission`: Exposes CRUD operations for the **OrganiserSubmission** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more OrganiserSubmissions
-    * const organiserSubmissions = await prisma.organiserSubmission.findMany()
-    * ```
-    */
-  get organiserSubmission(): Prisma.OrganiserSubmissionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.category`: Exposes CRUD operations for the **Category** model.
@@ -688,7 +691,6 @@ export namespace Prisma {
     Event: 'Event',
     InstagramProfile: 'InstagramProfile',
     Destination: 'Destination',
-    OrganiserSubmission: 'OrganiserSubmission',
     Category: 'Category'
   };
 
@@ -708,7 +710,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "location" | "group" | "event" | "instagramProfile" | "destination" | "organiserSubmission" | "category"
+      modelProps: "location" | "group" | "event" | "instagramProfile" | "destination" | "category"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1082,80 +1084,6 @@ export namespace Prisma {
           }
         }
       }
-      OrganiserSubmission: {
-        payload: Prisma.$OrganiserSubmissionPayload<ExtArgs>
-        fields: Prisma.OrganiserSubmissionFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.OrganiserSubmissionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.OrganiserSubmissionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
-          }
-          findFirst: {
-            args: Prisma.OrganiserSubmissionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.OrganiserSubmissionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
-          }
-          findMany: {
-            args: Prisma.OrganiserSubmissionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>[]
-          }
-          create: {
-            args: Prisma.OrganiserSubmissionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
-          }
-          createMany: {
-            args: Prisma.OrganiserSubmissionCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.OrganiserSubmissionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>[]
-          }
-          delete: {
-            args: Prisma.OrganiserSubmissionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
-          }
-          update: {
-            args: Prisma.OrganiserSubmissionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
-          }
-          deleteMany: {
-            args: Prisma.OrganiserSubmissionDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.OrganiserSubmissionUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.OrganiserSubmissionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>[]
-          }
-          upsert: {
-            args: Prisma.OrganiserSubmissionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$OrganiserSubmissionPayload>
-          }
-          aggregate: {
-            args: Prisma.OrganiserSubmissionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateOrganiserSubmission>
-          }
-          groupBy: {
-            args: Prisma.OrganiserSubmissionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<OrganiserSubmissionGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.OrganiserSubmissionCountArgs<ExtArgs>
-            result: $Utils.Optional<OrganiserSubmissionCountAggregateOutputType> | number
-          }
-        }
-      }
       Category: {
         payload: Prisma.$CategoryPayload<ExtArgs>
         fields: Prisma.CategoryFieldRefs
@@ -1327,7 +1255,6 @@ export namespace Prisma {
     event?: EventOmit
     instagramProfile?: InstagramProfileOmit
     destination?: DestinationOmit
-    organiserSubmission?: OrganiserSubmissionOmit
     category?: CategoryOmit
   }
 
@@ -2893,6 +2820,8 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     details: string | null
+    processedShortBio: string | null
+    processedDescription: string | null
     instagram: string | null
     phone: string | null
     email: string | null
@@ -2902,6 +2831,7 @@ export namespace Prisma {
     updatedAt: Date | null
     logo: string | null
     tagLine: string | null
+    status: $Enums.Status | null
   }
 
   export type GroupMaxAggregateOutputType = {
@@ -2909,6 +2839,8 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     details: string | null
+    processedShortBio: string | null
+    processedDescription: string | null
     instagram: string | null
     phone: string | null
     email: string | null
@@ -2918,6 +2850,7 @@ export namespace Prisma {
     updatedAt: Date | null
     logo: string | null
     tagLine: string | null
+    status: $Enums.Status | null
   }
 
   export type GroupCountAggregateOutputType = {
@@ -2925,6 +2858,8 @@ export namespace Prisma {
     name: number
     slug: number
     details: number
+    processedShortBio: number
+    processedDescription: number
     instagram: number
     phone: number
     email: number
@@ -2936,6 +2871,7 @@ export namespace Prisma {
     logo: number
     posterUrls: number
     tagLine: number
+    status: number
     _all: number
   }
 
@@ -2945,6 +2881,8 @@ export namespace Prisma {
     name?: true
     slug?: true
     details?: true
+    processedShortBio?: true
+    processedDescription?: true
     instagram?: true
     phone?: true
     email?: true
@@ -2954,6 +2892,7 @@ export namespace Prisma {
     updatedAt?: true
     logo?: true
     tagLine?: true
+    status?: true
   }
 
   export type GroupMaxAggregateInputType = {
@@ -2961,6 +2900,8 @@ export namespace Prisma {
     name?: true
     slug?: true
     details?: true
+    processedShortBio?: true
+    processedDescription?: true
     instagram?: true
     phone?: true
     email?: true
@@ -2970,6 +2911,7 @@ export namespace Prisma {
     updatedAt?: true
     logo?: true
     tagLine?: true
+    status?: true
   }
 
   export type GroupCountAggregateInputType = {
@@ -2977,6 +2919,8 @@ export namespace Prisma {
     name?: true
     slug?: true
     details?: true
+    processedShortBio?: true
+    processedDescription?: true
     instagram?: true
     phone?: true
     email?: true
@@ -2988,6 +2932,7 @@ export namespace Prisma {
     logo?: true
     posterUrls?: true
     tagLine?: true
+    status?: true
     _all?: true
   }
 
@@ -3068,6 +3013,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio: string | null
+    processedDescription: string | null
     instagram: string | null
     phone: string | null
     email: string | null
@@ -3079,6 +3026,7 @@ export namespace Prisma {
     logo: string | null
     posterUrls: string[]
     tagLine: string | null
+    status: $Enums.Status
     _count: GroupCountAggregateOutputType | null
     _min: GroupMinAggregateOutputType | null
     _max: GroupMaxAggregateOutputType | null
@@ -3103,6 +3051,8 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     details?: boolean
+    processedShortBio?: boolean
+    processedDescription?: boolean
     instagram?: boolean
     phone?: boolean
     email?: boolean
@@ -3114,6 +3064,7 @@ export namespace Prisma {
     logo?: boolean
     posterUrls?: boolean
     tagLine?: boolean
+    status?: boolean
     events?: boolean | Group$eventsArgs<ExtArgs>
     locations?: boolean | Group$locationsArgs<ExtArgs>
     destinations?: boolean | Group$destinationsArgs<ExtArgs>
@@ -3125,6 +3076,8 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     details?: boolean
+    processedShortBio?: boolean
+    processedDescription?: boolean
     instagram?: boolean
     phone?: boolean
     email?: boolean
@@ -3136,6 +3089,7 @@ export namespace Prisma {
     logo?: boolean
     posterUrls?: boolean
     tagLine?: boolean
+    status?: boolean
   }, ExtArgs["result"]["group"]>
 
   export type GroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3143,6 +3097,8 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     details?: boolean
+    processedShortBio?: boolean
+    processedDescription?: boolean
     instagram?: boolean
     phone?: boolean
     email?: boolean
@@ -3154,6 +3110,7 @@ export namespace Prisma {
     logo?: boolean
     posterUrls?: boolean
     tagLine?: boolean
+    status?: boolean
   }, ExtArgs["result"]["group"]>
 
   export type GroupSelectScalar = {
@@ -3161,6 +3118,8 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     details?: boolean
+    processedShortBio?: boolean
+    processedDescription?: boolean
     instagram?: boolean
     phone?: boolean
     email?: boolean
@@ -3172,9 +3131,10 @@ export namespace Prisma {
     logo?: boolean
     posterUrls?: boolean
     tagLine?: boolean
+    status?: boolean
   }
 
-  export type GroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "details" | "instagram" | "phone" | "email" | "meta" | "source" | "active" | "createdAt" | "updatedAt" | "logo" | "posterUrls" | "tagLine", ExtArgs["result"]["group"]>
+  export type GroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "details" | "processedShortBio" | "processedDescription" | "instagram" | "phone" | "email" | "meta" | "source" | "active" | "createdAt" | "updatedAt" | "logo" | "posterUrls" | "tagLine" | "status", ExtArgs["result"]["group"]>
   export type GroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Group$eventsArgs<ExtArgs>
     locations?: boolean | Group$locationsArgs<ExtArgs>
@@ -3196,6 +3156,8 @@ export namespace Prisma {
       name: string
       slug: string
       details: string
+      processedShortBio: string | null
+      processedDescription: string | null
       instagram: string | null
       phone: string | null
       email: string | null
@@ -3207,6 +3169,7 @@ export namespace Prisma {
       logo: string | null
       posterUrls: string[]
       tagLine: string | null
+      status: $Enums.Status
     }, ExtArgs["result"]["group"]>
     composites: {}
   }
@@ -3637,6 +3600,8 @@ export namespace Prisma {
     readonly name: FieldRef<"Group", 'String'>
     readonly slug: FieldRef<"Group", 'String'>
     readonly details: FieldRef<"Group", 'String'>
+    readonly processedShortBio: FieldRef<"Group", 'String'>
+    readonly processedDescription: FieldRef<"Group", 'String'>
     readonly instagram: FieldRef<"Group", 'String'>
     readonly phone: FieldRef<"Group", 'String'>
     readonly email: FieldRef<"Group", 'String'>
@@ -3648,6 +3613,7 @@ export namespace Prisma {
     readonly logo: FieldRef<"Group", 'String'>
     readonly posterUrls: FieldRef<"Group", 'String[]'>
     readonly tagLine: FieldRef<"Group", 'String'>
+    readonly status: FieldRef<"Group", 'Status'>
   }
     
 
@@ -4158,7 +4124,7 @@ export namespace Prisma {
     source: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    isArchived: boolean | null
+    status: $Enums.Status | null
   }
 
   export type EventMaxAggregateOutputType = {
@@ -4173,7 +4139,7 @@ export namespace Prisma {
     source: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    isArchived: boolean | null
+    status: $Enums.Status | null
   }
 
   export type EventCountAggregateOutputType = {
@@ -4192,7 +4158,7 @@ export namespace Prisma {
     source: number
     createdAt: number
     updatedAt: number
-    isArchived: number
+    status: number
     _all: number
   }
 
@@ -4217,7 +4183,7 @@ export namespace Prisma {
     source?: true
     createdAt?: true
     updatedAt?: true
-    isArchived?: true
+    status?: true
   }
 
   export type EventMaxAggregateInputType = {
@@ -4232,7 +4198,7 @@ export namespace Prisma {
     source?: true
     createdAt?: true
     updatedAt?: true
-    isArchived?: true
+    status?: true
   }
 
   export type EventCountAggregateInputType = {
@@ -4251,7 +4217,7 @@ export namespace Prisma {
     source?: true
     createdAt?: true
     updatedAt?: true
-    isArchived?: true
+    status?: true
     _all?: true
   }
 
@@ -4357,7 +4323,7 @@ export namespace Prisma {
     source: string
     createdAt: Date
     updatedAt: Date
-    isArchived: boolean
+    status: $Enums.Status
     _count: EventCountAggregateOutputType | null
     _avg: EventAvgAggregateOutputType | null
     _sum: EventSumAggregateOutputType | null
@@ -4395,7 +4361,7 @@ export namespace Prisma {
     source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    isArchived?: boolean
+    status?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
     destinations?: boolean | Event$destinationsArgs<ExtArgs>
@@ -4419,7 +4385,7 @@ export namespace Prisma {
     source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    isArchived?: boolean
+    status?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
@@ -4440,7 +4406,7 @@ export namespace Prisma {
     source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    isArchived?: boolean
+    status?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
@@ -4461,10 +4427,10 @@ export namespace Prisma {
     source?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    isArchived?: boolean
+    status?: boolean
   }
 
-  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "durations" | "details" | "price" | "locationId" | "groupId" | "posterUrls" | "meta" | "includes" | "excludes" | "source" | "createdAt" | "updatedAt" | "isArchived", ExtArgs["result"]["event"]>
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "durations" | "details" | "price" | "locationId" | "groupId" | "posterUrls" | "meta" | "includes" | "excludes" | "source" | "createdAt" | "updatedAt" | "status", ExtArgs["result"]["event"]>
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
@@ -4505,7 +4471,7 @@ export namespace Prisma {
       source: string
       createdAt: Date
       updatedAt: Date
-      isArchived: boolean
+      status: $Enums.Status
     }, ExtArgs["result"]["event"]>
     composites: {}
   }
@@ -4948,7 +4914,7 @@ export namespace Prisma {
     readonly source: FieldRef<"Event", 'String'>
     readonly createdAt: FieldRef<"Event", 'DateTime'>
     readonly updatedAt: FieldRef<"Event", 'DateTime'>
-    readonly isArchived: FieldRef<"Event", 'Boolean'>
+    readonly status: FieldRef<"Event", 'Status'>
   }
     
 
@@ -5440,6 +5406,7 @@ export namespace Prisma {
     following: string | null
     posts: string | null
     profilePic: string | null
+    status: $Enums.Status | null
   }
 
   export type InstagramProfileMaxAggregateOutputType = {
@@ -5451,6 +5418,7 @@ export namespace Prisma {
     following: string | null
     posts: string | null
     profilePic: string | null
+    status: $Enums.Status | null
   }
 
   export type InstagramProfileCountAggregateOutputType = {
@@ -5462,6 +5430,7 @@ export namespace Prisma {
     following: number
     posts: number
     profilePic: number
+    status: number
     _all: number
   }
 
@@ -5483,6 +5452,7 @@ export namespace Prisma {
     following?: true
     posts?: true
     profilePic?: true
+    status?: true
   }
 
   export type InstagramProfileMaxAggregateInputType = {
@@ -5494,6 +5464,7 @@ export namespace Prisma {
     following?: true
     posts?: true
     profilePic?: true
+    status?: true
   }
 
   export type InstagramProfileCountAggregateInputType = {
@@ -5505,6 +5476,7 @@ export namespace Prisma {
     following?: true
     posts?: true
     profilePic?: true
+    status?: true
     _all?: true
   }
 
@@ -5603,6 +5575,7 @@ export namespace Prisma {
     following: string | null
     posts: string | null
     profilePic: string | null
+    status: $Enums.Status
     _count: InstagramProfileCountAggregateOutputType | null
     _avg: InstagramProfileAvgAggregateOutputType | null
     _sum: InstagramProfileSumAggregateOutputType | null
@@ -5633,6 +5606,7 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
+    status?: boolean
     locations?: boolean | InstagramProfile$locationsArgs<ExtArgs>
     _count?: boolean | InstagramProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instagramProfile"]>
@@ -5646,6 +5620,7 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
+    status?: boolean
   }, ExtArgs["result"]["instagramProfile"]>
 
   export type InstagramProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5657,6 +5632,7 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
+    status?: boolean
   }, ExtArgs["result"]["instagramProfile"]>
 
   export type InstagramProfileSelectScalar = {
@@ -5668,9 +5644,10 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
+    status?: boolean
   }
 
-  export type InstagramProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "followers" | "followersCount" | "following" | "posts" | "profilePic", ExtArgs["result"]["instagramProfile"]>
+  export type InstagramProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "followers" | "followersCount" | "following" | "posts" | "profilePic" | "status", ExtArgs["result"]["instagramProfile"]>
   export type InstagramProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locations?: boolean | InstagramProfile$locationsArgs<ExtArgs>
     _count?: boolean | InstagramProfileCountOutputTypeDefaultArgs<ExtArgs>
@@ -5692,6 +5669,7 @@ export namespace Prisma {
       following: string | null
       posts: string | null
       profilePic: string | null
+      status: $Enums.Status
     }, ExtArgs["result"]["instagramProfile"]>
     composites: {}
   }
@@ -6124,6 +6102,7 @@ export namespace Prisma {
     readonly following: FieldRef<"InstagramProfile", 'String'>
     readonly posts: FieldRef<"InstagramProfile", 'String'>
     readonly profilePic: FieldRef<"InstagramProfile", 'String'>
+    readonly status: FieldRef<"InstagramProfile", 'Status'>
   }
     
 
@@ -6571,6 +6550,7 @@ export namespace Prisma {
     active: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    status: $Enums.Status | null
   }
 
   export type DestinationMaxAggregateOutputType = {
@@ -6580,6 +6560,7 @@ export namespace Prisma {
     active: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    status: $Enums.Status | null
   }
 
   export type DestinationCountAggregateOutputType = {
@@ -6589,6 +6570,7 @@ export namespace Prisma {
     active: number
     createdAt: number
     updatedAt: number
+    status: number
     _all: number
   }
 
@@ -6600,6 +6582,7 @@ export namespace Prisma {
     active?: true
     createdAt?: true
     updatedAt?: true
+    status?: true
   }
 
   export type DestinationMaxAggregateInputType = {
@@ -6609,6 +6592,7 @@ export namespace Prisma {
     active?: true
     createdAt?: true
     updatedAt?: true
+    status?: true
   }
 
   export type DestinationCountAggregateInputType = {
@@ -6618,6 +6602,7 @@ export namespace Prisma {
     active?: true
     createdAt?: true
     updatedAt?: true
+    status?: true
     _all?: true
   }
 
@@ -6700,6 +6685,7 @@ export namespace Prisma {
     active: boolean
     createdAt: Date
     updatedAt: Date
+    status: $Enums.Status
     _count: DestinationCountAggregateOutputType | null
     _min: DestinationMinAggregateOutputType | null
     _max: DestinationMaxAggregateOutputType | null
@@ -6726,6 +6712,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    status?: boolean
     events?: boolean | Destination$eventsArgs<ExtArgs>
     groups?: boolean | Destination$groupsArgs<ExtArgs>
     locations?: boolean | Destination$locationsArgs<ExtArgs>
@@ -6739,6 +6726,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    status?: boolean
   }, ExtArgs["result"]["destination"]>
 
   export type DestinationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6748,6 +6736,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    status?: boolean
   }, ExtArgs["result"]["destination"]>
 
   export type DestinationSelectScalar = {
@@ -6757,9 +6746,10 @@ export namespace Prisma {
     active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    status?: boolean
   }
 
-  export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["destination"]>
+  export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "active" | "createdAt" | "updatedAt" | "status", ExtArgs["result"]["destination"]>
   export type DestinationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Destination$eventsArgs<ExtArgs>
     groups?: boolean | Destination$groupsArgs<ExtArgs>
@@ -6783,6 +6773,7 @@ export namespace Prisma {
       active: boolean
       createdAt: Date
       updatedAt: Date
+      status: $Enums.Status
     }, ExtArgs["result"]["destination"]>
     composites: {}
   }
@@ -7215,6 +7206,7 @@ export namespace Prisma {
     readonly active: FieldRef<"Destination", 'Boolean'>
     readonly createdAt: FieldRef<"Destination", 'DateTime'>
     readonly updatedAt: FieldRef<"Destination", 'DateTime'>
+    readonly status: FieldRef<"Destination", 'Status'>
   }
     
 
@@ -7694,997 +7686,6 @@ export namespace Prisma {
 
 
   /**
-   * Model OrganiserSubmission
-   */
-
-  export type AggregateOrganiserSubmission = {
-    _count: OrganiserSubmissionCountAggregateOutputType | null
-    _min: OrganiserSubmissionMinAggregateOutputType | null
-    _max: OrganiserSubmissionMaxAggregateOutputType | null
-  }
-
-  export type OrganiserSubmissionMinAggregateOutputType = {
-    id: string | null
-    websiteURL: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type OrganiserSubmissionMaxAggregateOutputType = {
-    id: string | null
-    websiteURL: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type OrganiserSubmissionCountAggregateOutputType = {
-    id: number
-    websiteURL: number
-    locations: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type OrganiserSubmissionMinAggregateInputType = {
-    id?: true
-    websiteURL?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type OrganiserSubmissionMaxAggregateInputType = {
-    id?: true
-    websiteURL?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type OrganiserSubmissionCountAggregateInputType = {
-    id?: true
-    websiteURL?: true
-    locations?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type OrganiserSubmissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which OrganiserSubmission to aggregate.
-     */
-    where?: OrganiserSubmissionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of OrganiserSubmissions to fetch.
-     */
-    orderBy?: OrganiserSubmissionOrderByWithRelationInput | OrganiserSubmissionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: OrganiserSubmissionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` OrganiserSubmissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` OrganiserSubmissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned OrganiserSubmissions
-    **/
-    _count?: true | OrganiserSubmissionCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: OrganiserSubmissionMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: OrganiserSubmissionMaxAggregateInputType
-  }
-
-  export type GetOrganiserSubmissionAggregateType<T extends OrganiserSubmissionAggregateArgs> = {
-        [P in keyof T & keyof AggregateOrganiserSubmission]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateOrganiserSubmission[P]>
-      : GetScalarType<T[P], AggregateOrganiserSubmission[P]>
-  }
-
-
-
-
-  export type OrganiserSubmissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OrganiserSubmissionWhereInput
-    orderBy?: OrganiserSubmissionOrderByWithAggregationInput | OrganiserSubmissionOrderByWithAggregationInput[]
-    by: OrganiserSubmissionScalarFieldEnum[] | OrganiserSubmissionScalarFieldEnum
-    having?: OrganiserSubmissionScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: OrganiserSubmissionCountAggregateInputType | true
-    _min?: OrganiserSubmissionMinAggregateInputType
-    _max?: OrganiserSubmissionMaxAggregateInputType
-  }
-
-  export type OrganiserSubmissionGroupByOutputType = {
-    id: string
-    websiteURL: string
-    locations: string[]
-    createdAt: Date
-    updatedAt: Date
-    _count: OrganiserSubmissionCountAggregateOutputType | null
-    _min: OrganiserSubmissionMinAggregateOutputType | null
-    _max: OrganiserSubmissionMaxAggregateOutputType | null
-  }
-
-  type GetOrganiserSubmissionGroupByPayload<T extends OrganiserSubmissionGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<OrganiserSubmissionGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof OrganiserSubmissionGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], OrganiserSubmissionGroupByOutputType[P]>
-            : GetScalarType<T[P], OrganiserSubmissionGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type OrganiserSubmissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    websiteURL?: boolean
-    locations?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["organiserSubmission"]>
-
-  export type OrganiserSubmissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    websiteURL?: boolean
-    locations?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["organiserSubmission"]>
-
-  export type OrganiserSubmissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    websiteURL?: boolean
-    locations?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["organiserSubmission"]>
-
-  export type OrganiserSubmissionSelectScalar = {
-    id?: boolean
-    websiteURL?: boolean
-    locations?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type OrganiserSubmissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "websiteURL" | "locations" | "createdAt" | "updatedAt", ExtArgs["result"]["organiserSubmission"]>
-
-  export type $OrganiserSubmissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "OrganiserSubmission"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      websiteURL: string
-      locations: string[]
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["organiserSubmission"]>
-    composites: {}
-  }
-
-  type OrganiserSubmissionGetPayload<S extends boolean | null | undefined | OrganiserSubmissionDefaultArgs> = $Result.GetResult<Prisma.$OrganiserSubmissionPayload, S>
-
-  type OrganiserSubmissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<OrganiserSubmissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: OrganiserSubmissionCountAggregateInputType | true
-    }
-
-  export interface OrganiserSubmissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OrganiserSubmission'], meta: { name: 'OrganiserSubmission' } }
-    /**
-     * Find zero or one OrganiserSubmission that matches the filter.
-     * @param {OrganiserSubmissionFindUniqueArgs} args - Arguments to find a OrganiserSubmission
-     * @example
-     * // Get one OrganiserSubmission
-     * const organiserSubmission = await prisma.organiserSubmission.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends OrganiserSubmissionFindUniqueArgs>(args: SelectSubset<T, OrganiserSubmissionFindUniqueArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one OrganiserSubmission that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {OrganiserSubmissionFindUniqueOrThrowArgs} args - Arguments to find a OrganiserSubmission
-     * @example
-     * // Get one OrganiserSubmission
-     * const organiserSubmission = await prisma.organiserSubmission.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends OrganiserSubmissionFindUniqueOrThrowArgs>(args: SelectSubset<T, OrganiserSubmissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first OrganiserSubmission that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrganiserSubmissionFindFirstArgs} args - Arguments to find a OrganiserSubmission
-     * @example
-     * // Get one OrganiserSubmission
-     * const organiserSubmission = await prisma.organiserSubmission.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends OrganiserSubmissionFindFirstArgs>(args?: SelectSubset<T, OrganiserSubmissionFindFirstArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first OrganiserSubmission that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrganiserSubmissionFindFirstOrThrowArgs} args - Arguments to find a OrganiserSubmission
-     * @example
-     * // Get one OrganiserSubmission
-     * const organiserSubmission = await prisma.organiserSubmission.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends OrganiserSubmissionFindFirstOrThrowArgs>(args?: SelectSubset<T, OrganiserSubmissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more OrganiserSubmissions that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrganiserSubmissionFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all OrganiserSubmissions
-     * const organiserSubmissions = await prisma.organiserSubmission.findMany()
-     * 
-     * // Get first 10 OrganiserSubmissions
-     * const organiserSubmissions = await prisma.organiserSubmission.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const organiserSubmissionWithIdOnly = await prisma.organiserSubmission.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends OrganiserSubmissionFindManyArgs>(args?: SelectSubset<T, OrganiserSubmissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a OrganiserSubmission.
-     * @param {OrganiserSubmissionCreateArgs} args - Arguments to create a OrganiserSubmission.
-     * @example
-     * // Create one OrganiserSubmission
-     * const OrganiserSubmission = await prisma.organiserSubmission.create({
-     *   data: {
-     *     // ... data to create a OrganiserSubmission
-     *   }
-     * })
-     * 
-     */
-    create<T extends OrganiserSubmissionCreateArgs>(args: SelectSubset<T, OrganiserSubmissionCreateArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many OrganiserSubmissions.
-     * @param {OrganiserSubmissionCreateManyArgs} args - Arguments to create many OrganiserSubmissions.
-     * @example
-     * // Create many OrganiserSubmissions
-     * const organiserSubmission = await prisma.organiserSubmission.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends OrganiserSubmissionCreateManyArgs>(args?: SelectSubset<T, OrganiserSubmissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many OrganiserSubmissions and returns the data saved in the database.
-     * @param {OrganiserSubmissionCreateManyAndReturnArgs} args - Arguments to create many OrganiserSubmissions.
-     * @example
-     * // Create many OrganiserSubmissions
-     * const organiserSubmission = await prisma.organiserSubmission.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many OrganiserSubmissions and only return the `id`
-     * const organiserSubmissionWithIdOnly = await prisma.organiserSubmission.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends OrganiserSubmissionCreateManyAndReturnArgs>(args?: SelectSubset<T, OrganiserSubmissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a OrganiserSubmission.
-     * @param {OrganiserSubmissionDeleteArgs} args - Arguments to delete one OrganiserSubmission.
-     * @example
-     * // Delete one OrganiserSubmission
-     * const OrganiserSubmission = await prisma.organiserSubmission.delete({
-     *   where: {
-     *     // ... filter to delete one OrganiserSubmission
-     *   }
-     * })
-     * 
-     */
-    delete<T extends OrganiserSubmissionDeleteArgs>(args: SelectSubset<T, OrganiserSubmissionDeleteArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one OrganiserSubmission.
-     * @param {OrganiserSubmissionUpdateArgs} args - Arguments to update one OrganiserSubmission.
-     * @example
-     * // Update one OrganiserSubmission
-     * const organiserSubmission = await prisma.organiserSubmission.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends OrganiserSubmissionUpdateArgs>(args: SelectSubset<T, OrganiserSubmissionUpdateArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more OrganiserSubmissions.
-     * @param {OrganiserSubmissionDeleteManyArgs} args - Arguments to filter OrganiserSubmissions to delete.
-     * @example
-     * // Delete a few OrganiserSubmissions
-     * const { count } = await prisma.organiserSubmission.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends OrganiserSubmissionDeleteManyArgs>(args?: SelectSubset<T, OrganiserSubmissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more OrganiserSubmissions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrganiserSubmissionUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many OrganiserSubmissions
-     * const organiserSubmission = await prisma.organiserSubmission.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends OrganiserSubmissionUpdateManyArgs>(args: SelectSubset<T, OrganiserSubmissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more OrganiserSubmissions and returns the data updated in the database.
-     * @param {OrganiserSubmissionUpdateManyAndReturnArgs} args - Arguments to update many OrganiserSubmissions.
-     * @example
-     * // Update many OrganiserSubmissions
-     * const organiserSubmission = await prisma.organiserSubmission.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more OrganiserSubmissions and only return the `id`
-     * const organiserSubmissionWithIdOnly = await prisma.organiserSubmission.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends OrganiserSubmissionUpdateManyAndReturnArgs>(args: SelectSubset<T, OrganiserSubmissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one OrganiserSubmission.
-     * @param {OrganiserSubmissionUpsertArgs} args - Arguments to update or create a OrganiserSubmission.
-     * @example
-     * // Update or create a OrganiserSubmission
-     * const organiserSubmission = await prisma.organiserSubmission.upsert({
-     *   create: {
-     *     // ... data to create a OrganiserSubmission
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the OrganiserSubmission we want to update
-     *   }
-     * })
-     */
-    upsert<T extends OrganiserSubmissionUpsertArgs>(args: SelectSubset<T, OrganiserSubmissionUpsertArgs<ExtArgs>>): Prisma__OrganiserSubmissionClient<$Result.GetResult<Prisma.$OrganiserSubmissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of OrganiserSubmissions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrganiserSubmissionCountArgs} args - Arguments to filter OrganiserSubmissions to count.
-     * @example
-     * // Count the number of OrganiserSubmissions
-     * const count = await prisma.organiserSubmission.count({
-     *   where: {
-     *     // ... the filter for the OrganiserSubmissions we want to count
-     *   }
-     * })
-    **/
-    count<T extends OrganiserSubmissionCountArgs>(
-      args?: Subset<T, OrganiserSubmissionCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], OrganiserSubmissionCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a OrganiserSubmission.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrganiserSubmissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends OrganiserSubmissionAggregateArgs>(args: Subset<T, OrganiserSubmissionAggregateArgs>): Prisma.PrismaPromise<GetOrganiserSubmissionAggregateType<T>>
-
-    /**
-     * Group by OrganiserSubmission.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrganiserSubmissionGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends OrganiserSubmissionGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: OrganiserSubmissionGroupByArgs['orderBy'] }
-        : { orderBy?: OrganiserSubmissionGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, OrganiserSubmissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrganiserSubmissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the OrganiserSubmission model
-   */
-  readonly fields: OrganiserSubmissionFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for OrganiserSubmission.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__OrganiserSubmissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the OrganiserSubmission model
-   */
-  interface OrganiserSubmissionFieldRefs {
-    readonly id: FieldRef<"OrganiserSubmission", 'String'>
-    readonly websiteURL: FieldRef<"OrganiserSubmission", 'String'>
-    readonly locations: FieldRef<"OrganiserSubmission", 'String[]'>
-    readonly createdAt: FieldRef<"OrganiserSubmission", 'DateTime'>
-    readonly updatedAt: FieldRef<"OrganiserSubmission", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * OrganiserSubmission findUnique
-   */
-  export type OrganiserSubmissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * Filter, which OrganiserSubmission to fetch.
-     */
-    where: OrganiserSubmissionWhereUniqueInput
-  }
-
-  /**
-   * OrganiserSubmission findUniqueOrThrow
-   */
-  export type OrganiserSubmissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * Filter, which OrganiserSubmission to fetch.
-     */
-    where: OrganiserSubmissionWhereUniqueInput
-  }
-
-  /**
-   * OrganiserSubmission findFirst
-   */
-  export type OrganiserSubmissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * Filter, which OrganiserSubmission to fetch.
-     */
-    where?: OrganiserSubmissionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of OrganiserSubmissions to fetch.
-     */
-    orderBy?: OrganiserSubmissionOrderByWithRelationInput | OrganiserSubmissionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for OrganiserSubmissions.
-     */
-    cursor?: OrganiserSubmissionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` OrganiserSubmissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` OrganiserSubmissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of OrganiserSubmissions.
-     */
-    distinct?: OrganiserSubmissionScalarFieldEnum | OrganiserSubmissionScalarFieldEnum[]
-  }
-
-  /**
-   * OrganiserSubmission findFirstOrThrow
-   */
-  export type OrganiserSubmissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * Filter, which OrganiserSubmission to fetch.
-     */
-    where?: OrganiserSubmissionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of OrganiserSubmissions to fetch.
-     */
-    orderBy?: OrganiserSubmissionOrderByWithRelationInput | OrganiserSubmissionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for OrganiserSubmissions.
-     */
-    cursor?: OrganiserSubmissionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` OrganiserSubmissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` OrganiserSubmissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of OrganiserSubmissions.
-     */
-    distinct?: OrganiserSubmissionScalarFieldEnum | OrganiserSubmissionScalarFieldEnum[]
-  }
-
-  /**
-   * OrganiserSubmission findMany
-   */
-  export type OrganiserSubmissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * Filter, which OrganiserSubmissions to fetch.
-     */
-    where?: OrganiserSubmissionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of OrganiserSubmissions to fetch.
-     */
-    orderBy?: OrganiserSubmissionOrderByWithRelationInput | OrganiserSubmissionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing OrganiserSubmissions.
-     */
-    cursor?: OrganiserSubmissionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` OrganiserSubmissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` OrganiserSubmissions.
-     */
-    skip?: number
-    distinct?: OrganiserSubmissionScalarFieldEnum | OrganiserSubmissionScalarFieldEnum[]
-  }
-
-  /**
-   * OrganiserSubmission create
-   */
-  export type OrganiserSubmissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * The data needed to create a OrganiserSubmission.
-     */
-    data: XOR<OrganiserSubmissionCreateInput, OrganiserSubmissionUncheckedCreateInput>
-  }
-
-  /**
-   * OrganiserSubmission createMany
-   */
-  export type OrganiserSubmissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many OrganiserSubmissions.
-     */
-    data: OrganiserSubmissionCreateManyInput | OrganiserSubmissionCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * OrganiserSubmission createManyAndReturn
-   */
-  export type OrganiserSubmissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * The data used to create many OrganiserSubmissions.
-     */
-    data: OrganiserSubmissionCreateManyInput | OrganiserSubmissionCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * OrganiserSubmission update
-   */
-  export type OrganiserSubmissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * The data needed to update a OrganiserSubmission.
-     */
-    data: XOR<OrganiserSubmissionUpdateInput, OrganiserSubmissionUncheckedUpdateInput>
-    /**
-     * Choose, which OrganiserSubmission to update.
-     */
-    where: OrganiserSubmissionWhereUniqueInput
-  }
-
-  /**
-   * OrganiserSubmission updateMany
-   */
-  export type OrganiserSubmissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update OrganiserSubmissions.
-     */
-    data: XOR<OrganiserSubmissionUpdateManyMutationInput, OrganiserSubmissionUncheckedUpdateManyInput>
-    /**
-     * Filter which OrganiserSubmissions to update
-     */
-    where?: OrganiserSubmissionWhereInput
-    /**
-     * Limit how many OrganiserSubmissions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * OrganiserSubmission updateManyAndReturn
-   */
-  export type OrganiserSubmissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * The data used to update OrganiserSubmissions.
-     */
-    data: XOR<OrganiserSubmissionUpdateManyMutationInput, OrganiserSubmissionUncheckedUpdateManyInput>
-    /**
-     * Filter which OrganiserSubmissions to update
-     */
-    where?: OrganiserSubmissionWhereInput
-    /**
-     * Limit how many OrganiserSubmissions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * OrganiserSubmission upsert
-   */
-  export type OrganiserSubmissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * The filter to search for the OrganiserSubmission to update in case it exists.
-     */
-    where: OrganiserSubmissionWhereUniqueInput
-    /**
-     * In case the OrganiserSubmission found by the `where` argument doesn't exist, create a new OrganiserSubmission with this data.
-     */
-    create: XOR<OrganiserSubmissionCreateInput, OrganiserSubmissionUncheckedCreateInput>
-    /**
-     * In case the OrganiserSubmission was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<OrganiserSubmissionUpdateInput, OrganiserSubmissionUncheckedUpdateInput>
-  }
-
-  /**
-   * OrganiserSubmission delete
-   */
-  export type OrganiserSubmissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-    /**
-     * Filter which OrganiserSubmission to delete.
-     */
-    where: OrganiserSubmissionWhereUniqueInput
-  }
-
-  /**
-   * OrganiserSubmission deleteMany
-   */
-  export type OrganiserSubmissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which OrganiserSubmissions to delete
-     */
-    where?: OrganiserSubmissionWhereInput
-    /**
-     * Limit how many OrganiserSubmissions to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * OrganiserSubmission without action
-   */
-  export type OrganiserSubmissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganiserSubmission
-     */
-    select?: OrganiserSubmissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganiserSubmission
-     */
-    omit?: OrganiserSubmissionOmit<ExtArgs> | null
-  }
-
-
-  /**
    * Model Category
    */
 
@@ -8698,27 +7699,30 @@ export namespace Prisma {
     id: string | null
     name: string | null
     slug: string | null
-    active: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    show: boolean | null
+    status: $Enums.Status | null
   }
 
   export type CategoryMaxAggregateOutputType = {
     id: string | null
     name: string | null
     slug: string | null
-    active: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    show: boolean | null
+    status: $Enums.Status | null
   }
 
   export type CategoryCountAggregateOutputType = {
     id: number
     name: number
     slug: number
-    active: number
     createdAt: number
     updatedAt: number
+    show: number
+    status: number
     _all: number
   }
 
@@ -8727,27 +7731,30 @@ export namespace Prisma {
     id?: true
     name?: true
     slug?: true
-    active?: true
     createdAt?: true
     updatedAt?: true
+    show?: true
+    status?: true
   }
 
   export type CategoryMaxAggregateInputType = {
     id?: true
     name?: true
     slug?: true
-    active?: true
     createdAt?: true
     updatedAt?: true
+    show?: true
+    status?: true
   }
 
   export type CategoryCountAggregateInputType = {
     id?: true
     name?: true
     slug?: true
-    active?: true
     createdAt?: true
     updatedAt?: true
+    show?: true
+    status?: true
     _all?: true
   }
 
@@ -8827,9 +7834,10 @@ export namespace Prisma {
     id: string
     name: string
     slug: string
-    active: boolean
     createdAt: Date
     updatedAt: Date
+    show: boolean
+    status: $Enums.Status
     _count: CategoryCountAggregateOutputType | null
     _min: CategoryMinAggregateOutputType | null
     _max: CategoryMaxAggregateOutputType | null
@@ -8853,9 +7861,10 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     slug?: boolean
-    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    show?: boolean
+    status?: boolean
     events?: boolean | Category$eventsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
@@ -8864,30 +7873,33 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     slug?: boolean
-    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    show?: boolean
+    status?: boolean
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     slug?: boolean
-    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    show?: boolean
+    status?: boolean
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectScalar = {
     id?: boolean
     name?: boolean
     slug?: boolean
-    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    show?: boolean
+    status?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "createdAt" | "updatedAt" | "show" | "status", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Category$eventsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -8904,9 +7916,10 @@ export namespace Prisma {
       id: string
       name: string
       slug: string
-      active: boolean
       createdAt: Date
       updatedAt: Date
+      show: boolean
+      status: $Enums.Status
     }, ExtArgs["result"]["category"]>
     composites: {}
   }
@@ -9334,9 +8347,10 @@ export namespace Prisma {
     readonly id: FieldRef<"Category", 'String'>
     readonly name: FieldRef<"Category", 'String'>
     readonly slug: FieldRef<"Category", 'String'>
-    readonly active: FieldRef<"Category", 'Boolean'>
     readonly createdAt: FieldRef<"Category", 'DateTime'>
     readonly updatedAt: FieldRef<"Category", 'DateTime'>
+    readonly show: FieldRef<"Category", 'Boolean'>
+    readonly status: FieldRef<"Category", 'Status'>
   }
     
 
@@ -9800,6 +8814,8 @@ export namespace Prisma {
     name: 'name',
     slug: 'slug',
     details: 'details',
+    processedShortBio: 'processedShortBio',
+    processedDescription: 'processedDescription',
     instagram: 'instagram',
     phone: 'phone',
     email: 'email',
@@ -9810,7 +8826,8 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     logo: 'logo',
     posterUrls: 'posterUrls',
-    tagLine: 'tagLine'
+    tagLine: 'tagLine',
+    status: 'status'
   };
 
   export type GroupScalarFieldEnum = (typeof GroupScalarFieldEnum)[keyof typeof GroupScalarFieldEnum]
@@ -9832,7 +8849,7 @@ export namespace Prisma {
     source: 'source',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    isArchived: 'isArchived'
+    status: 'status'
   };
 
   export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -9846,7 +8863,8 @@ export namespace Prisma {
     followersCount: 'followersCount',
     following: 'following',
     posts: 'posts',
-    profilePic: 'profilePic'
+    profilePic: 'profilePic',
+    status: 'status'
   };
 
   export type InstagramProfileScalarFieldEnum = (typeof InstagramProfileScalarFieldEnum)[keyof typeof InstagramProfileScalarFieldEnum]
@@ -9858,30 +8876,21 @@ export namespace Prisma {
     slug: 'slug',
     active: 'active',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    status: 'status'
   };
 
   export type DestinationScalarFieldEnum = (typeof DestinationScalarFieldEnum)[keyof typeof DestinationScalarFieldEnum]
-
-
-  export const OrganiserSubmissionScalarFieldEnum: {
-    id: 'id',
-    websiteURL: 'websiteURL',
-    locations: 'locations',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type OrganiserSubmissionScalarFieldEnum = (typeof OrganiserSubmissionScalarFieldEnum)[keyof typeof OrganiserSubmissionScalarFieldEnum]
 
 
   export const CategoryScalarFieldEnum: {
     id: 'id',
     name: 'name',
     slug: 'slug',
-    active: 'active',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    show: 'show',
+    status: 'status'
   };
 
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -9944,6 +8953,8 @@ export namespace Prisma {
     name: 'name',
     slug: 'slug',
     details: 'details',
+    processedShortBio: 'processedShortBio',
+    processedDescription: 'processedDescription',
     instagram: 'instagram',
     phone: 'phone',
     email: 'email',
@@ -9993,15 +9004,6 @@ export namespace Prisma {
   };
 
   export type DestinationOrderByRelevanceFieldEnum = (typeof DestinationOrderByRelevanceFieldEnum)[keyof typeof DestinationOrderByRelevanceFieldEnum]
-
-
-  export const OrganiserSubmissionOrderByRelevanceFieldEnum: {
-    id: 'id',
-    websiteURL: 'websiteURL',
-    locations: 'locations'
-  };
-
-  export type OrganiserSubmissionOrderByRelevanceFieldEnum = (typeof OrganiserSubmissionOrderByRelevanceFieldEnum)[keyof typeof OrganiserSubmissionOrderByRelevanceFieldEnum]
 
 
   export const CategoryOrderByRelevanceFieldEnum: {
@@ -10064,6 +9066,20 @@ export namespace Prisma {
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status'
+   */
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status[]'
+   */
+  export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
     
 
 
@@ -10186,6 +9202,8 @@ export namespace Prisma {
     name?: StringFilter<"Group"> | string
     slug?: StringFilter<"Group"> | string
     details?: StringFilter<"Group"> | string
+    processedShortBio?: StringNullableFilter<"Group"> | string | null
+    processedDescription?: StringNullableFilter<"Group"> | string | null
     instagram?: StringNullableFilter<"Group"> | string | null
     phone?: StringNullableFilter<"Group"> | string | null
     email?: StringNullableFilter<"Group"> | string | null
@@ -10197,6 +9215,7 @@ export namespace Prisma {
     logo?: StringNullableFilter<"Group"> | string | null
     posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
+    status?: EnumStatusFilter<"Group"> | $Enums.Status
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
     destinations?: DestinationListRelationFilter
@@ -10207,6 +9226,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     details?: SortOrder
+    processedShortBio?: SortOrderInput | SortOrder
+    processedDescription?: SortOrderInput | SortOrder
     instagram?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
@@ -10218,6 +9239,7 @@ export namespace Prisma {
     logo?: SortOrderInput | SortOrder
     posterUrls?: SortOrder
     tagLine?: SortOrderInput | SortOrder
+    status?: SortOrder
     events?: EventOrderByRelationAggregateInput
     locations?: LocationOrderByRelationAggregateInput
     destinations?: DestinationOrderByRelationAggregateInput
@@ -10232,6 +9254,8 @@ export namespace Prisma {
     OR?: GroupWhereInput[]
     NOT?: GroupWhereInput | GroupWhereInput[]
     details?: StringFilter<"Group"> | string
+    processedShortBio?: StringNullableFilter<"Group"> | string | null
+    processedDescription?: StringNullableFilter<"Group"> | string | null
     instagram?: StringNullableFilter<"Group"> | string | null
     phone?: StringNullableFilter<"Group"> | string | null
     email?: StringNullableFilter<"Group"> | string | null
@@ -10243,6 +9267,7 @@ export namespace Prisma {
     logo?: StringNullableFilter<"Group"> | string | null
     posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
+    status?: EnumStatusFilter<"Group"> | $Enums.Status
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
     destinations?: DestinationListRelationFilter
@@ -10253,6 +9278,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     details?: SortOrder
+    processedShortBio?: SortOrderInput | SortOrder
+    processedDescription?: SortOrderInput | SortOrder
     instagram?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
@@ -10264,6 +9291,7 @@ export namespace Prisma {
     logo?: SortOrderInput | SortOrder
     posterUrls?: SortOrder
     tagLine?: SortOrderInput | SortOrder
+    status?: SortOrder
     _count?: GroupCountOrderByAggregateInput
     _max?: GroupMaxOrderByAggregateInput
     _min?: GroupMinOrderByAggregateInput
@@ -10277,6 +9305,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Group"> | string
     slug?: StringWithAggregatesFilter<"Group"> | string
     details?: StringWithAggregatesFilter<"Group"> | string
+    processedShortBio?: StringNullableWithAggregatesFilter<"Group"> | string | null
+    processedDescription?: StringNullableWithAggregatesFilter<"Group"> | string | null
     instagram?: StringNullableWithAggregatesFilter<"Group"> | string | null
     phone?: StringNullableWithAggregatesFilter<"Group"> | string | null
     email?: StringNullableWithAggregatesFilter<"Group"> | string | null
@@ -10288,6 +9318,7 @@ export namespace Prisma {
     logo?: StringNullableWithAggregatesFilter<"Group"> | string | null
     posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableWithAggregatesFilter<"Group"> | string | null
+    status?: EnumStatusWithAggregatesFilter<"Group"> | $Enums.Status
   }
 
   export type EventWhereInput = {
@@ -10309,7 +9340,7 @@ export namespace Prisma {
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
-    isArchived?: BoolFilter<"Event"> | boolean
+    status?: EnumStatusFilter<"Event"> | $Enums.Status
     group?: XOR<GroupScalarRelationFilter, GroupWhereInput>
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     destinations?: DestinationListRelationFilter
@@ -10332,7 +9363,7 @@ export namespace Prisma {
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    isArchived?: SortOrder
+    status?: SortOrder
     group?: GroupOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
     destinations?: DestinationOrderByRelationAggregateInput
@@ -10359,7 +9390,7 @@ export namespace Prisma {
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
-    isArchived?: BoolFilter<"Event"> | boolean
+    status?: EnumStatusFilter<"Event"> | $Enums.Status
     group?: XOR<GroupScalarRelationFilter, GroupWhereInput>
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     destinations?: DestinationListRelationFilter
@@ -10382,7 +9413,7 @@ export namespace Prisma {
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    isArchived?: SortOrder
+    status?: SortOrder
     _count?: EventCountOrderByAggregateInput
     _avg?: EventAvgOrderByAggregateInput
     _max?: EventMaxOrderByAggregateInput
@@ -10409,7 +9440,7 @@ export namespace Prisma {
     source?: StringWithAggregatesFilter<"Event"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
-    isArchived?: BoolWithAggregatesFilter<"Event"> | boolean
+    status?: EnumStatusWithAggregatesFilter<"Event"> | $Enums.Status
   }
 
   export type InstagramProfileWhereInput = {
@@ -10424,6 +9455,7 @@ export namespace Prisma {
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
+    status?: EnumStatusFilter<"InstagramProfile"> | $Enums.Status
     locations?: LocationListRelationFilter
   }
 
@@ -10436,6 +9468,7 @@ export namespace Prisma {
     following?: SortOrderInput | SortOrder
     posts?: SortOrderInput | SortOrder
     profilePic?: SortOrderInput | SortOrder
+    status?: SortOrder
     locations?: LocationOrderByRelationAggregateInput
     _relevance?: InstagramProfileOrderByRelevanceInput
   }
@@ -10452,6 +9485,7 @@ export namespace Prisma {
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
+    status?: EnumStatusFilter<"InstagramProfile"> | $Enums.Status
     locations?: LocationListRelationFilter
   }, "id" | "username">
 
@@ -10464,6 +9498,7 @@ export namespace Prisma {
     following?: SortOrderInput | SortOrder
     posts?: SortOrderInput | SortOrder
     profilePic?: SortOrderInput | SortOrder
+    status?: SortOrder
     _count?: InstagramProfileCountOrderByAggregateInput
     _avg?: InstagramProfileAvgOrderByAggregateInput
     _max?: InstagramProfileMaxOrderByAggregateInput
@@ -10483,6 +9518,7 @@ export namespace Prisma {
     following?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
     posts?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
+    status?: EnumStatusWithAggregatesFilter<"InstagramProfile"> | $Enums.Status
   }
 
   export type DestinationWhereInput = {
@@ -10495,6 +9531,7 @@ export namespace Prisma {
     active?: BoolFilter<"Destination"> | boolean
     createdAt?: DateTimeFilter<"Destination"> | Date | string
     updatedAt?: DateTimeFilter<"Destination"> | Date | string
+    status?: EnumStatusFilter<"Destination"> | $Enums.Status
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
     locations?: LocationListRelationFilter
@@ -10507,6 +9544,7 @@ export namespace Prisma {
     active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    status?: SortOrder
     events?: EventOrderByRelationAggregateInput
     groups?: GroupOrderByRelationAggregateInput
     locations?: LocationOrderByRelationAggregateInput
@@ -10523,6 +9561,7 @@ export namespace Prisma {
     active?: BoolFilter<"Destination"> | boolean
     createdAt?: DateTimeFilter<"Destination"> | Date | string
     updatedAt?: DateTimeFilter<"Destination"> | Date | string
+    status?: EnumStatusFilter<"Destination"> | $Enums.Status
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
     locations?: LocationListRelationFilter
@@ -10535,6 +9574,7 @@ export namespace Prisma {
     active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    status?: SortOrder
     _count?: DestinationCountOrderByAggregateInput
     _max?: DestinationMaxOrderByAggregateInput
     _min?: DestinationMinOrderByAggregateInput
@@ -10550,59 +9590,7 @@ export namespace Prisma {
     active?: BoolWithAggregatesFilter<"Destination"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Destination"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Destination"> | Date | string
-  }
-
-  export type OrganiserSubmissionWhereInput = {
-    AND?: OrganiserSubmissionWhereInput | OrganiserSubmissionWhereInput[]
-    OR?: OrganiserSubmissionWhereInput[]
-    NOT?: OrganiserSubmissionWhereInput | OrganiserSubmissionWhereInput[]
-    id?: StringFilter<"OrganiserSubmission"> | string
-    websiteURL?: StringFilter<"OrganiserSubmission"> | string
-    locations?: StringNullableListFilter<"OrganiserSubmission">
-    createdAt?: DateTimeFilter<"OrganiserSubmission"> | Date | string
-    updatedAt?: DateTimeFilter<"OrganiserSubmission"> | Date | string
-  }
-
-  export type OrganiserSubmissionOrderByWithRelationInput = {
-    id?: SortOrder
-    websiteURL?: SortOrder
-    locations?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _relevance?: OrganiserSubmissionOrderByRelevanceInput
-  }
-
-  export type OrganiserSubmissionWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    websiteURL?: string
-    AND?: OrganiserSubmissionWhereInput | OrganiserSubmissionWhereInput[]
-    OR?: OrganiserSubmissionWhereInput[]
-    NOT?: OrganiserSubmissionWhereInput | OrganiserSubmissionWhereInput[]
-    locations?: StringNullableListFilter<"OrganiserSubmission">
-    createdAt?: DateTimeFilter<"OrganiserSubmission"> | Date | string
-    updatedAt?: DateTimeFilter<"OrganiserSubmission"> | Date | string
-  }, "id" | "websiteURL">
-
-  export type OrganiserSubmissionOrderByWithAggregationInput = {
-    id?: SortOrder
-    websiteURL?: SortOrder
-    locations?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: OrganiserSubmissionCountOrderByAggregateInput
-    _max?: OrganiserSubmissionMaxOrderByAggregateInput
-    _min?: OrganiserSubmissionMinOrderByAggregateInput
-  }
-
-  export type OrganiserSubmissionScalarWhereWithAggregatesInput = {
-    AND?: OrganiserSubmissionScalarWhereWithAggregatesInput | OrganiserSubmissionScalarWhereWithAggregatesInput[]
-    OR?: OrganiserSubmissionScalarWhereWithAggregatesInput[]
-    NOT?: OrganiserSubmissionScalarWhereWithAggregatesInput | OrganiserSubmissionScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"OrganiserSubmission"> | string
-    websiteURL?: StringWithAggregatesFilter<"OrganiserSubmission"> | string
-    locations?: StringNullableListFilter<"OrganiserSubmission">
-    createdAt?: DateTimeWithAggregatesFilter<"OrganiserSubmission"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"OrganiserSubmission"> | Date | string
+    status?: EnumStatusWithAggregatesFilter<"Destination"> | $Enums.Status
   }
 
   export type CategoryWhereInput = {
@@ -10612,9 +9600,10 @@ export namespace Prisma {
     id?: StringFilter<"Category"> | string
     name?: StringFilter<"Category"> | string
     slug?: StringFilter<"Category"> | string
-    active?: BoolFilter<"Category"> | boolean
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
+    show?: BoolFilter<"Category"> | boolean
+    status?: EnumStatusFilter<"Category"> | $Enums.Status
     events?: EventListRelationFilter
   }
 
@@ -10622,9 +9611,10 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    show?: SortOrder
+    status?: SortOrder
     events?: EventOrderByRelationAggregateInput
     _relevance?: CategoryOrderByRelevanceInput
   }
@@ -10636,9 +9626,10 @@ export namespace Prisma {
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     name?: StringFilter<"Category"> | string
-    active?: BoolFilter<"Category"> | boolean
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
+    show?: BoolFilter<"Category"> | boolean
+    status?: EnumStatusFilter<"Category"> | $Enums.Status
     events?: EventListRelationFilter
   }, "id" | "slug">
 
@@ -10646,9 +9637,10 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    show?: SortOrder
+    status?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
     _max?: CategoryMaxOrderByAggregateInput
     _min?: CategoryMinOrderByAggregateInput
@@ -10661,9 +9653,10 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Category"> | string
     name?: StringWithAggregatesFilter<"Category"> | string
     slug?: StringWithAggregatesFilter<"Category"> | string
-    active?: BoolWithAggregatesFilter<"Category"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+    show?: BoolWithAggregatesFilter<"Category"> | boolean
+    status?: EnumStatusWithAggregatesFilter<"Category"> | $Enums.Status
   }
 
   export type LocationCreateInput = {
@@ -10764,6 +9757,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -10775,6 +9770,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutGroupInput
     locations?: LocationCreateNestedManyWithoutGroupsInput
     destinations?: DestinationCreateNestedManyWithoutGroupsInput
@@ -10785,6 +9781,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -10796,6 +9794,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
@@ -10806,6 +9805,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10817,6 +9818,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutGroupNestedInput
     locations?: LocationUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUpdateManyWithoutGroupsNestedInput
@@ -10827,6 +9829,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10838,6 +9842,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
@@ -10848,6 +9853,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -10859,6 +9866,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
   }
 
   export type GroupUpdateManyMutationInput = {
@@ -10866,6 +9874,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10877,6 +9887,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type GroupUncheckedUpdateManyInput = {
@@ -10884,6 +9895,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10895,6 +9908,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type EventCreateInput = {
@@ -10911,7 +9925,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     group: GroupCreateNestedOneWithoutEventsInput
     location: LocationCreateNestedOneWithoutEventsInput
     destinations?: DestinationCreateNestedManyWithoutEventsInput
@@ -10934,7 +9948,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     destinations?: DestinationUncheckedCreateNestedManyWithoutEventsInput
     categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput
   }
@@ -10953,7 +9967,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
     destinations?: DestinationUpdateManyWithoutEventsNestedInput
@@ -10976,7 +9990,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     destinations?: DestinationUncheckedUpdateManyWithoutEventsNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput
   }
@@ -10997,7 +10011,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
   }
 
   export type EventUpdateManyMutationInput = {
@@ -11014,7 +10028,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type EventUncheckedUpdateManyInput = {
@@ -11033,7 +10047,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type InstagramProfileCreateInput = {
@@ -11045,6 +10059,7 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
+    status?: $Enums.Status
     locations?: LocationCreateNestedManyWithoutInstagramProfilesInput
   }
 
@@ -11057,6 +10072,7 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
+    status?: $Enums.Status
     locations?: LocationUncheckedCreateNestedManyWithoutInstagramProfilesInput
   }
 
@@ -11069,6 +10085,7 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     locations?: LocationUpdateManyWithoutInstagramProfilesNestedInput
   }
 
@@ -11081,6 +10098,7 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     locations?: LocationUncheckedUpdateManyWithoutInstagramProfilesNestedInput
   }
 
@@ -11093,6 +10111,7 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
+    status?: $Enums.Status
   }
 
   export type InstagramProfileUpdateManyMutationInput = {
@@ -11104,6 +10123,7 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type InstagramProfileUncheckedUpdateManyInput = {
@@ -11115,6 +10135,7 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type DestinationCreateInput = {
@@ -11124,6 +10145,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutDestinationsInput
     groups?: GroupCreateNestedManyWithoutDestinationsInput
     locations?: LocationCreateNestedManyWithoutDestinationsInput
@@ -11136,6 +10158,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutDestinationsInput
     groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
     locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
@@ -11148,6 +10171,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutDestinationsNestedInput
     groups?: GroupUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUpdateManyWithoutDestinationsNestedInput
@@ -11160,6 +10184,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutDestinationsNestedInput
     groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
@@ -11172,6 +10197,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
   }
 
   export type DestinationUpdateManyMutationInput = {
@@ -11181,6 +10207,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type DestinationUncheckedUpdateManyInput = {
@@ -11190,71 +10217,17 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrganiserSubmissionCreateInput = {
-    id?: string
-    websiteURL: string
-    locations?: OrganiserSubmissionCreatelocationsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type OrganiserSubmissionUncheckedCreateInput = {
-    id?: string
-    websiteURL: string
-    locations?: OrganiserSubmissionCreatelocationsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type OrganiserSubmissionUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    websiteURL?: StringFieldUpdateOperationsInput | string
-    locations?: OrganiserSubmissionUpdatelocationsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrganiserSubmissionUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    websiteURL?: StringFieldUpdateOperationsInput | string
-    locations?: OrganiserSubmissionUpdatelocationsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrganiserSubmissionCreateManyInput = {
-    id?: string
-    websiteURL: string
-    locations?: OrganiserSubmissionCreatelocationsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type OrganiserSubmissionUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    websiteURL?: StringFieldUpdateOperationsInput | string
-    locations?: OrganiserSubmissionUpdatelocationsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrganiserSubmissionUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    websiteURL?: StringFieldUpdateOperationsInput | string
-    locations?: OrganiserSubmissionUpdatelocationsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryCreateInput = {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    show?: boolean
+    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutCategoriesInput
   }
 
@@ -11262,9 +10235,10 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    show?: boolean
+    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutCategoriesInput
   }
 
@@ -11272,9 +10246,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    show?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutCategoriesNestedInput
   }
 
@@ -11282,9 +10257,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    show?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutCategoriesNestedInput
   }
 
@@ -11292,27 +10268,30 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    show?: boolean
+    status?: $Enums.Status
   }
 
   export type CategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    show?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    show?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -11538,6 +10517,13 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type EnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
   export type LocationListRelationFilter = {
     every?: LocationWhereInput
     some?: LocationWhereInput
@@ -11559,6 +10545,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     details?: SortOrder
+    processedShortBio?: SortOrder
+    processedDescription?: SortOrder
     instagram?: SortOrder
     phone?: SortOrder
     email?: SortOrder
@@ -11570,6 +10558,7 @@ export namespace Prisma {
     logo?: SortOrder
     posterUrls?: SortOrder
     tagLine?: SortOrder
+    status?: SortOrder
   }
 
   export type GroupMaxOrderByAggregateInput = {
@@ -11577,6 +10566,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     details?: SortOrder
+    processedShortBio?: SortOrder
+    processedDescription?: SortOrder
     instagram?: SortOrder
     phone?: SortOrder
     email?: SortOrder
@@ -11586,6 +10577,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     logo?: SortOrder
     tagLine?: SortOrder
+    status?: SortOrder
   }
 
   export type GroupMinOrderByAggregateInput = {
@@ -11593,6 +10585,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     details?: SortOrder
+    processedShortBio?: SortOrder
+    processedDescription?: SortOrder
     instagram?: SortOrder
     phone?: SortOrder
     email?: SortOrder
@@ -11602,6 +10596,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     logo?: SortOrder
     tagLine?: SortOrder
+    status?: SortOrder
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -11628,6 +10623,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedJsonNullableFilter<$PrismaModel>
     _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -11683,7 +10688,7 @@ export namespace Prisma {
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    isArchived?: SortOrder
+    status?: SortOrder
   }
 
   export type EventAvgOrderByAggregateInput = {
@@ -11702,7 +10707,7 @@ export namespace Prisma {
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    isArchived?: SortOrder
+    status?: SortOrder
   }
 
   export type EventMinOrderByAggregateInput = {
@@ -11717,7 +10722,7 @@ export namespace Prisma {
     source?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    isArchived?: SortOrder
+    status?: SortOrder
   }
 
   export type EventSumOrderByAggregateInput = {
@@ -11755,6 +10760,7 @@ export namespace Prisma {
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
+    status?: SortOrder
   }
 
   export type InstagramProfileAvgOrderByAggregateInput = {
@@ -11770,6 +10776,7 @@ export namespace Prisma {
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
+    status?: SortOrder
   }
 
   export type InstagramProfileMinOrderByAggregateInput = {
@@ -11781,6 +10788,7 @@ export namespace Prisma {
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
+    status?: SortOrder
   }
 
   export type InstagramProfileSumOrderByAggregateInput = {
@@ -11800,6 +10808,7 @@ export namespace Prisma {
     active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    status?: SortOrder
   }
 
   export type DestinationMaxOrderByAggregateInput = {
@@ -11809,6 +10818,7 @@ export namespace Prisma {
     active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    status?: SortOrder
   }
 
   export type DestinationMinOrderByAggregateInput = {
@@ -11818,34 +10828,7 @@ export namespace Prisma {
     active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type OrganiserSubmissionOrderByRelevanceInput = {
-    fields: OrganiserSubmissionOrderByRelevanceFieldEnum | OrganiserSubmissionOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type OrganiserSubmissionCountOrderByAggregateInput = {
-    id?: SortOrder
-    websiteURL?: SortOrder
-    locations?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type OrganiserSubmissionMaxOrderByAggregateInput = {
-    id?: SortOrder
-    websiteURL?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type OrganiserSubmissionMinOrderByAggregateInput = {
-    id?: SortOrder
-    websiteURL?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    status?: SortOrder
   }
 
   export type CategoryOrderByRelevanceInput = {
@@ -11858,27 +10841,30 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    show?: SortOrder
+    status?: SortOrder
   }
 
   export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    show?: SortOrder
+    status?: SortOrder
   }
 
   export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    show?: SortOrder
+    status?: SortOrder
   }
 
   export type EventCreateNestedManyWithoutLocationInput = {
@@ -12098,6 +11084,10 @@ export namespace Prisma {
   export type GroupUpdateposterUrlsInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
   }
 
   export type EventUpdateManyWithoutGroupNestedInput = {
@@ -12471,15 +11461,6 @@ export namespace Prisma {
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
-  export type OrganiserSubmissionCreatelocationsInput = {
-    set: string[]
-  }
-
-  export type OrganiserSubmissionUpdatelocationsInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
   export type EventCreateNestedManyWithoutCategoriesInput = {
     create?: XOR<EventCreateWithoutCategoriesInput, EventUncheckedCreateWithoutCategoriesInput> | EventCreateWithoutCategoriesInput[] | EventUncheckedCreateWithoutCategoriesInput[]
     connectOrCreate?: EventCreateOrConnectWithoutCategoriesInput | EventCreateOrConnectWithoutCategoriesInput[]
@@ -12643,6 +11624,13 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
+
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -12665,6 +11653,16 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12708,7 +11706,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     group: GroupCreateNestedOneWithoutEventsInput
     destinations?: DestinationCreateNestedManyWithoutEventsInput
     categories?: CategoryCreateNestedManyWithoutEventsInput
@@ -12729,7 +11727,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     destinations?: DestinationUncheckedCreateNestedManyWithoutEventsInput
     categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput
   }
@@ -12749,6 +11747,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -12760,6 +11760,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutGroupInput
     destinations?: DestinationCreateNestedManyWithoutGroupsInput
   }
@@ -12769,6 +11770,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -12780,6 +11783,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
   }
@@ -12798,6 +11802,7 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
+    status?: $Enums.Status
   }
 
   export type InstagramProfileUncheckedCreateWithoutLocationsInput = {
@@ -12809,6 +11814,7 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
+    status?: $Enums.Status
   }
 
   export type InstagramProfileCreateOrConnectWithoutLocationsInput = {
@@ -12823,6 +11829,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutDestinationsInput
     groups?: GroupCreateNestedManyWithoutDestinationsInput
   }
@@ -12834,6 +11841,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutDestinationsInput
     groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
   }
@@ -12878,7 +11886,7 @@ export namespace Prisma {
     source?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
-    isArchived?: BoolFilter<"Event"> | boolean
+    status?: EnumStatusFilter<"Event"> | $Enums.Status
   }
 
   export type GroupUpsertWithWhereUniqueWithoutLocationsInput = {
@@ -12905,6 +11913,8 @@ export namespace Prisma {
     name?: StringFilter<"Group"> | string
     slug?: StringFilter<"Group"> | string
     details?: StringFilter<"Group"> | string
+    processedShortBio?: StringNullableFilter<"Group"> | string | null
+    processedDescription?: StringNullableFilter<"Group"> | string | null
     instagram?: StringNullableFilter<"Group"> | string | null
     phone?: StringNullableFilter<"Group"> | string | null
     email?: StringNullableFilter<"Group"> | string | null
@@ -12916,6 +11926,7 @@ export namespace Prisma {
     logo?: StringNullableFilter<"Group"> | string | null
     posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
+    status?: EnumStatusFilter<"Group"> | $Enums.Status
   }
 
   export type InstagramProfileUpsertWithWhereUniqueWithoutLocationsInput = {
@@ -12946,6 +11957,7 @@ export namespace Prisma {
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
+    status?: EnumStatusFilter<"InstagramProfile"> | $Enums.Status
   }
 
   export type DestinationUpsertWithWhereUniqueWithoutLocationsInput = {
@@ -12974,6 +11986,7 @@ export namespace Prisma {
     active?: BoolFilter<"Destination"> | boolean
     createdAt?: DateTimeFilter<"Destination"> | Date | string
     updatedAt?: DateTimeFilter<"Destination"> | Date | string
+    status?: EnumStatusFilter<"Destination"> | $Enums.Status
   }
 
   export type EventCreateWithoutGroupInput = {
@@ -12990,7 +12003,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     location: LocationCreateNestedOneWithoutEventsInput
     destinations?: DestinationCreateNestedManyWithoutEventsInput
     categories?: CategoryCreateNestedManyWithoutEventsInput
@@ -13011,7 +12024,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     destinations?: DestinationUncheckedCreateNestedManyWithoutEventsInput
     categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput
   }
@@ -13066,6 +12079,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutDestinationsInput
     locations?: LocationCreateNestedManyWithoutDestinationsInput
   }
@@ -13077,6 +12091,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutDestinationsInput
     locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
   }
@@ -13153,6 +12168,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -13164,6 +12181,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
     locations?: LocationCreateNestedManyWithoutGroupsInput
     destinations?: DestinationCreateNestedManyWithoutGroupsInput
   }
@@ -13173,6 +12191,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -13184,6 +12204,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
   }
@@ -13233,6 +12254,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
     groups?: GroupCreateNestedManyWithoutDestinationsInput
     locations?: LocationCreateNestedManyWithoutDestinationsInput
   }
@@ -13244,6 +12266,7 @@ export namespace Prisma {
     active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    status?: $Enums.Status
     groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
     locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
   }
@@ -13257,18 +12280,20 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    show?: boolean
+    status?: $Enums.Status
   }
 
   export type CategoryUncheckedCreateWithoutEventsInput = {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    show?: boolean
+    status?: $Enums.Status
   }
 
   export type CategoryCreateOrConnectWithoutEventsInput = {
@@ -13292,6 +12317,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13303,6 +12330,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     locations?: LocationUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUpdateManyWithoutGroupsNestedInput
   }
@@ -13312,6 +12340,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13323,6 +12353,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
   }
@@ -13405,9 +12436,10 @@ export namespace Prisma {
     id?: StringFilter<"Category"> | string
     name?: StringFilter<"Category"> | string
     slug?: StringFilter<"Category"> | string
-    active?: BoolFilter<"Category"> | boolean
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
+    show?: BoolFilter<"Category"> | boolean
+    status?: EnumStatusFilter<"Category"> | $Enums.Status
   }
 
   export type LocationCreateWithoutInstagramProfilesInput = {
@@ -13473,7 +12505,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     group: GroupCreateNestedOneWithoutEventsInput
     location: LocationCreateNestedOneWithoutEventsInput
     categories?: CategoryCreateNestedManyWithoutEventsInput
@@ -13495,7 +12527,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput
   }
 
@@ -13509,6 +12541,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -13520,6 +12554,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutGroupInput
     locations?: LocationCreateNestedManyWithoutGroupsInput
   }
@@ -13529,6 +12564,8 @@ export namespace Prisma {
     name: string
     slug: string
     details: string
+    processedShortBio?: string | null
+    processedDescription?: string | null
     instagram?: string | null
     phone?: string | null
     email?: string | null
@@ -13540,6 +12577,7 @@ export namespace Prisma {
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
+    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
   }
@@ -13644,7 +12682,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     group: GroupCreateNestedOneWithoutEventsInput
     location: LocationCreateNestedOneWithoutEventsInput
     destinations?: DestinationCreateNestedManyWithoutEventsInput
@@ -13666,7 +12704,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
     destinations?: DestinationUncheckedCreateNestedManyWithoutEventsInput
   }
 
@@ -13706,7 +12744,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
   }
 
   export type EventUpdateWithoutLocationInput = {
@@ -13723,7 +12761,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     destinations?: DestinationUpdateManyWithoutEventsNestedInput
     categories?: CategoryUpdateManyWithoutEventsNestedInput
@@ -13744,7 +12782,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     destinations?: DestinationUncheckedUpdateManyWithoutEventsNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput
   }
@@ -13764,7 +12802,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type GroupUpdateWithoutLocationsInput = {
@@ -13772,6 +12810,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13783,6 +12823,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutGroupNestedInput
     destinations?: DestinationUpdateManyWithoutGroupsNestedInput
   }
@@ -13792,6 +12833,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13803,6 +12846,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
   }
@@ -13812,6 +12856,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13823,6 +12869,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type InstagramProfileUpdateWithoutLocationsInput = {
@@ -13834,6 +12881,7 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type InstagramProfileUncheckedUpdateWithoutLocationsInput = {
@@ -13845,6 +12893,7 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type InstagramProfileUncheckedUpdateManyWithoutLocationsInput = {
@@ -13856,6 +12905,7 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type DestinationUpdateWithoutLocationsInput = {
@@ -13865,6 +12915,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutDestinationsNestedInput
     groups?: GroupUpdateManyWithoutDestinationsNestedInput
   }
@@ -13876,6 +12927,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutDestinationsNestedInput
     groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
   }
@@ -13887,6 +12939,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type EventCreateManyGroupInput = {
@@ -13904,7 +12957,7 @@ export namespace Prisma {
     source: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    isArchived?: boolean
+    status?: $Enums.Status
   }
 
   export type EventUpdateWithoutGroupInput = {
@@ -13921,7 +12974,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
     destinations?: DestinationUpdateManyWithoutEventsNestedInput
     categories?: CategoryUpdateManyWithoutEventsNestedInput
@@ -13942,7 +12995,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     destinations?: DestinationUncheckedUpdateManyWithoutEventsNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput
   }
@@ -13962,7 +13015,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type LocationUpdateWithoutGroupsInput = {
@@ -14011,6 +13064,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUpdateManyWithoutDestinationsNestedInput
   }
@@ -14022,6 +13076,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
   }
@@ -14033,6 +13088,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type DestinationUpdateWithoutEventsInput = {
@@ -14042,6 +13098,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     groups?: GroupUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUpdateManyWithoutDestinationsNestedInput
   }
@@ -14053,6 +13110,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
   }
@@ -14064,33 +13122,37 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryUpdateWithoutEventsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    show?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryUncheckedUpdateWithoutEventsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    show?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryUncheckedUpdateManyWithoutEventsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    show?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type LocationUpdateWithoutInstagramProfilesInput = {
@@ -14146,7 +13208,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
     categories?: CategoryUpdateManyWithoutEventsNestedInput
@@ -14168,7 +13230,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput
   }
 
@@ -14188,7 +13250,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type GroupUpdateWithoutDestinationsInput = {
@@ -14196,6 +13258,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14207,6 +13271,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutGroupNestedInput
     locations?: LocationUpdateManyWithoutGroupsNestedInput
   }
@@ -14216,6 +13281,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14227,6 +13294,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
   }
@@ -14236,6 +13304,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     details?: StringFieldUpdateOperationsInput | string
+    processedShortBio?: NullableStringFieldUpdateOperationsInput | string | null
+    processedDescription?: NullableStringFieldUpdateOperationsInput | string | null
     instagram?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14247,6 +13317,7 @@ export namespace Prisma {
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type LocationUpdateWithoutDestinationsInput = {
@@ -14302,7 +13373,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
     destinations?: DestinationUpdateManyWithoutEventsNestedInput
@@ -14324,7 +13395,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     destinations?: DestinationUncheckedUpdateManyWithoutEventsNestedInput
   }
 
@@ -14344,7 +13415,7 @@ export namespace Prisma {
     source?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
 

@@ -5,11 +5,11 @@ import { cache } from "react";
 
 export async function createGroup(formData: FormData) {
   const formObject = Object.fromEntries(formData.entries()) as unknown as any;
-  const isActive = formObject.active === "on";
+
   await prisma.group.create({
     data: {
       ...formObject,
-      active: isActive,
+
       locations: {
         connect: {
           id: formObject.locationId,
@@ -23,9 +23,6 @@ export async function createGroup(formData: FormData) {
 
 export const getGroupsOption = cache(async () => {
   const groups = await prisma.group.findMany({
-    where: {
-      active: true,
-    },
     select: {
       name: true,
       slug: true,
@@ -169,9 +166,7 @@ export const getTrendingGroupList = cache(
 );
 
 export const getCollaborators = cache(async (filters?: { slugs: string[] }) => {
-  const where: Record<string, any> = {
-    active: true,
-  };
+  const where: Record<string, any> = {};
 
   if (filters?.slugs.length) {
     where.slug = {

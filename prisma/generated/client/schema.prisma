@@ -10,6 +10,12 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum Status {
+  raw
+  processed
+  failed
+}
+
 model Location {
   id                String             @id @default(uuid())
   city              String
@@ -26,24 +32,27 @@ model Location {
 }
 
 model Group {
-  id           String        @id @default(uuid())
-  name         String        @unique
-  slug         String        @unique
-  details      String
-  instagram    String?
-  phone        String?
-  email        String?
-  meta         Json?
-  source       String
-  active       Boolean       @default(true)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  logo         String?
-  posterUrls   String[]
-  tagLine      String?
-  events       Event[]
-  locations    Location[]    @relation("GroupToLocation")
-  destinations Destination[] @relation("GroupToDestination")
+  id                   String        @id @default(uuid())
+  name                 String        @unique
+  slug                 String        @unique
+  details              String
+  processedShortBio    String?
+  processedDescription String?
+  instagram            String?
+  phone                String?
+  email                String?
+  meta                 Json?
+  source               String
+  active               Boolean       @default(true)
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+  logo                 String?
+  posterUrls           String[]
+  tagLine              String?
+  events               Event[]
+  locations            Location[]    @relation("GroupToLocation")
+  destinations         Destination[] @relation("GroupToDestination")
+  status               Status        @default(raw)
 }
 
 model Event {
@@ -62,11 +71,11 @@ model Event {
   source       String
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
-  isArchived   Boolean       @default(false)
   group        Group         @relation(fields: [groupId], references: [id], onDelete: Cascade)
   location     Location      @relation(fields: [locationId], references: [id], onDelete: Cascade)
   destinations Destination[] @relation("EventToDestination")
   categories   Category[]    @relation("EventToCategory")
+  status       Status        @default(raw)
 }
 
 model InstagramProfile {
@@ -79,6 +88,7 @@ model InstagramProfile {
   posts          String?
   profilePic     String?
   locations      Location[] @relation("InstagramProfileToLocation")
+  status         Status     @default(raw)
 }
 
 model Destination {
@@ -91,22 +101,16 @@ model Destination {
   events    Event[]    @relation("EventToDestination")
   groups    Group[]    @relation("GroupToDestination")
   locations Location[] @relation("LocationToDestination")
-}
-
-model OrganiserSubmission {
-  id         String   @id @default(uuid())
-  websiteURL String   @unique
-  locations  String[]
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  status    Status     @default(processed)
 }
 
 model Category {
   id        String   @id @default(uuid())
   name      String
   slug      String   @unique
-  active    Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   events    Event[]  @relation("EventToCategory")
+  show      Boolean  @default(false)
+  status    Status   @default(processed)
 }
