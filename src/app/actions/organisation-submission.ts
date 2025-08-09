@@ -1,6 +1,5 @@
 "use server";
 
-import { prisma } from "@/lib/db";
 import { z } from "zod";
 
 // Define the Zod schema for validation
@@ -55,15 +54,15 @@ export async function submitTravelGroup(
   const validatedData = validatedFields.data;
 
   try {
-    await prisma.organiserSubmission.upsert({
-      where: { websiteURL: validatedData.websiteURL },
-      create: {
-        ...validatedData,
-      },
-      update: {
-        ...validatedData,
-      },
-    });
+    // await prisma.organiserSubmission.upsert({
+    //   where: { websiteURL: validatedData.websiteURL },
+    //   create: {
+    //     ...validatedData,
+    //   },
+    //   update: {
+    //     ...validatedData,
+    //   },
+    // });
     return { message: "Travel group submitted successfully for review!" };
   } catch (error) {
     console.error("Database error:", error);
