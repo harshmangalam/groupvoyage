@@ -1627,10 +1627,9 @@ export namespace Prisma {
     city: string | null
     slug: string | null
     country: string | null
-    active: boolean | null
+    posterUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    posterUrl: string | null
   }
 
   export type LocationMaxAggregateOutputType = {
@@ -1638,10 +1637,9 @@ export namespace Prisma {
     city: string | null
     slug: string | null
     country: string | null
-    active: boolean | null
+    posterUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    posterUrl: string | null
   }
 
   export type LocationCountAggregateOutputType = {
@@ -1649,10 +1647,9 @@ export namespace Prisma {
     city: number
     slug: number
     country: number
-    active: number
+    posterUrl: number
     createdAt: number
     updatedAt: number
-    posterUrl: number
     _all: number
   }
 
@@ -1662,10 +1659,9 @@ export namespace Prisma {
     city?: true
     slug?: true
     country?: true
-    active?: true
+    posterUrl?: true
     createdAt?: true
     updatedAt?: true
-    posterUrl?: true
   }
 
   export type LocationMaxAggregateInputType = {
@@ -1673,10 +1669,9 @@ export namespace Prisma {
     city?: true
     slug?: true
     country?: true
-    active?: true
+    posterUrl?: true
     createdAt?: true
     updatedAt?: true
-    posterUrl?: true
   }
 
   export type LocationCountAggregateInputType = {
@@ -1684,10 +1679,9 @@ export namespace Prisma {
     city?: true
     slug?: true
     country?: true
-    active?: true
+    posterUrl?: true
     createdAt?: true
     updatedAt?: true
-    posterUrl?: true
     _all?: true
   }
 
@@ -1768,10 +1762,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active: boolean
+    posterUrl: string | null
     createdAt: Date
     updatedAt: Date
-    posterUrl: string | null
     _count: LocationCountAggregateOutputType | null
     _min: LocationMinAggregateOutputType | null
     _max: LocationMaxAggregateOutputType | null
@@ -1796,10 +1789,9 @@ export namespace Prisma {
     city?: boolean
     slug?: boolean
     country?: boolean
-    active?: boolean
+    posterUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    posterUrl?: boolean
     events?: boolean | Location$eventsArgs<ExtArgs>
     groups?: boolean | Location$groupsArgs<ExtArgs>
     instagramProfiles?: boolean | Location$instagramProfilesArgs<ExtArgs>
@@ -1812,10 +1804,9 @@ export namespace Prisma {
     city?: boolean
     slug?: boolean
     country?: boolean
-    active?: boolean
+    posterUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    posterUrl?: boolean
   }, ExtArgs["result"]["location"]>
 
   export type LocationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1823,10 +1814,9 @@ export namespace Prisma {
     city?: boolean
     slug?: boolean
     country?: boolean
-    active?: boolean
+    posterUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    posterUrl?: boolean
   }, ExtArgs["result"]["location"]>
 
   export type LocationSelectScalar = {
@@ -1834,13 +1824,12 @@ export namespace Prisma {
     city?: boolean
     slug?: boolean
     country?: boolean
-    active?: boolean
+    posterUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    posterUrl?: boolean
   }
 
-  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "city" | "slug" | "country" | "active" | "createdAt" | "updatedAt" | "posterUrl", ExtArgs["result"]["location"]>
+  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "city" | "slug" | "country" | "posterUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["location"]>
   export type LocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Location$eventsArgs<ExtArgs>
     groups?: boolean | Location$groupsArgs<ExtArgs>
@@ -1864,10 +1853,9 @@ export namespace Prisma {
       city: string
       slug: string
       country: string
-      active: boolean
+      posterUrl: string | null
       createdAt: Date
       updatedAt: Date
-      posterUrl: string | null
     }, ExtArgs["result"]["location"]>
     composites: {}
   }
@@ -2299,10 +2287,9 @@ export namespace Prisma {
     readonly city: FieldRef<"Location", 'String'>
     readonly slug: FieldRef<"Location", 'String'>
     readonly country: FieldRef<"Location", 'String'>
-    readonly active: FieldRef<"Location", 'Boolean'>
+    readonly posterUrl: FieldRef<"Location", 'String'>
     readonly createdAt: FieldRef<"Location", 'DateTime'>
     readonly updatedAt: FieldRef<"Location", 'DateTime'>
-    readonly posterUrl: FieldRef<"Location", 'String'>
   }
     
 
@@ -2826,12 +2813,11 @@ export namespace Prisma {
     phone: string | null
     email: string | null
     source: string | null
-    active: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
     logo: string | null
     tagLine: string | null
     status: $Enums.Status | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type GroupMaxAggregateOutputType = {
@@ -2845,12 +2831,11 @@ export namespace Prisma {
     phone: string | null
     email: string | null
     source: string | null
-    active: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
     logo: string | null
     tagLine: string | null
     status: $Enums.Status | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type GroupCountAggregateOutputType = {
@@ -2865,13 +2850,12 @@ export namespace Prisma {
     email: number
     meta: number
     source: number
-    active: number
-    createdAt: number
-    updatedAt: number
     logo: number
     posterUrls: number
     tagLine: number
     status: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -2887,12 +2871,11 @@ export namespace Prisma {
     phone?: true
     email?: true
     source?: true
-    active?: true
-    createdAt?: true
-    updatedAt?: true
     logo?: true
     tagLine?: true
     status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type GroupMaxAggregateInputType = {
@@ -2906,12 +2889,11 @@ export namespace Prisma {
     phone?: true
     email?: true
     source?: true
-    active?: true
-    createdAt?: true
-    updatedAt?: true
     logo?: true
     tagLine?: true
     status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type GroupCountAggregateInputType = {
@@ -2926,13 +2908,12 @@ export namespace Prisma {
     email?: true
     meta?: true
     source?: true
-    active?: true
-    createdAt?: true
-    updatedAt?: true
     logo?: true
     posterUrls?: true
     tagLine?: true
     status?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -3020,13 +3001,12 @@ export namespace Prisma {
     email: string | null
     meta: JsonValue | null
     source: string
-    active: boolean
-    createdAt: Date
-    updatedAt: Date
     logo: string | null
     posterUrls: string[]
     tagLine: string | null
     status: $Enums.Status
+    createdAt: Date
+    updatedAt: Date
     _count: GroupCountAggregateOutputType | null
     _min: GroupMinAggregateOutputType | null
     _max: GroupMaxAggregateOutputType | null
@@ -3058,13 +3038,12 @@ export namespace Prisma {
     email?: boolean
     meta?: boolean
     source?: boolean
-    active?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     logo?: boolean
     posterUrls?: boolean
     tagLine?: boolean
     status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     events?: boolean | Group$eventsArgs<ExtArgs>
     locations?: boolean | Group$locationsArgs<ExtArgs>
     destinations?: boolean | Group$destinationsArgs<ExtArgs>
@@ -3083,13 +3062,12 @@ export namespace Prisma {
     email?: boolean
     meta?: boolean
     source?: boolean
-    active?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     logo?: boolean
     posterUrls?: boolean
     tagLine?: boolean
     status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["group"]>
 
   export type GroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3104,13 +3082,12 @@ export namespace Prisma {
     email?: boolean
     meta?: boolean
     source?: boolean
-    active?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     logo?: boolean
     posterUrls?: boolean
     tagLine?: boolean
     status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["group"]>
 
   export type GroupSelectScalar = {
@@ -3125,16 +3102,15 @@ export namespace Prisma {
     email?: boolean
     meta?: boolean
     source?: boolean
-    active?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     logo?: boolean
     posterUrls?: boolean
     tagLine?: boolean
     status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type GroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "details" | "processedShortBio" | "processedDescription" | "instagram" | "phone" | "email" | "meta" | "source" | "active" | "createdAt" | "updatedAt" | "logo" | "posterUrls" | "tagLine" | "status", ExtArgs["result"]["group"]>
+  export type GroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "details" | "processedShortBio" | "processedDescription" | "instagram" | "phone" | "email" | "meta" | "source" | "logo" | "posterUrls" | "tagLine" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["group"]>
   export type GroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Group$eventsArgs<ExtArgs>
     locations?: boolean | Group$locationsArgs<ExtArgs>
@@ -3163,13 +3139,12 @@ export namespace Prisma {
       email: string | null
       meta: Prisma.JsonValue | null
       source: string
-      active: boolean
-      createdAt: Date
-      updatedAt: Date
       logo: string | null
       posterUrls: string[]
       tagLine: string | null
       status: $Enums.Status
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["group"]>
     composites: {}
   }
@@ -3607,13 +3582,12 @@ export namespace Prisma {
     readonly email: FieldRef<"Group", 'String'>
     readonly meta: FieldRef<"Group", 'Json'>
     readonly source: FieldRef<"Group", 'String'>
-    readonly active: FieldRef<"Group", 'Boolean'>
-    readonly createdAt: FieldRef<"Group", 'DateTime'>
-    readonly updatedAt: FieldRef<"Group", 'DateTime'>
     readonly logo: FieldRef<"Group", 'String'>
     readonly posterUrls: FieldRef<"Group", 'String[]'>
     readonly tagLine: FieldRef<"Group", 'String'>
     readonly status: FieldRef<"Group", 'Status'>
+    readonly createdAt: FieldRef<"Group", 'DateTime'>
+    readonly updatedAt: FieldRef<"Group", 'DateTime'>
   }
     
 
@@ -4122,9 +4096,9 @@ export namespace Prisma {
     locationId: string | null
     groupId: string | null
     source: string | null
+    status: $Enums.Status | null
     createdAt: Date | null
     updatedAt: Date | null
-    status: $Enums.Status | null
   }
 
   export type EventMaxAggregateOutputType = {
@@ -4137,9 +4111,9 @@ export namespace Prisma {
     locationId: string | null
     groupId: string | null
     source: string | null
+    status: $Enums.Status | null
     createdAt: Date | null
     updatedAt: Date | null
-    status: $Enums.Status | null
   }
 
   export type EventCountAggregateOutputType = {
@@ -4156,9 +4130,9 @@ export namespace Prisma {
     includes: number
     excludes: number
     source: number
+    status: number
     createdAt: number
     updatedAt: number
-    status: number
     _all: number
   }
 
@@ -4181,9 +4155,9 @@ export namespace Prisma {
     locationId?: true
     groupId?: true
     source?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
-    status?: true
   }
 
   export type EventMaxAggregateInputType = {
@@ -4196,9 +4170,9 @@ export namespace Prisma {
     locationId?: true
     groupId?: true
     source?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
-    status?: true
   }
 
   export type EventCountAggregateInputType = {
@@ -4215,9 +4189,9 @@ export namespace Prisma {
     includes?: true
     excludes?: true
     source?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
-    status?: true
     _all?: true
   }
 
@@ -4321,9 +4295,9 @@ export namespace Prisma {
     includes: string[]
     excludes: string[]
     source: string
+    status: $Enums.Status
     createdAt: Date
     updatedAt: Date
-    status: $Enums.Status
     _count: EventCountAggregateOutputType | null
     _avg: EventAvgAggregateOutputType | null
     _sum: EventSumAggregateOutputType | null
@@ -4359,9 +4333,9 @@ export namespace Prisma {
     includes?: boolean
     excludes?: boolean
     source?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    status?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
     destinations?: boolean | Event$destinationsArgs<ExtArgs>
@@ -4383,9 +4357,9 @@ export namespace Prisma {
     includes?: boolean
     excludes?: boolean
     source?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    status?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
@@ -4404,9 +4378,9 @@ export namespace Prisma {
     includes?: boolean
     excludes?: boolean
     source?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    status?: boolean
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
@@ -4425,12 +4399,12 @@ export namespace Prisma {
     includes?: boolean
     excludes?: boolean
     source?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    status?: boolean
   }
 
-  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "durations" | "details" | "price" | "locationId" | "groupId" | "posterUrls" | "meta" | "includes" | "excludes" | "source" | "createdAt" | "updatedAt" | "status", ExtArgs["result"]["event"]>
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "durations" | "details" | "price" | "locationId" | "groupId" | "posterUrls" | "meta" | "includes" | "excludes" | "source" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     group?: boolean | GroupDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
@@ -4469,9 +4443,9 @@ export namespace Prisma {
       includes: string[]
       excludes: string[]
       source: string
+      status: $Enums.Status
       createdAt: Date
       updatedAt: Date
-      status: $Enums.Status
     }, ExtArgs["result"]["event"]>
     composites: {}
   }
@@ -4912,9 +4886,9 @@ export namespace Prisma {
     readonly includes: FieldRef<"Event", 'String[]'>
     readonly excludes: FieldRef<"Event", 'String[]'>
     readonly source: FieldRef<"Event", 'String'>
+    readonly status: FieldRef<"Event", 'Status'>
     readonly createdAt: FieldRef<"Event", 'DateTime'>
     readonly updatedAt: FieldRef<"Event", 'DateTime'>
-    readonly status: FieldRef<"Event", 'Status'>
   }
     
 
@@ -5406,7 +5380,8 @@ export namespace Prisma {
     following: string | null
     posts: string | null
     profilePic: string | null
-    status: $Enums.Status | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type InstagramProfileMaxAggregateOutputType = {
@@ -5418,7 +5393,8 @@ export namespace Prisma {
     following: string | null
     posts: string | null
     profilePic: string | null
-    status: $Enums.Status | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type InstagramProfileCountAggregateOutputType = {
@@ -5430,7 +5406,8 @@ export namespace Prisma {
     following: number
     posts: number
     profilePic: number
-    status: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -5452,7 +5429,8 @@ export namespace Prisma {
     following?: true
     posts?: true
     profilePic?: true
-    status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type InstagramProfileMaxAggregateInputType = {
@@ -5464,7 +5442,8 @@ export namespace Prisma {
     following?: true
     posts?: true
     profilePic?: true
-    status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type InstagramProfileCountAggregateInputType = {
@@ -5476,7 +5455,8 @@ export namespace Prisma {
     following?: true
     posts?: true
     profilePic?: true
-    status?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -5575,7 +5555,8 @@ export namespace Prisma {
     following: string | null
     posts: string | null
     profilePic: string | null
-    status: $Enums.Status
+    createdAt: Date
+    updatedAt: Date
     _count: InstagramProfileCountAggregateOutputType | null
     _avg: InstagramProfileAvgAggregateOutputType | null
     _sum: InstagramProfileSumAggregateOutputType | null
@@ -5606,7 +5587,8 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
-    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     locations?: boolean | InstagramProfile$locationsArgs<ExtArgs>
     _count?: boolean | InstagramProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["instagramProfile"]>
@@ -5620,7 +5602,8 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
-    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["instagramProfile"]>
 
   export type InstagramProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5632,7 +5615,8 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
-    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["instagramProfile"]>
 
   export type InstagramProfileSelectScalar = {
@@ -5644,10 +5628,11 @@ export namespace Prisma {
     following?: boolean
     posts?: boolean
     profilePic?: boolean
-    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type InstagramProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "followers" | "followersCount" | "following" | "posts" | "profilePic" | "status", ExtArgs["result"]["instagramProfile"]>
+  export type InstagramProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "name" | "followers" | "followersCount" | "following" | "posts" | "profilePic" | "createdAt" | "updatedAt", ExtArgs["result"]["instagramProfile"]>
   export type InstagramProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locations?: boolean | InstagramProfile$locationsArgs<ExtArgs>
     _count?: boolean | InstagramProfileCountOutputTypeDefaultArgs<ExtArgs>
@@ -5669,7 +5654,8 @@ export namespace Prisma {
       following: string | null
       posts: string | null
       profilePic: string | null
-      status: $Enums.Status
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["instagramProfile"]>
     composites: {}
   }
@@ -6102,7 +6088,8 @@ export namespace Prisma {
     readonly following: FieldRef<"InstagramProfile", 'String'>
     readonly posts: FieldRef<"InstagramProfile", 'String'>
     readonly profilePic: FieldRef<"InstagramProfile", 'String'>
-    readonly status: FieldRef<"InstagramProfile", 'Status'>
+    readonly createdAt: FieldRef<"InstagramProfile", 'DateTime'>
+    readonly updatedAt: FieldRef<"InstagramProfile", 'DateTime'>
   }
     
 
@@ -6547,30 +6534,24 @@ export namespace Prisma {
     id: string | null
     name: string | null
     slug: string | null
-    active: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
-    status: $Enums.Status | null
   }
 
   export type DestinationMaxAggregateOutputType = {
     id: string | null
     name: string | null
     slug: string | null
-    active: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
-    status: $Enums.Status | null
   }
 
   export type DestinationCountAggregateOutputType = {
     id: number
     name: number
     slug: number
-    active: number
     createdAt: number
     updatedAt: number
-    status: number
     _all: number
   }
 
@@ -6579,30 +6560,24 @@ export namespace Prisma {
     id?: true
     name?: true
     slug?: true
-    active?: true
     createdAt?: true
     updatedAt?: true
-    status?: true
   }
 
   export type DestinationMaxAggregateInputType = {
     id?: true
     name?: true
     slug?: true
-    active?: true
     createdAt?: true
     updatedAt?: true
-    status?: true
   }
 
   export type DestinationCountAggregateInputType = {
     id?: true
     name?: true
     slug?: true
-    active?: true
     createdAt?: true
     updatedAt?: true
-    status?: true
     _all?: true
   }
 
@@ -6682,10 +6657,8 @@ export namespace Prisma {
     id: string
     name: string
     slug: string
-    active: boolean
     createdAt: Date
     updatedAt: Date
-    status: $Enums.Status
     _count: DestinationCountAggregateOutputType | null
     _min: DestinationMinAggregateOutputType | null
     _max: DestinationMaxAggregateOutputType | null
@@ -6709,10 +6682,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     slug?: boolean
-    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    status?: boolean
     events?: boolean | Destination$eventsArgs<ExtArgs>
     groups?: boolean | Destination$groupsArgs<ExtArgs>
     locations?: boolean | Destination$locationsArgs<ExtArgs>
@@ -6723,33 +6694,27 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     slug?: boolean
-    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    status?: boolean
   }, ExtArgs["result"]["destination"]>
 
   export type DestinationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     slug?: boolean
-    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    status?: boolean
   }, ExtArgs["result"]["destination"]>
 
   export type DestinationSelectScalar = {
     id?: boolean
     name?: boolean
     slug?: boolean
-    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    status?: boolean
   }
 
-  export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "active" | "createdAt" | "updatedAt" | "status", ExtArgs["result"]["destination"]>
+  export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "createdAt" | "updatedAt", ExtArgs["result"]["destination"]>
   export type DestinationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Destination$eventsArgs<ExtArgs>
     groups?: boolean | Destination$groupsArgs<ExtArgs>
@@ -6770,10 +6735,8 @@ export namespace Prisma {
       id: string
       name: string
       slug: string
-      active: boolean
       createdAt: Date
       updatedAt: Date
-      status: $Enums.Status
     }, ExtArgs["result"]["destination"]>
     composites: {}
   }
@@ -7203,10 +7166,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Destination", 'String'>
     readonly name: FieldRef<"Destination", 'String'>
     readonly slug: FieldRef<"Destination", 'String'>
-    readonly active: FieldRef<"Destination", 'Boolean'>
     readonly createdAt: FieldRef<"Destination", 'DateTime'>
     readonly updatedAt: FieldRef<"Destination", 'DateTime'>
-    readonly status: FieldRef<"Destination", 'Status'>
   }
     
 
@@ -7701,8 +7662,6 @@ export namespace Prisma {
     slug: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    show: boolean | null
-    status: $Enums.Status | null
   }
 
   export type CategoryMaxAggregateOutputType = {
@@ -7711,8 +7670,6 @@ export namespace Prisma {
     slug: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    show: boolean | null
-    status: $Enums.Status | null
   }
 
   export type CategoryCountAggregateOutputType = {
@@ -7721,8 +7678,6 @@ export namespace Prisma {
     slug: number
     createdAt: number
     updatedAt: number
-    show: number
-    status: number
     _all: number
   }
 
@@ -7733,8 +7688,6 @@ export namespace Prisma {
     slug?: true
     createdAt?: true
     updatedAt?: true
-    show?: true
-    status?: true
   }
 
   export type CategoryMaxAggregateInputType = {
@@ -7743,8 +7696,6 @@ export namespace Prisma {
     slug?: true
     createdAt?: true
     updatedAt?: true
-    show?: true
-    status?: true
   }
 
   export type CategoryCountAggregateInputType = {
@@ -7753,8 +7704,6 @@ export namespace Prisma {
     slug?: true
     createdAt?: true
     updatedAt?: true
-    show?: true
-    status?: true
     _all?: true
   }
 
@@ -7836,8 +7785,6 @@ export namespace Prisma {
     slug: string
     createdAt: Date
     updatedAt: Date
-    show: boolean
-    status: $Enums.Status
     _count: CategoryCountAggregateOutputType | null
     _min: CategoryMinAggregateOutputType | null
     _max: CategoryMaxAggregateOutputType | null
@@ -7863,8 +7810,6 @@ export namespace Prisma {
     slug?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    show?: boolean
-    status?: boolean
     events?: boolean | Category$eventsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
@@ -7875,8 +7820,6 @@ export namespace Prisma {
     slug?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    show?: boolean
-    status?: boolean
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7885,8 +7828,6 @@ export namespace Prisma {
     slug?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    show?: boolean
-    status?: boolean
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectScalar = {
@@ -7895,11 +7836,9 @@ export namespace Prisma {
     slug?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    show?: boolean
-    status?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "createdAt" | "updatedAt" | "show" | "status", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Category$eventsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -7918,8 +7857,6 @@ export namespace Prisma {
       slug: string
       createdAt: Date
       updatedAt: Date
-      show: boolean
-      status: $Enums.Status
     }, ExtArgs["result"]["category"]>
     composites: {}
   }
@@ -8349,8 +8286,6 @@ export namespace Prisma {
     readonly slug: FieldRef<"Category", 'String'>
     readonly createdAt: FieldRef<"Category", 'DateTime'>
     readonly updatedAt: FieldRef<"Category", 'DateTime'>
-    readonly show: FieldRef<"Category", 'Boolean'>
-    readonly status: FieldRef<"Category", 'Status'>
   }
     
 
@@ -8800,10 +8735,9 @@ export namespace Prisma {
     city: 'city',
     slug: 'slug',
     country: 'country',
-    active: 'active',
+    posterUrl: 'posterUrl',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    posterUrl: 'posterUrl'
+    updatedAt: 'updatedAt'
   };
 
   export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
@@ -8821,13 +8755,12 @@ export namespace Prisma {
     email: 'email',
     meta: 'meta',
     source: 'source',
-    active: 'active',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
     logo: 'logo',
     posterUrls: 'posterUrls',
     tagLine: 'tagLine',
-    status: 'status'
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type GroupScalarFieldEnum = (typeof GroupScalarFieldEnum)[keyof typeof GroupScalarFieldEnum]
@@ -8847,9 +8780,9 @@ export namespace Prisma {
     includes: 'includes',
     excludes: 'excludes',
     source: 'source',
+    status: 'status',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    status: 'status'
+    updatedAt: 'updatedAt'
   };
 
   export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -8864,7 +8797,8 @@ export namespace Prisma {
     following: 'following',
     posts: 'posts',
     profilePic: 'profilePic',
-    status: 'status'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type InstagramProfileScalarFieldEnum = (typeof InstagramProfileScalarFieldEnum)[keyof typeof InstagramProfileScalarFieldEnum]
@@ -8874,10 +8808,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     slug: 'slug',
-    active: 'active',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    status: 'status'
+    updatedAt: 'updatedAt'
   };
 
   export type DestinationScalarFieldEnum = (typeof DestinationScalarFieldEnum)[keyof typeof DestinationScalarFieldEnum]
@@ -8888,9 +8820,7 @@ export namespace Prisma {
     name: 'name',
     slug: 'slug',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    show: 'show',
-    status: 'status'
+    updatedAt: 'updatedAt'
   };
 
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -9035,13 +8965,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -9122,10 +9045,9 @@ export namespace Prisma {
     city?: StringFilter<"Location"> | string
     slug?: StringFilter<"Location"> | string
     country?: StringFilter<"Location"> | string
-    active?: BoolFilter<"Location"> | boolean
+    posterUrl?: StringNullableFilter<"Location"> | string | null
     createdAt?: DateTimeFilter<"Location"> | Date | string
     updatedAt?: DateTimeFilter<"Location"> | Date | string
-    posterUrl?: StringNullableFilter<"Location"> | string | null
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
     instagramProfiles?: InstagramProfileListRelationFilter
@@ -9137,10 +9059,9 @@ export namespace Prisma {
     city?: SortOrder
     slug?: SortOrder
     country?: SortOrder
-    active?: SortOrder
+    posterUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    posterUrl?: SortOrderInput | SortOrder
     events?: EventOrderByRelationAggregateInput
     groups?: GroupOrderByRelationAggregateInput
     instagramProfiles?: InstagramProfileOrderByRelationAggregateInput
@@ -9156,10 +9077,9 @@ export namespace Prisma {
     NOT?: LocationWhereInput | LocationWhereInput[]
     city?: StringFilter<"Location"> | string
     country?: StringFilter<"Location"> | string
-    active?: BoolFilter<"Location"> | boolean
+    posterUrl?: StringNullableFilter<"Location"> | string | null
     createdAt?: DateTimeFilter<"Location"> | Date | string
     updatedAt?: DateTimeFilter<"Location"> | Date | string
-    posterUrl?: StringNullableFilter<"Location"> | string | null
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
     instagramProfiles?: InstagramProfileListRelationFilter
@@ -9171,10 +9091,9 @@ export namespace Prisma {
     city?: SortOrder
     slug?: SortOrder
     country?: SortOrder
-    active?: SortOrder
+    posterUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    posterUrl?: SortOrderInput | SortOrder
     _count?: LocationCountOrderByAggregateInput
     _max?: LocationMaxOrderByAggregateInput
     _min?: LocationMinOrderByAggregateInput
@@ -9188,10 +9107,9 @@ export namespace Prisma {
     city?: StringWithAggregatesFilter<"Location"> | string
     slug?: StringWithAggregatesFilter<"Location"> | string
     country?: StringWithAggregatesFilter<"Location"> | string
-    active?: BoolWithAggregatesFilter<"Location"> | boolean
+    posterUrl?: StringNullableWithAggregatesFilter<"Location"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Location"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Location"> | Date | string
-    posterUrl?: StringNullableWithAggregatesFilter<"Location"> | string | null
   }
 
   export type GroupWhereInput = {
@@ -9209,13 +9127,12 @@ export namespace Prisma {
     email?: StringNullableFilter<"Group"> | string | null
     meta?: JsonNullableFilter<"Group">
     source?: StringFilter<"Group"> | string
-    active?: BoolFilter<"Group"> | boolean
-    createdAt?: DateTimeFilter<"Group"> | Date | string
-    updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
     posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
     status?: EnumStatusFilter<"Group"> | $Enums.Status
+    createdAt?: DateTimeFilter<"Group"> | Date | string
+    updatedAt?: DateTimeFilter<"Group"> | Date | string
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
     destinations?: DestinationListRelationFilter
@@ -9233,13 +9150,12 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     meta?: SortOrderInput | SortOrder
     source?: SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     logo?: SortOrderInput | SortOrder
     posterUrls?: SortOrder
     tagLine?: SortOrderInput | SortOrder
     status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     events?: EventOrderByRelationAggregateInput
     locations?: LocationOrderByRelationAggregateInput
     destinations?: DestinationOrderByRelationAggregateInput
@@ -9261,13 +9177,12 @@ export namespace Prisma {
     email?: StringNullableFilter<"Group"> | string | null
     meta?: JsonNullableFilter<"Group">
     source?: StringFilter<"Group"> | string
-    active?: BoolFilter<"Group"> | boolean
-    createdAt?: DateTimeFilter<"Group"> | Date | string
-    updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
     posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
     status?: EnumStatusFilter<"Group"> | $Enums.Status
+    createdAt?: DateTimeFilter<"Group"> | Date | string
+    updatedAt?: DateTimeFilter<"Group"> | Date | string
     events?: EventListRelationFilter
     locations?: LocationListRelationFilter
     destinations?: DestinationListRelationFilter
@@ -9285,13 +9200,12 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     meta?: SortOrderInput | SortOrder
     source?: SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     logo?: SortOrderInput | SortOrder
     posterUrls?: SortOrder
     tagLine?: SortOrderInput | SortOrder
     status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: GroupCountOrderByAggregateInput
     _max?: GroupMaxOrderByAggregateInput
     _min?: GroupMinOrderByAggregateInput
@@ -9312,13 +9226,12 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"Group"> | string | null
     meta?: JsonNullableWithAggregatesFilter<"Group">
     source?: StringWithAggregatesFilter<"Group"> | string
-    active?: BoolWithAggregatesFilter<"Group"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
     logo?: StringNullableWithAggregatesFilter<"Group"> | string | null
     posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableWithAggregatesFilter<"Group"> | string | null
     status?: EnumStatusWithAggregatesFilter<"Group"> | $Enums.Status
+    createdAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
   }
 
   export type EventWhereInput = {
@@ -9338,9 +9251,9 @@ export namespace Prisma {
     includes?: StringNullableListFilter<"Event">
     excludes?: StringNullableListFilter<"Event">
     source?: StringFilter<"Event"> | string
+    status?: EnumStatusFilter<"Event"> | $Enums.Status
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
-    status?: EnumStatusFilter<"Event"> | $Enums.Status
     group?: XOR<GroupScalarRelationFilter, GroupWhereInput>
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     destinations?: DestinationListRelationFilter
@@ -9361,9 +9274,9 @@ export namespace Prisma {
     includes?: SortOrder
     excludes?: SortOrder
     source?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
     group?: GroupOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
     destinations?: DestinationOrderByRelationAggregateInput
@@ -9388,9 +9301,9 @@ export namespace Prisma {
     includes?: StringNullableListFilter<"Event">
     excludes?: StringNullableListFilter<"Event">
     source?: StringFilter<"Event"> | string
+    status?: EnumStatusFilter<"Event"> | $Enums.Status
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
-    status?: EnumStatusFilter<"Event"> | $Enums.Status
     group?: XOR<GroupScalarRelationFilter, GroupWhereInput>
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     destinations?: DestinationListRelationFilter
@@ -9411,9 +9324,9 @@ export namespace Prisma {
     includes?: SortOrder
     excludes?: SortOrder
     source?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
     _count?: EventCountOrderByAggregateInput
     _avg?: EventAvgOrderByAggregateInput
     _max?: EventMaxOrderByAggregateInput
@@ -9438,9 +9351,9 @@ export namespace Prisma {
     includes?: StringNullableListFilter<"Event">
     excludes?: StringNullableListFilter<"Event">
     source?: StringWithAggregatesFilter<"Event"> | string
+    status?: EnumStatusWithAggregatesFilter<"Event"> | $Enums.Status
     createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
-    status?: EnumStatusWithAggregatesFilter<"Event"> | $Enums.Status
   }
 
   export type InstagramProfileWhereInput = {
@@ -9455,7 +9368,8 @@ export namespace Prisma {
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
-    status?: EnumStatusFilter<"InstagramProfile"> | $Enums.Status
+    createdAt?: DateTimeFilter<"InstagramProfile"> | Date | string
+    updatedAt?: DateTimeFilter<"InstagramProfile"> | Date | string
     locations?: LocationListRelationFilter
   }
 
@@ -9468,7 +9382,8 @@ export namespace Prisma {
     following?: SortOrderInput | SortOrder
     posts?: SortOrderInput | SortOrder
     profilePic?: SortOrderInput | SortOrder
-    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     locations?: LocationOrderByRelationAggregateInput
     _relevance?: InstagramProfileOrderByRelevanceInput
   }
@@ -9485,7 +9400,8 @@ export namespace Prisma {
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
-    status?: EnumStatusFilter<"InstagramProfile"> | $Enums.Status
+    createdAt?: DateTimeFilter<"InstagramProfile"> | Date | string
+    updatedAt?: DateTimeFilter<"InstagramProfile"> | Date | string
     locations?: LocationListRelationFilter
   }, "id" | "username">
 
@@ -9498,7 +9414,8 @@ export namespace Prisma {
     following?: SortOrderInput | SortOrder
     posts?: SortOrderInput | SortOrder
     profilePic?: SortOrderInput | SortOrder
-    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: InstagramProfileCountOrderByAggregateInput
     _avg?: InstagramProfileAvgOrderByAggregateInput
     _max?: InstagramProfileMaxOrderByAggregateInput
@@ -9518,7 +9435,8 @@ export namespace Prisma {
     following?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
     posts?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableWithAggregatesFilter<"InstagramProfile"> | string | null
-    status?: EnumStatusWithAggregatesFilter<"InstagramProfile"> | $Enums.Status
+    createdAt?: DateTimeWithAggregatesFilter<"InstagramProfile"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InstagramProfile"> | Date | string
   }
 
   export type DestinationWhereInput = {
@@ -9528,10 +9446,8 @@ export namespace Prisma {
     id?: StringFilter<"Destination"> | string
     name?: StringFilter<"Destination"> | string
     slug?: StringFilter<"Destination"> | string
-    active?: BoolFilter<"Destination"> | boolean
     createdAt?: DateTimeFilter<"Destination"> | Date | string
     updatedAt?: DateTimeFilter<"Destination"> | Date | string
-    status?: EnumStatusFilter<"Destination"> | $Enums.Status
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
     locations?: LocationListRelationFilter
@@ -9541,10 +9457,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
     events?: EventOrderByRelationAggregateInput
     groups?: GroupOrderByRelationAggregateInput
     locations?: LocationOrderByRelationAggregateInput
@@ -9558,10 +9472,8 @@ export namespace Prisma {
     OR?: DestinationWhereInput[]
     NOT?: DestinationWhereInput | DestinationWhereInput[]
     name?: StringFilter<"Destination"> | string
-    active?: BoolFilter<"Destination"> | boolean
     createdAt?: DateTimeFilter<"Destination"> | Date | string
     updatedAt?: DateTimeFilter<"Destination"> | Date | string
-    status?: EnumStatusFilter<"Destination"> | $Enums.Status
     events?: EventListRelationFilter
     groups?: GroupListRelationFilter
     locations?: LocationListRelationFilter
@@ -9571,10 +9483,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
     _count?: DestinationCountOrderByAggregateInput
     _max?: DestinationMaxOrderByAggregateInput
     _min?: DestinationMinOrderByAggregateInput
@@ -9587,10 +9497,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Destination"> | string
     name?: StringWithAggregatesFilter<"Destination"> | string
     slug?: StringWithAggregatesFilter<"Destination"> | string
-    active?: BoolWithAggregatesFilter<"Destination"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Destination"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Destination"> | Date | string
-    status?: EnumStatusWithAggregatesFilter<"Destination"> | $Enums.Status
   }
 
   export type CategoryWhereInput = {
@@ -9602,8 +9510,6 @@ export namespace Prisma {
     slug?: StringFilter<"Category"> | string
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
-    show?: BoolFilter<"Category"> | boolean
-    status?: EnumStatusFilter<"Category"> | $Enums.Status
     events?: EventListRelationFilter
   }
 
@@ -9613,8 +9519,6 @@ export namespace Prisma {
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    show?: SortOrder
-    status?: SortOrder
     events?: EventOrderByRelationAggregateInput
     _relevance?: CategoryOrderByRelevanceInput
   }
@@ -9628,8 +9532,6 @@ export namespace Prisma {
     name?: StringFilter<"Category"> | string
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
-    show?: BoolFilter<"Category"> | boolean
-    status?: EnumStatusFilter<"Category"> | $Enums.Status
     events?: EventListRelationFilter
   }, "id" | "slug">
 
@@ -9639,8 +9541,6 @@ export namespace Prisma {
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    show?: SortOrder
-    status?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
     _max?: CategoryMaxOrderByAggregateInput
     _min?: CategoryMinOrderByAggregateInput
@@ -9655,8 +9555,6 @@ export namespace Prisma {
     slug?: StringWithAggregatesFilter<"Category"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
-    show?: BoolWithAggregatesFilter<"Category"> | boolean
-    status?: EnumStatusWithAggregatesFilter<"Category"> | $Enums.Status
   }
 
   export type LocationCreateInput = {
@@ -9664,10 +9562,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     events?: EventCreateNestedManyWithoutLocationInput
     groups?: GroupCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
@@ -9679,10 +9576,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
@@ -9694,10 +9590,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutLocationNestedInput
     groups?: GroupUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
@@ -9709,10 +9604,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
@@ -9724,10 +9618,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
   }
 
   export type LocationUpdateManyMutationInput = {
@@ -9735,10 +9628,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationUncheckedUpdateManyInput = {
@@ -9746,10 +9638,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GroupCreateInput = {
@@ -9764,13 +9655,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     events?: EventCreateNestedManyWithoutGroupInput
     locations?: LocationCreateNestedManyWithoutGroupsInput
     destinations?: DestinationCreateNestedManyWithoutGroupsInput
@@ -9788,13 +9678,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
@@ -9812,13 +9701,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUpdateManyWithoutGroupNestedInput
     locations?: LocationUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUpdateManyWithoutGroupsNestedInput
@@ -9836,13 +9724,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
@@ -9860,13 +9747,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GroupUpdateManyMutationInput = {
@@ -9881,13 +9767,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GroupUncheckedUpdateManyInput = {
@@ -9902,13 +9787,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EventCreateInput = {
@@ -9923,9 +9807,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     group: GroupCreateNestedOneWithoutEventsInput
     location: LocationCreateNestedOneWithoutEventsInput
     destinations?: DestinationCreateNestedManyWithoutEventsInput
@@ -9946,9 +9830,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     destinations?: DestinationUncheckedCreateNestedManyWithoutEventsInput
     categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput
   }
@@ -9965,9 +9849,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
     destinations?: DestinationUpdateManyWithoutEventsNestedInput
@@ -9988,9 +9872,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     destinations?: DestinationUncheckedUpdateManyWithoutEventsNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput
   }
@@ -10009,9 +9893,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
   }
 
   export type EventUpdateManyMutationInput = {
@@ -10026,9 +9910,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type EventUncheckedUpdateManyInput = {
@@ -10045,9 +9929,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type InstagramProfileCreateInput = {
@@ -10059,7 +9943,8 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
-    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     locations?: LocationCreateNestedManyWithoutInstagramProfilesInput
   }
 
@@ -10072,7 +9957,8 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
-    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     locations?: LocationUncheckedCreateNestedManyWithoutInstagramProfilesInput
   }
 
@@ -10085,7 +9971,8 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locations?: LocationUpdateManyWithoutInstagramProfilesNestedInput
   }
 
@@ -10098,7 +9985,8 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locations?: LocationUncheckedUpdateManyWithoutInstagramProfilesNestedInput
   }
 
@@ -10111,7 +9999,8 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
-    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type InstagramProfileUpdateManyMutationInput = {
@@ -10123,7 +10012,8 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InstagramProfileUncheckedUpdateManyInput = {
@@ -10135,17 +10025,16 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DestinationCreateInput = {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutDestinationsInput
     groups?: GroupCreateNestedManyWithoutDestinationsInput
     locations?: LocationCreateNestedManyWithoutDestinationsInput
@@ -10155,10 +10044,8 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutDestinationsInput
     groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
     locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
@@ -10168,10 +10055,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutDestinationsNestedInput
     groups?: GroupUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUpdateManyWithoutDestinationsNestedInput
@@ -10181,10 +10066,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutDestinationsNestedInput
     groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
@@ -10194,30 +10077,24 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
   }
 
   export type DestinationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type DestinationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryCreateInput = {
@@ -10226,8 +10103,6 @@ export namespace Prisma {
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    show?: boolean
-    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutCategoriesInput
   }
 
@@ -10237,8 +10112,6 @@ export namespace Prisma {
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    show?: boolean
-    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutCategoriesInput
   }
 
@@ -10248,8 +10121,6 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    show?: BoolFieldUpdateOperationsInput | boolean
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutCategoriesNestedInput
   }
 
@@ -10259,8 +10130,6 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    show?: BoolFieldUpdateOperationsInput | boolean
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutCategoriesNestedInput
   }
 
@@ -10270,8 +10139,6 @@ export namespace Prisma {
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    show?: boolean
-    status?: $Enums.Status
   }
 
   export type CategoryUpdateManyMutationInput = {
@@ -10280,8 +10147,6 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    show?: BoolFieldUpdateOperationsInput | boolean
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryUncheckedUpdateManyInput = {
@@ -10290,8 +10155,6 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    show?: BoolFieldUpdateOperationsInput | boolean
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -10310,22 +10173,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10340,6 +10187,17 @@ export namespace Prisma {
     search?: string
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type EventListRelationFilter = {
@@ -10398,10 +10256,9 @@ export namespace Prisma {
     city?: SortOrder
     slug?: SortOrder
     country?: SortOrder
-    active?: SortOrder
+    posterUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    posterUrl?: SortOrder
   }
 
   export type LocationMaxOrderByAggregateInput = {
@@ -10409,10 +10266,9 @@ export namespace Prisma {
     city?: SortOrder
     slug?: SortOrder
     country?: SortOrder
-    active?: SortOrder
+    posterUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    posterUrl?: SortOrder
   }
 
   export type LocationMinOrderByAggregateInput = {
@@ -10420,10 +10276,9 @@ export namespace Prisma {
     city?: SortOrder
     slug?: SortOrder
     country?: SortOrder
-    active?: SortOrder
+    posterUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    posterUrl?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -10445,28 +10300,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10484,6 +10317,20 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -10552,13 +10399,12 @@ export namespace Prisma {
     email?: SortOrder
     meta?: SortOrder
     source?: SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     logo?: SortOrder
     posterUrls?: SortOrder
     tagLine?: SortOrder
     status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GroupMaxOrderByAggregateInput = {
@@ -10572,12 +10418,11 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     source?: SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     logo?: SortOrder
     tagLine?: SortOrder
     status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GroupMinOrderByAggregateInput = {
@@ -10591,12 +10436,11 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     source?: SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     logo?: SortOrder
     tagLine?: SortOrder
     status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -10686,9 +10530,9 @@ export namespace Prisma {
     includes?: SortOrder
     excludes?: SortOrder
     source?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
   }
 
   export type EventAvgOrderByAggregateInput = {
@@ -10705,9 +10549,9 @@ export namespace Prisma {
     locationId?: SortOrder
     groupId?: SortOrder
     source?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
   }
 
   export type EventMinOrderByAggregateInput = {
@@ -10720,9 +10564,9 @@ export namespace Prisma {
     locationId?: SortOrder
     groupId?: SortOrder
     source?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
   }
 
   export type EventSumOrderByAggregateInput = {
@@ -10760,7 +10604,8 @@ export namespace Prisma {
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
-    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type InstagramProfileAvgOrderByAggregateInput = {
@@ -10776,7 +10621,8 @@ export namespace Prisma {
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
-    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type InstagramProfileMinOrderByAggregateInput = {
@@ -10788,7 +10634,8 @@ export namespace Prisma {
     following?: SortOrder
     posts?: SortOrder
     profilePic?: SortOrder
-    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type InstagramProfileSumOrderByAggregateInput = {
@@ -10805,30 +10652,24 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
   }
 
   export type DestinationMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
   }
 
   export type DestinationMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
-    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    status?: SortOrder
   }
 
   export type CategoryOrderByRelevanceInput = {
@@ -10843,8 +10684,6 @@ export namespace Prisma {
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    show?: SortOrder
-    status?: SortOrder
   }
 
   export type CategoryMaxOrderByAggregateInput = {
@@ -10853,8 +10692,6 @@ export namespace Prisma {
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    show?: SortOrder
-    status?: SortOrder
   }
 
   export type CategoryMinOrderByAggregateInput = {
@@ -10863,8 +10700,6 @@ export namespace Prisma {
     slug?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    show?: SortOrder
-    status?: SortOrder
   }
 
   export type EventCreateNestedManyWithoutLocationInput = {
@@ -10921,16 +10756,12 @@ export namespace Prisma {
     set?: string
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type EventUpdateManyWithoutLocationNestedInput = {
@@ -11514,22 +11345,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -11543,6 +11358,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -11574,28 +11400,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -11623,6 +11427,20 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedEnumStatusFilter<$PrismaModel = never> = {
@@ -11704,9 +11522,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     group: GroupCreateNestedOneWithoutEventsInput
     destinations?: DestinationCreateNestedManyWithoutEventsInput
     categories?: CategoryCreateNestedManyWithoutEventsInput
@@ -11725,9 +11543,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     destinations?: DestinationUncheckedCreateNestedManyWithoutEventsInput
     categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput
   }
@@ -11754,13 +11572,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     events?: EventCreateNestedManyWithoutGroupInput
     destinations?: DestinationCreateNestedManyWithoutGroupsInput
   }
@@ -11777,13 +11594,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
   }
@@ -11802,7 +11618,8 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
-    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type InstagramProfileUncheckedCreateWithoutLocationsInput = {
@@ -11814,7 +11631,8 @@ export namespace Prisma {
     following?: string | null
     posts?: string | null
     profilePic?: string | null
-    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type InstagramProfileCreateOrConnectWithoutLocationsInput = {
@@ -11826,10 +11644,8 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutDestinationsInput
     groups?: GroupCreateNestedManyWithoutDestinationsInput
   }
@@ -11838,10 +11654,8 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutDestinationsInput
     groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
   }
@@ -11884,9 +11698,9 @@ export namespace Prisma {
     includes?: StringNullableListFilter<"Event">
     excludes?: StringNullableListFilter<"Event">
     source?: StringFilter<"Event"> | string
+    status?: EnumStatusFilter<"Event"> | $Enums.Status
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
-    status?: EnumStatusFilter<"Event"> | $Enums.Status
   }
 
   export type GroupUpsertWithWhereUniqueWithoutLocationsInput = {
@@ -11920,13 +11734,12 @@ export namespace Prisma {
     email?: StringNullableFilter<"Group"> | string | null
     meta?: JsonNullableFilter<"Group">
     source?: StringFilter<"Group"> | string
-    active?: BoolFilter<"Group"> | boolean
-    createdAt?: DateTimeFilter<"Group"> | Date | string
-    updatedAt?: DateTimeFilter<"Group"> | Date | string
     logo?: StringNullableFilter<"Group"> | string | null
     posterUrls?: StringNullableListFilter<"Group">
     tagLine?: StringNullableFilter<"Group"> | string | null
     status?: EnumStatusFilter<"Group"> | $Enums.Status
+    createdAt?: DateTimeFilter<"Group"> | Date | string
+    updatedAt?: DateTimeFilter<"Group"> | Date | string
   }
 
   export type InstagramProfileUpsertWithWhereUniqueWithoutLocationsInput = {
@@ -11957,7 +11770,8 @@ export namespace Prisma {
     following?: StringNullableFilter<"InstagramProfile"> | string | null
     posts?: StringNullableFilter<"InstagramProfile"> | string | null
     profilePic?: StringNullableFilter<"InstagramProfile"> | string | null
-    status?: EnumStatusFilter<"InstagramProfile"> | $Enums.Status
+    createdAt?: DateTimeFilter<"InstagramProfile"> | Date | string
+    updatedAt?: DateTimeFilter<"InstagramProfile"> | Date | string
   }
 
   export type DestinationUpsertWithWhereUniqueWithoutLocationsInput = {
@@ -11983,10 +11797,8 @@ export namespace Prisma {
     id?: StringFilter<"Destination"> | string
     name?: StringFilter<"Destination"> | string
     slug?: StringFilter<"Destination"> | string
-    active?: BoolFilter<"Destination"> | boolean
     createdAt?: DateTimeFilter<"Destination"> | Date | string
     updatedAt?: DateTimeFilter<"Destination"> | Date | string
-    status?: EnumStatusFilter<"Destination"> | $Enums.Status
   }
 
   export type EventCreateWithoutGroupInput = {
@@ -12001,9 +11813,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     location: LocationCreateNestedOneWithoutEventsInput
     destinations?: DestinationCreateNestedManyWithoutEventsInput
     categories?: CategoryCreateNestedManyWithoutEventsInput
@@ -12022,9 +11834,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     destinations?: DestinationUncheckedCreateNestedManyWithoutEventsInput
     categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput
   }
@@ -12044,10 +11856,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     events?: EventCreateNestedManyWithoutLocationInput
     instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
     destinations?: DestinationCreateNestedManyWithoutLocationsInput
@@ -12058,10 +11869,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
     instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutLocationsInput
@@ -12076,10 +11886,8 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     events?: EventCreateNestedManyWithoutDestinationsInput
     locations?: LocationCreateNestedManyWithoutDestinationsInput
   }
@@ -12088,10 +11896,8 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     events?: EventUncheckedCreateNestedManyWithoutDestinationsInput
     locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
   }
@@ -12141,10 +11947,9 @@ export namespace Prisma {
     city?: StringFilter<"Location"> | string
     slug?: StringFilter<"Location"> | string
     country?: StringFilter<"Location"> | string
-    active?: BoolFilter<"Location"> | boolean
+    posterUrl?: StringNullableFilter<"Location"> | string | null
     createdAt?: DateTimeFilter<"Location"> | Date | string
     updatedAt?: DateTimeFilter<"Location"> | Date | string
-    posterUrl?: StringNullableFilter<"Location"> | string | null
   }
 
   export type DestinationUpsertWithWhereUniqueWithoutGroupsInput = {
@@ -12175,13 +11980,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     locations?: LocationCreateNestedManyWithoutGroupsInput
     destinations?: DestinationCreateNestedManyWithoutGroupsInput
   }
@@ -12198,13 +12002,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutGroupsInput
   }
@@ -12219,10 +12022,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     groups?: GroupCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
     destinations?: DestinationCreateNestedManyWithoutLocationsInput
@@ -12233,10 +12035,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutLocationsInput
@@ -12251,10 +12052,8 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     groups?: GroupCreateNestedManyWithoutDestinationsInput
     locations?: LocationCreateNestedManyWithoutDestinationsInput
   }
@@ -12263,10 +12062,8 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     groups?: GroupUncheckedCreateNestedManyWithoutDestinationsInput
     locations?: LocationUncheckedCreateNestedManyWithoutDestinationsInput
   }
@@ -12282,8 +12079,6 @@ export namespace Prisma {
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    show?: boolean
-    status?: $Enums.Status
   }
 
   export type CategoryUncheckedCreateWithoutEventsInput = {
@@ -12292,8 +12087,6 @@ export namespace Prisma {
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    show?: boolean
-    status?: $Enums.Status
   }
 
   export type CategoryCreateOrConnectWithoutEventsInput = {
@@ -12324,13 +12117,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locations?: LocationUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUpdateManyWithoutGroupsNestedInput
   }
@@ -12347,13 +12139,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
   }
@@ -12374,10 +12165,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: GroupUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
     destinations?: DestinationUpdateManyWithoutLocationsNestedInput
@@ -12388,10 +12178,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutLocationsNestedInput
@@ -12438,8 +12227,6 @@ export namespace Prisma {
     slug?: StringFilter<"Category"> | string
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
-    show?: BoolFilter<"Category"> | boolean
-    status?: EnumStatusFilter<"Category"> | $Enums.Status
   }
 
   export type LocationCreateWithoutInstagramProfilesInput = {
@@ -12447,10 +12234,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     events?: EventCreateNestedManyWithoutLocationInput
     groups?: GroupCreateNestedManyWithoutLocationsInput
     destinations?: DestinationCreateNestedManyWithoutLocationsInput
@@ -12461,10 +12247,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
     destinations?: DestinationUncheckedCreateNestedManyWithoutLocationsInput
@@ -12503,9 +12288,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     group: GroupCreateNestedOneWithoutEventsInput
     location: LocationCreateNestedOneWithoutEventsInput
     categories?: CategoryCreateNestedManyWithoutEventsInput
@@ -12525,9 +12310,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput
   }
 
@@ -12548,13 +12333,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     events?: EventCreateNestedManyWithoutGroupInput
     locations?: LocationCreateNestedManyWithoutGroupsInput
   }
@@ -12571,13 +12355,12 @@ export namespace Prisma {
     email?: string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source: string
-    active?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     logo?: string | null
     posterUrls?: GroupCreateposterUrlsInput | string[]
     tagLine?: string | null
     status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
     events?: EventUncheckedCreateNestedManyWithoutGroupInput
     locations?: LocationUncheckedCreateNestedManyWithoutGroupsInput
   }
@@ -12592,10 +12375,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     events?: EventCreateNestedManyWithoutLocationInput
     groups?: GroupCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileCreateNestedManyWithoutLocationsInput
@@ -12606,10 +12388,9 @@ export namespace Prisma {
     city: string
     slug: string
     country: string
-    active?: boolean
+    posterUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    posterUrl?: string | null
     events?: EventUncheckedCreateNestedManyWithoutLocationInput
     groups?: GroupUncheckedCreateNestedManyWithoutLocationsInput
     instagramProfiles?: InstagramProfileUncheckedCreateNestedManyWithoutLocationsInput
@@ -12680,9 +12461,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     group: GroupCreateNestedOneWithoutEventsInput
     location: LocationCreateNestedOneWithoutEventsInput
     destinations?: DestinationCreateNestedManyWithoutEventsInput
@@ -12702,9 +12483,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
     destinations?: DestinationUncheckedCreateNestedManyWithoutEventsInput
   }
 
@@ -12742,9 +12523,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
   }
 
   export type EventUpdateWithoutLocationInput = {
@@ -12759,9 +12540,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     destinations?: DestinationUpdateManyWithoutEventsNestedInput
     categories?: CategoryUpdateManyWithoutEventsNestedInput
@@ -12780,9 +12561,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     destinations?: DestinationUncheckedUpdateManyWithoutEventsNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput
   }
@@ -12800,9 +12581,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type GroupUpdateWithoutLocationsInput = {
@@ -12817,13 +12598,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUpdateManyWithoutGroupNestedInput
     destinations?: DestinationUpdateManyWithoutGroupsNestedInput
   }
@@ -12840,13 +12620,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutGroupsNestedInput
   }
@@ -12863,13 +12642,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InstagramProfileUpdateWithoutLocationsInput = {
@@ -12881,7 +12659,8 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InstagramProfileUncheckedUpdateWithoutLocationsInput = {
@@ -12893,7 +12672,8 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InstagramProfileUncheckedUpdateManyWithoutLocationsInput = {
@@ -12905,17 +12685,16 @@ export namespace Prisma {
     following?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: NullableStringFieldUpdateOperationsInput | string | null
     profilePic?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DestinationUpdateWithoutLocationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutDestinationsNestedInput
     groups?: GroupUpdateManyWithoutDestinationsNestedInput
   }
@@ -12924,10 +12703,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutDestinationsNestedInput
     groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
   }
@@ -12936,10 +12713,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type EventCreateManyGroupInput = {
@@ -12955,9 +12730,9 @@ export namespace Prisma {
     includes?: EventCreateincludesInput | string[]
     excludes?: EventCreateexcludesInput | string[]
     source: string
+    status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
-    status?: $Enums.Status
   }
 
   export type EventUpdateWithoutGroupInput = {
@@ -12972,9 +12747,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
     destinations?: DestinationUpdateManyWithoutEventsNestedInput
     categories?: CategoryUpdateManyWithoutEventsNestedInput
@@ -12993,9 +12768,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     destinations?: DestinationUncheckedUpdateManyWithoutEventsNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput
   }
@@ -13013,9 +12788,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type LocationUpdateWithoutGroupsInput = {
@@ -13023,10 +12798,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutLocationNestedInput
     instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
     destinations?: DestinationUpdateManyWithoutLocationsNestedInput
@@ -13037,10 +12811,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
     instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutLocationsNestedInput
@@ -13051,20 +12824,17 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DestinationUpdateWithoutGroupsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUpdateManyWithoutDestinationsNestedInput
   }
@@ -13073,10 +12843,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     events?: EventUncheckedUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
   }
@@ -13085,20 +12853,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type DestinationUpdateWithoutEventsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     groups?: GroupUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUpdateManyWithoutDestinationsNestedInput
   }
@@ -13107,10 +12871,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     groups?: GroupUncheckedUpdateManyWithoutDestinationsNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDestinationsNestedInput
   }
@@ -13119,10 +12881,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryUpdateWithoutEventsInput = {
@@ -13131,8 +12891,6 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    show?: BoolFieldUpdateOperationsInput | boolean
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryUncheckedUpdateWithoutEventsInput = {
@@ -13141,8 +12899,6 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    show?: BoolFieldUpdateOperationsInput | boolean
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type CategoryUncheckedUpdateManyWithoutEventsInput = {
@@ -13151,8 +12907,6 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    show?: BoolFieldUpdateOperationsInput | boolean
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type LocationUpdateWithoutInstagramProfilesInput = {
@@ -13160,10 +12914,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutLocationNestedInput
     groups?: GroupUpdateManyWithoutLocationsNestedInput
     destinations?: DestinationUpdateManyWithoutLocationsNestedInput
@@ -13174,10 +12927,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
     destinations?: DestinationUncheckedUpdateManyWithoutLocationsNestedInput
@@ -13188,10 +12940,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EventUpdateWithoutDestinationsInput = {
@@ -13206,9 +12957,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
     categories?: CategoryUpdateManyWithoutEventsNestedInput
@@ -13228,9 +12979,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput
   }
 
@@ -13248,9 +12999,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type GroupUpdateWithoutDestinationsInput = {
@@ -13265,13 +13016,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUpdateManyWithoutGroupNestedInput
     locations?: LocationUpdateManyWithoutGroupsNestedInput
   }
@@ -13288,13 +13038,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUncheckedUpdateManyWithoutGroupNestedInput
     locations?: LocationUncheckedUpdateManyWithoutGroupsNestedInput
   }
@@ -13311,13 +13060,12 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     meta?: NullableJsonNullValueInput | InputJsonValue
     source?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     posterUrls?: GroupUpdateposterUrlsInput | string[]
     tagLine?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LocationUpdateWithoutDestinationsInput = {
@@ -13325,10 +13073,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUpdateManyWithoutLocationNestedInput
     groups?: GroupUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUpdateManyWithoutLocationsNestedInput
@@ -13339,10 +13086,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     events?: EventUncheckedUpdateManyWithoutLocationNestedInput
     groups?: GroupUncheckedUpdateManyWithoutLocationsNestedInput
     instagramProfiles?: InstagramProfileUncheckedUpdateManyWithoutLocationsNestedInput
@@ -13353,10 +13099,9 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EventUpdateWithoutCategoriesInput = {
@@ -13371,9 +13116,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     group?: GroupUpdateOneRequiredWithoutEventsNestedInput
     location?: LocationUpdateOneRequiredWithoutEventsNestedInput
     destinations?: DestinationUpdateManyWithoutEventsNestedInput
@@ -13393,9 +13138,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     destinations?: DestinationUncheckedUpdateManyWithoutEventsNestedInput
   }
 
@@ -13413,9 +13158,9 @@ export namespace Prisma {
     includes?: EventUpdateincludesInput | string[]
     excludes?: EventUpdateexcludesInput | string[]
     source?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
 

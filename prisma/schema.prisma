@@ -21,14 +21,14 @@ model Location {
   city              String
   slug              String             @unique
   country           String
-  active            Boolean            @default(true)
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
   posterUrl         String?
   events            Event[]
   groups            Group[]            @relation("GroupToLocation")
   instagramProfiles InstagramProfile[] @relation("InstagramProfileToLocation")
   destinations      Destination[]      @relation("LocationToDestination")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Group {
@@ -43,9 +43,6 @@ model Group {
   email                String?
   meta                 Json?
   source               String
-  active               Boolean       @default(true)
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime      @updatedAt
   logo                 String?
   posterUrls           String[]
   tagLine              String?
@@ -53,6 +50,9 @@ model Group {
   locations            Location[]    @relation("GroupToLocation")
   destinations         Destination[] @relation("GroupToDestination")
   status               Status        @default(raw)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Event {
@@ -69,13 +69,14 @@ model Event {
   includes     String[]
   excludes     String[]
   source       String
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
   group        Group         @relation(fields: [groupId], references: [id], onDelete: Cascade)
   location     Location      @relation(fields: [locationId], references: [id], onDelete: Cascade)
   destinations Destination[] @relation("EventToDestination")
   categories   Category[]    @relation("EventToCategory")
   status       Status        @default(raw)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model InstagramProfile {
@@ -88,29 +89,29 @@ model InstagramProfile {
   posts          String?
   profilePic     String?
   locations      Location[] @relation("InstagramProfileToLocation")
-  status         Status     @default(raw)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Destination {
   id        String     @id @default(uuid())
   name      String
   slug      String     @unique
-  active    Boolean    @default(true)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
   events    Event[]    @relation("EventToDestination")
   groups    Group[]    @relation("GroupToDestination")
   locations Location[] @relation("LocationToDestination")
-  status    Status     @default(processed)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Category {
-  id        String   @id @default(uuid())
-  name      String
-  slug      String   @unique
+  id     String  @id @default(uuid())
+  name   String
+  slug   String  @unique
+  events Event[] @relation("EventToCategory")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  events    Event[]  @relation("EventToCategory")
-  show      Boolean  @default(false)
-  status    Status   @default(processed)
 }

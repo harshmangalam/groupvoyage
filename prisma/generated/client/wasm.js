@@ -125,10 +125,9 @@ exports.Prisma.LocationScalarFieldEnum = {
   city: 'city',
   slug: 'slug',
   country: 'country',
-  active: 'active',
+  posterUrl: 'posterUrl',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  posterUrl: 'posterUrl'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.GroupScalarFieldEnum = {
@@ -143,13 +142,12 @@ exports.Prisma.GroupScalarFieldEnum = {
   email: 'email',
   meta: 'meta',
   source: 'source',
-  active: 'active',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   logo: 'logo',
   posterUrls: 'posterUrls',
   tagLine: 'tagLine',
-  status: 'status'
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.EventScalarFieldEnum = {
@@ -166,9 +164,9 @@ exports.Prisma.EventScalarFieldEnum = {
   includes: 'includes',
   excludes: 'excludes',
   source: 'source',
+  status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  status: 'status'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.InstagramProfileScalarFieldEnum = {
@@ -180,17 +178,16 @@ exports.Prisma.InstagramProfileScalarFieldEnum = {
   following: 'following',
   posts: 'posts',
   profilePic: 'profilePic',
-  status: 'status'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.DestinationScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
-  active: 'active',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  status: 'status'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -198,9 +195,7 @@ exports.Prisma.CategoryScalarFieldEnum = {
   name: 'name',
   slug: 'slug',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  show: 'show',
-  status: 'status'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
