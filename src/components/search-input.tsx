@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Input } from "@/components/ui/input";
 import { RefreshCwIcon, Search } from "lucide-react";
 import { parseAsString, useQueryState } from "nuqs";
@@ -21,13 +21,6 @@ export default function SearchInput() {
     const value = e.target.value;
     setQuery(value);
   }
-
-  useEffect(() => {
-    return () => {
-      setQuery("");
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="relative w-full">

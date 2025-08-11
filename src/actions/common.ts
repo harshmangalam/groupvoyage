@@ -39,12 +39,14 @@ export const getPublicStats = cache(async () => {
     locationsCount,
     instagramProfilesCount,
     destinationsCount,
+    categoriesCount,
   ] = await Promise.all([
     prisma.event.count(),
     prisma.group.count(),
     prisma.location.count(),
     prisma.instagramProfile.count(),
     prisma.destination.count(),
+    prisma.category.count(),
   ]);
 
   return {
@@ -53,6 +55,7 @@ export const getPublicStats = cache(async () => {
     locationsCount,
     instagramProfilesCount,
     destinationsCount,
+    categoriesCount,
   };
 });
 

@@ -59,7 +59,7 @@ export default async function SearchPage({ searchParams }) {
 
       <main className="flex-1">
         {/* Search Input (Desktop) */}
-        <div className="hidden md:block mb-6">
+        <div className="mb-6">
           <SearchInput />
         </div>
 
