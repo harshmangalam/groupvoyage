@@ -44,4 +44,6 @@ export type T_InstagramProfile = Prisma.InstagramProfileGetPayload<{}>;
 export type T_Location = Prisma.LocationGetPayload<{}>;
 export type DurationFilter = (typeof DURATIONS)[number]["value"];
 
-export type T_Category = Prisma.CategoryGetPayload<{}>;
+export type T_Category = Prisma.CategoryGetPayload<{}> & {
+  _count?: { events?: number };
+};

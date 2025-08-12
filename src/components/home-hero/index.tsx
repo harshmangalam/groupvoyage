@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { SITE_DESCRIPTION } from "@/lib/constants";
-import { ProductHuntBadge } from "../product-hunt-badge";
 import Balancer from "react-wrap-balancer";
 import { Stats } from "./stats";
 import { StatsFallback } from "./stats-fallback";

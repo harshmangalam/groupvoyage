@@ -77,7 +77,7 @@ export default async function HomePage() {
         </PageSection>
 
         <PageSection
-          href="/trips"
+          href="/categores"
           label={<span>Top Categories</span>}
           description="Pick a vibe. Pack your bag. Your weekend just got sorted."
         >
