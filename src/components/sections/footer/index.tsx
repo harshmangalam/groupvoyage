@@ -18,16 +18,17 @@ import { InstagramIcon, MailIcon, TwitterIcon } from "lucide-react";
 import { DestinationLinks } from "./destination-links";
 import { Suspense } from "react";
 import { LocationLinks } from "./location-link";
+import { CategoriesLinks } from "./categories-links";
 
 export default async function FooterSection() {
   const quickLinks = [
     {
-      label: "Home",
-      href: "/",
-    },
-    {
       label: "Locations",
       href: "/locations",
+    },
+    {
+      label: "Categories",
+      href: "/categories",
     },
     {
       label: "Destinations",
@@ -44,10 +45,6 @@ export default async function FooterSection() {
     {
       label: "Instagram Groups",
       href: "/instagram-profiles",
-    },
-    {
-      label: "Search",
-      href: "/search",
     },
   ];
 
@@ -79,6 +76,23 @@ export default async function FooterSection() {
               <Logo />
             </div>
             <p className="text-muted-foreground">{SITE_TAGLINE}</p>
+            <div className="flex flex-wrap gap-3 mt-4">
+              {connectionLinks.map((social) => (
+                <Button
+                  key={social.label}
+                  asChild
+                  variant={"outline"}
+                  size={"icon"}
+                  title={social.label}
+                  aria-label={social.label}
+                >
+                  <a href={social.href} target="_blank">
+                    <social.icon />
+                  </a>
+                </Button>
+              ))}
+              <ProductHuntBadge className="w-40 h-10" />
+            </div>
           </FooterColumn>
 
           {/* Quick Links Section */}
@@ -110,26 +124,13 @@ export default async function FooterSection() {
               <DestinationLinks />
             </Suspense>
           </FooterColumn>
-          {/* Social Media Section */}
+
+          {/* categories */}
           <FooterColumn>
-            <h3 className="text-md pt-1 font-semibold">Social</h3>
-            <ProductHuntBadge className="w-40 h-10" />
-            <div className="flex flex-wrap gap-3">
-              {connectionLinks.map((social) => (
-                <Button
-                  key={social.label}
-                  asChild
-                  variant={"outline"}
-                  size={"icon"}
-                  title={social.label}
-                  aria-label={social.label}
-                >
-                  <a href={social.href} target="_blank">
-                    <social.icon />
-                  </a>
-                </Button>
-              ))}
-            </div>
+            <h3 className="text-md pt-1 font-semibold">Categories</h3>
+            <Suspense key={"footer-destinations"}>
+              <CategoriesLinks />
+            </Suspense>
           </FooterColumn>
         </FooterContent>
 

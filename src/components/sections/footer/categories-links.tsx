@@ -1,0 +1,19 @@
+import { getCategoryList } from "@/actions/categories";
+
+export async function CategoriesLinks() {
+  const categories = await getCategoryList({ take: 6 });
+  return (
+    <>
+      {categories.categories.map((link) => (
+        <a
+          target="_blank"
+          key={link.name}
+          href={`/categories/${link.slug}`}
+          className="text-sm text-muted-foreground hover:underline capitalize"
+        >
+          {link.name}
+        </a>
+      ))}
+    </>
+  );
+}

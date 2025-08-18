@@ -7,7 +7,7 @@ import { SearchForm } from "./search-form";
 
 export async function HomeHero() {
   return (
-    <div className="py-12 md:py-6 z-[1]">
+    <div className="py-12 md:my-auto md:min-h-[90vh] z-[1]">
       <div className="mx-auto h-full max-w-7xl items-center gap-12 px-4 grid grid-cols-1">
         {/* Left Content */}
         <div className="items-center">
