@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button, ButtonProps } from "@/components/ui/button";
-import { RefreshCwIcon, X } from "lucide-react";
+import { ChevronDownIcon, RefreshCwIcon, X } from "lucide-react";
 import * as React from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { T_DropdownOption } from "@/lib/types";
@@ -53,15 +53,15 @@ export function CustomDropdownMenu({
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
-        <Button
-          className="w-auto flex justify-between"
-          variant={"outline"}
-          {...buttonProps}
-        >
-          {loading ? <RefreshCwIcon className="animate-spin" /> : icon}
-          {value
-            ? options.find((o) => o.value === value)?.label || placeholder
-            : placeholder}
+        <Button className="w-auto flex" variant={"outline"} {...buttonProps}>
+          <div className="flex items-center gap-2 flex-1">
+            {loading ? <RefreshCwIcon className="animate-spin" /> : icon}
+            {value
+              ? options.find((o) => o.value === value)?.label || placeholder
+              : placeholder}
+          </div>
+
+          <ChevronDownIcon />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -86,7 +86,7 @@ export function CustomDropdownMenu({
           )}
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup className="max-h-96 overflow-auto min-w-40">
+        <DropdownMenuGroup className="max-h-60 overflow-auto min-w-60 w-full">
           {options.map((d) => (
             <DropdownMenuItem
               key={d.value}

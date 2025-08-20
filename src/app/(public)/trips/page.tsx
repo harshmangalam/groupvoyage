@@ -1,15 +1,13 @@
 import { getEventList } from "@/actions/event";
 import { CustomPagination } from "@/components/custom-pagination";
-import { CategoriesFilter } from "@/components/filters/categories/categories-filter";
-import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
-import { DurationsFilter } from "@/components/filters/durations-filter";
-import { LocationsFilter } from "@/components/filters/locations/locations-filter";
-import { PageSection } from "@/components/page-section";
+import Empty from "@/components/empty";
+import { Filters } from "@/components/filters-sidebar/filters";
+import { FiltersSidebar } from "@/components/filters-sidebar/filters-sidebar";
+import { FilterWrapper } from "@/components/filters-sidebar/filters-wrapper";
 import { TripCard } from "@/components/trips/trip-card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { TRIPS_PER_PAGE } from "@/lib/constants";
+import { SlidersHorizontal } from "lucide-react";
 import { Metadata } from "next";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Best Weekend Trips - 1-Day & 2-Day Getaways at Affordable Price",
@@ -45,6 +43,7 @@ type TripsPageProps = {
     page: string;
     destinations: string;
     categories: string;
+    priceRange: string;
   }>;
 };
 export default async function TripsPage({ searchParams }: TripsPageProps) {
@@ -54,6 +53,7 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
     categories = "",
     durations = "",
     page = "1",
+    priceRange = "",
   } = await searchParams;
 
   const pageNum = Number(page);
@@ -65,56 +65,48 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
     skip: (pageNum - 1) * TRIPS_PER_PAGE,
     destinationSlug: destinations,
     categories,
+    priceRange,
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4">
-      <PageSection
-        label={<span>Explore Trips</span>}
-        others={
-          <div className="flex items-center flex-wrap gap-2  md:justify-end justify-start">
-            <Suspense
-              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-              key={`locations-filter`}
-            >
-              <LocationsFilter />
-            </Suspense>
-            <Suspense
-              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-              key={`destinations-filter`}
-            >
-              <DestinationsFilter />
-            </Suspense>
-
-            <Suspense
-              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-              key={`categories-filter`}
-            >
-              <CategoriesFilter />
-            </Suspense>
-
-            <Suspense
-              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-              key={`durations-filter`}
-            >
-              <DurationsFilter />
-            </Suspense>
+    <div className="container mx-auto px-4 py-4 flex-1 flex flex-col md:flex-row gap-8">
+      {/* Sidebar Filters - Hidden on mobile, sticky on desktop */}
+      <aside className="hidden lg:block w-80 sticky top-20 self-start max-h-[calc(100vh-theme(space.12))] overflow-y-auto pr-4">
+        <div className="bg-background rounded-lg border p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <SlidersHorizontal className="h-5 w-5" />
+            <h2 className="text-lg font-semibold">Filters</h2>
           </div>
-        }
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {events.events.length ? (
-            events.events.map((event) => (
-              <TripCard key={event.id} event={event} />
-            ))
-          ) : (
-            <p>No Trips</p>
-          )}
+          <FilterWrapper>
+            <Filters />
+          </FilterWrapper>
         </div>
+      </aside>
+
+      <main className="flex-1">
+        <div className="flex justify-between mb-6">
+          <div>
+            <h2 className="text-2xl font-bold">Explore Trips</h2>
+          </div>
+          <FiltersSidebar>
+            <Filters />
+          </FiltersSidebar>
+        </div>
+
+        {events.events.length ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   gap-4">
+            {events.events.map((event) => (
+              <TripCard key={event.id} event={event} />
+            ))}
+          </div>
+        ) : (
+          <Empty title={"results"} showSearch={false} showHome={false} />
+        )}
+
         <div className="mt-6">
           <CustomPagination {...events.pagination} />
         </div>
-      </PageSection>
+      </main>
     </div>
   );
 }

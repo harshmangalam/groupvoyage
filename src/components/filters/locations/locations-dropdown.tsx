@@ -24,7 +24,7 @@ export function LocationsDropdown({
   );
   return (
     <CustomDropdownMenu
-      placeholder="Filter Locations"
+      placeholder="All Locations"
       options={options}
       label="Locations"
       icon={<MapPinIcon />}

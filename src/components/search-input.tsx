@@ -5,7 +5,13 @@ import { Input } from "@/components/ui/input";
 import { RefreshCwIcon, Search } from "lucide-react";
 import { parseAsString, useQueryState } from "nuqs";
 
-export default function SearchInput() {
+export default function SearchInput({
+  placeholder = "Start typing...",
+  className,
+}: {
+  placeholder?: string;
+  className?: string;
+}) {
   const [isLoading, startTransition] = React.useTransition();
   const [query, setQuery] = useQueryState(
     "q",
@@ -32,8 +38,8 @@ export default function SearchInput() {
         )}
       </div>
       <Input
-        placeholder="Start typing..."
-        className="w-full pl-10 overflow-hidden"
+        placeholder={placeholder}
+        className={`w-full pl-10 overflow-hidden ${className}`}
         aria-label="Search"
         value={query}
         onChange={handleSearchChange}

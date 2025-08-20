@@ -22,7 +22,7 @@ export function DurationsFilter({
   );
   return (
     <CustomDropdownMenu
-      placeholder="Filter Durations"
+      placeholder="All Durations"
       options={[...DURATIONS]}
       label="Durations"
       icon={<CalendarClockIcon />}

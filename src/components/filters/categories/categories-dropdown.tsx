@@ -24,7 +24,7 @@ export function CategoriesDropdown({
   );
   return (
     <CustomDropdownMenu
-      placeholder="Categories"
+      placeholder="All Categories"
       options={options}
       label="Categories"
       icon={<TagIcon />}

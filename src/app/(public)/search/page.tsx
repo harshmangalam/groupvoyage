@@ -2,11 +2,10 @@ import SearchInput from "@/components/search-input";
 import { getSearchResults } from "@/actions/common";
 import { SITE_NAME } from "@/lib/constants";
 import { PageSection } from "@/components/page-section";
-import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { SlidersHorizontal } from "lucide-react";
-import { FilterContent } from "./filters";
+import { FilterWrapper } from "@/components/filters-sidebar/filters-wrapper";
 import { TripCard } from "@/components/trips/trip-card";
-import { FiltersSidebar } from "./filters-sidebar";
+import { FiltersSidebar } from "@/components/filters-sidebar/filters-sidebar";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { DurationsFilter } from "@/components/filters/durations-filter";
 import { CategoriesCarousel } from "@/components/categories/categories-carousel";
@@ -15,6 +14,7 @@ import { LocationsCarousel } from "@/components/locations/locations-carousel";
 import Empty from "@/components/empty";
 import { DestinationsCarousel } from "@/components/destinations/destinations-carousel";
 import { InstagramProfilesCarousel } from "@/components/instagram/instagram-carousel";
+import { Filters } from "@/components/filters-sidebar/filters";
 
 export async function generateMetadata({ searchParams }) {
   const { q } = await searchParams;
@@ -58,40 +58,36 @@ export default async function SearchPage({ searchParams }) {
             <SlidersHorizontal className="h-5 w-5" />
             <h2 className="text-lg font-semibold">Filters</h2>
           </div>
-          <FilterContent>
-            <div className="flex flex-wrap gap-2">
-              <LocationsFilter />
-              <DurationsFilter />
-            </div>
-          </FilterContent>
+          <FilterWrapper>
+            <Filters />
+          </FilterWrapper>
         </div>
       </aside>
 
       <main className="flex-1">
-        {/* Search Input (Desktop) */}
-        <div className="mb-6">
-          <SearchInput />
-        </div>
-
         {/* Results Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold">
               {totalCount} {totalCount === 1 ? "result" : "results"} found{" "}
             </h2>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-muted-foreground text-sm max-w-xl">
               Showing matches across <span className="font-medium">Groups</span>
               , <span className="font-medium">Trips</span>,{" "}
-              <span className="font-medium">Instagram Profiles</span>, and{" "}
+              <span className="font-medium">locations</span>,{" "}
+              <span className="font-medium">Instagram Profiles</span>,{" "}
+              <span className="font-medium">Categories</span> and{" "}
               <span className="font-medium">Destinations</span>.
             </p>
           </div>
           <FiltersSidebar>
-            <div className="flex flex-wrap gap-2">
-              <LocationsFilter />
-              <DurationsFilter />
-            </div>
+            <Filters />
           </FiltersSidebar>
+        </div>
+
+        {/* Search Input (Desktop) */}
+        <div className="mb-6">
+          <SearchInput />
         </div>
 
         {categories?.categories?.length ? (

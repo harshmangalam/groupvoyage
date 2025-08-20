@@ -41,6 +41,7 @@ model Group {
   instagram            String?
   phone                String?
   email                String?
+  linktree             String?
   meta                 Json?
   source               String
   logo                 String?
@@ -56,24 +57,26 @@ model Group {
 }
 
 model Event {
-  id           String        @id @default(uuid())
-  title        String
-  slug         String        @unique
-  durations    String?
-  details      String?
-  price        Int?
-  locationId   String
-  groupId      String
-  posterUrls   String[]
-  meta         Json?
-  includes     String[]
-  excludes     String[]
-  source       String
-  group        Group         @relation(fields: [groupId], references: [id], onDelete: Cascade)
-  location     Location      @relation(fields: [locationId], references: [id], onDelete: Cascade)
-  destinations Destination[] @relation("EventToDestination")
-  categories   Category[]    @relation("EventToCategory")
-  status       Status        @default(raw)
+  id                    String        @id @default(uuid())
+  title                 String
+  slug                  String        @unique
+  durations             String?
+  details               String?
+  price                 Int?
+  locationId            String
+  groupId               String
+  posterUrls            String[]
+  meta                  Json?
+  includes              String[]
+  excludes              String[]
+  source                String
+  group                 Group         @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  location              Location      @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  destinations          Destination[] @relation("EventToDestination")
+  categories            Category[]    @relation("EventToCategory")
+  status                Status        @default(raw)
+  categoriesGenerated   Boolean?
+  destinationsGenerated Boolean?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
