@@ -50,6 +50,18 @@ export async function deleteLocation(formData: FormData) {
 export const getLocationsOption = cache(async () => {
   return prisma.location.findMany({
     select: { id: true, slug: true, city: true },
+    orderBy: [
+      {
+        groups: {
+          _count: "desc",
+        },
+      },
+      {
+        events: {
+          _count: "desc",
+        },
+      },
+    ],
   });
 });
 

@@ -33,8 +33,9 @@ export function PostersCarousel({ posterUrls }: { posterUrls: string[] }) {
               height={600}
               style={{
                 maxWidth: "100%",
-                height: "auto"
-              }} />
+                height: "auto",
+              }}
+            />
           </CarouselItem>
         ))}
       </CarouselContent>
