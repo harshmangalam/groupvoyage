@@ -21,15 +21,15 @@ export function TripCard({ event }: TripCardProps) {
       : 0;
 
   return (
-    <Link href={`/trips/${slug}`} className="block h-full">
-      <Card className="shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 h-full w-full">
+    <Link href={`/trips/${slug}`} className="max-h-fit">
+      <Card className="shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 max-h-fit max-w-fit w-full">
         {firstPosterUrl ? (
           <Image
             src={firstPosterUrl || ""}
             alt={`${title} poster`}
             width={400}
             height={300}
-            className="w-full h-52 aspect-video object-cover"
+            className="w-full max-w-sm h-52 aspect-video object-cover"
             loading="lazy"
             unoptimized
           />
@@ -73,7 +73,7 @@ export function TripCard({ event }: TripCardProps) {
             </div>
           </div>
           <div className="flex items-center mb-2 gap-1 flex-wrap mt-4">
-            {event.categories.slice(0, 6).map((category) => (
+            {event.categories.slice(0, 3).map((category) => (
               <Badge
                 variant={"secondary"}
                 key={category.id}

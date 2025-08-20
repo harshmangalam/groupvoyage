@@ -6,8 +6,8 @@ import Image from "next/image";
 export function GroupCard({ group }: { group: T_GroupCard }) {
   const { _count, posterUrls, name, slug } = group;
   return (
-    <Link href={`/groups/${slug}`}>
-      <Card className="hover:shadow-md hover:bg-muted transition-all cursor-pointer group overflow-hidden max-h-fit">
+    <Link href={`/groups/${slug}`} className="max-h-fit">
+      <Card className="hover:shadow-md hover:bg-muted transition-all cursor-pointer group overflow-hidden max-h-fit max-w-fit">
         <CardContent className="p-0">
           {posterUrls.length ? (
             <div className="relative w-full aspect-video">
