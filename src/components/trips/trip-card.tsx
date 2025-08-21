@@ -22,7 +22,7 @@ export function TripCard({ event }: TripCardProps) {
 
   return (
     <Link href={`/trips/${slug}`} className="max-h-fit">
-      <Card className="shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 max-h-fit max-w-fit w-full">
+      <Card className="shadow-none mx-auto overflow-hidden hover:shadow-md duration-300 max-h-fit w-full">
         {firstPosterUrl ? (
           <Image
             src={firstPosterUrl || ""}

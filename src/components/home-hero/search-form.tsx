@@ -11,8 +11,8 @@ export function SearchForm() {
         <Input
           name="q"
           type="text"
-          placeholder="Where do you want to go?"
-          className="pl-10 md:pl-12 h-14 text-lg bg-background/95 backdrop-blur-sm focus-visible:ring-destructive rounded-r-none text-sm md:text-lg font-semibold"
+          placeholder="Plan your next journey...."
+          className="pl-10 md:pl-12 h-14 text-lg bg-background/95 backdrop-blur-sm focus-visible:ring-destructive rounded-r-none  md:text-lg font-semibold"
         />
       </div>
       <FormActionButton />

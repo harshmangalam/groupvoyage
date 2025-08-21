@@ -8,7 +8,7 @@ export async function CategoriesLinks() {
         <a
           target="_blank"
           key={link.name}
-          href={`/categories/${link.slug}`}
+          href={`/trips?categories=${link.slug}`}
           className="text-sm text-muted-foreground hover:underline capitalize"
         >
           {link.name}
