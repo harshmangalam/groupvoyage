@@ -23,6 +23,7 @@ export async function createGroup(formData: FormData) {
 
 export const getGroupsOption = cache(async () => {
   const groups = await prisma.group.findMany({
+    where: { status: "processed" },
     select: {
       name: true,
       slug: true,
@@ -47,7 +48,9 @@ export const getGroupList = cache(
     search?: string;
     destinationSlug?: string;
   }) => {
-    const filter: Record<string, unknown> = {};
+    const filter: Record<string, unknown> = {
+      status: "processed",
+    };
     if (search) {
       filter.name = { search: search.replace(/[^a-zA-Z]/g, "") };
       filter.details = { search: search.replace(/[^a-zA-Z]/g, "") };
@@ -106,6 +109,7 @@ export const getGroupDetails = cache(async ({ slug }: { slug: string }) => {
   return prisma.group.findUnique({
     where: {
       slug,
+      status: "processed",
     },
     include: {
       _count: {
@@ -125,13 +129,18 @@ export const getGroupDetails = cache(async ({ slug }: { slug: string }) => {
 });
 
 export const getAllGroupsCount = cache(async () => {
-  return prisma.group.count();
+  return prisma.group.count({
+    where: {
+      status: "processed",
+    },
+  });
 });
 
 export const getTrendingGroupList = cache(
   async ({ locationSlug }: { locationSlug?: string }) => {
     return prisma.group.findMany({
       where: {
+        status: "processed",
         locations: {
           some: {
             slug: locationSlug,
@@ -166,7 +175,9 @@ export const getTrendingGroupList = cache(
 );
 
 export const getCollaborators = cache(async (filters?: { slugs: string[] }) => {
-  const where: Record<string, any> = {};
+  const where: Record<string, any> = {
+    status: "processed",
+  };
 
   if (filters?.slugs.length) {
     where.slug = {

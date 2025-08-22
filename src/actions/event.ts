@@ -27,7 +27,9 @@ export const getEventList = cache(
     priceRange?: any;
     categories?: string;
   }) => {
-    const filter: Record<string, unknown> = {};
+    const filter: Record<string, unknown> = {
+      status: "processed",
+    };
 
     if (destinationSlug) {
       filter.destinations = { some: { slug: destinationSlug } };
@@ -186,6 +188,7 @@ export const getEventDetails = cache(
     return prisma.event.findUnique({
       where: {
         slug: eventSlug,
+        status: "processed",
       },
       include: {
         location: {
