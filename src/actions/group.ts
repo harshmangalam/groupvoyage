@@ -90,7 +90,9 @@ export const getGroupList = cache(
         },
         _count: {
           select: {
-            events: true,
+            events: {
+              where: { status: "processed" },
+            },
           },
         },
       },
@@ -114,7 +116,9 @@ export const getGroupDetails = cache(async ({ slug }: { slug: string }) => {
     include: {
       _count: {
         select: {
-          events: true,
+          events: {
+            where: { status: "processed" },
+          },
         },
       },
       locations: {
@@ -161,7 +165,9 @@ export const getTrendingGroupList = cache(
         },
         _count: {
           select: {
-            events: true,
+            events: {
+              where: { status: "processed" },
+            },
           },
         },
       },

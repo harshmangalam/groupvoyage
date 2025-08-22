@@ -41,7 +41,6 @@ model Group {
   instagram            String?
   phone                String?
   email                String?
-  linktree             String?
   meta                 Json?
   source               String
   logo                 String?
