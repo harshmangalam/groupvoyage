@@ -15,16 +15,19 @@ export async function TrendingTripsCarousel({
   locationSlug,
   durations,
   destinations,
+  groupSlug,
 }: {
   locationSlug?: string;
   durations?: DurationFilter;
   destinations?: string;
+  groupSlug?: string;
 }) {
   const events = await getEventList({
     locationSlug,
     durations,
     destinationSlug: destinations,
     take: 10,
+    groupSlug,
   });
   return (
     <Carousel

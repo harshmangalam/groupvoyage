@@ -124,6 +124,7 @@ export const getGroupDetails = cache(async ({ slug }: { slug: string }) => {
           events: {
             where: { status: "processed" },
           },
+          destinations: true,
         },
       },
       locations: {

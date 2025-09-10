@@ -1,8 +1,12 @@
-import { TripCard } from "@/components/trips/trip-card";
 import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { CalendarCheckIcon, ExternalLinkIcon, MapPin } from "lucide-react";
+import {
+  CalendarCheckIcon,
+  ExternalLinkIcon,
+  MapPin,
+  MapPinIcon,
+} from "lucide-react";
 
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
@@ -12,18 +16,13 @@ import { Badge } from "@/components/ui/badge";
 import { PostersCarousel } from "./posters-carousel";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
-import { LocationsFilter } from "@/components/filters/locations/locations-filter";
-import { DurationsFilter } from "@/components/filters/durations-filter";
-import { CustomPagination } from "@/components/custom-pagination";
 import { SITE_URL, TRIPS_PER_PAGE } from "@/lib/constants";
 import { GroupMetaType } from "@/lib/types";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
 import { getInstagramProfile } from "@/actions/instagram-profile";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
-import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
-import { CategoriesFilter } from "@/components/filters/categories/categories-filter";
+import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 
 export async function generateMetadata({ params }) {
   const { groupSlug } = await params;
@@ -125,6 +124,15 @@ export default async function GroupHomePage({
 
                   <Badge variant={"destructive"}>{group._count.events} </Badge>
                 </div>
+
+                <div className="w-fit flex items-center gap-2 text-sm">
+                  <MapPinIcon size={18} />
+                  <span className="font-medium"> Destinations</span>
+
+                  <Badge variant={"destructive"}>
+                    {group._count.destinations}{" "}
+                  </Badge>
+                </div>
               </div>
             </CardContent>
             <CardFooter className="p-0">
@@ -166,52 +174,15 @@ export default async function GroupHomePage({
             <TrendingDestinationsCarousel groupSlug={groupSlug} />
           </Suspense>
         </PageSection>
+
         <PageSection
+          href={`/trips/?groups=${groupSlug}`}
           label={<span>Trips</span>}
           description={`Discover unmissable weekend trips offered by ${group.name}`}
-          others={
-            <div className="flex items-center flex-wrap gap-2  md:justify-end justify-start">
-              <Suspense
-                fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-                key={`locations-filter`}
-              >
-                <LocationsFilter />
-              </Suspense>
-              <Suspense
-                fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-                key={`destinations-filter`}
-              >
-                <DestinationsFilter />
-              </Suspense>
-
-              <Suspense
-                fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-                key={`categories-filter`}
-              >
-                <CategoriesFilter />
-              </Suspense>
-
-              <Suspense
-                fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-                key={`durations-filter`}
-              >
-                <DurationsFilter />
-              </Suspense>
-            </div>
-          }
         >
-          <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {events.events.length ? (
-              events.events.map((event) => (
-                <TripCard key={event.id} event={event} />
-              ))
-            ) : (
-              <p className="opacity-50 text-sm">No Trips</p>
-            )}
-          </div>
-          <div className="mt-6">
-            <CustomPagination {...events.pagination} />
-          </div>
+          <Suspense key={"trending-events"}>
+            <TrendingTripsCarousel groupSlug={groupSlug} />
+          </Suspense>
         </PageSection>
       </div>
     </div>

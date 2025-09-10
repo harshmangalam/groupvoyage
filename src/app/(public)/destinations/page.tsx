@@ -2,6 +2,7 @@ import { getDestinationList } from "@/actions/destinations";
 import { CustomPagination } from "@/components/custom-pagination";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import Empty from "@/components/empty";
+import { GroupsFilter } from "@/components/filters/groups/groups-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { PageSection } from "@/components/page-section";
 import { DESTINATIONS_PER_PAGE } from "@/lib/constants";
@@ -68,8 +69,9 @@ export default async function DestinationsPage({
       <PageSection
         label={<span>Explore Destinations</span>}
         others={
-          <div>
+          <div className="flex items-center gap-2">
             <LocationsFilter />
+            <GroupsFilter />
           </div>
         }
       >
