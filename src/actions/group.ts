@@ -29,6 +29,11 @@ export const getGroupsOption = cache(async () => {
       slug: true,
       id: true,
     },
+    orderBy: {
+      events: {
+        _count: "desc",
+      },
+    },
   });
 
   return groups;

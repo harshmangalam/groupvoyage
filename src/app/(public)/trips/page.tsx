@@ -44,6 +44,7 @@ type TripsPageProps = {
     destinations: string;
     categories: string;
     priceRange: string;
+    groups: string;
   }>;
 };
 export default async function TripsPage({ searchParams }: TripsPageProps) {
@@ -54,6 +55,7 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
     durations = "",
     page = "1",
     priceRange = "",
+    groups = "",
   } = await searchParams;
 
   const pageNum = Number(page);
@@ -66,6 +68,7 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
     destinationSlug: destinations,
     categories,
     priceRange,
+    groupSlug: groups,
   });
 
   return (

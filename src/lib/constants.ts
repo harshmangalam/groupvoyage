@@ -16,7 +16,7 @@ export const DURATIONS = [
   { label: "Long Weekend Trips (3+ days)", value: "long-weekend" },
 ] as const;
 
-export const TRIPS_PER_PAGE = 18;
+export const TRIPS_PER_PAGE = 12;
 export const DESTINATIONS_PER_PAGE = 15;
 
 export const NAVIGATIONS_MENU = [
