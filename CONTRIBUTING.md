@@ -30,11 +30,12 @@ pnpm install
 cp .env.example .env
 ```
 
-### Prisma generate & migrations
+### Prisma generate, migrations and seed
 
 ```bash
 pnpm prisma generate
 pnpm prisma migrate dev
+pnpm prisma db seed
 
 ```
 
