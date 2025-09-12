@@ -10,7 +10,7 @@
 
 ## 🚀 Tech Stack
 
-- **Frontend**: Next.js 14 + React 19 (latest concurrent features)
+- **Frontend**: Next.js 15 + React 19 (latest concurrent features)
 - **UI Components**: Tailwind CSS + shadcn/ui + Radix primitives
 - **Backend**: Node.js (Bun runtime) + Prisma ORM
 - **Database**: PostgreSQL
