@@ -42,7 +42,7 @@ git clone https://github.com/harshmangalam/groupvoyage.git
 cd groupvoyage
 ```
 
-1. Install
+2. Install
 
 ```bash
 pnpm install
@@ -51,7 +51,7 @@ pnpm install
 3. Create .env
 
 ```bash
-cp example.env .env
+cp .env.example .env
 ```
 
 4. Prisma generate & migrations
