@@ -68,3 +68,11 @@ pnpm prisma migrate dev
 pnpm dev
 
 ```
+
+### 🤝 Contributing
+
+We welcome contributions of all kinds! 🎉
+
+- 📖 [Contributing Guide](/CONTRIBUTING.md)
+- 🤝 [Code of Conduct](/CODE_OF_CONDUCT.md)
+- 📜 [MIT License](/LICENSE)
