@@ -1,8 +1,10 @@
-# 🌍 Project Name
+<p align="center">
+  <img src="./public/logo.png" alt="GroupVoyage Logo" width="150"/>
+</p>
 
-> A modern full-stack web application built with **Next.js 15 (React 19)**, **Prisma**, **Tailwind CSS**, **shadcn/ui**, and deployed on **Vercel**.
->
-> The platform helps users **explore trips, destinations, groups, categories, and Instagram profiles** — with filtering, comparisons, and booking experiences.
+# 🌍 GroupVoyage
+
+> GroupVoyage connects you with like-minded travelers from your city, making weekend getaways effortless and exciting. Explore a curated list of local and city-specific travel groups, compare trip prices, and find the perfect adventure that fits your budget.
 
 ---
 
@@ -48,7 +50,7 @@ cd groupvoyage
 pnpm install
 ```
 
-3. Create .env
+3. Copy env
 
 ```bash
 cp .env.example .env
