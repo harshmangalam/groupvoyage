@@ -1,5 +1,7 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import reactHooks from "eslint-plugin-react-hooks";
+import { defineConfig } from "eslint/config";
 import { FlatCompat } from "@eslint/eslintrc";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -10,6 +12,7 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  reactHooks.configs.flat.recommended,
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
