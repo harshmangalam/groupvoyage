@@ -1,6 +1,5 @@
 "use client";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
 
 export function ProductHuntBadge({
@@ -9,13 +8,8 @@ export function ProductHuntBadge({
   className?: string;
 }) {
   const { resolvedTheme } = useTheme();
-  const [clientTheme, setClientTheme] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (resolvedTheme) setClientTheme(resolvedTheme);
-  }, [resolvedTheme]);
-
-  if (!clientTheme) {
+  if (!resolvedTheme) {
     return <Skeleton className={className} />;
   }
 
@@ -25,7 +19,7 @@ export function ProductHuntBadge({
       target="_blank"
     >
       <img
-        src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=952865&theme=${clientTheme}&t=1745089405924`}
+        src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=952865&theme=${resolvedTheme}&t=1745089405924`}
         alt="GroupVoyage - Compare prices among groups and join cheapest weekend trips | Product Hunt"
         className={className}
       />
