@@ -10,7 +10,7 @@ export async function Stats() {
       <StatsCard label="Trips" count={publicStats.eventsCount} />
       <StatsCard label="Groups" count={publicStats.groupsCount} />
       <StatsCard
-        label="Insagram groups"
+        label="Instagram groups"
         count={publicStats.instagramProfilesCount}
       />
       <StatsCard label="Categories" count={publicStats.categoriesCount} />
