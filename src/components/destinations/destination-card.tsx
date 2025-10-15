@@ -57,13 +57,13 @@ export function DestinationCard({
         <CardFooter className="px-4 pb-3">
           {locations.length > 0 ? (
             <div className="flex flex-wrap gap-1">
-              {locations.slice(0, 2).map((location) => (
+              {locations.slice(0, 1).map((location) => (
                 <Badge variant="secondary" key={location.id}>
                   {location.city}
                 </Badge>
               ))}
-              {locations.length > 2 && (
-                <Badge variant="destructive">+{locations.length - 2}</Badge>
+              {locations.length > 1 && (
+                <Badge variant="destructive">+{locations.length - 1}</Badge>
               )}
             </div>
           ) : (

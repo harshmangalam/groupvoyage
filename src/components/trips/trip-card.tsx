@@ -26,7 +26,7 @@ export function TripCard({ event }: TripCardProps) {
         {/* ✅ Improved Image Section */}
         <div className="overflow-hidden relative group">
           <Image
-            src={firstPosterUrl || "/images/placeholder.jpg"}
+            src={firstPosterUrl || "placeholder.svg"}
             alt={`${title} poster`}
             width={400}
             height={300}
