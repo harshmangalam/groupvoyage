@@ -55,6 +55,7 @@ export function TripCard({ event }: TripCardProps) {
                   <IndianRupee className="w-3 h-3" />
                   {originalPrice}
                 </span>
+
               </>
             )}
           </div>
