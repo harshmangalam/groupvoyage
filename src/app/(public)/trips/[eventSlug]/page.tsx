@@ -161,11 +161,13 @@ export default async function TripDetailsPage({
                       </div>
                     )}
                   </div>
+
                   {originalPrice > price && (
                     <div className="text-sm font-medium text-green-500">
                       Save {discount}%
                     </div>
                   )}
+                  
                 </div>
                 <BookNow source={event.source} />
               </CardContent>

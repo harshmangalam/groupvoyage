@@ -35,9 +35,9 @@ export function TripCard({ event }: TripCardProps) {
             unoptimized
           />
           {percentageSaved > 0 && (
-            <span className="absolute top-2 right-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">
+            <Badge className="absolute top-2 right-2 bg-green-600 hover:bg-green-700">
               {percentageSaved}% OFF
-            </span>
+            </Badge>
           )}
         </div>
         <CardContent className="p-4">
@@ -54,9 +54,6 @@ export function TripCard({ event }: TripCardProps) {
                 <span className="text-sm text-muted-foreground line-through flex items-center">
                   <IndianRupee className="w-3 h-3" />
                   {originalPrice}
-                </span>
-                <span className="text-xs text-green-600 dark:text-green-500 font-semibold">
-                  ({percentageSaved}% OFF)
                 </span>
               </>
             )}
