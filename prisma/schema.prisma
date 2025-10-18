@@ -1,13 +1,11 @@
 generator client {
-  provider        = "prisma-client-js"
-  output          = "./generated/client"
-  previewFeatures = ["fullTextSearchPostgres"]
+  provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 enum Status {
@@ -44,7 +42,7 @@ model Group {
   meta                 Json?
   source               String
   logo                 String?
-  posterUrls           String[]
+  posterUrls           String? // JSON array as string
   tagLine              String?
   events               Event[]
   locations            Location[]    @relation("GroupToLocation")
@@ -64,10 +62,10 @@ model Event {
   price                 Int?
   locationId            String
   groupId               String
-  posterUrls            String[]
+  posterUrls            String? // JSON array as string
   meta                  Json?
-  includes              String[]
-  excludes              String[]
+  includes              String? // JSON array as string
+  excludes              String? // JSON array as string
   source                String
   group                 Group         @relation(fields: [groupId], references: [id], onDelete: Cascade)
   location              Location      @relation(fields: [locationId], references: [id], onDelete: Cascade)

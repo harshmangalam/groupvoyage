@@ -7,8 +7,14 @@ import { Button } from "@/components/ui/button";
 
 export function ModeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
 
-  const isDark = resolvedTheme === "dark";
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Use a consistent state during SSR and initial client render
+  const isDark = mounted ? resolvedTheme === "dark" : false;
 
   return (
     <Button
@@ -16,6 +22,7 @@ export function ModeToggle() {
       variant="outline"
       size="icon"
       className="flex-none relative"
+      suppressHydrationWarning
     >
       <Sun
         className={`h-[1.2rem] w-[1.2rem] transition-all ${

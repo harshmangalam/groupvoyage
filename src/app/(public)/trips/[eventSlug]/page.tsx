@@ -63,6 +63,27 @@ export default async function TripDetailsPage({
   const { eventSlug } = await params;
   const event = await getEventDetails({ eventSlug });
   if (!event) return notFound();
+  
+  // Helper function to safely parse posterUrls
+  const safeParsePosterUrls = (posterUrls: any): string[] => {
+    if (!posterUrls) return [];
+    if (Array.isArray(posterUrls)) return posterUrls.filter(url => url && typeof url === 'string');
+    if (typeof posterUrls === 'string') {
+      if (posterUrls.trim() === '' || posterUrls === 'null') return [];
+      try {
+        const parsed = JSON.parse(posterUrls);
+        if (Array.isArray(parsed)) {
+          return parsed.filter(url => url && typeof url === 'string' && url.length > 0);
+        }
+        return [];
+      } catch (error) {
+        console.warn('Failed to parse posterUrls JSON:', posterUrls, error);
+        return [];
+      }
+    }
+    return [];
+  };
+  
   const username = getInstagramUsername(event.group.instagram);
   const instagramProfile = await getInstagramProfile({
     username,
@@ -130,15 +151,15 @@ export default async function TripDetailsPage({
             />
 
             <SectionList
-              label={"What's Included"}
+              label={`What's Included`}
               Icon={<Check className="h-4 w-4 mt-1 flex-none text-green-500" />}
-              data={event.includes as string[]}
+              data={safeParsePosterUrls(event.includes)}
             />
 
             <SectionList
               label={`What's Not Included`}
               Icon={<XIcon className="h-4 w-4 mt-1 flex-none  text-red-500" />}
-              data={event.excludes as string[]}
+              data={safeParsePosterUrls(event.excludes)}
             />
             {event?.details && <TripDetails details={event.details} />}
           </div>
@@ -184,7 +205,7 @@ export default async function TripDetailsPage({
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
             Get a Glimpse Before You Go
           </h3>
-          <ImageGallery images={event.posterUrls} />
+          <ImageGallery images={safeParsePosterUrls(event.posterUrls)} />
         </div>
       </div>
     </div>

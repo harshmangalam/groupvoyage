@@ -77,13 +77,34 @@ export default async function GroupHomePage({
     take: TRIPS_PER_PAGE,
     skip: (page - 1) * TRIPS_PER_PAGE,
   });
+  // Helper function to safely parse posterUrls
+  const safeParsePosterUrls = (posterUrls: any): string[] => {
+    if (!posterUrls) return [];
+    if (Array.isArray(posterUrls)) return posterUrls.filter(url => url && typeof url === 'string');
+    if (typeof posterUrls === 'string') {
+      // Handle case where it might not be valid JSON
+      if (posterUrls.trim() === '' || posterUrls === 'null') return [];
+      try {
+        const parsed = JSON.parse(posterUrls);
+        if (Array.isArray(parsed)) {
+          return parsed.filter(url => url && typeof url === 'string' && url.length > 0);
+        }
+        return [];
+      } catch (error) {
+        console.warn('Failed to parse posterUrls JSON:', posterUrls, error);
+        return [];
+      }
+    }
+    return [];
+  };
+
   return (
     <div>
       <Card className="w-full border-none max-w-7xl py-5 lg:px-4 mx-auto shadow-none">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 h-full">
           <div className="w-full h-full">
             <div className="relative md:w-full h-auto">
-              <PostersCarousel posterUrls={group.posterUrls as string[]} />
+              <PostersCarousel posterUrls={safeParsePosterUrls(group.posterUrls)} />
             </div>
           </div>
           <div className="flex-1 w-full flex-col h-full px-4 lg:px-0  flex justify-between">
