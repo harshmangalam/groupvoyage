@@ -12,7 +12,28 @@ type TripCardProps = {
 export function TripCard({ event }: TripCardProps) {
   const { posterUrls, slug, group, location, title, durations, price, meta } =
     event;
-  const firstPosterUrl = posterUrls?.[0];
+  
+  // Helper function to safely get first poster URL
+  const getFirstPosterUrl = (posterUrls: any): string => {
+    if (!posterUrls) return '';
+    if (Array.isArray(posterUrls)) return posterUrls[0] || '';
+    if (typeof posterUrls === 'string') {
+      if (posterUrls.trim() === '' || posterUrls === 'null') return '';
+      try {
+        const parsed = JSON.parse(posterUrls);
+        if (Array.isArray(parsed)) {
+          return parsed.find(url => url && typeof url === 'string' && url.length > 0) || '';
+        }
+        return '';
+      } catch (error) {
+        console.warn('Failed to parse posterUrls JSON:', posterUrls, error);
+        return '';
+      }
+    }
+    return '';
+  };
+  
+  const firstPosterUrl = getFirstPosterUrl(posterUrls);
   const originalPrice = (meta as EventMetaType)?.originalPrice;
 
   const percentageSaved =

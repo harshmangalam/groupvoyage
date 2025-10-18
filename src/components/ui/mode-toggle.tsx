@@ -14,12 +14,17 @@ import { ChevronsUpDownIcon } from "lucide-react";
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="gap-1 px-2 py-0 text-xs">
-          <span className="capitalize">{theme}</span>
+        <Button variant="ghost" className="gap-1 px-2 py-0 text-xs" suppressHydrationWarning>
+          <span className="capitalize">{mounted ? theme : "system"}</span>
           <span className="inline"> theme</span>
           <ChevronsUpDownIcon className="h-3 w-3" />
         </Button>

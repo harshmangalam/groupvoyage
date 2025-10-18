@@ -20,6 +20,26 @@ export default function FeaturedHeroEvents({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  // Helper function to safely parse posterUrls and get first image
+  const getFirstPosterUrl = (posterUrls: any): string => {
+    if (!posterUrls) return '';
+    if (Array.isArray(posterUrls)) return posterUrls[0] || '';
+    if (typeof posterUrls === 'string') {
+      if (posterUrls.trim() === '' || posterUrls === 'null') return '';
+      try {
+        const parsed = JSON.parse(posterUrls);
+        if (Array.isArray(parsed)) {
+          return parsed.find(url => url && typeof url === 'string' && url.length > 0) || '';
+        }
+        return '';
+      } catch (error) {
+        console.warn('Failed to parse posterUrls JSON:', posterUrls, error);
+        return '';
+      }
+    }
+    return '';
+  };
+
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % events.length);
   }, [events.length]);
@@ -58,7 +78,9 @@ export default function FeaturedHeroEvents({
             {/* Background Image */}
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${event.posterUrls?.[0]})` }}
+              style={{ 
+                backgroundImage: `url(${getFirstPosterUrl(event.posterUrls)})` 
+              }}
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
             </div>

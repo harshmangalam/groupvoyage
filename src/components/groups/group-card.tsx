@@ -5,7 +5,28 @@ import Image from "next/image";
 
 export function GroupCard({ group }: { group: T_GroupCard }) {
   const { _count, posterUrls, name, slug } = group;
-  const posterUrl = posterUrls[0] || "placeholder.svg";
+  
+  // Helper function to safely get first poster URL
+  const getFirstPosterUrl = (posterUrls: any): string => {
+    if (!posterUrls) return 'placeholder.svg';
+    if (Array.isArray(posterUrls)) return posterUrls[0] || 'placeholder.svg';
+    if (typeof posterUrls === 'string') {
+      if (posterUrls.trim() === '' || posterUrls === 'null') return 'placeholder.svg';
+      try {
+        const parsed = JSON.parse(posterUrls);
+        if (Array.isArray(parsed)) {
+          return parsed.find(url => url && typeof url === 'string' && url.length > 0) || 'placeholder.svg';
+        }
+        return 'placeholder.svg';
+      } catch (error) {
+        console.warn('Failed to parse posterUrls JSON:', posterUrls, error);
+        return 'placeholder.svg';
+      }
+    }
+    return 'placeholder.svg';
+  };
+  
+  const posterUrl = getFirstPosterUrl(posterUrls);
   return (
     <Link href={`/groups/${slug}`} className="max-h-fit">
       <Card className="hover:shadow-md hover:bg-muted transition-all cursor-pointer group overflow-hidden max-h-fit w-full">

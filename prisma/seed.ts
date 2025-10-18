@@ -67,13 +67,13 @@ const goadventureGroup = {
   },
   source: "https://goadventure.in",
   logo: "https://goadventure.in/img/goadventure-log.png",
-  posterUrls: [
+  posterUrls: JSON.stringify([
     "https://go-adventure-01.s3.ap-south-1.amazonaws.com/prod/assets/images/ddecce03da94970ad623f14ad167d39e.jpg",
     "https://go-adventure-01.s3.ap-south-1.amazonaws.com/prod/assets/images/c7c6c1ff4d8507c4e38eecf96e1cf839.jpg",
-    "https://go-adventure-01.s3.ap-south-1.amazonaws.com/prod/assets/images/4c61efb9e8e7c718caa1b6dfa99bd228",
+    "https://go-adventure-01.s3.ap-south-1.amazonaws.com/prod/assets/images/4c61efb9e8e7c718caa1b6dfa99bd228.jpg",
     "https://go-adventure-01.s3.ap-south-1.amazonaws.com/prod/assets/images/71b45c2ab1f0f29a84399e4762799231.jpg",
     "https://go-adventure-01.s3.ap-south-1.amazonaws.com/prod/assets/images/7ebf0d53aa49838588459d9491d2210c.jpg",
-  ],
+  ]),
   tagLine: "GoAdventure | Discover Your Next Adventure",
   status: "processed",
 };
@@ -85,24 +85,24 @@ const goadventureEvent = {
   details:
     "Away from the hustle and bustle of big cities... Puducherry is a quiet little town on the southern coast of India. The unmistakable French connection, the quaint colonial heritage buildings, the spiritual sceneries, the endless stretches of unspoiled beaches and backwaters and a surprising choice of restaurants serving a variety of cuisines draws travelers from near and far to the city. It has a special vibe, not felt anywhere else in India. It is a blend of spiritual aura, colonial heritage, Tamil culture and the cosmopolitan flair of many nationalities in a small town",
   price: 6999,
-  posterUrls: [
+  posterUrls: JSON.stringify([
     "https://go-adventure-01.s3.ap-south-1.amazonaws.com/prod/assets/images/d898d0218198ab95aa2b947f25d69f3f.jpg",
-  ],
-  includes: [
+  ]),
+  includes: JSON.stringify([
     "Hyd to Hyd transportation",
     "Accomodation",
     "First aid and",
     "Certified Trek Leaders",
     "Facilitator/(s) reimbursement.",
-  ],
-  excludes: [
+  ]),
+  excludes: JSON.stringify([
     "Boat ride to paradise beach.",
     "Any kind of personal expenses.",
     "Food during the transit.",
     "GST",
     "Mules or porter to carry personal luggage.",
     "Anything not specifically mentioned under the head.",
-  ],
+  ]),
   source: "https://goadventure.in/packages/pondicherry",
   meta: {
     originalPrice: 9999,
