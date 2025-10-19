@@ -2,6 +2,7 @@ import { getEventDetails } from "@/actions/event";
 import { Card, CardContent } from "@/components/ui/card";
 import { SITE_NAME } from "@/lib/constants";
 import { EventMetaType } from "@/lib/types";
+import { safeParsePosterUrls } from "@/lib/parse-poster-urls";
 import {
   Clock,
   MapPin,
@@ -63,26 +64,6 @@ export default async function TripDetailsPage({
   const { eventSlug } = await params;
   const event = await getEventDetails({ eventSlug });
   if (!event) return notFound();
-  
-  // Helper function to safely parse posterUrls
-  const safeParsePosterUrls = (posterUrls: any): string[] => {
-    if (!posterUrls) return [];
-    if (Array.isArray(posterUrls)) return posterUrls.filter(url => url && typeof url === 'string');
-    if (typeof posterUrls === 'string') {
-      if (posterUrls.trim() === '' || posterUrls === 'null') return [];
-      try {
-        const parsed = JSON.parse(posterUrls);
-        if (Array.isArray(parsed)) {
-          return parsed.filter(url => url && typeof url === 'string' && url.length > 0);
-        }
-        return [];
-      } catch (error) {
-        console.warn('Failed to parse posterUrls JSON:', posterUrls, error);
-        return [];
-      }
-    }
-    return [];
-  };
   
   const username = getInstagramUsername(event.group.instagram);
   const instagramProfile = await getInstagramProfile({

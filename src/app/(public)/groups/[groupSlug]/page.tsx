@@ -1,6 +1,7 @@
 import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { safeParsePosterUrls } from "@/lib/parse-poster-urls";
 import {
   CalendarCheckIcon,
   ExternalLinkIcon,
@@ -77,26 +78,6 @@ export default async function GroupHomePage({
     take: TRIPS_PER_PAGE,
     skip: (page - 1) * TRIPS_PER_PAGE,
   });
-  // Helper function to safely parse posterUrls
-  const safeParsePosterUrls = (posterUrls: any): string[] => {
-    if (!posterUrls) return [];
-    if (Array.isArray(posterUrls)) return posterUrls.filter(url => url && typeof url === 'string');
-    if (typeof posterUrls === 'string') {
-      // Handle case where it might not be valid JSON
-      if (posterUrls.trim() === '' || posterUrls === 'null') return [];
-      try {
-        const parsed = JSON.parse(posterUrls);
-        if (Array.isArray(parsed)) {
-          return parsed.filter(url => url && typeof url === 'string' && url.length > 0);
-        }
-        return [];
-      } catch (error) {
-        console.warn('Failed to parse posterUrls JSON:', posterUrls, error);
-        return [];
-      }
-    }
-    return [];
-  };
 
   return (
     <div>
