@@ -1,6 +1,7 @@
 import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { safeParsePosterUrls } from "@/lib/parse-poster-urls";
 import {
   CalendarCheckIcon,
   ExternalLinkIcon,
@@ -77,13 +78,14 @@ export default async function GroupHomePage({
     take: TRIPS_PER_PAGE,
     skip: (page - 1) * TRIPS_PER_PAGE,
   });
+
   return (
     <div>
       <Card className="w-full border-none max-w-7xl py-5 lg:px-4 mx-auto shadow-none">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 h-full">
           <div className="w-full h-full">
             <div className="relative md:w-full h-auto">
-              <PostersCarousel posterUrls={group.posterUrls as string[]} />
+              <PostersCarousel posterUrls={safeParsePosterUrls(group.posterUrls)} />
             </div>
           </div>
           <div className="flex-1 w-full flex-col h-full px-4 lg:px-0  flex justify-between">

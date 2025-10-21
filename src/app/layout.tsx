@@ -9,6 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationProgress } from "@/components/navigation-progress";
+import { FloatingChatbot } from "@/components/ai-chatbot/floating-chatbot";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -75,6 +76,7 @@ export default function RootLayout({
           </ThemeProvider>
         </NuqsAdapter>
         <Toaster />
+        <FloatingChatbot />
         <Analytics />
         <SpeedInsights />
       </body>
