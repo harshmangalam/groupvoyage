@@ -8,7 +8,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { T_Location } from "@/lib/types";
-import { Badge } from "../ui/badge";
+import { BadgeList } from "../ui/badge-list";
 
 interface DestinationProps {
   name: string;
@@ -56,16 +56,10 @@ export function DestinationCard({
         </CardContent>
         <CardFooter className="px-4 pb-3">
           {locations.length > 0 ? (
-            <div className="flex flex-wrap gap-1">
-              {locations.slice(0, 1).map((location) => (
-                <Badge variant="secondary" key={location.id}>
-                  {location.city}
-                </Badge>
-              ))}
-              {locations.length > 1 && (
-                <Badge variant="destructive">+{locations.length - 1}</Badge>
-              )}
-            </div>
+            <BadgeList
+              items={locations}
+              itemTitle={"city"}
+            ></BadgeList>
           ) : (
             <p className="text-sm text-muted-foreground italic">
               No locations yet
