@@ -24,6 +24,11 @@ const LOCATIONS = [
   },
 ];
 
+const destination = {
+  name: "Pondicherry",
+  slug: "pondicherry",
+}
+
 const CATEGORIES = [
   // 🌿 Nature & Outdoors
   "trekking",
@@ -109,6 +114,8 @@ const goadventureEvent = {
   },
 };
 
+const goadventureCategories = ["heritage", "local food trail", "relaxation"];
+
 async function main() {
   // Locations
   for (const location of LOCATIONS) {
@@ -156,12 +163,30 @@ async function main() {
       status: "processed",
       location: { connect: { slug: BangaloreSlug } },
       group: { connect: { slug: goadventureGroup.slug } },
+      categories: { connect: goadventureCategories.map((c) => ({ slug: slugify(c) }))}
     },
     create: {
       ...goadventureEvent,
       status: "processed",
       location: { connect: { slug: BangaloreSlug } },
       group: { connect: { slug: goadventureGroup.slug } },
+      categories: { connect: goadventureCategories.map((c) => ({ slug: slugify(c) }))}
+    },
+  });
+
+  // Destinations
+  await prisma.destination.upsert({
+    where: { slug: destination.slug },
+    update: {
+      locations: { connect: [{ slug: HyderabadSlug }, { slug: BangaloreSlug }] },
+      events: { connect: [{ slug: goadventureEvent.slug }] },
+      groups: { connect: [{ slug: goadventureGroup.slug }] },
+    },
+    create: {
+      ...destination,
+      locations: { connect: [{ slug: HyderabadSlug }, { slug: BangaloreSlug }] },
+      events: { connect: [{ slug: goadventureEvent.slug }] },
+      groups: { connect: [{ slug: goadventureGroup.slug }] },
     },
   });
 }

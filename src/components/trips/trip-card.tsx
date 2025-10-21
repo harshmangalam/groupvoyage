@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { EventMetaType, T_EventCard } from "@/lib/types";
 import { Badge } from "../ui/badge";
+import { BadgeList } from "../ui/badge-list";
 
 type TripCardProps = {
   event: T_EventCard;
@@ -76,17 +77,11 @@ export function TripCard({ event }: TripCardProps) {
               {group.name}
             </div>
           </div>
-          <div className="flex items-center mb-2 gap-1 flex-wrap mt-4">
-            {event.categories.slice(0, 3).map((category) => (
-              <Badge
-                variant={"secondary"}
-                key={category.id}
-                className="capitalize"
-              >
-                {category.name}
-              </Badge>
-            ))}
-          </div>
+          <BadgeList
+            items={event.categories}
+            itemTitle={"name"}
+            className="items-center mb-2 mt-4"
+          ></BadgeList>
         </CardContent>
       </Card>
     </Link>
