@@ -20,17 +20,15 @@ function BadgeList({ items, itemTitle, className }: BadgeListProps) {
           {items[0][itemTitle]}
         </Badge>
       }
-      <Tooltip>
+      { items.length > 1 && <Tooltip>
         <TooltipTrigger asChild>
-          {items.length > 1 && (
-              <Badge variant="destructive">+{items.length - 1}</Badge>
-            )}
+          <Badge variant="destructive">+{items.length - 1}</Badge>
         </TooltipTrigger>
 
         <TooltipContent>
           <p>{items.slice(1).map((item) => item[itemTitle]).join(", ")}</p>
         </TooltipContent>
-      </Tooltip>
+      </Tooltip> }
     </div>
   )
 }
