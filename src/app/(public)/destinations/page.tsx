@@ -41,17 +41,9 @@ export async function generateMetadata() {
   };
 }
 
-type DestinationsPageProps = {
-  searchParams: Promise<{
-    locations: string;
-    durations: string;
-    page: string;
-    groups: string;
-  }>;
-};
 export default async function DestinationsPage({
   searchParams,
-}: DestinationsPageProps) {
+}: PageProps<"/destinations">) {
   const pageStr = (await searchParams).page ?? "1";
   const page = Number(pageStr);
   const locations = (await searchParams).locations ?? "";
@@ -60,8 +52,8 @@ export default async function DestinationsPage({
   const destinations = await getDestinationList({
     take: DESTINATIONS_PER_PAGE,
     skip: (page - 1) * DESTINATIONS_PER_PAGE,
-    locationSlug: locations,
-    groupSlug: groups,
+    locationSlug: locations as string,
+    groupSlug: groups as string,
   });
 
   return (

@@ -36,18 +36,8 @@ export const metadata: Metadata = {
     "best 2-day tour packages",
   ],
 };
-type TripsPageProps = {
-  searchParams: Promise<{
-    locations: string;
-    durations: string;
-    page: string;
-    destinations: string;
-    categories: string;
-    priceRange: string;
-    groups: string;
-  }>;
-};
-export default async function TripsPage({ searchParams }: TripsPageProps) {
+
+export default async function TripsPage({ searchParams }: PageProps<"/trips">) {
   const {
     locations = "",
     destinations = "",
@@ -61,14 +51,14 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
   const pageNum = Number(page);
 
   const events = await getEventList({
-    locationSlug: locations,
+    locationSlug: locations as string,
     durations: durations as any,
     take: TRIPS_PER_PAGE,
     skip: (pageNum - 1) * TRIPS_PER_PAGE,
-    destinationSlug: destinations,
-    categories,
+    destinationSlug: destinations as string,
+    categories: categories as string,
     priceRange,
-    groupSlug: groups,
+    groupSlug: groups as string,
   });
 
   return (

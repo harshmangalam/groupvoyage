@@ -16,7 +16,7 @@ import { DestinationsCarousel } from "@/components/destinations/destinations-car
 import { InstagramProfilesCarousel } from "@/components/instagram/instagram-carousel";
 import { Filters } from "@/components/filters-sidebar/filters";
 
-export async function generateMetadata({ searchParams }) {
+export async function generateMetadata({ searchParams }: PageProps<"/search">) {
   const { q } = await searchParams;
 
   return {
@@ -25,7 +25,9 @@ export async function generateMetadata({ searchParams }) {
   };
 }
 
-export default async function SearchPage({ searchParams }) {
+export default async function SearchPage({
+  searchParams,
+}: PageProps<"/search">) {
   const { q = "", locations, durations = "", priceRange } = await searchParams;
   const {
     events,
@@ -35,8 +37,8 @@ export default async function SearchPage({ searchParams }) {
     locationsList,
     categories,
   } = await getSearchResults({
-    search: q,
-    locationSlug: locations,
+    search: q as string,
+    locationSlug: locations as string,
     priceRange,
     durations: durations as any,
   });
