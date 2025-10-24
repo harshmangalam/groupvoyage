@@ -15,5 +15,3 @@ export default function RootLayout({
     </div>
   );
 }
-
-export const dynamic = "force-dynamic";
