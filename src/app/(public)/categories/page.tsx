@@ -5,9 +5,14 @@ import { PageSection } from "@/components/page-section";
 import SearchInput from "@/components/search-input";
 import { SortCategories } from "./sort-categories";
 
-export default async function CategoriesPage({ searchParams }) {
+export default async function CategoriesPage({
+  searchParams,
+}: PageProps<"/categories">) {
   const { q, sort } = await searchParams;
-  const categoriesResp = await getCategoryList({ search: q, sort });
+  const categoriesResp = await getCategoryList({
+    search: q as string,
+    sort: sort as string,
+  });
   return (
     <div className="px-4 max-w-7xl mx-auto mb-8">
       <PageSection

@@ -24,7 +24,9 @@ import { getInstagramProfile } from "@/actions/instagram-profile";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+  params,
+}: PageProps<"/groups/[groupSlug]">) {
   const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
   const cities = group?.locations.map((l) => l.city).join(", ");
@@ -56,10 +58,7 @@ export async function generateMetadata({ params }) {
 export default async function GroupHomePage({
   params,
   searchParams,
-}: {
-  params: Promise<{ groupSlug: string; locationSlug: string }>;
-  searchParams: Promise<{ locations: string; durations: string; page: string }>;
-}) {
+}: PageProps<"/groups/[groupSlug]">) {
   const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
   if (!group) return notFound();
@@ -73,7 +72,7 @@ export default async function GroupHomePage({
   const events = await getEventList({
     groupSlug,
     durations: durations as any,
-    locationSlug: locations,
+    locationSlug: locations as string,
     take: TRIPS_PER_PAGE,
     skip: (page - 1) * TRIPS_PER_PAGE,
   });

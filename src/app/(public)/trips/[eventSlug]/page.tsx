@@ -23,7 +23,9 @@ import { getInstagramUsername } from "@/lib/utils";
 import { ImageGallery } from "@/components/image-gallery";
 import { Badge } from "@/components/ui/badge";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+  params,
+}: PageProps<"/trips/[eventSlug]">) {
   const { eventSlug } = await params;
   const event = await getEventDetails({ eventSlug });
   return {
@@ -167,7 +169,6 @@ export default async function TripDetailsPage({
                       Save {discount}%
                     </div>
                   )}
-                  
                 </div>
                 <BookNow source={event.source} />
               </CardContent>

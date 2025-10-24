@@ -34,20 +34,15 @@ export const metadata: Metadata = {
   ],
 };
 
-type GroupsPageProps = {
-  searchParams: Promise<{
-    locations: string;
-    durations: string;
-    destinations: string;
-  }>;
-};
-export default async function GroupsPage({ searchParams }: GroupsPageProps) {
+export default async function GroupsPage({
+  searchParams,
+}: PageProps<"/groups">) {
   const locations = (await searchParams).locations ?? "";
   const destinations = (await searchParams).destinations ?? "";
 
   const groups = await getGroupList({
-    locationSlug: locations,
-    destinationSlug: destinations,
+    locationSlug: locations as string,
+    destinationSlug: destinations as string,
   });
   return (
     <div className="max-w-7xl mx-auto px-4">

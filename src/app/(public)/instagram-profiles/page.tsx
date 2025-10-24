@@ -11,15 +11,12 @@ export const metadata: Metadata = {
   description: `Discover instagram travel accounts for weekend trips. Filter by location and choose the best instagram group for your journey.`,
 };
 
-type InstagramProfilePageProps = {
-  searchParams: Promise<{ locations: string; durations: string }>;
-};
 export default async function InstagramProfilePage({
   searchParams,
-}: InstagramProfilePageProps) {
+}: PageProps<"/instagram-profiles">) {
   const locations = (await searchParams).locations ?? "";
   const instagramProfiles = await getInstagramProfileList({
-    locationSlug: locations,
+    locationSlug: locations as string,
   });
   return (
     <div className="max-w-7xl mx-auto px-4">

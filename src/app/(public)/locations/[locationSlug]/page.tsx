@@ -11,7 +11,9 @@ type LocationPageProps = {
   params: Promise<{ locationSlug: string }>;
 };
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+  params,
+}: PageProps<"/locations/[locationSlug]">) {
   const { locationSlug } = await params;
   const location = await getLocation({ locationSlug });
   return {

@@ -6,11 +6,9 @@ import { Suspense } from "react";
 import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
 import ComparePrice from "./compare-price";
 
-type DestinationPageProps = {
-  params: Promise<{ destinationSlug: string }>;
-};
-
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+  params,
+}: PageProps<"/destinations/[destinationSlug]">) {
   const { destinationSlug } = await params;
   const destination = await getDestinationDetails({ destinationSlug });
   return {
@@ -38,7 +36,7 @@ export async function generateMetadata({ params }) {
 
 export default async function DestinationDetailsPage({
   params,
-}: DestinationPageProps) {
+}: PageProps<"/destinations/[destinationSlug]">) {
   const destinationSlug = (await params).destinationSlug.toString();
   const destination = await getDestinationDetails({ destinationSlug });
   if (!destination) return notFound();
