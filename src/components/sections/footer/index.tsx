@@ -7,7 +7,7 @@ import {
 import Link from "next/link";
 import { SITE_EMAIL, SITE_TAGLINE, SOCIAL_LINKS } from "@/lib/constants";
 import { Logo } from "@/components/logo";
-import { ProductHuntBadge } from "@/components/product-hunt-badge";
+import { ProductHuntImage } from "@/components/product-hunt-image";
 import { Button } from "@/components/ui/button";
 import { InstagramIcon, MailIcon, TwitterIcon } from "lucide-react";
 import { DestinationLinks } from "./destination-links";
@@ -87,7 +87,14 @@ export default async function FooterSection() {
                   </a>
                 </Button>
               ))}
-              <ProductHuntBadge className="w-40 h-10" />
+              <Suspense>
+                <a
+                  href="https://www.producthunt.com/posts/groupvoyage-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-groupvoyage&#0045;2"
+                  target="_blank"
+                >
+                  <ProductHuntImage />
+                </a>
+              </Suspense>
             </div>
           </FooterColumn>
 
@@ -116,7 +123,7 @@ export default async function FooterSection() {
           {/* Destinations */}
           <FooterColumn>
             <h3 className="text-md pt-1 font-semibold">Destinations</h3>
-            <Suspense key={"footer-destinations"}>
+            <Suspense>
               <DestinationLinks />
             </Suspense>
           </FooterColumn>
@@ -124,7 +131,7 @@ export default async function FooterSection() {
           {/* categories */}
           <FooterColumn>
             <h3 className="text-md pt-1 font-semibold">Categories</h3>
-            <Suspense key={"footer-destinations"}>
+            <Suspense>
               <CategoriesLinks />
             </Suspense>
           </FooterColumn>

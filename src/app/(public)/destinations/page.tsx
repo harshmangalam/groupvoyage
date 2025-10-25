@@ -6,7 +6,7 @@ import { GroupsFilter } from "@/components/filters/groups/groups-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { PageSection } from "@/components/page-section";
 import { DESTINATIONS_PER_PAGE } from "@/lib/constants";
-import { Metadata } from "next";
+import { Suspense } from "react";
 
 export async function generateMetadata() {
   const destinationsName = (await getDestinationList({ take: 5 })).destinations
@@ -62,8 +62,12 @@ export default async function DestinationsPage({
         label={<span>Explore Destinations</span>}
         others={
           <div className="flex items-center gap-2">
-            <LocationsFilter />
-            <GroupsFilter />
+            <Suspense>
+              <LocationsFilter />
+            </Suspense>
+            <Suspense>
+              <GroupsFilter />
+            </Suspense>
           </div>
         }
       >

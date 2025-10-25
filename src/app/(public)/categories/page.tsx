@@ -1,9 +1,9 @@
-import type React from "react";
 import { CategoryCard } from "@/components/categories/category-card";
 import { getCategoryList } from "@/actions/categories";
 import { PageSection } from "@/components/page-section";
 import SearchInput from "@/components/search-input";
 import { SortCategories } from "./sort-categories";
+import { Suspense } from "react";
 
 export default async function CategoriesPage({
   searchParams,
@@ -20,9 +20,13 @@ export default async function CategoriesPage({
         others={
           <div className="flex items-center gap-4">
             <div className="max-w-md w-full">
-              <SearchInput />
+              <Suspense>
+                <SearchInput />
+              </Suspense>
             </div>
-            <SortCategories />
+            <Suspense>
+              <SortCategories />
+            </Suspense>
           </div>
         }
       ></PageSection>
