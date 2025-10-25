@@ -5,12 +5,7 @@ import {
   FooterContent,
 } from "@/components/ui/footer";
 import Link from "next/link";
-import {
-  SITE_EMAIL,
-  SITE_NAME,
-  SITE_TAGLINE,
-  SOCIAL_LINKS,
-} from "@/lib/constants";
+import { SITE_EMAIL, SITE_TAGLINE, SOCIAL_LINKS } from "@/lib/constants";
 import { Logo } from "@/components/logo";
 import { ProductHuntBadge } from "@/components/product-hunt-badge";
 import { Button } from "@/components/ui/button";
@@ -19,6 +14,7 @@ import { DestinationLinks } from "./destination-links";
 import { Suspense } from "react";
 import { LocationLinks } from "./location-link";
 import { CategoriesLinks } from "./categories-links";
+import { Copyright } from "./copyright";
 
 export default async function FooterSection() {
   const quickLinks = [
@@ -136,16 +132,7 @@ export default async function FooterSection() {
 
         {/* Footer Bottom with Copyright */}
         <FooterBottom className="flex justify-center">
-          <div className="text-center text-muted-foreground">
-            © {new Date().getFullYear()} {SITE_NAME}. Crafted with ❤️ for
-            explorers by{" "}
-            <a
-              href={SOCIAL_LINKS.LINKEDIN}
-              className="text-primary hover:underline"
-            >
-              Harsh Mangalam
-            </a>
-          </div>
+          <Copyright />
         </FooterBottom>
       </Footer>
     </footer>

@@ -16,12 +16,10 @@ import { DestinationsCarousel } from "@/components/destinations/destinations-car
 import { InstagramProfilesCarousel } from "@/components/instagram/instagram-carousel";
 import { Filters } from "@/components/filters-sidebar/filters";
 
-export async function generateMetadata({ searchParams }: PageProps<"/search">) {
-  const { q } = await searchParams;
-
+export async function generateMetadata() {
   return {
-    title: !q ? `Search` : `Search for ${q}`,
-    description: `Discover details about ${q} Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
+    title: `Search`,
+    description: `Discover details, Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
   };
 }
 
