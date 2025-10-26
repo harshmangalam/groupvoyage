@@ -1,7 +1,6 @@
 import { SITE_NAME, SOCIAL_LINKS } from "@/lib/constants";
 
 async function getCurrentYear() {
-  "use cache";
   return new Date().getFullYear();
 }
 

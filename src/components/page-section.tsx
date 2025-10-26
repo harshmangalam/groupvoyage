@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { ArrowRightIcon } from "lucide-react";
 
-export function PageSection({
+export async function PageSection({
   children,
   label,
   href,
