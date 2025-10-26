@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "bun --bun run dev",
-    "build": "bun --bun next build --debug-prerender",
-    "start": "bun --bun next start",
+    "build": "bun --bun build --debug-prerender",
+    "start": "bun --bun start",
     "lint": "eslint .",
     "postinstall": "prisma generate"
   },
