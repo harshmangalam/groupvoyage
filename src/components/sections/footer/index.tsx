@@ -139,7 +139,9 @@ export default async function FooterSection() {
 
         {/* Footer Bottom with Copyright */}
         <FooterBottom className="flex justify-center">
-          <Copyright />
+          <Suspense>
+            <Copyright />
+          </Suspense>
         </FooterBottom>
       </Footer>
     </footer>
