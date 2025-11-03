@@ -2,6 +2,7 @@ import { getLocations } from "@/actions/location";
 import { LocationCard } from "@/components/locations/location-card";
 import { PageSection } from "@/components/page-section";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Best Weekend Trips & Getaways from Your City | Compare Prices",
@@ -31,6 +32,14 @@ export const metadata: Metadata = {
 };
 
 export default async function LocationsPage() {
+  return (
+    <Suspense>
+      <LocationsWrapper />
+    </Suspense>
+  );
+}
+
+async function LocationsWrapper() {
   const locations = await getLocations();
   return (
     <div className="px-4 max-w-7xl mx-auto">
