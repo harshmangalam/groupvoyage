@@ -1,4 +1,5 @@
 import { getGroupList } from "@/actions/group";
+import Empty from "@/components/empty";
 import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { GroupCard } from "@/components/groups/group-card";
@@ -37,42 +38,44 @@ export const metadata: Metadata = {
 export default async function GroupsPage({
   searchParams,
 }: PageProps<"/groups">) {
-  const locations = (await searchParams).locations ?? "";
-  const destinations = (await searchParams).destinations ?? "";
-
-  const groups = await getGroupList({
-    locationSlug: locations as string,
-    destinationSlug: destinations as string,
-  });
   return (
     <div className="max-w-7xl mx-auto px-4">
       <PageSection
         label={<span>Explore Groups</span>}
         others={
           <div className="flex items-center flex-wrap gap-2  md:justify-end justify-start">
-            <Suspense
-              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-              key={`locations-filter`}
-            >
+            <Suspense fallback={<Skeleton className="h-9 w-32 rounded-md" />}>
               <LocationsFilter />
             </Suspense>
-            <Suspense
-              fallback={<Skeleton className="h-10 w-32 rounded-md" />}
-              key={`destinations-filter`}
-            >
+            <Suspense fallback={<Skeleton className="h-9 w-32 rounded-md" />}>
               <DestinationsFilter />
             </Suspense>
           </div>
         }
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {groups.length ? (
-            groups.map((group) => <GroupCard key={group.id} group={group} />)
-          ) : (
-            <p>No groups</p>
-          )}
-        </div>
+        <Suspense>
+          <GroupsPageWrapper searchParamsPromise={searchParams} />
+        </Suspense>
       </PageSection>
+    </div>
+  );
+}
+async function GroupsPageWrapper({ searchParamsPromise }) {
+  const locations = (await searchParamsPromise).locations ?? "";
+  const destinations = (await searchParamsPromise).destinations ?? "";
+
+  const groups = await getGroupList({
+    locationSlug: locations as string,
+    destinationSlug: destinations as string,
+  });
+
+  if (!groups.length) return <Empty title={"Groups"} />;
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      {groups.map((group) => (
+        <GroupCard key={group.id} group={group} />
+      ))}
     </div>
   );
 }
