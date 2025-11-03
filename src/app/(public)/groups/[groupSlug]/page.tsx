@@ -1,4 +1,3 @@
-import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
@@ -16,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { PostersCarousel } from "./posters-carousel";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
-import { SITE_URL, TRIPS_PER_PAGE } from "@/lib/constants";
+import { SITE_URL } from "@/lib/constants";
 import { GroupMetaType } from "@/lib/types";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
