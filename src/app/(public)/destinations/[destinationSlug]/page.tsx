@@ -37,17 +37,27 @@ export async function generateMetadata({
 export default async function DestinationDetailsPage({
   params,
 }: PageProps<"/destinations/[destinationSlug]">) {
-  const destinationSlug = (await params).destinationSlug.toString();
+  return (
+    <div className="max-w-7xl px-4 mx-auto relative">
+      <Suspense>
+        <DestinationDetailsWrapper paramsPromise={params} />
+      </Suspense>
+    </div>
+  );
+}
+
+async function DestinationDetailsWrapper({ paramsPromise }) {
+  const destinationSlug = (await paramsPromise).destinationSlug.toString();
   const destination = await getDestinationDetails({ destinationSlug });
   if (!destination) return notFound();
   return (
-    <div className="max-w-7xl px-4 mx-auto relative">
+    <>
       <PageSection
         href={`/groups?destinations=${destinationSlug}`}
         label={<span>{destination.name} Getaways with Top Groups</span>}
         description={`Unwind in ${destination.name} with curated group trips for a perfect escape`}
       >
-        <Suspense key={`featured-events-destination-${destinationSlug}`}>
+        <Suspense>
           <TrendingGroupsCarousel destinations={destinationSlug} />
         </Suspense>
       </PageSection>
@@ -57,7 +67,7 @@ export default async function DestinationDetailsPage({
         label={<span>Trips to {destination.name}</span>}
         description={`Discover ${destination.name} with expertly planned trips for a memorable getaway`}
       >
-        <Suspense key={`featured-events-destination-${destinationSlug}`}>
+        <Suspense>
           <TrendingTripsCarousel destinations={destinationSlug} />
         </Suspense>
       </PageSection>
@@ -65,10 +75,10 @@ export default async function DestinationDetailsPage({
         label={<span> {destination.name} Price Comparison</span>}
         description={`Find the best deals for ${destination.name} across all available groups and trips.`}
       >
-        <Suspense key={`compare-destination-price-${destinationSlug}`}>
+        <Suspense>
           <ComparePrice destinationSlug={destinationSlug} />
         </Suspense>
       </PageSection>
-    </div>
+    </>
   );
 }
