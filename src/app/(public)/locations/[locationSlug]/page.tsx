@@ -34,7 +34,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function LocationDetailsPage({ params }) {
+export default async function LocationDetailsPage({
+  params,
+}: PageProps<"/locations/[locationSlug]">) {
   return (
     <Suspense>
       <LocationDetailsWrapper paramsPromise={params} />
