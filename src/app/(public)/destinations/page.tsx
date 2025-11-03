@@ -44,18 +44,6 @@ export async function generateMetadata() {
 export default async function DestinationsPage({
   searchParams,
 }: PageProps<"/destinations">) {
-  const pageStr = (await searchParams).page ?? "1";
-  const page = Number(pageStr);
-  const locations = (await searchParams).locations ?? "";
-  const groups = (await searchParams).groups ?? "";
-
-  const destinations = await getDestinationList({
-    take: DESTINATIONS_PER_PAGE,
-    skip: (page - 1) * DESTINATIONS_PER_PAGE,
-    locationSlug: locations as string,
-    groupSlug: groups as string,
-  });
-
   return (
     <div className="px-4 max-w-7xl mx-auto">
       <PageSection
@@ -71,28 +59,47 @@ export default async function DestinationsPage({
           </div>
         }
       >
-        {destinations.pagination.totalCount > 0 ? (
-          <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {destinations.destinations.map((destination) => (
-                <DestinationCard
-                  key={destination.id}
-                  eventsCount={destination._count.events}
-                  groupsCount={destination._count.groups}
-                  locations={destination.locations}
-                  name={destination.name}
-                  slug={destination.slug}
-                />
-              ))}
-            </div>
-            <div className="mt-6">
-              <CustomPagination {...destinations.pagination} />
-            </div>
-          </div>
-        ) : (
-          <Empty title={"destinations"} />
-        )}
+        <Suspense>
+          <DestinationsWrapper searchParamsPromise={searchParams} />
+        </Suspense>
       </PageSection>
+    </div>
+  );
+}
+async function DestinationsWrapper({ searchParamsPromise }) {
+  const pageStr = (await searchParamsPromise).page ?? "1";
+  const page = Number(pageStr);
+  const locations = (await searchParamsPromise).locations ?? "";
+  const groups = (await searchParamsPromise).groups ?? "";
+
+  const destinations = await getDestinationList({
+    take: DESTINATIONS_PER_PAGE,
+    skip: (page - 1) * DESTINATIONS_PER_PAGE,
+    locationSlug: locations as string,
+    groupSlug: groups as string,
+  });
+
+  if (!destinations.destinations.length) {
+    return <Empty title={"destinations"} />;
+  }
+
+  return (
+    <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {destinations.destinations.map((destination) => (
+          <DestinationCard
+            key={destination.id}
+            eventsCount={destination._count.events}
+            groupsCount={destination._count.groups}
+            locations={destination.locations}
+            name={destination.name}
+            slug={destination.slug}
+          />
+        ))}
+      </div>
+      <div className="mt-6">
+        <CustomPagination {...destinations.pagination} />
+      </div>
     </div>
   );
 }
