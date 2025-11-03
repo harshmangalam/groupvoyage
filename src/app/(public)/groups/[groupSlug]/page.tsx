@@ -55,27 +55,24 @@ export async function generateMetadata({
   };
 }
 
-export default async function GroupHomePage({
+export default async function GroupDetailsPage({
   params,
-  searchParams,
 }: PageProps<"/groups/[groupSlug]">) {
-  const { groupSlug } = await params;
+  return (
+    <Suspense>
+      <GroupDetailsWrapper paramsPromise={params} />
+    </Suspense>
+  );
+}
+async function GroupDetailsWrapper({ paramsPromise }) {
+  const { groupSlug } = await paramsPromise;
   const group = await getGroupDetails({ slug: groupSlug });
+
   if (!group) return notFound();
 
   const username = getInstagramUsername(group.instagram);
   const instagramProfile = await getInstagramProfile({ username });
 
-  const { durations = "", locations = "" } = await searchParams;
-  const pageStr = (await searchParams).page ?? "1";
-  const page = Number(pageStr);
-  const events = await getEventList({
-    groupSlug,
-    durations: durations as any,
-    locationSlug: locations as string,
-    take: TRIPS_PER_PAGE,
-    skip: (page - 1) * TRIPS_PER_PAGE,
-  });
   return (
     <div>
       <Card className="w-full border-none max-w-7xl py-5 lg:px-4 mx-auto shadow-none">
