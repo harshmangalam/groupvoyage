@@ -9,6 +9,24 @@
     "lint": "eslint .",
     "postinstall": "prisma generate"
   },
+  "keywords": [
+    "react",
+    "react19",
+    "next",
+    "next16",
+    "cacheComponents",
+    "hacktoberfest25",
+    "hacktoberfest",
+    "tailwind",
+    "shadcn-ui",
+    "prisma",
+    "postgresql",
+    "bun",
+    "vercel",
+    "travel",
+    "travel-website",
+    "groupvoyage"
+  ],
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
     "@prisma/client": "^6.9.0",
