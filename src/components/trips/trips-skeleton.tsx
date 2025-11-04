@@ -11,7 +11,6 @@ export function TripSkeletonCard() {
       {/* Image section */}
       <div className="relative w-full h-52 overflow-hidden">
         <Skeleton className="w-full h-full object-cover" />
-        <div className="absolute top-2 right-2 w-16 h-6 rounded bg-muted animate-pulse" />
       </div>
 
       <CardContent className="p-4">
@@ -58,7 +57,7 @@ export function TripSkeletonCard() {
 export default function TripsSkeleton() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {Array.from({ length: 5 }).map((_, i) => (
+      {Array.from({ length: 3 }).map((_, i) => (
         <TripSkeletonCard key={i} />
       ))}
     </div>

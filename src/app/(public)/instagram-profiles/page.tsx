@@ -2,6 +2,7 @@ import { getInstagramProfileList } from "@/actions/instagram-profile";
 import Empty from "@/components/empty";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
+import InstagramProfileSkeleton from "@/components/instagram/instagram-skeleton";
 import { PageSection } from "@/components/page-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Metadata } from "next";
@@ -28,7 +29,7 @@ export default async function InstagramProfilePage({
           </Suspense>
         }
       >
-        <Suspense>
+        <Suspense fallback={<InstagramProfileSkeleton />}>
           <InstagramProfileWrapper searchParamsPromise={searchParams} />
         </Suspense>
       </PageSection>
