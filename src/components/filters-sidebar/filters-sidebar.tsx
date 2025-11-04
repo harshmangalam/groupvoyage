@@ -8,7 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { FilterIcon } from "lucide-react";
-import { FilterWrapper } from "./filters-wrapper";
+import { Filters } from "./filters";
 
 export function FiltersSidebar({ children }) {
   return (
@@ -24,7 +24,7 @@ export function FiltersSidebar({ children }) {
           <SheetDescription>Refine your search results</SheetDescription>
         </SheetHeader>
         <div className="mt-6">
-          <FilterWrapper>{children}</FilterWrapper>
+          <Filters />
         </div>
       </SheetContent>
     </Sheet>
