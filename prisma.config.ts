@@ -1,10 +1,6 @@
 import path from "node:path";
 import { env, type PrismaConfig } from "prisma/config";
 
-type Env = {
-  DATABASE_URL: string;
-};
-
 export default {
   schema: path.join("prisma", "schema.prisma"),
   migrations: {
@@ -19,7 +15,7 @@ export default {
   },
   engine: "classic",
   datasource: {
-    url: env<Env>("DATABASE_URL"),
+    url: env("DATABASE_URL"),
   },
   experimental: {
     adapter: true,
