@@ -12,11 +12,10 @@ type BadgeListProps = {
 function BadgeList({ items, itemTitle, className }: BadgeListProps) {
   return (
     <div className={cn("flex gap-1 flex-wrap", className)}>
-      {
-        <Badge variant={"secondary"} className="capitalize">
-          {items?.[0]?.[itemTitle]}
-        </Badge>
-      }
+      <Badge variant={"secondary"} className="capitalize">
+        {items?.[0]?.[itemTitle]}
+      </Badge>
+
       {items.length > 1 && (
         <Tooltip>
           <TooltipTrigger asChild>

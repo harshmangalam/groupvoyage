@@ -3,6 +3,7 @@ import Empty from "@/components/empty";
 import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { GroupCard } from "@/components/groups/group-card";
+import { GroupsSkeleton } from "@/components/groups/groups-skeleton";
 import { PageSection } from "@/components/page-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Metadata } from "next";
@@ -53,7 +54,7 @@ export default async function GroupsPage({
           </div>
         }
       >
-        <Suspense>
+        <Suspense fallback={<GroupsSkeleton />}>
           <GroupsPageWrapper searchParamsPromise={searchParams} />
         </Suspense>
       </PageSection>

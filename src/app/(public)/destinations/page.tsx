@@ -1,10 +1,12 @@
 import { getDestinationList } from "@/actions/destinations";
 import { CustomPagination } from "@/components/custom-pagination";
 import { DestinationCard } from "@/components/destinations/destination-card";
+import { DestinationsSkeleton } from "@/components/destinations/destinations-skeleton";
 import Empty from "@/components/empty";
 import { GroupsFilter } from "@/components/filters/groups/groups-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { PageSection } from "@/components/page-section";
+import { Skeleton } from "@/components/ui/skeleton";
 import { DESTINATIONS_PER_PAGE } from "@/lib/constants";
 import { Suspense } from "react";
 
@@ -50,16 +52,16 @@ export default async function DestinationsPage({
         label={<span>Explore Destinations</span>}
         others={
           <div className="flex items-center gap-2">
-            <Suspense>
+            <Suspense fallback={<Skeleton className="h-9 w-32 rounded-md" />}>
               <LocationsFilter />
             </Suspense>
-            <Suspense>
+            <Suspense fallback={<Skeleton className="h-9 w-32 rounded-md" />}>
               <GroupsFilter />
             </Suspense>
           </div>
         }
       >
-        <Suspense>
+        <Suspense fallback={<DestinationsSkeleton />}>
           <DestinationsWrapper searchParamsPromise={searchParams} />
         </Suspense>
       </PageSection>

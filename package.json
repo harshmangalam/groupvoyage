@@ -9,9 +9,6 @@
     "lint": "eslint .",
     "postinstall": "prisma generate"
   },
-  "prisma": {
-    "seed": "bunx tsx prisma/seed.ts"
-  },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
     "@prisma/client": "^6.9.0",
