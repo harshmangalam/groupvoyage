@@ -1,13 +1,13 @@
-import type React from "react";
 import { CategoryCard } from "@/components/categories/category-card";
 import { getCategoryList } from "@/actions/categories";
 import { PageSection } from "@/components/page-section";
 import SearchInput from "@/components/search-input";
 import { SortCategories } from "./sort-categories";
+import { Suspense } from "react";
 
-export default async function CategoriesPage({ searchParams }) {
-  const { q, sort } = await searchParams;
-  const categoriesResp = await getCategoryList({ search: q, sort });
+export default async function CategoriesPage({
+  searchParams,
+}: PageProps<"/categories">) {
   return (
     <div className="px-4 max-w-7xl mx-auto mb-8">
       <PageSection
@@ -15,28 +15,49 @@ export default async function CategoriesPage({ searchParams }) {
         others={
           <div className="flex items-center gap-4">
             <div className="max-w-md w-full">
-              <SearchInput />
+              <Suspense>
+                <SearchInput />
+              </Suspense>
             </div>
-            <SortCategories />
+            <Suspense>
+              <SortCategories />
+            </Suspense>
           </div>
         }
-      ></PageSection>
+      />
+      <Suspense>
+        <CategoriesWrapper searchParamsPromise={searchParams} />
+      </Suspense>
+    </div>
+  );
+}
+async function CategoriesWrapper({
+  searchParamsPromise,
+}: {
+  searchParamsPromise: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const { q, sort } = await searchParamsPromise;
 
-      <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {categoriesResp.categories.map((category) => (
-          <CategoryCard
-            key={category.id}
-            category={category}
-            eventCount={category._count.events}
-          />
-        ))}
+  const categoriesResp = await getCategoryList({
+    search: q as string,
+    sort: sort as string,
+  });
 
-        {categoriesResp.categories.length === 0 && (
-          <div className="col-span-full text-center text-muted-foreground py-8">
-            No categories found matching your criteria.
-          </div>
-        )}
-      </div>
+  return (
+    <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      {categoriesResp.categories.map((category) => (
+        <CategoryCard
+          key={category.id}
+          category={category}
+          eventCount={category._count.events}
+        />
+      ))}
+
+      {categoriesResp.categories.length === 0 && (
+        <div className="col-span-full text-center text-muted-foreground py-8">
+          No categories found matching your criteria.
+        </div>
+      )}
     </div>
   );
 }

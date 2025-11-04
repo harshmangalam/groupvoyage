@@ -5,7 +5,7 @@ type GetDestinationsParams = {
   take?: number;
   skip?: number;
   search?: string;
-  sort?: "asc" | "desc";
+  sort?: "asc" | "desc" | string;
 };
 export const getCategoryList = cache(
   async (params: GetDestinationsParams = {}) => {

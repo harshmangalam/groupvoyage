@@ -6,7 +6,7 @@ import { GroupsFilter } from "@/components/filters/groups/groups-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { PageSection } from "@/components/page-section";
 import { DESTINATIONS_PER_PAGE } from "@/lib/constants";
-import { Metadata } from "next";
+import { Suspense } from "react";
 
 export async function generateMetadata() {
   const destinationsName = (await getDestinationList({ take: 5 })).destinations
@@ -41,62 +41,65 @@ export async function generateMetadata() {
   };
 }
 
-type DestinationsPageProps = {
-  searchParams: Promise<{
-    locations: string;
-    durations: string;
-    page: string;
-    groups: string;
-  }>;
-};
 export default async function DestinationsPage({
   searchParams,
-}: DestinationsPageProps) {
-  const pageStr = (await searchParams).page ?? "1";
-  const page = Number(pageStr);
-  const locations = (await searchParams).locations ?? "";
-  const groups = (await searchParams).groups ?? "";
-
-  const destinations = await getDestinationList({
-    take: DESTINATIONS_PER_PAGE,
-    skip: (page - 1) * DESTINATIONS_PER_PAGE,
-    locationSlug: locations,
-    groupSlug: groups,
-  });
-
+}: PageProps<"/destinations">) {
   return (
     <div className="px-4 max-w-7xl mx-auto">
       <PageSection
         label={<span>Explore Destinations</span>}
         others={
           <div className="flex items-center gap-2">
-            <LocationsFilter />
-            <GroupsFilter />
+            <Suspense>
+              <LocationsFilter />
+            </Suspense>
+            <Suspense>
+              <GroupsFilter />
+            </Suspense>
           </div>
         }
       >
-        {destinations.pagination.totalCount > 0 ? (
-          <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {destinations.destinations.map((destination) => (
-                <DestinationCard
-                  key={destination.id}
-                  eventsCount={destination._count.events}
-                  groupsCount={destination._count.groups}
-                  locations={destination.locations}
-                  name={destination.name}
-                  slug={destination.slug}
-                />
-              ))}
-            </div>
-            <div className="mt-6">
-              <CustomPagination {...destinations.pagination} />
-            </div>
-          </div>
-        ) : (
-          <Empty title={"destinations"} />
-        )}
+        <Suspense>
+          <DestinationsWrapper searchParamsPromise={searchParams} />
+        </Suspense>
       </PageSection>
+    </div>
+  );
+}
+async function DestinationsWrapper({ searchParamsPromise }) {
+  const pageStr = (await searchParamsPromise).page ?? "1";
+  const page = Number(pageStr);
+  const locations = (await searchParamsPromise).locations ?? "";
+  const groups = (await searchParamsPromise).groups ?? "";
+
+  const destinations = await getDestinationList({
+    take: DESTINATIONS_PER_PAGE,
+    skip: (page - 1) * DESTINATIONS_PER_PAGE,
+    locationSlug: locations as string,
+    groupSlug: groups as string,
+  });
+
+  if (!destinations.destinations.length) {
+    return <Empty title={"destinations"} />;
+  }
+
+  return (
+    <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {destinations.destinations.map((destination) => (
+          <DestinationCard
+            key={destination.id}
+            eventsCount={destination._count.events}
+            groupsCount={destination._count.groups}
+            locations={destination.locations}
+            name={destination.name}
+            slug={destination.slug}
+          />
+        ))}
+      </div>
+      <div className="mt-6">
+        <CustomPagination {...destinations.pagination} />
+      </div>
     </div>
   );
 }

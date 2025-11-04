@@ -5,20 +5,17 @@ import {
   FooterContent,
 } from "@/components/ui/footer";
 import Link from "next/link";
-import {
-  SITE_EMAIL,
-  SITE_NAME,
-  SITE_TAGLINE,
-  SOCIAL_LINKS,
-} from "@/lib/constants";
+import { SITE_EMAIL, SITE_TAGLINE, SOCIAL_LINKS } from "@/lib/constants";
 import { Logo } from "@/components/logo";
-import { ProductHuntBadge } from "@/components/product-hunt-badge";
+import { ProductHuntImage } from "@/components/product-hunt-image";
 import { Button } from "@/components/ui/button";
 import { InstagramIcon, MailIcon, TwitterIcon } from "lucide-react";
 import { DestinationLinks } from "./destination-links";
 import { Suspense } from "react";
 import { LocationLinks } from "./location-link";
 import { CategoriesLinks } from "./categories-links";
+import { Copyright } from "./copyright";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function FooterSection() {
   const quickLinks = [
@@ -91,7 +88,9 @@ export default async function FooterSection() {
                   </a>
                 </Button>
               ))}
-              <ProductHuntBadge className="w-40 h-10" />
+              <Suspense fallback={<Skeleton className="w-40 h-10" />}>
+                <ProductHuntImage />
+              </Suspense>
             </div>
           </FooterColumn>
 
@@ -120,7 +119,7 @@ export default async function FooterSection() {
           {/* Destinations */}
           <FooterColumn>
             <h3 className="text-md pt-1 font-semibold">Destinations</h3>
-            <Suspense key={"footer-destinations"}>
+            <Suspense>
               <DestinationLinks />
             </Suspense>
           </FooterColumn>
@@ -128,7 +127,7 @@ export default async function FooterSection() {
           {/* categories */}
           <FooterColumn>
             <h3 className="text-md pt-1 font-semibold">Categories</h3>
-            <Suspense key={"footer-destinations"}>
+            <Suspense>
               <CategoriesLinks />
             </Suspense>
           </FooterColumn>
@@ -136,16 +135,9 @@ export default async function FooterSection() {
 
         {/* Footer Bottom with Copyright */}
         <FooterBottom className="flex justify-center">
-          <div className="text-center text-muted-foreground">
-            © {new Date().getFullYear()} {SITE_NAME}. Crafted with ❤️ for
-            explorers by{" "}
-            <a
-              href={SOCIAL_LINKS.LINKEDIN}
-              className="text-primary hover:underline"
-            >
-              Harsh Mangalam
-            </a>
-          </div>
+          <Suspense>
+            <Copyright />
+          </Suspense>
         </FooterBottom>
       </Footer>
     </footer>

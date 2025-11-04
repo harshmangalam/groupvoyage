@@ -15,24 +15,26 @@ export function NavigationsDropdownMenu() {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button size={"icon"} variant={"outline"}>
-          <MenuIcon />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-32">
-        <DropdownMenuRadioGroup
-          value={pathname}
-          onValueChange={(v) => router.push(v)}
-        >
-          {NAVIGATIONS_MENU.map((link) => (
-            <DropdownMenuRadioItem key={link.href} value={link.href}>
-              {link.name}
-            </DropdownMenuRadioItem>
-          ))}
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="block lg:hidden">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button size={"icon"} variant={"outline"}>
+            <MenuIcon />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-32">
+          <DropdownMenuRadioGroup
+            value={pathname}
+            onValueChange={(v) => router.push(v)}
+          >
+            {NAVIGATIONS_MENU.map((link) => (
+              <DropdownMenuRadioItem key={link.href} value={link.href}>
+                {link.name}
+              </DropdownMenuRadioItem>
+            ))}
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 }

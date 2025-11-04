@@ -30,7 +30,7 @@ export async function HomeHero() {
             <SearchForm />
           </div>
 
-          <Suspense key={"home-hero-stats"} fallback={<StatsFallback />}>
+          <Suspense fallback={<StatsFallback />}>
             <Stats />
           </Suspense>
         </div>

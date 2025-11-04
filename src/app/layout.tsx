@@ -9,6 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationProgress } from "@/components/navigation-progress";
+import { Suspense } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -59,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${poppins.variable} antialiased`}>
         <NuqsAdapter>
           <ThemeProvider
@@ -68,10 +69,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <TooltipProvider>
+            <Suspense>
               <NavigationProgress />
-              {children}
-            </TooltipProvider>
+            </Suspense>
+            <TooltipProvider>{children}</TooltipProvider>
           </ThemeProvider>
         </NuqsAdapter>
         <Toaster />

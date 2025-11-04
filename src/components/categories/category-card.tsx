@@ -2,9 +2,8 @@ import { T_Category } from "@/lib/types";
 import Link from "next/link";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { ArrowRightIcon, CalendarClockIcon } from "lucide-react";
-import { Badge } from "../ui/badge";
 
-export function CategoryCard({
+export async function CategoryCard({
   category,
   eventCount,
 }: {

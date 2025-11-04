@@ -7,11 +7,9 @@ import { TrendingDestinationsCarousel } from "@/components/destinations/trending
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
 
-type LocationPageProps = {
-  params: Promise<{ locationSlug: string }>;
-};
-
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+  params,
+}: PageProps<"/locations/[locationSlug]">) {
   const { locationSlug } = await params;
   const location = await getLocation({ locationSlug });
   return {
@@ -36,74 +34,85 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function LocationPage({ params }: LocationPageProps) {
-  const locationSlug = (await params).locationSlug.toString();
-  const location = await getLocation({ locationSlug });
+export default async function LocationDetailsPage({
+  params,
+}: PageProps<"/locations/[locationSlug]">) {
+  return (
+    <Suspense>
+      <LocationDetailsWrapper paramsPromise={params} />
+    </Suspense>
+  );
+}
+
+async function LocationDetailsWrapper({ paramsPromise }) {
+  const params = await paramsPromise;
+  const location = await getLocation({ locationSlug: params.locationSlug });
 
   if (!location) return notFound();
-
   return (
     <div className="max-w-7xl px-4 mx-auto">
       <PageSection
-        href={`/instagram-profiles?locations=${locationSlug}`}
+        href={`/instagram-profiles?locations=${params.locationSlug}`}
         label={<span>Instagram Travel Groups From {location.city}</span>}
         description={`Discover top travel groups on Instagram from ${location.city} for your next getaway`}
       >
-        <TrendingInstagramProfiles locationSlug={locationSlug} />
+        <Suspense>
+          <TrendingInstagramProfiles locationSlug={params.locationSlug} />
+        </Suspense>
       </PageSection>
       <PageSection
-        href={`/destinations/?locations=${locationSlug}`}
+        href={`/destinations/?locations=${params.locationSlug}`}
         label={<span> Weekend Destinations From {location.city}</span>}
         description={`Stunning spots near ${location.city} you need to explore.`}
       >
-        <Suspense key={`featured-destinations-${locationSlug}`}>
-          <TrendingDestinationsCarousel locationSlug={locationSlug} />
+        <Suspense>
+          <TrendingDestinationsCarousel locationSlug={params.locationSlug} />
         </Suspense>
       </PageSection>
 
       <PageSection
-        href={`/groups?locations=${locationSlug}`}
+        href={`/groups?locations=${params.locationSlug}`}
         label={<span>Top Travel Groups from {location.city}</span>}
         description={`Connect with the top travel groups starting from ${location.city}.`}
       >
-        <Suspense key={`featured-groups-${locationSlug}`}>
-          <TrendingGroupsCarousel locationSlug={locationSlug} />
+        <Suspense>
+          <TrendingGroupsCarousel locationSlug={params.locationSlug} />
         </Suspense>
       </PageSection>
 
       <PageSection
-        href={`/trips/?locations=${locationSlug}&durations=short-trips`}
+        href={`/trips/?locations=${params.locationSlug}&durations=short-trips`}
         label={<span>Epic 1-Day Trips from {location.city}</span>}
         description={`Discover unmissable 1 day short weekend trips near ${location.city}`}
       >
-        <Suspense key={`featured-events-1-day-${locationSlug}`}>
+        <Suspense>
           <TrendingTripsCarousel
-            locationSlug={locationSlug}
+            locationSlug={params.locationSlug}
             durations={"short-trips"}
           />
         </Suspense>
       </PageSection>
 
       <PageSection
-        href={`/trips/?locations=${locationSlug}&durations=weekend-trips`}
+        href={`/trips/?locations=${params.locationSlug}&durations=weekend-trips`}
         label={<span>Epic 2-Days Trips from {location.city}</span>}
         description={`Discover unmissable 2 days weekend trips near ${location.city}`}
       >
-        <Suspense key={`featured-events-2-days-${locationSlug}`}>
+        <Suspense>
           <TrendingTripsCarousel
-            locationSlug={locationSlug}
+            locationSlug={params.locationSlug}
             durations={"weekend-trips"}
           />
         </Suspense>
       </PageSection>
       <PageSection
-        href={`/trips/?locations=${locationSlug}&durations=long-weekend`}
+        href={`/trips/?locations=${params.locationSlug}&durations=long-weekend`}
         label={<span>Epic 3+ days Trips from {location.city}</span>}
         description={`Discover unmissable 3+ days long weekend trips near ${location.city}`}
       >
-        <Suspense key={`featured-events-2-days-${locationSlug}`}>
+        <Suspense>
           <TrendingTripsCarousel
-            locationSlug={locationSlug}
+            locationSlug={params.locationSlug}
             durations={"long-weekend"}
           />
         </Suspense>

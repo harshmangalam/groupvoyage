@@ -3,11 +3,11 @@ import { CustomPagination } from "@/components/custom-pagination";
 import Empty from "@/components/empty";
 import { Filters } from "@/components/filters-sidebar/filters";
 import { FiltersSidebar } from "@/components/filters-sidebar/filters-sidebar";
-import { FilterWrapper } from "@/components/filters-sidebar/filters-wrapper";
 import { TripCard } from "@/components/trips/trip-card";
 import { TRIPS_PER_PAGE } from "@/lib/constants";
 import { SlidersHorizontal } from "lucide-react";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Best Weekend Trips - 1-Day & 2-Day Getaways at Affordable Price",
@@ -36,41 +36,8 @@ export const metadata: Metadata = {
     "best 2-day tour packages",
   ],
 };
-type TripsPageProps = {
-  searchParams: Promise<{
-    locations: string;
-    durations: string;
-    page: string;
-    destinations: string;
-    categories: string;
-    priceRange: string;
-    groups: string;
-  }>;
-};
-export default async function TripsPage({ searchParams }: TripsPageProps) {
-  const {
-    locations = "",
-    destinations = "",
-    categories = "",
-    durations = "",
-    page = "1",
-    priceRange = "",
-    groups = "",
-  } = await searchParams;
 
-  const pageNum = Number(page);
-
-  const events = await getEventList({
-    locationSlug: locations,
-    durations: durations as any,
-    take: TRIPS_PER_PAGE,
-    skip: (pageNum - 1) * TRIPS_PER_PAGE,
-    destinationSlug: destinations,
-    categories,
-    priceRange,
-    groupSlug: groups,
-  });
-
+export default async function TripsPage({ searchParams }: PageProps<"/trips">) {
   return (
     <div className="container mx-auto px-4 py-4 flex-1 flex flex-col md:flex-row gap-8">
       {/* Sidebar Filters - Hidden on mobile, sticky on desktop */}
@@ -80,12 +47,10 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
             <SlidersHorizontal className="h-5 w-5" />
             <h2 className="text-lg font-semibold">Filters</h2>
           </div>
-          <FilterWrapper>
-            <Filters />
-          </FilterWrapper>
+
+          <Filters />
         </div>
       </aside>
-
       <main className="flex-1">
         <div className="flex justify-between mb-6">
           <div>
@@ -96,20 +61,51 @@ export default async function TripsPage({ searchParams }: TripsPageProps) {
           </FiltersSidebar>
         </div>
 
-        {events.events.length ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   gap-4">
-            {events.events.map((event) => (
-              <TripCard key={event.id} event={event} />
-            ))}
-          </div>
-        ) : (
-          <Empty title={"results"} showSearch={false} showHome={false} />
-        )}
-
-        <div className="mt-6">
-          <CustomPagination {...events.pagination} />
-        </div>
+        <Suspense>
+          <TripsWrapper searchParamsPromise={searchParams} />
+        </Suspense>
       </main>
+    </div>
+  );
+}
+async function TripsWrapper({ searchParamsPromise }) {
+  const {
+    locations = "",
+    destinations = "",
+    categories = "",
+    durations = "",
+    page = "1",
+    priceRange = "",
+    groups = "",
+  } = await searchParamsPromise;
+
+  const pageNum = Number(page);
+
+  const events = await getEventList({
+    locationSlug: locations as string,
+    durations: durations as any,
+    take: TRIPS_PER_PAGE,
+    skip: (pageNum - 1) * TRIPS_PER_PAGE,
+    destinationSlug: destinations as string,
+    categories: categories as string,
+    priceRange,
+    groupSlug: groups as string,
+  });
+
+  if (!events.events.length) {
+    return <Empty title={"results"} showSearch={false} showHome={false} />;
+  }
+  return (
+    <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   gap-4">
+        {events.events.map((event) => (
+          <TripCard key={event.id} event={event} />
+        ))}
+      </div>
+
+      <div className="mt-6">
+        <CustomPagination {...events.pagination} />
+      </div>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import { getEventList } from "@/actions/event";
 import { SocialIconBtn } from "./social-icon-btn";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
@@ -16,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { PostersCarousel } from "./posters-carousel";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
-import { SITE_URL, TRIPS_PER_PAGE } from "@/lib/constants";
+import { SITE_URL } from "@/lib/constants";
 import { GroupMetaType } from "@/lib/types";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
@@ -24,7 +23,9 @@ import { getInstagramProfile } from "@/actions/instagram-profile";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+  params,
+}: PageProps<"/groups/[groupSlug]">) {
   const { groupSlug } = await params;
   const group = await getGroupDetails({ slug: groupSlug });
   const cities = group?.locations.map((l) => l.city).join(", ");
@@ -53,30 +54,24 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function GroupHomePage({
+export default async function GroupDetailsPage({
   params,
-  searchParams,
-}: {
-  params: Promise<{ groupSlug: string; locationSlug: string }>;
-  searchParams: Promise<{ locations: string; durations: string; page: string }>;
-}) {
-  const { groupSlug } = await params;
+}: PageProps<"/groups/[groupSlug]">) {
+  return (
+    <Suspense>
+      <GroupDetailsWrapper paramsPromise={params} />
+    </Suspense>
+  );
+}
+async function GroupDetailsWrapper({ paramsPromise }) {
+  const { groupSlug } = await paramsPromise;
   const group = await getGroupDetails({ slug: groupSlug });
+
   if (!group) return notFound();
 
   const username = getInstagramUsername(group.instagram);
   const instagramProfile = await getInstagramProfile({ username });
 
-  const { durations = "", locations = "" } = await searchParams;
-  const pageStr = (await searchParams).page ?? "1";
-  const page = Number(pageStr);
-  const events = await getEventList({
-    groupSlug,
-    durations: durations as any,
-    locationSlug: locations,
-    take: TRIPS_PER_PAGE,
-    skip: (page - 1) * TRIPS_PER_PAGE,
-  });
   return (
     <div>
       <Card className="w-full border-none max-w-7xl py-5 lg:px-4 mx-auto shadow-none">

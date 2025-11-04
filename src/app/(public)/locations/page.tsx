@@ -1,7 +1,9 @@
 import { getLocations } from "@/actions/location";
 import { LocationCard } from "@/components/locations/location-card";
+import { LocationsFallback } from "@/components/locations/locations-fallback";
 import { PageSection } from "@/components/page-section";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Best Weekend Trips & Getaways from Your City | Compare Prices",
@@ -29,19 +31,26 @@ export const metadata: Metadata = {
     "budget-friendly weekend tour options",
   ],
 };
-export const dynamic = "force-dynamic";
 
 export default async function LocationsPage() {
-  const locations = await getLocations();
   return (
     <div className="px-4 max-w-7xl mx-auto">
       <PageSection label={"Explore Locations"}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {locations.map((location) => (
-            <LocationCard key={location.id} {...location} />
-          ))}
-        </div>
+        <Suspense fallback={<LocationsFallback />}>
+          <LocationsWrapper />
+        </Suspense>
       </PageSection>
+    </div>
+  );
+}
+
+async function LocationsWrapper() {
+  const locations = await getLocations();
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      {locations.map((location) => (
+        <LocationCard key={location.id} {...location} />
+      ))}
     </div>
   );
 }
