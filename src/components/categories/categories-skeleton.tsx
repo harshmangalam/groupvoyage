@@ -1,7 +1,4 @@
-import { T_Category } from "@/lib/types";
-import Link from "next/link";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import { ArrowRightIcon, CalendarClockIcon } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 
 export async function CategoriesSkeleton() {
