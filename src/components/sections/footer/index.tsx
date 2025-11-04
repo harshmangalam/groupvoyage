@@ -15,6 +15,7 @@ import { Suspense } from "react";
 import { LocationLinks } from "./location-link";
 import { CategoriesLinks } from "./categories-links";
 import { Copyright } from "./copyright";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function FooterSection() {
   const quickLinks = [
@@ -87,13 +88,8 @@ export default async function FooterSection() {
                   </a>
                 </Button>
               ))}
-              <Suspense>
-                <a
-                  href="https://www.producthunt.com/posts/groupvoyage-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-groupvoyage&#0045;2"
-                  target="_blank"
-                >
-                  <ProductHuntImage />
-                </a>
+              <Suspense fallback={<Skeleton className="w-40 h-10" />}>
+                <ProductHuntImage />
               </Suspense>
             </div>
           </FooterColumn>
