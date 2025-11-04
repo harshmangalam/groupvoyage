@@ -4,6 +4,7 @@ import Empty from "@/components/empty";
 import { Filters } from "@/components/filters-sidebar/filters";
 import { FiltersSidebar } from "@/components/filters-sidebar/filters-sidebar";
 import { TripCard } from "@/components/trips/trip-card";
+import TripsSkeleton from "@/components/trips/trips-skeleton";
 import { TRIPS_PER_PAGE } from "@/lib/constants";
 import { SlidersHorizontal } from "lucide-react";
 import { Metadata } from "next";
@@ -61,7 +62,7 @@ export default async function TripsPage({ searchParams }: PageProps<"/trips">) {
           </FiltersSidebar>
         </div>
 
-        <Suspense>
+        <Suspense fallback={<TripsSkeleton />}>
           <TripsWrapper searchParamsPromise={searchParams} />
         </Suspense>
       </main>
@@ -97,7 +98,7 @@ async function TripsWrapper({ searchParamsPromise }) {
   }
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3   gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {events.events.map((event) => (
           <TripCard key={event.id} event={event} />
         ))}
