@@ -10,7 +10,7 @@
 
 ## 🚀 Tech Stack
 
-- **Frontend**: Next.js 15 + React 19 (latest concurrent features)
+- **Frontend**: Next.js 16 + cacheComponents + React 19 (latest concurrent features) + React compiler + Bun
 - **UI Components**: Tailwind CSS + shadcn/ui + Radix primitives
 - **Backend**: Node.js (Bun runtime) + Prisma ORM
 - **Database**: PostgreSQL
@@ -47,7 +47,7 @@ cd groupvoyage
 2. Install
 
 ```bash
-pnpm install
+bun install
 ```
 
 3. Copy env
@@ -59,16 +59,16 @@ cp .env.example .env
 4. Prisma generate , migrations and seed
 
 ```bash
-pnpm prisma generate
-pnpm prisma migrate dev
-pnpm prisma db seed
+bun prisma generate
+bun prisma migrate dev
+bun prisma db seed
 
 ```
 
 5. Run dev server
 
 ```bash
-pnpm dev
+bun dev
 
 ```
 
