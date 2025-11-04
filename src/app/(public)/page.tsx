@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import { TrendingInstagramProfiles } from "@/components/instagram/trending-instagram-profiles";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
-import { TrendingLocationsFallback } from "@/components/locations/trending-locations-fallback";
+import { LocationsFallback } from "@/components/locations/locations-fallback";
 import { TrendingCategoriesCarousel } from "@/components/categories/trending-categories-carousel";
 // import { OrganizerSubmission } from "@/components/organisation-submission";
 
@@ -50,10 +50,7 @@ export default async function HomePage() {
           label={<span>Top Locations</span>}
           description="Kick off your weekend trips from these locations"
         >
-          <Suspense
-            fallback={<TrendingLocationsFallback />}
-            key={"trending-locations"}
-          >
+          <Suspense fallback={<LocationsFallback />} key={"trending-locations"}>
             <TrendingLocationsCarousel />
           </Suspense>
         </PageSection>

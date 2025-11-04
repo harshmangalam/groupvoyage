@@ -1,5 +1,6 @@
 import { getLocations } from "@/actions/location";
 import { LocationCard } from "@/components/locations/location-card";
+import { LocationsFallback } from "@/components/locations/locations-fallback";
 import { PageSection } from "@/components/page-section";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -33,23 +34,23 @@ export const metadata: Metadata = {
 
 export default async function LocationsPage() {
   return (
-    <Suspense>
-      <LocationsWrapper />
-    </Suspense>
+    <div className="px-4 max-w-7xl mx-auto">
+      <PageSection label={"Explore Locations"}>
+        <Suspense fallback={<LocationsFallback />}>
+          <LocationsWrapper />
+        </Suspense>
+      </PageSection>
+    </div>
   );
 }
 
 async function LocationsWrapper() {
   const locations = await getLocations();
   return (
-    <div className="px-4 max-w-7xl mx-auto">
-      <PageSection label={"Explore Locations"}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {locations.map((location) => (
-            <LocationCard key={location.id} {...location} />
-          ))}
-        </div>
-      </PageSection>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      {locations.map((location) => (
+        <LocationCard key={location.id} {...location} />
+      ))}
     </div>
   );
 }
