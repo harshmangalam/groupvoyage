@@ -1,9 +1,20 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { Skeleton } from "./ui/skeleton";
 
 export function ProductHuntImage() {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <Skeleton className="w-40 h-10 rounded-md" />;
+  }
   return (
     <a
       href="https://www.producthunt.com/posts/groupvoyage-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-groupvoyage&#0045;2"

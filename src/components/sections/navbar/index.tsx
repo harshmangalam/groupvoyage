@@ -29,9 +29,8 @@ export async function Navbar() {
           <Suspense>
             <SearchBtn />
           </Suspense>
-          <Suspense>
-            <ModeToggle />
-          </Suspense>
+
+          <ModeToggle />
         </div>
       </div>
     </header>

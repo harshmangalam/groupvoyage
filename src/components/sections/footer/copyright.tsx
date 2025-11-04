@@ -3,6 +3,7 @@ import { cacheLife } from "next/cache";
 
 async function getCurrentYear() {
   "use cache";
+  cacheLife("max");
   return new Date().getFullYear();
 }
 
