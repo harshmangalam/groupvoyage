@@ -1,7 +1,10 @@
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { T_Category } from "@/lib/types";
+import Link from "next/link";
+import { Card, CardContent, CardHeader } from "../ui/card";
+import { ArrowRightIcon, CalendarClockIcon } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 
-export function DestinationsSkeleton() {
+export async function CategoriesSkeleton() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {[...new Array(5)].map((_, i) => (
@@ -15,10 +18,6 @@ export function DestinationsSkeleton() {
               <Skeleton className="h-5 w-2/5" />
             </div>
           </CardContent>
-          <CardFooter className="px-4 pb-3 flex gap-2 items-center">
-            <Skeleton className="w-1/2 h-[22px]" />
-            <Skeleton className="w-7 h-[22px]" />
-          </CardFooter>
         </Card>
       ))}
     </div>

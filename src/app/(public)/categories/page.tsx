@@ -4,6 +4,9 @@ import { PageSection } from "@/components/page-section";
 import SearchInput from "@/components/search-input";
 import { SortCategories } from "./sort-categories";
 import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import Empty from "@/components/empty";
+import { CategoriesSkeleton } from "@/components/categories/categories-skeleton";
 
 export default async function CategoriesPage({
   searchParams,
@@ -15,17 +18,19 @@ export default async function CategoriesPage({
         others={
           <div className="flex items-center gap-4">
             <div className="max-w-md w-full">
-              <Suspense>
+              <Suspense fallback={<Skeleton className="h-9 w-32 rounded-md" />}>
                 <SearchInput />
               </Suspense>
             </div>
-            <Suspense>
+            <Suspense
+              fallback={<Skeleton className="h-9 max-w-52 w-full rounded-md" />}
+            >
               <SortCategories />
             </Suspense>
           </div>
         }
       />
-      <Suspense>
+      <Suspense fallback={<CategoriesSkeleton />}>
         <CategoriesWrapper searchParamsPromise={searchParams} />
       </Suspense>
     </div>
@@ -43,6 +48,8 @@ async function CategoriesWrapper({
     sort: sort as string,
   });
 
+  if (!categoriesResp.categories.length)
+    return <Empty showHome={false} showSearch={false} title={"Categories"} />;
   return (
     <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {categoriesResp.categories.map((category) => (
@@ -52,12 +59,6 @@ async function CategoriesWrapper({
           eventCount={category._count.events}
         />
       ))}
-
-      {categoriesResp.categories.length === 0 && (
-        <div className="col-span-full text-center text-muted-foreground py-8">
-          No categories found matching your criteria.
-        </div>
-      )}
     </div>
   );
 }
