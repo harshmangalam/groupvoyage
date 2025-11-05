@@ -3,7 +3,7 @@ import { Skeleton } from "../ui/skeleton";
 
 export async function CategoriesSkeleton() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {[...new Array(5)].map((_, i) => (
         <Card key={i} className="h-full">
           <CardHeader className="p-3 px-4 ">
