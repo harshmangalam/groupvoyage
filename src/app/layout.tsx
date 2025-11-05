@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       "Discover the best weekend trips from your city. Compare prices, itineraries, and join group trips to amazing destinations.",
     images: [
       {
-        url: "logo.png",
+        url: "logo.webp",
         width: 1200,
         height: 630,
         alt: "Group Voyage - Compare & Book Weekend Trips",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "GroupVoyage - Compare & Book Weekend Trips",
     description:
       "Discover the best weekend trips from your city. Compare prices, itineraries, and join group trips to amazing destinations.",
-    images: ["logo.png"],
+    images: ["logo.webp"],
   },
   other: {
     "google-adsense-account": "ca-pub-8051590553831420",

@@ -33,7 +33,6 @@ export function TripCard({ event }: TripCardProps) {
             height={300}
             className="w-full h-52 object-cover transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
-            unoptimized
           />
           {percentageSaved > 0 && (
             <Badge className="absolute top-2 right-2 bg-green-600 hover:bg-green-700">
@@ -56,7 +55,6 @@ export function TripCard({ event }: TripCardProps) {
                   <IndianRupee className="w-3 h-3" />
                   {originalPrice}
                 </span>
-
               </>
             )}
           </div>
