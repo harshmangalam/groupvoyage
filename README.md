@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/logo.png" alt="GroupVoyage Logo" width="150"/>
+  <img src="./public/logo.webp" alt="GroupVoyage Logo" width="150"/>
 </p>
 
 # 🌍 GroupVoyage
@@ -10,9 +10,9 @@
 
 ## 🚀 Tech Stack
 
-- **Frontend**: Next.js 16 + cacheComponents + React 19 (latest concurrent features) + React compiler + Bun
+- **Frontend**: Next.js
 - **UI Components**: Tailwind CSS + shadcn/ui + Radix primitives
-- **Backend**: Node.js (Bun runtime) + Prisma ORM
+- **Backend**: Buntime + Prisma ORM
 - **Database**: PostgreSQL
 - **Hosting**: Vercel
 - **Linting & Formatting**: ESLint, Prettier
@@ -59,9 +59,9 @@ cp .env.example .env
 4. Prisma generate , migrations and seed
 
 ```bash
-bun prisma generate
-bun prisma migrate dev
-bun prisma db seed
+bunx prisma generate
+bunx prisma migrate dev
+bunx prisma db seed
 
 ```
 
