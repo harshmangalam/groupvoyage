@@ -1,63 +1,104 @@
-import { cn } from "@/lib/utils";
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   Field,
-  FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import Form from "next/form";
 
-export function SigninForm({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+import { Controller, useForm } from "react-hook-form";
+import { LoginData, LoginSchema } from "./definitions";
+import { valibotResolver } from "@hookform/resolvers/valibot";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
+
+export function SigninForm() {
+  const router = useRouter();
+  const form = useForm<LoginData>({
+    resolver: valibotResolver(LoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    mode: "onChange",
+  });
+
+  async function onSubmit(data: LoginData) {
+    try {
+      await authClient.signIn.email(data, {
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+        },
+        onSuccess: (ctx) => {
+          toast.success(`Welcome back, ${ctx.data?.user.name}.`);
+          router.push("/");
+        },
+      });
+    } catch (error: any) {
+      console.error("error", error);
+      toast.error(error.message);
+    }
+  }
+
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back</CardTitle>
-          <CardDescription>Login with your email & password</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form>
-            <FieldGroup className="gap-3">
-              <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" name="email" type="email" required />
-              </Field>
-              <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <Link
-                    href="/forgot-password"
-                    className="ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </Link>
-                </div>
-                <Input name="password" id="password" type="password" required />
-              </Field>
-              <Field>
-                <Button type="submit">Login</Button>
-                <FieldDescription className="text-center">
-                  Don&apos;t have an account?{" "}
-                  <Link href="/signup">Sign up</Link>
-                </FieldDescription>
-              </Field>
-            </FieldGroup>
-          </Form>
-        </CardContent>
-      </Card>
-    </div>
+    <form method="post" id="login-form" onSubmit={form.handleSubmit(onSubmit)}>
+      <FieldGroup className="gap-3">
+        <Controller
+          control={form.control}
+          name="email"
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <Input
+                {...field}
+                aria-invalid={fieldState.invalid}
+                id="email"
+                name="email"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+        <Controller
+          control={form.control}
+          name="password"
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <Input
+                {...field}
+                aria-invalid={fieldState.invalid}
+                id="password"
+                type="password"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+        <Field>
+          <Button
+            disabled={form.formState.isSubmitting}
+            aria-disabled={form.formState.isSubmitting}
+            className="w-full"
+            type="submit"
+            form="login-form"
+          >
+            {form.formState.isSubmitting ? (
+              <>
+                <Spinner />
+                Loading...
+              </>
+            ) : (
+              "Sign in"
+            )}
+          </Button>
+        </Field>
+      </FieldGroup>
+    </form>
   );
 }

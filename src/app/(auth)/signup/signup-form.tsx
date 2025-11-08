@@ -35,9 +35,7 @@ export function SignupForm() {
           toast.error(ctx.error.message);
         },
         onSuccess: (ctx) => {
-          toast.success(
-            `🎉 Account created successfully!\n\nWelcome, ${ctx.data?.user.name}.\nPlease verify your email: ${ctx.data?.user.email} 📧`
-          );
+          toast.success(`Account created successfully.`);
           router.push("/signin");
         },
       });
@@ -98,22 +96,24 @@ export function SignupForm() {
             </Field>
           )}
         />
-        <Button
-          disabled={form.formState.isSubmitting}
-          aria-disabled={form.formState.isSubmitting}
-          className="w-full"
-          type="submit"
-          form="signup-form"
-        >
-          {form.formState.isSubmitting ? (
-            <>
-              <Spinner />
-              Loading...
-            </>
-          ) : (
-            "Create Account"
-          )}
-        </Button>
+        <Field>
+          <Button
+            disabled={form.formState.isSubmitting}
+            aria-disabled={form.formState.isSubmitting}
+            className="w-full"
+            type="submit"
+            form="signup-form"
+          >
+            {form.formState.isSubmitting ? (
+              <>
+                <Spinner />
+                Loading...
+              </>
+            ) : (
+              "Create Account"
+            )}
+          </Button>
+        </Field>
       </FieldGroup>
     </form>
   );

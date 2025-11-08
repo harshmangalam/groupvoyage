@@ -22,8 +22,8 @@ export default function SignupPage() {
       <CardContent>
         <SignupForm />
       </CardContent>
-      <CardFooter className="flex flex-col gap-3">
-        <FieldDescription className="text-center">
+      <CardFooter className="flex justify-center">
+        <FieldDescription>
           Already have an account? <Link href="/signin">Sign in</Link>
         </FieldDescription>
       </CardFooter>
