@@ -1,8 +1,7 @@
 "use client";
 
 import { startTransition, useActionState, useState } from "react";
-import { ChevronRight, Loader2, PlusIcon } from "lucide-react";
-import { UrlPreview } from "@/components/shared/url-preview";
+import { ChevronRight, Loader2 } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import {
   GroupFormSchema,
@@ -12,7 +11,6 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -21,7 +19,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { onboardNewGroup } from "./action";
-import { LocationMultiSelect } from "./location-multi-select";
+import { LocationMultiSelect } from "@/components/shared/location-multi-select";
+import { ImageFields } from "@/components/shared/image-fields";
+import { UrlPreview } from "@/components/shared/url-preview";
 
 const initialState = {
   formData: initialGroupFormState,
@@ -125,9 +125,6 @@ export function OnboardingForm() {
               </Field>
             )}
           />
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
           <Controller
             control={control}
             name="instagram"
@@ -151,12 +148,50 @@ export function OnboardingForm() {
 
         <Controller
           control={control}
+          name="source"
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor="source">Website Link</FieldLabel>
+              <Input
+                {...field}
+                aria-invalid={fieldState.invalid}
+                id="source"
+                name="source"
+                placeholder="Enter your website link"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              {field.value && <UrlPreview url={field.value} />}
+            </Field>
+          )}
+        />
+
+        <Controller
+          control={control}
           name="locations"
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="locations">Locations</FieldLabel>
               <LocationMultiSelect {...field} />
+              {/* hidden inputs so FormData picks them up */}
+              {field.value.map((loc) => (
+                <input key={loc} type="hidden" name="locations" value={loc} />
+              ))}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
 
+        <Controller
+          control={control}
+          name="posterUrls"
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor="posterUrls">Group poster links</FieldLabel>
+              <ImageFields {...field} />
+              {/* hidden inputs so FormData picks them up */}
+              {field.value?.map((loc) => (
+                <input key={loc} type="hidden" name="posterUrls" value={loc} />
+              ))}
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}

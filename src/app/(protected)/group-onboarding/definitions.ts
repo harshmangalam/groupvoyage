@@ -28,7 +28,7 @@ export const groupFormSchema = z.object({
 
   source: z.url("Invalid link").optional(),
   posterUrls: z.array(z.url("Invalid link")).optional(),
-  locations: z.array(z.string().nonempty()).optional(),
+  locations: z.array(z.string()).min(1, "Select at least 1 location"),
 });
 
 export type GroupFormSchema = z.infer<typeof groupFormSchema>;

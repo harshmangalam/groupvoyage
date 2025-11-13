@@ -20,11 +20,10 @@ export function UrlPreview({ url, label }: UrlPreviewProps) {
         </div>
       ) : (
         <img
-          src={url || "/placeholder.svg"}
+          src={url}
           alt={label || "Preview"}
           onError={() => setHasError(true)}
           className="w-full h-auto aspect-video object-cover"
-          crossOrigin="anonymous"
         />
       )}
       {label && (
