@@ -22,7 +22,7 @@ export default async function InstagramProfilePage({
         label={<span>Explore Instagram Groups</span>}
         others={
           <Suspense
-            fallback={<Skeleton className="h-10 w-32 rounded-md" />}
+            fallback={<Skeleton className="h-9 w-32 rounded-md" />}
             key={`locations-filter`}
           >
             <LocationsFilter />

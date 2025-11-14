@@ -23,7 +23,9 @@ export function PriceRangeSlider() {
           max={20000}
           min={100}
           step={100}
-          className="mb-4"
+          className="mb-4 [&>[data-slot=track]]:bg-destructive/20 
+    [&>[data-slot=range]]:bg-destructive
+    [&>[data-slot=thumb]]:border-destructive"
         />
         <div className="flex justify-end text-sm text-muted-foreground">
           <span>₹{priceRange}</span>
