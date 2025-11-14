@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useActionState, useState } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 import { ChevronRight, Loader2 } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import {
@@ -22,6 +22,7 @@ import { onboardNewGroup } from "./action";
 import { LocationMultiSelect } from "@/components/shared/location-multi-select";
 import { ImageFields } from "@/components/shared/image-fields";
 import { UrlPreview } from "@/components/shared/url-preview";
+import { toast } from "sonner";
 
 const initialState = {
   formData: initialGroupFormState,
@@ -38,6 +39,12 @@ export function OnboardingForm() {
     mode: "onTouched",
     defaultValues: actionState.formData,
   });
+
+  useEffect(() => {
+    if (actionState.error) {
+      toast.error(actionState.error);
+    }
+  }, [actionState]);
 
   return (
     <form

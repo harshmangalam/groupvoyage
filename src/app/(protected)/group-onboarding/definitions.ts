@@ -26,7 +26,7 @@ export const groupFormSchema = z.object({
     .toLowerCase()
     .trim(),
 
-  source: z.url("Invalid link").optional(),
+  source: z.url().optional().or(z.literal("")),
   posterUrls: z.array(z.url("Invalid link")).optional(),
   locations: z.array(z.string()).min(1, "Select at least 1 location"),
 });
@@ -36,4 +36,5 @@ export type GroupFormSchema = z.infer<typeof groupFormSchema>;
 export type GroupActionState = {
   formData?: Record<string, any>;
   fieldErrors?: {};
+  error?: string;
 };

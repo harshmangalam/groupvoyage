@@ -55,3 +55,8 @@ export const SOCIAL_LINKS = {
   X: "https://x.com/harshmangalam_",
   INSTAGRAM: "https://www.instagram.com/harshmangalam_/",
 };
+
+export const ERROR_MSG = {
+  internalServerError: "Something went wrong, please try again!",
+  unauthenticated: "Please login before you process!",
+};

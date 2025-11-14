@@ -16,6 +16,12 @@ enum Status {
   failed
 }
 
+enum GroupStatus {
+  pending
+  approved
+  rejected
+}
+
 model Location {
   id                String             @id @default(uuid())
   city              String
@@ -32,24 +38,23 @@ model Location {
 }
 
 model Group {
-  id                   String        @id @default(uuid())
-  name                 String        @unique
-  slug                 String        @unique
-  details              String
-  processedShortBio    String?
-  processedDescription String?
-  instagram            String?
-  phone                String?
-  email                String?
-  meta                 Json?
-  source               String
-  logo                 String?
-  posterUrls           String[]
-  tagLine              String?
-  events               Event[]
-  locations            Location[]    @relation("GroupToLocation")
-  destinations         Destination[] @relation("GroupToDestination")
-  status               Status        @default(raw)
+  id           String        @id @default(uuid())
+  name         String        @unique
+  slug         String        @unique
+  details      String?
+  instagram    String?
+  phone        String?
+  email        String?
+  source       String?
+  logo         String?
+  posterUrls   String[]
+  events       Event[]
+  locations    Location[]    @relation("GroupToLocation")
+  destinations Destination[] @relation("GroupToDestination")
+  status       GroupStatus   @default(pending)
+
+  ownerId String
+  owner   User   @relation("UserGroups", fields: [ownerId], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -129,7 +134,8 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
-  role String? @default("user")
+  role   String? @default("user")
+  groups Group[] @relation("UserGroups")
 
   @@unique([email])
   @@map("user")
