@@ -167,7 +167,6 @@ export function OnboardingForm() {
                 placeholder="Enter your website link"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-              {field.value && <UrlPreview url={field.value} />}
             </Field>
           )}
         />
