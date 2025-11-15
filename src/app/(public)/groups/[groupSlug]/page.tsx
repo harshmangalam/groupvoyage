@@ -141,10 +141,7 @@ async function GroupDetailsWrapper({ paramsPromise }) {
                   )}
                   <SocialIconBtn url={`tel:${group.phone}`} slug="tel" />
                   <SocialIconBtn
-                    url={
-                      (group.meta as GroupMetaType)?.whatsappGroup ||
-                      `https://wa.me/${group.phone}`
-                    }
+                    url={`https://wa.me/${group.phone}`}
                     slug="whatsapp"
                   />
                 </div>
