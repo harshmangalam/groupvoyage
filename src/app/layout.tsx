@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/toaster";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,7 +10,6 @@ import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationProgress } from "@/components/navigation-progress";
 import { Suspense } from "react";
-import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -72,13 +72,10 @@ export default function RootLayout({
             <Suspense>
               <NavigationProgress />
             </Suspense>
-            <TooltipProvider>
-              {children}
-              <Toaster />
-            </TooltipProvider>
+            <TooltipProvider>{children}</TooltipProvider>
           </ThemeProvider>
         </NuqsAdapter>
-
+        <Toaster />
         <Analytics />
         <SpeedInsights />
       </body>
