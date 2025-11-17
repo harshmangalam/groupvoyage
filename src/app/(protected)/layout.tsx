@@ -19,5 +19,5 @@ async function ProtectedLayoutWrapper({ children }: PropsWithChildren) {
   if (!session) {
     redirect("/signin");
   }
-  return <div>{children}</div>;
+  return children;
 }
