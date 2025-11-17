@@ -54,7 +54,7 @@ model Group {
   status       GroupStatus   @default(pending)
 
   ownerId String
-  owner   User   @relation("UserGroups", fields: [ownerId], references: [id], onDelete: SetNull)
+  owner   User   @relation("UserGroups", fields: [ownerId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -134,7 +134,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
-  role   String? @default("user")
+  role   String? @default("user") // "user" | "group_owner" | "admin"
   groups Group[] @relation("UserGroups")
 
   @@unique([email])

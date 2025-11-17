@@ -5,6 +5,7 @@ import { NavigationsDropdownMenu } from "./navigations-drodown-menu";
 import { SearchBtn } from "./search-btn";
 import { NAVIGATIONS_MENU } from "@/lib/constants";
 import { Activity, Suspense } from "react";
+import { AccountMenu } from "./account-menu";
 
 export async function Navbar({
   showNavigations = true,
@@ -39,6 +40,7 @@ export async function Navbar({
           </Suspense>
 
           <ModeToggle />
+          <AccountMenu />
         </div>
       </div>
     </header>
