@@ -1,14 +1,10 @@
-// lib/prisma.ts (or wherever you're defining it)
 import { PrismaClient } from "../../prisma/generated/client/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-const prismaGlobal = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-};
+const connectionString = `${process.env.DATABASE_URL}`;
 
-const prismaClient = prismaGlobal.prisma ?? new PrismaClient();
+const adapter = new PrismaPg({
+  connectionString,
+});
 
-if (process.env.NODE_ENV !== "production") {
-  prismaGlobal.prisma = prismaClient;
-}
-
-export const prisma = prismaClient;
+export const prisma = new PrismaClient({ adapter });
