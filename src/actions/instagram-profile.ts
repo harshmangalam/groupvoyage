@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/db";
 import { cache } from "react";
-import { Prisma } from "../../prisma/generated/client";
 
 export const getInstagramProfileList = cache(
   async ({

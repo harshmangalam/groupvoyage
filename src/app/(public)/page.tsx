@@ -9,6 +9,7 @@ import { TrendingDestinationsCarousel } from "@/components/destinations/trending
 import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
 import { LocationsFallback } from "@/components/locations/locations-fallback";
 import { TrendingCategoriesCarousel } from "@/components/categories/trending-categories-carousel";
+
 // import { OrganizerSubmission } from "@/components/organisation-submission";
 
 export const metadata: Metadata = {

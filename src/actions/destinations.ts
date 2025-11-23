@@ -22,13 +22,16 @@ export const getDestinationList = cache(
     const shouldPaginate = take !== undefined;
 
     const whereClause = {
-      ...(locationSlug && { locations: { some: { slug: locationSlug } } }),
-      ...(groupSlug && { groups: { some: { slug: groupSlug } } }),
-      ...(search && { name: { search: search.replace(/[^a-zA-Z]/g, "") } }),
+      ...(locationSlug
+        ? { locations: { some: { slug: locationSlug } } }
+        : undefined),
+      ...(groupSlug ? { groups: { some: { slug: groupSlug } } } : undefined),
+      ...(search
+        ? { name: { search: search.replace(/[^a-zA-Z]/g, "") } }
+        : undefined),
     };
-
     const destinations = await prisma.destination.findMany({
-      where: whereClause,
+      where: { ...whereClause },
       select: {
         name: true,
         slug: true,

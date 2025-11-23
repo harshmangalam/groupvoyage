@@ -1,4 +1,4 @@
-import { PrismaClient } from "./generated/client";
+import { PrismaClient } from "./generated/client/client";
 import _ from "lodash";
 import slugify from "slugify";
 
@@ -27,7 +27,7 @@ const LOCATIONS = [
 const destination = {
   name: "Pondicherry",
   slug: "pondicherry",
-}
+};
 
 const CATEGORIES = [
   // 🌿 Nature & Outdoors
@@ -163,14 +163,18 @@ async function main() {
       status: "processed",
       location: { connect: { slug: BangaloreSlug } },
       group: { connect: { slug: goadventureGroup.slug } },
-      categories: { connect: goadventureCategories.map((c) => ({ slug: slugify(c) }))}
+      categories: {
+        connect: goadventureCategories.map((c) => ({ slug: slugify(c) })),
+      },
     },
     create: {
       ...goadventureEvent,
       status: "processed",
       location: { connect: { slug: BangaloreSlug } },
       group: { connect: { slug: goadventureGroup.slug } },
-      categories: { connect: goadventureCategories.map((c) => ({ slug: slugify(c) }))}
+      categories: {
+        connect: goadventureCategories.map((c) => ({ slug: slugify(c) })),
+      },
     },
   });
 
@@ -178,13 +182,17 @@ async function main() {
   await prisma.destination.upsert({
     where: { slug: destination.slug },
     update: {
-      locations: { connect: [{ slug: HyderabadSlug }, { slug: BangaloreSlug }] },
+      locations: {
+        connect: [{ slug: HyderabadSlug }, { slug: BangaloreSlug }],
+      },
       events: { connect: [{ slug: goadventureEvent.slug }] },
       groups: { connect: [{ slug: goadventureGroup.slug }] },
     },
     create: {
       ...destination,
-      locations: { connect: [{ slug: HyderabadSlug }, { slug: BangaloreSlug }] },
+      locations: {
+        connect: [{ slug: HyderabadSlug }, { slug: BangaloreSlug }],
+      },
       events: { connect: [{ slug: goadventureEvent.slug }] },
       groups: { connect: [{ slug: goadventureGroup.slug }] },
     },

@@ -111,7 +111,7 @@ export default async function FooterSection() {
           {/* Locations Section */}
           <FooterColumn>
             <h3 className="text-md pt-1 font-semibold">Trips by Location</h3>
-            <Suspense key={"footer-locations"}>
+            <Suspense>
               <LocationLinks />
             </Suspense>
           </FooterColumn>

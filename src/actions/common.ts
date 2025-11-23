@@ -10,29 +10,6 @@ import { getLocations } from "./location";
 import { DurationFilter } from "@/lib/types";
 import { getCategoryList } from "./categories";
 
-export const getRandomPosters = cache(async () => {
-  const groupPosters = await prisma.group.findMany({
-    select: { posterUrls: true },
-    take: 3,
-    orderBy: { id: "asc" },
-  });
-
-  const locationPosters = await prisma.location.findMany({
-    select: { posterUrl: true },
-    take: 3,
-    orderBy: { id: "asc" },
-  });
-
-  const posters = [...groupPosters.flatMap((p) => p.posterUrls)];
-  const locationsPoster = locationPosters.map((p) => p.posterUrl);
-
-  const randomPosters = [
-    ...locationsPoster,
-    ...posters.sort(() => Math.random() - 0.5).slice(0, 1),
-  ].slice(0, 3);
-  return randomPosters as string[];
-});
-
 export const getPublicStats = cache(async () => {
   const [
     eventsCount,
