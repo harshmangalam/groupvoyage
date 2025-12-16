@@ -96,8 +96,8 @@ export default async function HomePage() {
 
         <PageSection
           href="/trips"
-          label={<span>Top Weekend Trips</span>}
-          description="Unmissable trips to make your weekend epic."
+          label={<span>Upcoming Weekend Trips</span>}
+          description="Upcoming trips to make your weekend epic."
         >
           <Suspense>
             <TrendingTripsCarousel />

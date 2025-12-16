@@ -5,8 +5,7 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-
+  provider = "postgresql"
 }
 
 enum Status {
@@ -57,9 +56,11 @@ model Group {
 model Event {
   id                    String        @id @default(uuid())
   title                 String
+  aiTitle               String? //AI Generated
   slug                  String        @unique
   durations             String?
   details               String?
+  summary               String? //AI Generated 
   price                 Int?
   locationId            String
   groupId               String
@@ -75,6 +76,8 @@ model Event {
   status                Status        @default(raw)
   categoriesGenerated   Boolean?
   destinationsGenerated Boolean?
+  summaryGenerated      Boolean?
+  aiTitleGenerated      Boolean       @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

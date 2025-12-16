@@ -29,6 +29,16 @@ export const getEventList = cache(
   }) => {
     const filter: Record<string, unknown> = {
       status: "processed",
+      durations: {
+        not: null,
+        notIn: [""],
+      },
+      price: {
+        not: null,
+      },
+      categories: {
+        some: {}, // at least one related record
+      },
     };
 
     if (destinationSlug) {
@@ -162,6 +172,9 @@ export const getEventList = cache(
             name: true,
           },
         },
+      },
+      orderBy: {
+        updatedAt: "desc",
       },
       ...(shouldPaginate ? { take, skip } : {}),
     });
