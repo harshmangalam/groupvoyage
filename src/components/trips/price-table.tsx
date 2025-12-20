@@ -93,14 +93,14 @@ export default function PriceTable({ trips }: { trips: T_EventCard[] }) {
                     {trip.location.city}
                   </Link>
                 </TableCell>
-                <TableCell className="min-w-80">{trip.title}</TableCell>
+                <TableCell className="min-w-80">{trip.aiTitle}</TableCell>
                 <TableCell className="min-w-32">{trip.durations}</TableCell>
 
                 <TableCell className="text-right min-w-24">
                   <Button variant="ghost" size="sm" asChild>
                     <Link href={`/trips/${trip.slug}`}>
                       <span className="sr-only">
-                        View details for {trip.title}
+                        View details for {trip.aiTitle}
                       </span>
                       <ExternalLink className="h-4 w-4" />
                     </Link>

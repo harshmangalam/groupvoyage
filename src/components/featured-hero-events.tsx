@@ -71,7 +71,7 @@ export default function FeaturedHeroEvents({
                     Featured {event.location.city}
                   </Badge>
                   <h1 className="text-4xl font-bold text-white sm:text-4xl md:text-5xl line-clamp-2">
-                    {event.title}
+                    {event.aiTitle}
                   </h1>
                   <div className="flex flex-wrap gap-4 text-white">
                     <div className="flex items-center gap-2">
