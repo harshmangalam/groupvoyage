@@ -11,7 +11,7 @@ type TripCardProps = {
 };
 
 export function TripCard({ event }: TripCardProps) {
-  const { posterUrls, slug, group, location, title, durations, price, meta } =
+  const { posterUrls, slug, group, location, aiTitle, durations, price, meta } =
     event;
   const firstPosterUrl = posterUrls?.[0];
   const originalPrice = (meta as EventMetaType)?.originalPrice;
@@ -28,20 +28,20 @@ export function TripCard({ event }: TripCardProps) {
         <div className="overflow-hidden relative group">
           <Image
             src={firstPosterUrl || "placeholder.svg"}
-            alt={`${title} poster`}
+            alt={`${aiTitle} poster`}
             width={400}
             height={300}
             className="w-full h-52 object-cover transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
           />
           {percentageSaved > 0 && (
-            <Badge className="absolute top-2 right-2 bg-green-600 hover:bg-green-700">
+            <Badge className="absolute top-2 right-2" variant={"destructive"}>
               {percentageSaved}% OFF
             </Badge>
           )}
         </div>
         <CardContent className="p-4">
-          <h3 className="font-semibold mb-2 line-clamp-1">{title}</h3>
+          <h3 className="font-semibold mb-2 line-clamp-1">{aiTitle}</h3>
 
           {/* Price & Discount */}
           <div className="flex items-center gap-2 mb-2">

@@ -149,7 +149,7 @@ export const getEventList = cache(
         posterUrls: true,
         durations: true,
         id: true,
-        title: true,
+        aiTitle: true,
         price: true,
         slug: true,
         meta: true,
