@@ -162,6 +162,7 @@ async function GroupDetailsWrapper({ paramsPromise }) {
         </PageSection>
         <div className="flex flex-col gap-4">
           {instagramProfile && <InstagramProfileCard {...instagramProfile} />}
+
           <AdUnit />
         </div>
         <PageSection
