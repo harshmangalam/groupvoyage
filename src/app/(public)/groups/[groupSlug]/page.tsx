@@ -22,6 +22,7 @@ import { getInstagramUsername } from "@/lib/utils";
 import { getInstagramProfile } from "@/actions/instagram-profile";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
+import AdUnit from "@/components/ad-unit";
 
 export async function generateMetadata({
   params,
@@ -159,7 +160,10 @@ async function GroupDetailsWrapper({ paramsPromise }) {
         <PageSection label={"About us"}>
           <p className="mb-0">{group.details}</p>
         </PageSection>
-        {instagramProfile && <InstagramProfileCard {...instagramProfile} />}
+        <div className="flex flex-col gap-4">
+          {instagramProfile && <InstagramProfileCard {...instagramProfile} />}
+          <AdUnit />
+        </div>
         <PageSection
           href={`/destinations/?groups=${groupSlug}`}
           label={<span>Weekend Destinations</span>}

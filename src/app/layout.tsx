@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationProgress } from "@/components/navigation-progress";
 import { Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -62,6 +63,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${poppins.variable} antialiased`}>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8051590553831420"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <NuqsAdapter>
           <ThemeProvider
             attribute="class"
