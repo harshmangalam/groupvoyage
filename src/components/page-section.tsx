@@ -26,7 +26,7 @@ export async function PageSection({
           </p>
         </div>
         {href && (
-          <div className="hidden sm:block">
+          <div>
             <Button size={"sm"} asChild variant={"ghost"}>
               <Link href={href}>
                 View more <ArrowRightIcon />

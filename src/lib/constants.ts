@@ -1,14 +1,10 @@
-import { DurationMap } from "./types";
 export const SITE_NAME = "GroupVoyage";
 export const SITE_URL = "https://groupvoyage.in";
 export const SITE_EMAIL = "trip.diaries.coll1@gmail.com";
 export const SITE_TAGLINE =
   "Find local groups, compare prices, and join budget-friendly weekend trips";
-export const SITE_DESCRIPTION = `${SITE_NAME} connects you with like-minded travelers from your
-city, making weekend getaways effortless and exciting. Explore a
-curated list of local and city-specific travel groups, compare
-trip prices, and find the perfect adventure that fits your
-budget.`;
+export const SITE_DESCRIPTION = `${SITE_NAME} is a free, open platform to discover and compare weekend group trips, then join organizers directly on their official page.
+`;
 
 export const DURATIONS = [
   { label: "Short Trips (1 day)", value: "short-trips" },

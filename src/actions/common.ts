@@ -11,29 +11,19 @@ import { DurationFilter } from "@/lib/types";
 import { getCategoryList } from "./categories";
 
 export const getPublicStats = cache(async () => {
-  const [
-    eventsCount,
-    groupsCount,
-    locationsCount,
-    instagramProfilesCount,
-    destinationsCount,
-    categoriesCount,
-  ] = await Promise.all([
-    prisma.event.count({ where: { status: "processed" } }),
-    prisma.group.count({ where: { status: "processed" } }),
-    prisma.location.count(),
-    prisma.instagramProfile.count(),
-    prisma.destination.count(),
-    prisma.category.count(),
-  ]);
+  const [eventsCount, groupsCount, locationsCount, destinationsCount] =
+    await Promise.all([
+      prisma.event.count({ where: { status: "processed" } }),
+      prisma.group.count({ where: { status: "processed" } }),
+      prisma.location.count(),
+      prisma.destination.count(),
+    ]);
 
   return {
     eventsCount,
     groupsCount,
     locationsCount,
-    instagramProfilesCount,
     destinationsCount,
-    categoriesCount,
   };
 });
 

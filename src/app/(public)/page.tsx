@@ -1,16 +1,20 @@
-import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
-import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
 import { HomeHero } from "@/components/home-hero";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Metadata } from "next";
-import { TrendingInstagramProfiles } from "@/components/instagram/trending-instagram-profiles";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
 import { LocationsFallback } from "@/components/locations/locations-fallback";
 import { TrendingCategoriesCarousel } from "@/components/categories/trending-categories-carousel";
 import AdUnit from "@/components/ad-unit";
-
+import { ErrorBoundary } from "react-error-boundary";
+import { StatsFallback } from "@/components/home-hero/stats-fallback";
+import { Stats } from "@/components/home-hero/stats";
+import { prisma } from "@/lib/db";
+import { LocationsGrid } from "@/components/locations/locations-grid";
+import { LocationsGridSkeleton } from "@/components/locations/locations-grid-skeleton";
+import { DestinationsGridSkeleton } from "@/components/destinations/destinations-grid-skeleton";
+import { DestinationsGrid } from "@/components/destinations/destinations-grid";
 // import { OrganizerSubmission } from "@/components/organisation-submission";
 
 export const metadata: Metadata = {
@@ -42,37 +46,45 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  const locations = await prisma.location.findMany({
+    select: { city: true, slug: true },
+  });
   return (
     <div>
       {/* hero section  */}
-      <HomeHero />
+      <HomeHero locations={locations} />
+      <ErrorBoundary fallback={"stats error"}>
+        <Suspense fallback={<StatsFallback />}>
+          <Stats />
+        </Suspense>
+      </ErrorBoundary>
+
       <div className="max-w-7xl w-full mx-auto px-4">
         <PageSection
           href="/locations"
-          label={<span>Top Locations</span>}
-          description="Kick off your weekend trips from these locations"
+          label={<span> Start from your city</span>}
+          description="Tap a city to explore weekend trips, travel groups, and nearby destinations starting from there."
         >
-          <Suspense fallback={<LocationsFallback />} key={"trending-locations"}>
-            <TrendingLocationsCarousel />
-          </Suspense>
+          <ErrorBoundary fallback={"TrendingLocationsCarousel error"}>
+            <Suspense
+              fallback={<LocationsGridSkeleton />}
+              key={"trending-locations"}
+            >
+              <LocationsGrid />
+            </Suspense>
+          </ErrorBoundary>
         </PageSection>
-        <PageSection
-          href="/instagram-profiles"
-          label={<span>Instagram Travel Groups</span>}
-          description="Discover top travel groups from Instagram for your next getaway"
-        >
-          <Suspense>
-            <TrendingInstagramProfiles />
-          </Suspense>
-        </PageSection>
+
         <PageSection
           href="/destinations"
-          label={<span>Must-Visit Weekend Destinations</span>}
-          description="Dreamy spots you won’t want to miss this weekend."
+          label={<span>Trending weekend destinations</span>}
+          description="Popular weekend getaways travelers are exploring right now across India."
         >
-          <Suspense>
-            <TrendingDestinationsCarousel />
-          </Suspense>
+          <ErrorBoundary fallback={"TrendingDestinationsCarousel error"}>
+            <Suspense fallback={<DestinationsGridSkeleton />}>
+              <DestinationsGrid />
+            </Suspense>
+          </ErrorBoundary>
         </PageSection>
 
         <PageSection
@@ -80,30 +92,13 @@ export default async function HomePage() {
           label={<span>Top Categories</span>}
           description="Pick a vibe. Pack your bag. Your weekend just got sorted."
         >
-          <Suspense>
-            <TrendingCategoriesCarousel />
-          </Suspense>
+          <ErrorBoundary fallback={"TrendingCategoriesCarousel error"}>
+            <Suspense>
+              <TrendingCategoriesCarousel />
+            </Suspense>
+          </ErrorBoundary>
         </PageSection>
 
-        <PageSection
-          href="/groups"
-          label={<span>Top Travel Groups</span>}
-          description="Join the best groups for weekend adventures."
-        >
-          <Suspense>
-            <TrendingGroupsCarousel />
-          </Suspense>
-        </PageSection>
-
-        <PageSection
-          href="/trips"
-          label={<span>Upcoming Weekend Trips</span>}
-          description="Upcoming trips to make your weekend epic."
-        >
-          <Suspense>
-            <TrendingTripsCarousel />
-          </Suspense>
-        </PageSection>
         <AdUnit />
         {/* <OrganizerSubmission /> */}
       </div>
