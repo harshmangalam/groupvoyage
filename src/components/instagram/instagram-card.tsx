@@ -19,7 +19,7 @@ export function InstagramProfileCard({
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Card className="h-auto w-full transition-all hover:bg-muted max-w-md">
+      <Card className="w-full transition-all hover:bg-muted max-w-md">
         <CardContent className="p-4 space-y-3">
           <div className="flex items-center gap-3">
             <div className="space-y-1 flex-1 overflow-hidden">

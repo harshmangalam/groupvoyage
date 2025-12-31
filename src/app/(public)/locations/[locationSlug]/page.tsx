@@ -1,11 +1,15 @@
 import { getLocation } from "@/actions/location";
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
-import { TrendingInstagramProfiles } from "@/components/instagram/trending-instagram-profiles";
 import { Suspense } from "react";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
+import { ErrorBoundary } from "react-error-boundary";
+import { InstagramsGrid } from "@/components/instagram/instagrams-grid";
+import { InstagramsGridSkeleton } from "@/components/instagram/instagrams-grid-skeleton";
+import { DestinationsGrid } from "@/components/destinations/destinations-grid";
+import { DestinationsGridSkeleton } from "@/components/destinations/destinations-grid-skeleton";
 
 export async function generateMetadata({
   params,
@@ -37,85 +41,90 @@ export async function generateMetadata({
 export default async function LocationDetailsPage({
   params,
 }: PageProps<"/locations/[locationSlug]">) {
-  return (
-    <Suspense>
-      <LocationDetailsWrapper paramsPromise={params} />
-    </Suspense>
-  );
-}
-
-async function LocationDetailsWrapper({ paramsPromise }) {
-  const params = await paramsPromise;
-  const location = await getLocation({ locationSlug: params.locationSlug });
+  const { locationSlug } = await params;
+  const location = await getLocation({ locationSlug });
 
   if (!location) return notFound();
   return (
     <div className="max-w-7xl px-4 mx-auto">
       <PageSection
-        href={`/instagram-profiles?locations=${params.locationSlug}`}
-        label={<span>Instagram Travel Groups From {location.city}</span>}
-        description={`Discover top travel groups on Instagram from ${location.city} for your next getaway`}
-      >
-        <Suspense>
-          <TrendingInstagramProfiles locationSlug={params.locationSlug} />
-        </Suspense>
-      </PageSection>
-      <PageSection
-        href={`/destinations/?locations=${params.locationSlug}`}
+        href={`/destinations/?locations=${locationSlug}`}
         label={<span> Weekend Destinations From {location.city}</span>}
-        description={`Stunning spots near ${location.city} you need to explore.`}
+        description={`Stunning spots near ${location.city} perfect for your next weekend escape.`}
       >
-        <Suspense>
-          <TrendingDestinationsCarousel locationSlug={params.locationSlug} />
-        </Suspense>
+        <ErrorBoundary fallback={"DestinationsGrid error"}>
+          <Suspense fallback={<DestinationsGridSkeleton />}>
+            <DestinationsGrid locationSlug={locationSlug} />
+          </Suspense>
+        </ErrorBoundary>
       </PageSection>
 
       <PageSection
-        href={`/groups?locations=${params.locationSlug}`}
+        href={`/instagram-profiles?locations=${locationSlug}`}
+        label={<span>Instagram Travel Groups From {location.city}</span>}
+        description={` Top ${location.city}-based Instagram communities planning your next weekend getaway.`}
+      >
+        <ErrorBoundary fallback={"InstagramsGrid error"}>
+          <Suspense fallback={<InstagramsGridSkeleton />}>
+            <InstagramsGrid locationSlug={locationSlug} />
+          </Suspense>
+        </ErrorBoundary>
+      </PageSection>
+
+      <PageSection
+        href={`/groups?locations=${locationSlug}`}
         label={<span>Top Travel Groups from {location.city}</span>}
-        description={`Connect with the top travel groups starting from ${location.city}.`}
+        description={`Connect with active travel groups organizing weekend trips from ${location.city}`}
       >
-        <Suspense>
-          <TrendingGroupsCarousel locationSlug={params.locationSlug} />
-        </Suspense>
+        <ErrorBoundary fallback={"TrendingGroupsCarousel error"}>
+          <Suspense>
+            <TrendingGroupsCarousel locationSlug={locationSlug} />
+          </Suspense>
+        </ErrorBoundary>
       </PageSection>
 
       <PageSection
-        href={`/trips/?locations=${params.locationSlug}&durations=short-trips`}
+        href={`/trips/?locations=${locationSlug}&durations=short-trips`}
         label={<span>Epic 1-Day Trips from {location.city}</span>}
         description={`Discover unmissable 1 day short weekend trips near ${location.city}`}
       >
-        <Suspense>
-          <TrendingTripsCarousel
-            locationSlug={params.locationSlug}
-            durations={"short-trips"}
-          />
-        </Suspense>
+        <ErrorBoundary fallback={"TrendingTripsCarousel error"}>
+          <Suspense>
+            <TrendingTripsCarousel
+              locationSlug={locationSlug}
+              durations={"short-trips"}
+            />
+          </Suspense>
+        </ErrorBoundary>
       </PageSection>
 
       <PageSection
-        href={`/trips/?locations=${params.locationSlug}&durations=weekend-trips`}
+        href={`/trips/?locations=${locationSlug}&durations=weekend-trips`}
         label={<span>Epic 2-Days Trips from {location.city}</span>}
         description={`Discover unmissable 2 days weekend trips near ${location.city}`}
       >
-        <Suspense>
-          <TrendingTripsCarousel
-            locationSlug={params.locationSlug}
-            durations={"weekend-trips"}
-          />
-        </Suspense>
+        <ErrorBoundary fallback={"TrendingTripsCarousel error"}>
+          <Suspense>
+            <TrendingTripsCarousel
+              locationSlug={locationSlug}
+              durations={"weekend-trips"}
+            />
+          </Suspense>
+        </ErrorBoundary>
       </PageSection>
       <PageSection
-        href={`/trips/?locations=${params.locationSlug}&durations=long-weekend`}
+        href={`/trips/?locations=${locationSlug}&durations=long-weekend`}
         label={<span>Epic 3+ days Trips from {location.city}</span>}
         description={`Discover unmissable 3+ days long weekend trips near ${location.city}`}
       >
-        <Suspense>
-          <TrendingTripsCarousel
-            locationSlug={params.locationSlug}
-            durations={"long-weekend"}
-          />
-        </Suspense>
+        <ErrorBoundary fallback={"TrendingTripsCarousel error"}>
+          <Suspense>
+            <TrendingTripsCarousel
+              locationSlug={locationSlug}
+              durations={"long-weekend"}
+            />
+          </Suspense>
+        </ErrorBoundary>
       </PageSection>
     </div>
   );
