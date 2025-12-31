@@ -43,6 +43,14 @@ export default async function FooterSection() {
       label: "Instagram Groups",
       href: "/instagram-profiles",
     },
+    {
+      label: "Terms",
+      href: "/terms-of-service",
+    },
+    {
+      label: "Privacy Policy",
+      href: "/privacy-policy",
+    },
   ];
 
   const connectionLinks = [

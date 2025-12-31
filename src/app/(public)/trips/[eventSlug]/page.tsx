@@ -23,7 +23,7 @@ import { getInstagramUsername } from "@/lib/utils";
 import { ImageGallery } from "@/components/image-gallery";
 import { Badge } from "@/components/ui/badge";
 import { Suspense } from "react";
-import AdUnit from "@/components/ad-unit";
+// import AdUnit from "@/components/ad-unit";
 
 export async function generateMetadata({
   params,
@@ -129,7 +129,7 @@ async function TripDetailsWrapper({ paramsPromise }) {
         <div className="md:col-span-2 space-y-6">
           {event?.summary && <TripDetails details={event.summary} />}
 
-          <AdUnit />
+          {/* <AdUnit /> */}
           <SectionList
             label={"Trip Highlights"}
             Icon={
