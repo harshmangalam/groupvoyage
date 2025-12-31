@@ -1,10 +1,11 @@
 export const SITE_NAME = "GroupVoyage";
 export const SITE_URL = "https://groupvoyage.in";
-export const SITE_EMAIL = "trip.diaries.coll1@gmail.com";
+export const SITE_EMAIL = "harshdev8218@gmail.com";
 export const SITE_TAGLINE =
   "Find local groups, compare prices, and join budget-friendly weekend trips";
 export const SITE_DESCRIPTION = `${SITE_NAME} is a free, open platform to discover and compare weekend group trips, then join organizers directly on their official page.
 `;
+export const REPO_LINK = "https://github.com/harshmangalam/groupvoyage";
 
 export const DURATIONS = [
   { label: "Short Trips (1 day)", value: "short-trips" },
