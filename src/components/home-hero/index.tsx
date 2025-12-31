@@ -13,8 +13,8 @@ export function HomeHero({
 }) {
   return (
     <div className="pt-12 z-[1] px-4">
-      <div className="mx-auto max-w-7xl items-center gap-6 grid grid-cols-1">
-        <div className="text-center mb-6 max-w-3xl mx-auto w-full">
+      <div className="mx-auto max-w-7xl items-center gap-12 grid grid-cols-1">
+        <div className="text-center max-w-4xl mx-auto w-full">
           <motion.h1
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

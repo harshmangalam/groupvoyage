@@ -173,9 +173,7 @@ export const getEventList = cache(
           },
         },
       },
-      orderBy: {
-        updatedAt: "desc",
-      },
+
       ...(shouldPaginate ? { take, skip } : {}),
     });
 

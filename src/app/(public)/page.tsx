@@ -2,11 +2,7 @@ import { HomeHero } from "@/components/home-hero";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Metadata } from "next";
-import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
-import { TrendingLocationsCarousel } from "@/components/locations/trending-locations-carousel";
-import { LocationsFallback } from "@/components/locations/locations-fallback";
-import { TrendingCategoriesCarousel } from "@/components/categories/trending-categories-carousel";
-import AdUnit from "@/components/ad-unit";
+// import AdUnit from "@/components/ad-unit";
 import { ErrorBoundary } from "react-error-boundary";
 import { StatsFallback } from "@/components/home-hero/stats-fallback";
 import { Stats } from "@/components/home-hero/stats";
@@ -15,6 +11,8 @@ import { LocationsGrid } from "@/components/locations/locations-grid";
 import { LocationsGridSkeleton } from "@/components/locations/locations-grid-skeleton";
 import { DestinationsGridSkeleton } from "@/components/destinations/destinations-grid-skeleton";
 import { DestinationsGrid } from "@/components/destinations/destinations-grid";
+import { CategoriesGrid } from "@/components/categories/categories-grid";
+import { CategoriesGridSkeleton } from "@/components/categories/categories-grid-skeleton";
 // import { OrganizerSubmission } from "@/components/organisation-submission";
 
 export const metadata: Metadata = {
@@ -48,6 +46,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const locations = await prisma.location.findMany({
     select: { city: true, slug: true },
+    orderBy: { events: { _count: "desc" } },
   });
   return (
     <div>
@@ -89,17 +88,17 @@ export default async function HomePage() {
 
         <PageSection
           href="/categories"
-          label={<span>Top Categories</span>}
+          label={<span>Trending trip categories</span>}
           description="Pick a vibe. Pack your bag. Your weekend just got sorted."
         >
           <ErrorBoundary fallback={"TrendingCategoriesCarousel error"}>
-            <Suspense>
-              <TrendingCategoriesCarousel />
+            <Suspense fallback={<CategoriesGridSkeleton />}>
+              <CategoriesGrid />
             </Suspense>
           </ErrorBoundary>
         </PageSection>
 
-        <AdUnit />
+        {/* <AdUnit /> */}
         {/* <OrganizerSubmission /> */}
       </div>
     </div>
