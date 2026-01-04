@@ -31,26 +31,26 @@ export async function generateMetadata({
   const { eventSlug } = await params;
   const event = await getEventDetails({ eventSlug });
   return {
-    title: event?.aiTitle,
-    description: `Discover details about ${event?.aiTitle} Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
+    title: event?.title,
+    description: `Discover details about ${event?.title} Compare prices, check itinerary, and choose the best travel experience on ${SITE_NAME}.`,
     keywords: [
-      `${event?.aiTitle} weekend trip`,
-      `${event?.aiTitle} 1-day trip`,
-      `${event?.aiTitle} 2-day trip`,
-      `${event?.aiTitle} tour package`,
-      `budget-friendly ${event?.aiTitle} trip`,
-      `best group trip to ${event?.aiTitle}`,
-      `affordable trip to ${event?.aiTitle}`,
-      `adventure trip to ${event?.aiTitle}`,
-      `trekking trip to ${event?.aiTitle}`,
-      `road trip to ${event?.aiTitle}`,
-      `scenic weekend trip to ${event?.aiTitle}`,
-      `compare ${event?.aiTitle} trip prices`,
-      `book ${event?.aiTitle} weekend tour`,
-      `1-day and 2-day trip to ${event?.aiTitle}`,
-      `best places to visit in ${event?.aiTitle}`,
-      `group travel to ${event?.aiTitle}`,
-      `short weekend escape to ${event?.aiTitle}`,
+      `${event?.title} weekend trip`,
+      `${event?.title} 1-day trip`,
+      `${event?.title} 2-day trip`,
+      `${event?.title} tour package`,
+      `budget-friendly ${event?.title} trip`,
+      `best group trip to ${event?.title}`,
+      `affordable trip to ${event?.title}`,
+      `adventure trip to ${event?.title}`,
+      `trekking trip to ${event?.title}`,
+      `road trip to ${event?.title}`,
+      `scenic weekend trip to ${event?.title}`,
+      `compare ${event?.title} trip prices`,
+      `book ${event?.title} weekend tour`,
+      `1-day and 2-day trip to ${event?.title}`,
+      `best places to visit in ${event?.title}`,
+      `group travel to ${event?.title}`,
+      `short weekend escape to ${event?.title}`,
     ],
   };
 }
@@ -90,10 +90,10 @@ async function TripDetailsWrapper({ paramsPromise }) {
   return (
     <div>
       <h1
-        title={event.aiTitle || ""}
+        title={event.title || ""}
         className="text-2xl md:text-3xl lg:text-4xl  font-bold tracking-tight mb-2 line-clamp-2"
       >
-        {event.aiTitle}
+        {event.title}
       </h1>
 
       <div className="flex flex-wrap gap-4 text-sm md:text-base">

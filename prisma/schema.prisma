@@ -62,6 +62,7 @@ model Event {
   details               String?
   summary               String? //AI Generated 
   price                 Int?
+  discountPercentage    Int?
   locationId            String
   groupId               String
   posterUrls            String[]

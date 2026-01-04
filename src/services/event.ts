@@ -2,6 +2,7 @@
 import { prisma } from "@/lib/db";
 import { DurationFilter } from "@/lib/types";
 import { cache } from "react";
+import { EventOrderByWithRelationInput } from "../../prisma/generated/models";
 
 export const getEventList = cache(
   async ({
@@ -15,6 +16,7 @@ export const getEventList = cache(
     destinationSlug,
     priceRange,
     categories,
+    orderBy,
   }: {
     locationSlug?: string;
     groupSlug?: string;
@@ -26,6 +28,7 @@ export const getEventList = cache(
     destinationSlug?: string;
     priceRange?: any;
     categories?: string;
+    orderBy?: EventOrderByWithRelationInput;
   }) => {
     const filter: Record<string, unknown> = {
       status: "processed",
@@ -149,10 +152,11 @@ export const getEventList = cache(
         posterUrls: true,
         durations: true,
         id: true,
-        aiTitle: true,
+        title: true,
         price: true,
         slug: true,
         meta: true,
+        discountPercentage: true,
         location: {
           select: {
             slug: true,
@@ -173,6 +177,7 @@ export const getEventList = cache(
           },
         },
       },
+      orderBy: orderBy ?? undefined,
 
       ...(shouldPaginate ? { take, skip } : {}),
     });

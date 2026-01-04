@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import {
   Carousel,
   CarouselContent,
@@ -10,17 +8,22 @@ import {
 import { TripCard } from "./trip-card";
 import { DurationFilter } from "@/lib/types";
 import { getEventList } from "@/services/event";
+import { EventOrderByWithRelationInput } from "../../../prisma/generated/models";
 
 export async function TrendingTripsCarousel({
   locationSlug,
   durations,
   destinations,
   groupSlug,
+  priceRange,
+  orderBy,
 }: {
   locationSlug?: string;
   durations?: DurationFilter;
   destinations?: string;
   groupSlug?: string;
+  priceRange?: number;
+  orderBy?: EventOrderByWithRelationInput;
 }) {
   const events = await getEventList({
     locationSlug,
@@ -28,6 +31,8 @@ export async function TrendingTripsCarousel({
     destinationSlug: destinations,
     take: 10,
     groupSlug,
+    priceRange,
+    orderBy,
   });
   return (
     <Carousel

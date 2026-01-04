@@ -62,6 +62,39 @@ export default async function LocationDetailsPage({
       </PageSection>
 
       <PageSection
+        href={`/trips?priceRange=5000&locations=${location.slug}`}
+        label={<span>Weekend Trips Under ₹5,000 from {location.city}</span>}
+        description={`Explore affordable group weekend trips under ₹5,000 starting from ${location.city}`}
+      >
+        <ErrorBoundary fallback={"TrendingTripsCarousel error"}>
+          <Suspense>
+            <TrendingTripsCarousel
+              locationSlug={locationSlug}
+              priceRange={5000}
+            />
+          </Suspense>
+        </ErrorBoundary>
+      </PageSection>
+      <PageSection
+        label={<span>Best Deals This Weekend from {location.city}</span>}
+        description={`Save more on popular group weekend trips from ${location.city}. Handpicked trips with the highest discounts and best value.`}
+      >
+        <ErrorBoundary fallback={"TrendingTripsCarousel error"}>
+          <Suspense>
+            <TrendingTripsCarousel
+              locationSlug={locationSlug}
+              orderBy={{
+                discountPercentage: {
+                  sort: "desc",
+                  nulls: "last",
+                },
+              }}
+            />
+          </Suspense>
+        </ErrorBoundary>
+      </PageSection>
+
+      <PageSection
         href={`/groups?locations=${locationSlug}`}
         label={<span>Top Travel Groups from {location.city}</span>}
         description={`Connect with active travel groups organizing weekend trips from ${location.city}`}

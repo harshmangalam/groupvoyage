@@ -40,7 +40,7 @@ export function DestinationCard({
                 <CalendarClock className="h-4 w-4 text-primary" />
                 <span className="font-medium">{eventsCount}</span>
               </div>
-              <span className="text-muted-foreground">
+              <span className="text-muted-foreground hidden sm:block">
                 {eventsCount === 1 ? "Trip" : "Trips"}
               </span>
             </div>
@@ -50,7 +50,7 @@ export function DestinationCard({
                 <Users className="h-4 w-4 text-primary" />
                 <span className="font-medium">{groupsCount}</span>
               </div>
-              <span className="text-muted-foreground">
+              <span className="text-muted-foreground hidden sm:block">
                 {groupsCount === 1 ? "Group" : "Groups"}
               </span>
             </div>

@@ -75,7 +75,6 @@ export default async function FooterSection() {
             <div className="flex items-center gap-2">
               <Logo />
             </div>
-            <p className="text-muted-foreground">{SITE_TAGLINE}</p>
             <div className="flex flex-wrap gap-3 mt-4">
               {connectionLinks.map((social) => (
                 <Button
