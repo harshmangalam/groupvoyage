@@ -2,7 +2,6 @@ import { HomeHero } from "@/components/home-hero";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
 import { Metadata } from "next";
-// import AdUnit from "@/components/ad-unit";
 import { ErrorBoundary } from "react-error-boundary";
 import { StatsFallback } from "@/components/home-hero/stats-fallback";
 import { Stats } from "@/components/home-hero/stats";
@@ -13,33 +12,27 @@ import { DestinationsGridSkeleton } from "@/components/destinations/destinations
 import { DestinationsGrid } from "@/components/destinations/destinations-grid";
 import { CategoriesGrid } from "@/components/categories/categories-grid";
 import { CategoriesGridSkeleton } from "@/components/categories/categories-grid-skeleton";
-// import { OrganizerSubmission } from "@/components/organisation-submission";
 
 export const metadata: Metadata = {
-  title: "Compare & Book Weekend Group Trips - 1-Day & 2-Day Getaways",
+  title:
+    "Weekend Group Trips from Your City | 1–2 Day Getaways, Treks & Experiences",
   description:
-    "Discover the best weekend group trips from your city. Compare prices, check itineraries, and join 1-day & 2-day budget-friendly trips for trekking, adventure, and scenic getaways.",
+    "Discover curated weekend group trips from your city. Compare 1-day and 2-day getaways, trekking adventures, budget trips, and scenic experiences that run every weekend.",
   keywords: [
     "weekend group trips",
-    "1-day and 2-day trips",
-    "best weekend getaways",
-    "budget-friendly weekend trips",
-    "adventure group trips",
-    "trekking weekend getaways",
-    "affordable short trips",
-    "road trips from my city",
-    "quick weekend escapes",
-    "nature getaways for the weekend",
-    "top weekend destinations",
-    "solo and group weekend travel",
+    "weekend trips from my city",
+    "1 day weekend trips",
+    "2 day weekend getaways",
+    "group trips near me",
+    "budget weekend trips",
+    "trekking weekend trips",
     "short trips near me",
-    "scenic weekend vacations",
-    "best 2-day trip packages",
-    "budget weekend tours",
-    "weekend hiking trips",
-    "best places to visit this weekend",
-    "travel groups for weekend trips",
-    "price comparison for weekend tours",
+    "weekend travel groups",
+    "affordable weekend getaways",
+    "adventure weekend trips",
+    "road trips from city",
+    "nature weekend getaways",
+    "best weekend trips in india",
   ],
 };
 
@@ -97,9 +90,6 @@ export default async function HomePage() {
             </Suspense>
           </ErrorBoundary>
         </PageSection>
-
-        {/* <AdUnit /> */}
-        {/* <OrganizerSubmission /> */}
       </div>
     </div>
   );

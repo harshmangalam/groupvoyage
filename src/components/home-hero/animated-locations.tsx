@@ -34,11 +34,11 @@ export function AnimatedLocations({
       <AnimatePresence mode="wait">
         <motion.span
           key={locations[index].slug}
-          initial={{ y: "0.3em", opacity: 0 }}
+          initial={{ y: "0.2em", opacity: 0 }}
           animate={{ y: "0em", opacity: 1 }}
-          exit={{ y: "-0.3em", opacity: 0 }}
+          exit={{ y: "-0.2em", opacity: 0 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="absolute left-0 top-0 text-destructive"
+          className="absolute left-0 top-1 md:top-1 lg:top-2 text-destructive"
         >
           <Link href={`/locations/${locations[index].slug}`}>
             {locations[index].city}
