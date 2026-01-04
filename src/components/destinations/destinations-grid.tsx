@@ -1,4 +1,4 @@
-import { getDestinationList } from "@/actions/destinations";
+import { getDestinationList } from "@/services/destinations";
 import { DestinationCard } from "./destination-card";
 export async function DestinationsGrid({
   locationSlug,

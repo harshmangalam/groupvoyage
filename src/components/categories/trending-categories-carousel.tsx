@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { CategoryCard } from "./category-card";
-import { getCategoryList } from "@/actions/categories";
+import { getCategoryList } from "@/services/categories";
 export async function TrendingCategoriesCarousel() {
   const categories = await getCategoryList({
     take: 10,

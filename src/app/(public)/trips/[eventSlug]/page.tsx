@@ -1,4 +1,4 @@
-import { getEventDetails } from "@/actions/event";
+import { getEventDetails } from "@/services/event";
 import { Card, CardContent } from "@/components/ui/card";
 import { SITE_NAME } from "@/lib/constants";
 import { EventMetaType } from "@/lib/types";
@@ -18,7 +18,7 @@ import { BookNow } from "./book-now";
 import { SectionList } from "./section-list";
 import { TripDetails } from "./trip-details";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
-import { getInstagramProfile } from "@/actions/instagram-profile";
+import { getInstagramProfile } from "@/services/instagram-profile";
 import { getInstagramUsername } from "@/lib/utils";
 import { ImageGallery } from "@/components/image-gallery";
 import { Badge } from "@/components/ui/badge";

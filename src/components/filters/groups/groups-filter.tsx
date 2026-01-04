@@ -1,6 +1,6 @@
 import { GroupsDropdown } from "./groups-dropdown";
 import { ButtonProps } from "@/components/ui/button";
-import { getGroupsOption } from "@/actions/group";
+import { getGroupsOption } from "@/services/group";
 
 export async function GroupsFilter({
   buttonProps,

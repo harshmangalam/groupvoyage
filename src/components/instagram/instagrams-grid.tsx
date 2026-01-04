@@ -1,4 +1,4 @@
-import { getInstagramProfileList } from "@/actions/instagram-profile";
+import { getInstagramProfileList } from "@/services/instagram-profile";
 import { InstagramProfileCard } from "./instagram-card";
 
 export async function InstagramsGrid({

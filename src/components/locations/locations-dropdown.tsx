@@ -13,7 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import useSWR from "swr";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getLocationsOption } from "@/actions/location";
+import { getLocationsOption } from "@/services/location";
 
 interface LocationsDropdownProps
   extends React.InputHTMLAttributes<HTMLSelectElement> {}

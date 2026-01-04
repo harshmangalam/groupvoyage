@@ -1,4 +1,4 @@
-import { getLocations } from "@/actions/location";
+import { getLocations } from "@/services/location";
 import { LocationCard } from "./location-card";
 
 export async function LocationsGrid() {

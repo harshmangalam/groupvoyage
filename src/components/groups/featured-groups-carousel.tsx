@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { getGroupList } from "@/actions/group";
+import { getGroupList } from "@/services/group";
 import { GroupsCarousel } from "./groups-carousel";
 
 export async function TrendingGroupsCarousel({

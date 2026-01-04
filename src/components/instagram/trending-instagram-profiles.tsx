@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { getInstagramProfileList } from "@/actions/instagram-profile";
+import { getInstagramProfileList } from "@/services/instagram-profile";
 import { InstagramProfilesCarousel } from "./instagram-carousel";
 
 export async function TrendingInstagramProfiles({

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { TripCard } from "./trip-card";
 import { DurationFilter } from "@/lib/types";
-import { getEventList } from "@/actions/event";
+import { getEventList } from "@/services/event";
 
 export async function TrendingTripsCarousel({
   locationSlug,

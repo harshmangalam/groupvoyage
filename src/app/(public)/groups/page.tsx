@@ -1,4 +1,4 @@
-import { getGroupList } from "@/actions/group";
+import { getGroupList } from "@/services/group";
 import Empty from "@/components/empty";
 import { DestinationsFilter } from "@/components/filters/destinations/destinations-filter";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";

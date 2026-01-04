@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
-import { getLocations } from "@/actions/location";
-import { getGroupList } from "@/actions/group";
-import { getDestinationList } from "@/actions/destinations";
-import { getEventList } from "@/actions/event";
+import { getLocations } from "@/services/location";
+import { getGroupList } from "@/services/group";
+import { getDestinationList } from "@/services/destinations";
+import { getEventList } from "@/services/event";
 
 const staticRoutes = [
   "/",

@@ -1,5 +1,5 @@
 import { CategoryCard } from "./category-card";
-import { getCategoryList } from "@/actions/categories";
+import { getCategoryList } from "@/services/categories";
 
 export async function CategoriesGrid() {
   const categoriesResp = await getCategoryList({

@@ -1,4 +1,4 @@
-import { getLocation } from "@/actions/location";
+import { getLocation } from "@/services/location";
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";

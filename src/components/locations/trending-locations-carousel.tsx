@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { getLocations } from "@/actions/location";
+import { getLocations } from "@/services/location";
 import { LocationsCarousel } from "./locations-carousel";
 
 export async function TrendingLocationsCarousel() {

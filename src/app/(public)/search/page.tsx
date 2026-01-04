@@ -1,5 +1,5 @@
 import SearchInput from "@/components/search-input";
-import { getSearchResults } from "@/actions/common";
+import { getSearchResults } from "@/services/common";
 import { SITE_NAME } from "@/lib/constants";
 import { PageSection } from "@/components/page-section";
 import { SlidersHorizontal } from "lucide-react";

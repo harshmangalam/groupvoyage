@@ -1,4 +1,4 @@
-import { getEventList } from "@/actions/event";
+import { getEventList } from "@/services/event";
 import { CustomPagination } from "@/components/custom-pagination";
 import Empty from "@/components/empty";
 import { TripCard } from "@/components/trips/trip-card";

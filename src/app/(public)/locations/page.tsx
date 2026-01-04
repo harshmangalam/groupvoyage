@@ -1,4 +1,4 @@
-import { getLocations } from "@/actions/location";
+import { getLocations } from "@/services/location";
 import { LocationCard } from "@/components/locations/location-card";
 import { LocationsFallback } from "@/components/locations/locations-fallback";
 import { PageSection } from "@/components/page-section";

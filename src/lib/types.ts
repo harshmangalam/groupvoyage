@@ -1,6 +1,6 @@
-import { getEventDetails, getEventList } from "@/actions/event";
-import { getGroupList } from "@/actions/group";
-import { getLocations, getLocationsOption } from "@/actions/location";
+import { getEventDetails, getEventList } from "@/services/event";
+import { getGroupList } from "@/services/group";
+import { getLocations, getLocationsOption } from "@/services/location";
 import { Prisma } from "../../prisma/generated/client";
 import { DURATIONS } from "./constants";
 

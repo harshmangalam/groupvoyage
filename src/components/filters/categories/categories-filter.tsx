@@ -1,6 +1,6 @@
 import { CategoriesDropdown } from "./categories-dropdown";
 import { ButtonProps } from "@/components/ui/button";
-import { getCategoriesOption } from "@/actions/categories";
+import { getCategoriesOption } from "@/services/categories";
 
 export async function CategoriesFilter({
   buttonProps,

@@ -1,5 +1,5 @@
 import { CategoryCard } from "@/components/categories/category-card";
-import { getCategoryList } from "@/actions/categories";
+import { getCategoryList } from "@/services/categories";
 import { PageSection } from "@/components/page-section";
 import SearchInput from "@/components/search-input";
 import { SortCategories } from "./sort-categories";

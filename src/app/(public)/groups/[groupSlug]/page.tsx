@@ -9,7 +9,7 @@ import {
 
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { getGroupDetails } from "@/actions/group";
+import { getGroupDetails } from "@/services/group";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { PostersCarousel } from "./posters-carousel";
@@ -19,7 +19,7 @@ import { SITE_URL } from "@/lib/constants";
 import { GroupMetaType } from "@/lib/types";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";
 import { getInstagramUsername } from "@/lib/utils";
-import { getInstagramProfile } from "@/actions/instagram-profile";
+import { getInstagramProfile } from "@/services/instagram-profile";
 import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 // import AdUnit from "@/components/ad-unit";

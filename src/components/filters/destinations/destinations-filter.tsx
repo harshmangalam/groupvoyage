@@ -1,4 +1,4 @@
-import { getDestinationsOption } from "@/actions/destinations";
+import { getDestinationsOption } from "@/services/destinations";
 import { DestinationsDropdown } from "./destinations-dropdown";
 import { ButtonProps } from "@/components/ui/button";
 

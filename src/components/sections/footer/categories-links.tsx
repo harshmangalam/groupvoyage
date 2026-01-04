@@ -1,4 +1,4 @@
-import { getCategoryList } from "@/actions/categories";
+import { getCategoryList } from "@/services/categories";
 
 export async function CategoriesLinks() {
   const categories = await getCategoryList({ take: 6 });

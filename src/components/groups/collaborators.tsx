@@ -1,6 +1,6 @@
 import { env } from "@/lib/env";
 import { CollaboratorsCarousel } from "./collaborators-carousel";
-import { getCollaborators } from "@/actions/group";
+import { getCollaborators } from "@/services/group";
 
 export async function Collaborators() {
   const slugs = [];

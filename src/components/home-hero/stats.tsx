@@ -1,5 +1,5 @@
 import { StatsCard } from "./stats-card";
-import { getPublicStats } from "@/actions/common";
+import { getPublicStats } from "@/services/common";
 
 export async function Stats() {
   const publicStats = await getPublicStats();

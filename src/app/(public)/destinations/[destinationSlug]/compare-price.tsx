@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Badge } from "@/components/ui/badge";
-import { getEventList } from "@/actions/event";
-import { getDestinationDetails } from "@/actions/destinations";
+import { getEventList } from "@/services/event";
+import { getDestinationDetails } from "@/services/destinations";
 import PriceTable from "@/components/trips/price-table";
 
 export default async function ComparePrice({

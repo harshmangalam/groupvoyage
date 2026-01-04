@@ -1,4 +1,4 @@
-import { getDestinationList } from "@/actions/destinations";
+import { getDestinationList } from "@/services/destinations";
 import { CustomPagination } from "@/components/custom-pagination";
 import { DestinationCard } from "@/components/destinations/destination-card";
 import { DestinationsSkeleton } from "@/components/destinations/destinations-skeleton";

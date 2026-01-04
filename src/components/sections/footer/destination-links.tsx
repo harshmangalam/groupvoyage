@@ -1,4 +1,4 @@
-import { getDestinationList } from "@/actions/destinations";
+import { getDestinationList } from "@/services/destinations";
 
 export async function DestinationLinks() {
   const destinations = await getDestinationList({ take: 6 });

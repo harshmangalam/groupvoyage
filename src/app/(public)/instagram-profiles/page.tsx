@@ -1,4 +1,4 @@
-import { getInstagramProfileList } from "@/actions/instagram-profile";
+import { getInstagramProfileList } from "@/services/instagram-profile";
 import Empty from "@/components/empty";
 import { LocationsFilter } from "@/components/filters/locations/locations-filter";
 import { InstagramProfileCard } from "@/components/instagram/instagram-card";

@@ -1,4 +1,4 @@
-import { getLocations } from "@/actions/location";
+import { getLocations } from "@/services/location";
 
 export async function LocationLinks() {
   const locations = await getLocations({ take: 6 });

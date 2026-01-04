@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
-import { getDestinationDetails } from "@/actions/destinations";
+import { getDestinationDetails } from "@/services/destinations";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 import { Suspense } from "react";
 import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
