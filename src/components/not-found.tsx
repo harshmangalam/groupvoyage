@@ -49,16 +49,6 @@ export function NotFound() {
             </Button>
           </div>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Follow us?{" "}
-          <a
-            target="_blank"
-            href={SOCIAL_LINKS.INSTAGRAM}
-            className="text-destructive hover:underline"
-          >
-            Instagram
-          </a>
-        </p>
       </div>
     </div>
   );
