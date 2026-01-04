@@ -6,9 +6,9 @@ export function GroupsSkeleton() {
     <div
       role="status"
       aria-busy="true"
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
     >
-      {Array.from({ length: 5 }).map((_, i) => (
+      {Array.from({ length: 8 }).map((_, i) => (
         <Card key={i} className="w-full overflow-hidden">
           <CardContent className="p-0" aria-hidden>
             {/* image area */}
