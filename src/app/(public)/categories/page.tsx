@@ -7,6 +7,24 @@ import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import Empty from "@/components/empty";
 import { CategoriesSkeleton } from "@/components/categories/categories-skeleton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Weekend Trip Categories | Treks, Getaways & Group Trips in India",
+  description:
+    "Browse all weekend trip categories in India. Explore trekking, adventure, nature, spiritual, and budget-friendly group trips for short weekend getaways.",
+  keywords: [
+    "weekend trip categories",
+    "types of weekend trips in India",
+    "group travel categories India",
+    "trekking weekend trips",
+    "adventure weekend getaways",
+    "nature weekend trips",
+    "spiritual weekend trips India",
+    "budget weekend trips",
+    "short weekend getaways India",
+  ],
+};
 
 export default async function CategoriesPage({
   searchParams,
