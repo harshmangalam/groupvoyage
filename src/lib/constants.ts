@@ -49,6 +49,5 @@ export const NAVIGATIONS_MENU = [
 
 export const SOCIAL_LINKS = {
   LINKEDIN: "https://www.linkedin.com/in/harshmangalam/",
-  X: "https://x.com/harshmangalam_",
-  INSTAGRAM: "https://www.instagram.com/harshmangalam_/",
+  GITHUB: "https://www.github.com/harshmangalam/groupvoyage",
 };

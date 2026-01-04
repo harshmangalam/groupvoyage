@@ -9,7 +9,7 @@ import { SITE_EMAIL, SITE_TAGLINE, SOCIAL_LINKS } from "@/lib/constants";
 import { Logo } from "@/components/logo";
 import { ProductHuntImage } from "@/components/product-hunt-image";
 import { Button } from "@/components/ui/button";
-import { InstagramIcon, MailIcon, TwitterIcon } from "lucide-react";
+import { GithubIcon, MailIcon } from "lucide-react";
 import { DestinationLinks } from "./destination-links";
 import { Suspense } from "react";
 import { LocationLinks } from "./location-link";
@@ -60,14 +60,9 @@ export default async function FooterSection() {
       icon: MailIcon,
     },
     {
-      label: "Instagram",
-      href: SOCIAL_LINKS.INSTAGRAM,
-      icon: InstagramIcon,
-    },
-    {
-      label: "Twitter",
-      href: SOCIAL_LINKS.X,
-      icon: TwitterIcon,
+      label: "Github",
+      href: SOCIAL_LINKS.GITHUB,
+      icon: GithubIcon,
     },
   ];
 
