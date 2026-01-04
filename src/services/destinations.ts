@@ -37,11 +37,14 @@ export const getDestinationList = cache(
         slug: true,
         id: true,
         _count: { select: { events: true, groups: true } },
-        locations: { select: { id: true, slug: true, city: true } },
+        locations: {
+          select: { id: true, slug: true, city: true },
+          orderBy: { groups: { _count: "desc" } },
+        },
       },
       skip,
       take,
-      orderBy: [{ events: { _count: "desc" } }, { groups: { _count: "desc" } }],
+      orderBy: [{ groups: { _count: "desc" } }],
     });
 
     const totalCount = await prisma.destination.count({ where: whereClause });

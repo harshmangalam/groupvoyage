@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Badge } from "./badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { cn } from "@/lib/utils";
@@ -7,28 +6,38 @@ type BadgeListProps = {
   items: Record<string, string>[];
   itemTitle: string;
   className?: string;
+  partialNumber?: number;
 };
 
-function BadgeList({ items, itemTitle, className }: BadgeListProps) {
+function BadgeList({
+  items,
+  itemTitle,
+  className,
+  partialNumber = 2,
+}: BadgeListProps) {
+  const partialItems = items?.length ? items.slice(0, partialNumber) : [];
+  const remainingItemsCount = items.length - partialNumber;
+  const remainingItems = items
+    ?.slice(partialNumber)
+    ?.map((item) => item[itemTitle])
+    ?.join(", ");
+
   return (
     <div className={cn("flex gap-1 flex-wrap", className)}>
-      <Badge variant={"outline"} className="capitalize">
-        {items?.[0]?.[itemTitle]}
-      </Badge>
+      {partialItems.map((item, i) => (
+        <Badge key={i} variant={"outline"} className="capitalize">
+          {item[itemTitle]}
+        </Badge>
+      ))}
 
-      {items.length > 1 && (
+      {items.length > partialNumber && (
         <Tooltip>
           <TooltipTrigger asChild>
-            <Badge variant="secondary">+{items.length - 1}</Badge>
+            <Badge variant="secondary">+{remainingItemsCount}</Badge>
           </TooltipTrigger>
 
           <TooltipContent>
-            <p>
-              {items
-                ?.slice(1)
-                ?.map((item) => item[itemTitle])
-                ?.join(", ")}
-            </p>
+            <p>{remainingItems}</p>
           </TooltipContent>
         </Tooltip>
       )}

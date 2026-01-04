@@ -16,6 +16,7 @@ interface DestinationProps {
   eventsCount: number;
   groupsCount: number;
   locations: Pick<T_Location, "city" | "slug" | "id">[];
+  showLocations?: boolean;
 }
 
 export function DestinationCard({
@@ -24,6 +25,7 @@ export function DestinationCard({
   eventsCount,
   groupsCount,
   locations,
+  showLocations = true,
 }: DestinationProps) {
   return (
     <Link href={`/destinations/${slug}`}>
@@ -54,18 +56,13 @@ export function DestinationCard({
             </div>
           </div>
         </CardContent>
-        <CardFooter className="px-4 pb-3">
-          {locations.length > 0 ? (
-            <BadgeList
-              items={locations}
-              itemTitle={"city"}
-            ></BadgeList>
-          ) : (
-            <p className="text-sm text-muted-foreground italic">
-              No locations yet
-            </p>
-          )}
-        </CardFooter>
+        {showLocations ? (
+          <CardFooter className="px-4 pb-3">
+            {locations.length > 0 ? (
+              <BadgeList items={locations} itemTitle={"city"}></BadgeList>
+            ) : null}
+          </CardFooter>
+        ) : null}
       </Card>
     </Link>
   );

@@ -2,7 +2,6 @@ import { getLocation } from "@/services/location";
 import { notFound } from "next/navigation";
 import { PageSection } from "@/components/page-section";
 import { Suspense } from "react";
-import { TrendingDestinationsCarousel } from "@/components/destinations/trending-destinations-carousel";
 import { TrendingTripsCarousel } from "@/components/trips/trending-trips-carousel";
 import { TrendingGroupsCarousel } from "@/components/groups/featured-groups-carousel";
 import { ErrorBoundary } from "react-error-boundary";
@@ -54,19 +53,10 @@ export default async function LocationDetailsPage({
       >
         <ErrorBoundary fallback={"DestinationsGrid error"}>
           <Suspense fallback={<DestinationsGridSkeleton />}>
-            <DestinationsGrid locationSlug={locationSlug} />
-          </Suspense>
-        </ErrorBoundary>
-      </PageSection>
-
-      <PageSection
-        href={`/instagram-profiles?locations=${locationSlug}`}
-        label={<span>Instagram Travel Groups From {location.city}</span>}
-        description={` Top ${location.city}-based Instagram communities planning your next weekend getaway.`}
-      >
-        <ErrorBoundary fallback={"InstagramsGrid error"}>
-          <Suspense fallback={<InstagramsGridSkeleton />}>
-            <InstagramsGrid locationSlug={locationSlug} />
+            <DestinationsGrid
+              locationSlug={locationSlug}
+              showLocations={false}
+            />
           </Suspense>
         </ErrorBoundary>
       </PageSection>
@@ -112,6 +102,19 @@ export default async function LocationDetailsPage({
           </Suspense>
         </ErrorBoundary>
       </PageSection>
+
+      <PageSection
+        href={`/instagram-profiles?locations=${locationSlug}`}
+        label={<span>Instagram Travel Groups From {location.city}</span>}
+        description={` Top ${location.city}-based Instagram communities planning your next weekend getaway.`}
+      >
+        <ErrorBoundary fallback={"InstagramsGrid error"}>
+          <Suspense fallback={<InstagramsGridSkeleton />}>
+            <InstagramsGrid locationSlug={locationSlug} />
+          </Suspense>
+        </ErrorBoundary>
+      </PageSection>
+
       <PageSection
         href={`/trips/?locations=${locationSlug}&durations=long-weekend`}
         label={<span>Epic 3+ days Trips from {location.city}</span>}

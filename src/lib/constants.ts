@@ -14,7 +14,7 @@ export const DURATIONS = [
 ] as const;
 
 export const TRIPS_PER_PAGE = 12;
-export const DESTINATIONS_PER_PAGE = 15;
+export const DESTINATIONS_PER_PAGE = 16;
 
 export const NAVIGATIONS_MENU = [
   {

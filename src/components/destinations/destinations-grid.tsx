@@ -1,12 +1,17 @@
 import { getDestinationList } from "@/services/destinations";
 import { DestinationCard } from "./destination-card";
+
+type DestinationsGridProps = {
+  locationSlug?: string;
+  groupSlug?: string;
+  showLocations?: boolean;
+};
+
 export async function DestinationsGrid({
   locationSlug,
   groupSlug,
-}: {
-  locationSlug?: string;
-  groupSlug?: string;
-}) {
+  showLocations = true,
+}: DestinationsGridProps) {
   const destinationsResp = await getDestinationList({
     take: 8,
     locationSlug,
@@ -22,6 +27,7 @@ export async function DestinationsGrid({
           eventsCount={destination._count.events}
           groupsCount={destination._count.groups}
           locations={destination.locations}
+          showLocations={showLocations}
         />
       ))}
     </div>
