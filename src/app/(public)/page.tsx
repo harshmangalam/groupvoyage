@@ -12,6 +12,7 @@ import { DestinationsGridSkeleton } from "@/components/destinations/destinations
 import { DestinationsGrid } from "@/components/destinations/destinations-grid";
 import { CategoriesGrid } from "@/components/categories/categories-grid";
 import { CategoriesGridSkeleton } from "@/components/categories/categories-grid-skeleton";
+import JsonLd from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title:
@@ -43,6 +44,20 @@ export default async function HomePage() {
   });
   return (
     <div>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "GroupVoyage",
+          url: "https://groupvoyage.in",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: "https://groupvoyage.in/groups?q={search_term_string}",
+            "query-input": "required name=search_term_string",
+          },
+        }}
+      />
+
       {/* hero section  */}
       <HomeHero locations={locations} />
       <ErrorBoundary fallback={"stats error"}>
